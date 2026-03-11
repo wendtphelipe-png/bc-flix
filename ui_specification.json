@@ -1,0 +1,107 @@
+{
+    "project": "Sociedade de Cirurgia Bariátrica",
+    "theme": {
+        "mode": "dark",
+        "colors": {
+            "backgroundBase": "#0D0D0D",
+            "primaryAccent": "#B22222",
+            "secondaryBase": "#2C2C2C",
+            "textPrimary": "#F5F5F5",
+            "textSecondary": "#C0C0C0"
+        },
+        "typography": {
+            "headings": "Serif",
+            "body": "Sans-serif"
+        },
+        "style": {
+            "borders": "sharp",
+            "gradients": "subtle_grey",
+            "effects": "glassmorphism_on_cards"
+        }
+    },
+    "pages": [
+        {
+            "name": "LandingPage",
+            "components": [
+                {
+                    "type": "HeroSection",
+                    "background": {
+                        "image": "grey_robotic_precision_focus",
+                        "overlay": "dark_gradient"
+                    },
+                    "content": {
+                        "headline": "Excelência na Formação Bariátrica",
+                        "ctaButton": {
+                            "label": "Explore Nossos Cursos",
+                            "color": "#B22222",
+                            "action": "scroll_to_courses"
+                        }
+                    }
+                },
+                {
+                    "type": "EventHub",
+                    "layout": "bento_box",
+                    "filters": [
+                        "Congressos",
+                        "Live Surgery",
+                        "Webinários"
+                    ]
+                },
+                {
+                    "type": "CourseEnrollmentFlow",
+                    "focus": "primary",
+                    "components": [
+                        {
+                            "type": "CourseList",
+                            "cardStyle": "glassmorphism"
+                        },
+                        {
+                            "type": "EnrollmentForm",
+                            "buttonColor": "#B22222",
+                            "accessibility": "min_contrast_4.5:1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "StudentDashboard",
+            "components": [
+                {
+                    "type": "LMSDashboard",
+                    "widgets": [
+                        {
+                            "type": "CMETracker",
+                            "visualization": "radial_chart",
+                            "colors": {
+                                "track": "#2C2C2C",
+                                "progress": "#B22222"
+                            }
+                        },
+                        {
+                            "type": "VideoPlayer",
+                            "quality": "HD",
+                            "features": [
+                                "sidebar_chapter_markers",
+                                "notes_area"
+                            ]
+                        },
+                        {
+                            "type": "UpNextWidget",
+                            "previewQuality": "HD"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "technicalConstraints": {
+        "mobile": {
+            "navigation": "thumb-friendly",
+            "touchFlows": "optimized"
+        },
+        "accessibility": {
+            "contrastRatio": "4.5:1"
+        }
+    }
+}

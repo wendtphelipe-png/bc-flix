@@ -1,0 +1,401 @@
+{
+  "eventos": [
+    {
+      "id": "ix-bc-live-surgery",
+      "titulo": "IX BC Live Surgery",
+      "data": "27 e 28/02/26",
+      "local": "Hospital de Clínicas e Auditório C. Madalosso - Passo Fundo, RS",
+      "horario": "08:00 às 18:00",
+      "publico": "Cirurgiões Bariátricos e Estudantes",
+      "imagem": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200",
+      "descricao": "O maior evento de cirurgia bariátrica e metabólica ao vivo do Sul do Brasil. Uma imersão completa combinando teoria e prática em formato híbrido. Acompanhe cirurgias robóticas e laparoscópicas reais com explicações e aprofunde seus conhecimentos.",
+      "link_externo": "https://www.bclivesurgery.com.br/",
+      "cronograma": [
+        {
+          "hora": "Dia 27 08:00",
+          "titulo": "Cirurgias ao Vivo (Robótica e Laparoscopia)",
+          "palestrante": "Victor Dib, Carlos Madalosso, Paulo Reis e Convidados"
+        },
+        {
+          "hora": "Dia 28 08:00",
+          "titulo": "Sessões Teóricas e Discussão de Casos",
+          "palestrante": "Diversos Convidados Nacionais e Internacionais"
+        },
+        {
+          "hora": "12:30",
+          "titulo": "Encerramento e Certificação",
+          "palestrante": "Comissão Organizadora"
+        }
+      ],
+      "cirurgioes": [
+        {
+          "nome": "Carlos Domene",
+          "foto": "https://static.wixstatic.com/media/470852_b366b8a10cae45c8b365f7134e18d7c1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/carlos%20domenne_edited.jpg"
+        },
+        {
+          "nome": "Carlos Madalosso",
+          "foto": "https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg"
+        },
+        {
+          "nome": "Diogo Kfouri",
+          "foto": "https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg"
+        },
+        {
+          "nome": "Guilherme Goyano",
+          "foto": "https://static.wixstatic.com/media/470852_221573fb2a734172adac260abf0f0ca6~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Guilherme%20Goyano_edited.jpg"
+        },
+        {
+          "nome": "Hiroji Okano",
+          "foto": "https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg"
+        },
+        {
+          "nome": "Nicholas Kruel",
+          "foto": "https://static.wixstatic.com/media/470852_5aef6b2331d542af994eceb2450987f1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Nicholas%20Kruel%20_edited.jpg"
+        }
+      ],
+      "palestrantes": [
+        {
+          "nome": "Admar Concon",
+          "foto": "https://static.wixstatic.com/media/470852_0c47ff079a0e4741aed5006f16dd3163~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Admar%20Concon_edited.jpg"
+        },
+        {
+          "nome": "André Teixeira",
+          "foto": "https://static.wixstatic.com/media/470852_9de78e1701464bd983b72f57730df2c4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Andre%20Bigolin_edited.jpg"
+        },
+        {
+          "nome": "Antelmo Sasso",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=AntelmoSasso&backgroundColor=B22222"
+        },
+        {
+          "nome": "Carlos Dillemburg",
+          "foto": "https://static.wixstatic.com/media/470852_800cb85b80f043748bd4cf4a4d59b984~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Dillemburg_edited.jpg"
+        },
+        {
+          "nome": "Carlos Madalosso",
+          "foto": "https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg"
+        },
+        {
+          "nome": "Daiane Weber",
+          "foto": "https://static.wixstatic.com/media/470852_fbabdbbb73b44a608b2139b35d1866d0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Daiane%20Weber_edited.jpg"
+        },
+        {
+          "nome": "Diogo Kfouri",
+          "foto": "https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg"
+        },
+        {
+          "nome": "Eduardo Grecco",
+          "foto": "https://static.wixstatic.com/media/470852_e5f18deac9214c139f8da24cc0d0b6ef~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Eduardo%20Grecco_edited.jpg"
+        },
+        {
+          "nome": "Hiroji Okano",
+          "foto": "https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg"
+        },
+        {
+          "nome": "Hugo Santos",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=HugoSantos&backgroundColor=B22222"
+        },
+        {
+          "nome": "Joe Waltrick",
+          "foto": "https://static.wixstatic.com/media/470852_4966dada5c844fa2a4661cad8c63d3b3~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Joe%20Waltrick.jpeg"
+        },
+        {
+          "nome": "Jéssica Zandoná",
+          "foto": "https://static.wixstatic.com/media/470852_768b8bc937634ba49ade2c195aaa3abc~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/jessica_edited.jpg"
+        },
+        {
+          "nome": "Luiz Gustavo Quadros",
+          "foto": "https://static.wixstatic.com/media/470852_e9665ec4b8574aedb33c5a33ee17be06~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Luiz%20Gustavo%20Quadros.jpeg"
+        },
+        {
+          "nome": "Manoel Galvão Neto",
+          "foto": "https://static.wixstatic.com/media/470852_3c918e7ebb424e7486cc36db8eb19cff~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Manoel%20Galv%C3%A3o%20Neto_edited.jpg"
+        },
+        {
+          "nome": "Milton Kawahara",
+          "foto": "https://static.wixstatic.com/media/470852_5864c775f8674f4587bd1bbbb4bdfd5d~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Milton%20Kawahara%20-%20SP.jpeg"
+        },
+        {
+          "nome": "Márcia Murussi",
+          "foto": "https://static.wixstatic.com/media/470852_eaa244b5fde44dc3b13a5411ea71a691~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Marcia%20Murussi_edited.jpg"
+        },
+        {
+          "nome": "Paulo Reis",
+          "foto": "https://static.wixstatic.com/media/470852_964942490a304f359a832379f82b3778~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Paulo%20Reis_jpg.jpeg"
+        },
+        {
+          "nome": "Persio Stobbe",
+          "foto": "https://static.wixstatic.com/media/470852_9717e634b48e47d3b759a08e11377a55~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,enc_avif,quality_auto/Persio%20Stobbe_edited.jpg"
+        },
+        {
+          "nome": "Raquel Fraga",
+          "foto": "https://static.wixstatic.com/media/470852_8b6a40868444490184923077b064f43d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Raquel%20Fraga_edited.jpg"
+        },
+        {
+          "nome": "Renato Souza",
+          "foto": "https://static.wixstatic.com/media/470852_1b14dc8469504a5dba39723d187829f0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Renato%20Souza_edited.jpg"
+        },
+        {
+          "nome": "Victor Dib",
+          "foto": "https://static.wixstatic.com/media/470852_e922635202284c269050fc8092fd3b0d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Victor%20Dib_edited.jpg"
+        }
+      ],
+      "convidados": [
+        {
+          "nome": "Alonso Alvarado",
+          "foto": "https://static.wixstatic.com/media/470852_48babfd362d145a392e87604b39f8d93~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Alonso%20Alvarado.jpeg"
+        },
+        {
+          "nome": "Aluísio Stoll",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=AluísioStoll&backgroundColor=B22222"
+        },
+        {
+          "nome": "André Bigolin",
+          "foto": "https://static.wixstatic.com/media/470852_9de78e1701464bd983b72f57730df2c4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Andre%20Bigolin_edited.jpg"
+        },
+        {
+          "nome": "Angelo Muniz",
+          "foto": "https://static.wixstatic.com/media/470852_b6f43991e2d8404d87980e36128f13c5~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Angelo%20Muniz_edited.jpg"
+        },
+        {
+          "nome": "Antelmo Sasso",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=AntelmoSasso&backgroundColor=B22222"
+        },
+        {
+          "nome": "Antônio Torres",
+          "foto": "https://static.wixstatic.com/media/470852_2cd0de6f95564f1da6270c05f0a207e9~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Juarez%20Antonio%20Dal%20Vesgo_edited.jpg"
+        },
+        {
+          "nome": "Bruno Filippi Ricciardi",
+          "foto": "https://static.wixstatic.com/media/470852_d102f7b789094e1e83992c05ff9da051~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bruno%20ricciardi.jpeg"
+        },
+        {
+          "nome": "Caio Aquino",
+          "foto": "https://static.wixstatic.com/media/470852_4ec71025937f4cd39668c2101194fa23~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Caio%20Aquino_edited.jpg"
+        },
+        {
+          "nome": "Carlos Dillemburg",
+          "foto": "https://static.wixstatic.com/media/470852_800cb85b80f043748bd4cf4a4d59b984~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Dillemburg_edited.jpg"
+        },
+        {
+          "nome": "Carlos Domene",
+          "foto": "https://static.wixstatic.com/media/470852_b366b8a10cae45c8b365f7134e18d7c1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/carlos%20domenne_edited.jpg"
+        },
+        {
+          "nome": "Crislei Casamali",
+          "foto": "https://static.wixstatic.com/media/470852_832de14125f4403283140039dfc50e56~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Crislei%20Casamalli_edited.jpg"
+        },
+        {
+          "nome": "Diogo Kfouri",
+          "foto": "https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg"
+        },
+        {
+          "nome": "Elias Gianni",
+          "foto": "https://static.wixstatic.com/media/470852_f9370e35f5704afca98b4e0d4f3fe628~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Elias%20Gianni_edited.jpg"
+        },
+        {
+          "nome": "Enrique Luque de Leon",
+          "foto": "https://static.wixstatic.com/media/470852_b64e2c27c2634018ac810f4588a284ae~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Enrique%20Luke%20De%20Leon_edited.jpg"
+        },
+        {
+          "nome": "Eudes Godoy",
+          "foto": "https://static.wixstatic.com/media/470852_ef71917d716e4875b8b10558072bee3f~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Eudes%20Godoy%20_edited.jpg"
+        },
+        {
+          "nome": "Felipe Koleski",
+          "foto": "https://static.wixstatic.com/media/470852_32078497502346ad92d3a1d678b2c117~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Felipe%20Koleski_edited.jpg"
+        },
+        {
+          "nome": "Felippe Camarotto",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=FelippeCamarotto&backgroundColor=B22222"
+        },
+        {
+          "nome": "Felix Santos",
+          "foto": "https://static.wixstatic.com/media/470852_a39fa25a456441559bcee0daba6b799b~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Felix%20I%20Santos_edited.jpg"
+        },
+        {
+          "nome": "Fernando Fornari",
+          "foto": "https://static.wixstatic.com/media/470852_db115d8aeae44115a303ac2fcb642c82~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Fernando%20Fornari_edited.jpg"
+        },
+        {
+          "nome": "Fernando Manso",
+          "foto": "https://static.wixstatic.com/media/470852_e5a7d1a6fa9049389eb364c6510be5fd~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Fernando%20Manso_edited.jpg"
+        },
+        {
+          "nome": "Francisco Diaz",
+          "foto": "https://static.wixstatic.com/media/470852_b960bdeb33f5487c9799a7d07baa0abd~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/francisco%20diaz.jpeg"
+        },
+        {
+          "nome": "Gabriel Vargas",
+          "foto": "https://static.wixstatic.com/media/470852_351b76df8f0946838552de44ebe450e0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Gabriel%20Vargas_edited.jpg"
+        },
+        {
+          "nome": "Geisson Beck Hahn",
+          "foto": "https://static.wixstatic.com/media/470852_dfcc632fb73640688cb681b1d19fea25~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Geisson%20Beck%20Hahn_edited.jpg"
+        },
+        {
+          "nome": "Glauco Alvarez",
+          "foto": "https://static.wixstatic.com/media/470852_031cc8403e9242d7b336d59e44107ebe~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Glauco%20Alvarez%20_edited.jpg"
+        },
+        {
+          "nome": "Guilherme Goyano",
+          "foto": "https://static.wixstatic.com/media/470852_221573fb2a734172adac260abf0f0ca6~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Guilherme%20Goyano_edited.jpg"
+        },
+        {
+          "nome": "Henrique W. de Albuquerque",
+          "foto": "https://static.wixstatic.com/media/470852_5ec837b7c3464b4cb5eb212b42daea76~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Henrique%20Waltrick%20de%20Albuquerque.jpeg"
+        },
+        {
+          "nome": "Igor Wolwacz Jr",
+          "foto": "https://static.wixstatic.com/media/470852_d0e7a247d82244ecbd844b3cbfeeb637~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Igor%20wolwacz%20Jr_edited.jpg"
+        },
+        {
+          "nome": "Jarbas Cavalheiro",
+          "foto": "https://static.wixstatic.com/media/470852_880c9bc8894a4031a3a0c8a791d15c92~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Jarbas%20Cavalheiro_edited.jpg"
+        },
+        {
+          "nome": "Joe Waltrick",
+          "foto": "https://static.wixstatic.com/media/470852_4966dada5c844fa2a4661cad8c63d3b3~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Joe%20Waltrick.jpeg"
+        },
+        {
+          "nome": "Juarez Antonio Dal Vesco",
+          "foto": "https://static.wixstatic.com/media/470852_2cd0de6f95564f1da6270c05f0a207e9~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Juarez%20Antonio%20Dal%20Vesgo_edited.jpg"
+        },
+        {
+          "nome": "Kali Fontana",
+          "foto": "https://static.wixstatic.com/media/470852_ff4c40b6de9e4c8ba6ded15e0a3656ce~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/KALI%20FONTANA%20_edited.jpg"
+        },
+        {
+          "nome": "Katia Souto",
+          "foto": "https://static.wixstatic.com/media/470852_0481182567d14217a1e7da7c6b62c4a2~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/katia%20souto_edited.jpg"
+        },
+        {
+          "nome": "Lucas Rossi",
+          "foto": "https://static.wixstatic.com/media/470852_a4316bfab06048f880f7d1072f9b08bd~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lucas%20Rossi_edited.jpg"
+        },
+        {
+          "nome": "Lucas Schmitt",
+          "foto": "https://static.wixstatic.com/media/470852_a4316bfab06048f880f7d1072f9b08bd~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lucas%20Rossi_edited.jpg"
+        },
+        {
+          "nome": "Lucian El-Kadre",
+          "foto": "https://static.wixstatic.com/media/470852_482f20c8550346c1888cde9ef914bd30~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lucian%20El-Kadre_edited.jpg"
+        },
+        {
+          "nome": "Luciano Santos",
+          "foto": "https://static.wixstatic.com/media/470852_f0a36d1a84874ea3958db28c4d0254d2~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/luciano%20santos_edited.jpg"
+        },
+        {
+          "nome": "Luiz Alberto De Carli",
+          "foto": "https://static.wixstatic.com/media/470852_892426f961e2451da165906390b3c39a~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,enc_avif,quality_auto/Luiz%20Alberto%20de%20Carli_edited.jpg"
+        },
+        {
+          "nome": "Luiz Poggi",
+          "foto": "https://static.wixstatic.com/media/470852_5811b64aa151470a9c70a8e60a7731cb~mv2.png/v1/fill/w_400,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Luiz%20Poggi%20.png"
+        },
+        {
+          "nome": "Luís Fernando Martinez Pereira",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=LuísFernandoMartinezPereira&backgroundColor=B22222"
+        },
+        {
+          "nome": "Mariana Calanca",
+          "foto": "https://static.wixstatic.com/media/470852_f68f6eeca69749b99544ca95453a771a~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mariana%20Calanca.jpeg"
+        },
+        {
+          "nome": "Mariano Menezes",
+          "foto": "https://static.wixstatic.com/media/470852_fa1d8b0551b04e7da94ee8582985acbe~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mariano%20Menezes_edited.jpg"
+        },
+        {
+          "nome": "Maurice Formighieri",
+          "foto": "https://static.wixstatic.com/media/470852_d2d0da09ad934ee28dbb409228584854~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Maurice%20Formighieri%20_edited.jpg"
+        },
+        {
+          "nome": "Mauricio Ramos",
+          "foto": "https://static.wixstatic.com/media/470852_57418c7a883a44e2a0f05248c57b8bfa~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mauricio%20Ramos%20_edited.jpg"
+        },
+        {
+          "nome": "Maurilio Ribeiro Jr",
+          "foto": "https://api.dicebear.com/7.x/initials/svg?seed=MaurilioRibeiroJr&backgroundColor=B22222"
+        },
+        {
+          "nome": "Márcia Murussi",
+          "foto": "https://static.wixstatic.com/media/470852_eaa244b5fde44dc3b13a5411ea71a691~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Marcia%20Murussi_edited.jpg"
+        },
+        {
+          "nome": "Paula Volpe",
+          "foto": "https://static.wixstatic.com/media/470852_89c61b7f5d914f8a84c9bcbe1eef1ce4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Paula%20Volpe%20_edited.jpg"
+        },
+        {
+          "nome": "Rafael Rothbarth",
+          "foto": "https://static.wixstatic.com/media/470852_5d29b05870664ad7badddcf0b1600771~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rafael%20Rothbarth.jpeg"
+        },
+        {
+          "nome": "Ricardo L Zanin",
+          "foto": "https://static.wixstatic.com/media/470852_724d859cf6f74ee29c4800a3e4467a49~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ricardo%20L%20Zanin_edited.jpg"
+        },
+        {
+          "nome": "Rodolfo Oviedo",
+          "foto": "https://static.wixstatic.com/media/470852_4379b99402904f6e95b45cfc2ca1087a~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rodolfo%20Oviedo.jpeg"
+        },
+        {
+          "nome": "Rui Ribeiro",
+          "foto": "https://static.wixstatic.com/media/470852_ffb9716e602c4f4892bd3802359c37a3~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rui%20Ribeiro_edited.jpg"
+        },
+        {
+          "nome": "Victor Dib",
+          "foto": "https://static.wixstatic.com/media/470852_e922635202284c269050fc8092fd3b0d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Victor%20Dib_edited.jpg"
+        }
+      ],
+      "localizacao": [
+        {
+          "dia": "Dia 1 - 27/02",
+          "titulo": "Hospital de Clínicas de Passo Fundo",
+          "endereco": "Rua Uruguai, 590, Centro - Passo Fundo, RS",
+          "horario": "8h às 18h",
+          "link_maps": "https://www.google.com/maps/place/R.+Uruguai,+590+-+Centro,+Passo+Fundo+-+RS,+99010-110/@-28.2563142,-52.4083686,17z/"
+        },
+        {
+          "dia": "Dia 2 - 28/02",
+          "titulo": "Auditório Carlos Madalosso",
+          "endereco": "Rua Uruguai 1953, 9º andar - Passo Fundo, RS",
+          "horario": "8h às 12h30",
+          "link_maps": "https://www.google.com/maps/place/R.+Uruguai,+1953+-+9%C2%BA+andar+-+Centro,+Passo+Fundo+-+RS,+99010-111/@-28.2619889,-52.4185818,17z/"
+        }
+      ]
+    },
+    {
+      "id": "webinar-sleeve",
+      "titulo": "Webinar: Dificuldades no Sleeve",
+      "data": "05 Outubro 2026",
+      "local": "Online",
+      "horario": "19:00",
+      "publico": "Membros BC Flix",
+      "imagem": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200",
+      "descricao": "Mesa redonda debatendo complicações e casos atípicos em gastrectomia vertical.",
+      "cronograma": []
+    }
+  ],
+  "professores": [
+    {
+      "id": "carlos-madalosso",
+      "nome": "Dr. Carlos Madalosso",
+      "especialidade": "Vice-Presidente BCLS",
+      "mini_curriculo": "Cirurgião de elite, responsável técnico e peça chave na organização do maior evento de cirurgia bariátrica do Sul. CRM-RS 17670.",
+      "foto": "https://api.dicebear.com/7.x/avataaars/svg?seed=madalosso"
+    },
+    {
+      "id": "paulo-reis",
+      "nome": "Dr. Paulo Reis",
+      "especialidade": "Diretor Geral BCLS",
+      "mini_curriculo": "Diretor Geral do BC Live Surgery (Goiás). Referência no ensino de técnicas avançadas e robóticas.",
+      "foto": "https://api.dicebear.com/7.x/avataaars/svg?seed=pauloreis"
+    },
+    {
+      "id": "victor-dib",
+      "nome": "Dr. Victor Dib",
+      "especialidade": "Presidente BCLS",
+      "mini_curriculo": "Presidente do BC Live Surgery (Amazonas), trazendo visão abrangente e inovação na formação continuada.",
+      "foto": "https://api.dicebear.com/7.x/avataaars/svg?seed=victordib"
+    }
+  ],
+  "videos": []
+}
