@@ -7,7 +7,7 @@ import shutil
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_FILE = os.path.join(BASE_DIR, 'data', 'database.json')
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-DEPLOY_DIR = os.path.join(BASE_DIR, 'deploy', 'BariatricChannel')
+DEPLOY_DIR = BASE_DIR
 
 # Cria os diretórios de saída se não existirem
 os.makedirs(os.path.join(DEPLOY_DIR, 'eventos'), exist_ok=True)
