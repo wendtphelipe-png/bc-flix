@@ -554,19 +554,19 @@
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
-            // 1. Define Spline Spine for anatomical accuracy
+            // 1. Refined Spline Spine based on high-res reference
             const curve = new THREE.CatmullRomCurve3([
-                new THREE.Vector3(0.5, 2.8, 0),   // Esophagus Top
-                new THREE.Vector3(0.5, 1.5, 0),   // Esophagus Bottom
-                new THREE.Vector3(-0.8, 2.0, 0.2), // Fundus (Outer Bulge)
-                new THREE.Vector3(-1.8, 0.5, 0.4), // Greater Curvature
-                new THREE.Vector3(-1.2, -1.0, 0.3), // Lower Body
-                new THREE.Vector3(0.2, -1.5, 0),   // Incisura
-                new THREE.Vector3(1.2, -1.2, -0.2), // Antrum
-                new THREE.Vector3(2.2, -0.6, -0.3)  // Pylorus Exit
+                new THREE.Vector3(0.0, 2.8, 0),    // Esophagus Entry
+                new THREE.Vector3(-0.2, 2.2, 0.1), // Upper Esophagus transition
+                new THREE.Vector3(-1.8, 2.5, 0.4), // Fundus Bulge (Top Left)
+                new THREE.Vector3(-2.4, 0.5, 0.6), // Greater Curv. (Left Edge)
+                new THREE.Vector3(-1.2, -1.8, 0.4),// Lower Body Curvature
+                new THREE.Vector3(0.5, -1.2, -0.1),// Pyloric Entrance (Lower Right)
+                new THREE.Vector3(1.8, -1.5, -0.3),// Antrum / Pylorus
+                new THREE.Vector3(2.5, -1.0, -0.4) // Duodenum Exit
             ]);
 
-            const particleCount = 2800; // Increased density
+            const particleCount = 3500; // Even higher density for better definition
             const geometry = new THREE.BufferGeometry();
             const positions = new Float32Array(particleCount * 3);
 
@@ -574,40 +574,38 @@
                 const t = Math.random();
                 const u = Math.random() * Math.PI * 2;
                 
-                // Get point and orientation (Frenet frame) at t
                 const pos = curve.getPointAt(t);
                 const tangent = curve.getTangentAt(t);
                 
-                // Construct coordinate system around the tangent
                 const normal = new THREE.Vector3(0, 1, 0).cross(tangent).normalize();
-                if (normal.lengthSq() < 0.001) normal.set(1, 0, 0); // Fallback for vertical tangents
+                if (normal.lengthSq() < 0.001) normal.set(1, 0, 0);
                 const binormal = tangent.clone().cross(normal).normalize();
 
-                // Dynamic Radius mapping (Anatomical proportions)
+                // Advanced Radius mapping for the bulkiest anatomical segments
                 let radius;
-                if (t < 0.15) { // Esophagus
-                    radius = 0.25;
-                } else if (t < 0.4) { // Fundus Expansion
-                    const localT = (t - 0.15) / 0.25;
-                    radius = 0.25 + Math.sin(localT * Math.PI * 0.5) * 1.0;
-                } else if (t < 0.75) { // Main Body
-                    const localT = (t - 0.4) / 0.35;
-                    radius = 1.25 - localT * 0.6;
-                } else { // Pylorus Taper
-                    const localT = (t - 0.75) / 0.25;
-                    radius = 0.65 - localT * 0.4;
+                if (t < 0.1) { // Tight Esophagus
+                    radius = 0.2;
+                } else if (t < 0.35) { // Rapid Fundus Expansion
+                    const localT = (t - 0.1) / 0.25;
+                    radius = 0.2 + (Math.sin(localT * Math.PI * 0.5) * 1.6); // Maximum girth at fundus
+                } else if (t < 0.7) { // Main Gastric Body
+                    const localT = (t - 0.35) / 0.35;
+                    radius = 1.8 - (localT * 0.9); // Tapering down
+                } else { // Pyloric Exit
+                    const localT = (t - 0.7) / 0.3;
+                    radius = 0.9 - (localT * 0.5);
                 }
 
-                // Apply organic irregularity
-                const organicRadius = radius * (0.85 + Math.random() * 0.3);
+                // Asymmetric "organic" perturbation - slightly flattening the inner curve
+                const asymmetry = 1 + Math.cos(u) * 0.15;
+                const finalRadius = radius * asymmetry * (0.9 + Math.random() * 0.2);
 
-                // Project point onto the ring
-                const x = pos.x + (normal.x * Math.cos(u) + binormal.x * Math.sin(u)) * organicRadius;
-                const y = pos.y + (normal.y * Math.cos(u) + binormal.y * Math.sin(u)) * organicRadius;
-                const z = pos.z + (normal.z * Math.cos(u) + binormal.z * Math.sin(u)) * organicRadius;
+                const x = pos.x + (normal.x * Math.cos(u) + binormal.x * Math.sin(u)) * finalRadius;
+                const y = pos.y + (normal.y * Math.cos(u) + binormal.y * Math.sin(u)) * finalRadius;
+                const z = pos.z + (normal.z * Math.cos(u) + binormal.z * Math.sin(u)) * finalRadius;
 
                 positions[i * 3] = x;
-                positions[i * 3 + 1] = y - 0.3; // Slight vertical centering
+                positions[i * 3 + 1] = y - 0.2;
                 positions[i * 3 + 2] = z;
             }
 
