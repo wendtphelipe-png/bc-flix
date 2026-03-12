@@ -548,11 +548,6 @@
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
-            // Create Stomach-like Geometry (Simplified using parametric surface)
-            const particleCount = 2500;
-            const geometry = new THREE.BufferGeometry();
-            const positions = new Float32Array(particleCount * 3);
-
             // 1. Define Spline Spine for anatomical accuracy
             const curve = new THREE.CatmullRomCurve3([
                 new THREE.Vector3(0.5, 2.8, 0),   // Esophagus Top
