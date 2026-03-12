@@ -549,18 +549,19 @@
             container.appendChild(renderer.domElement);
 
             // 1. Refined Spline Spine based on high-res reference
+            const scale = 0.6; // 40% reduction
             const curve = new THREE.CatmullRomCurve3([
-                new THREE.Vector3(0.0, 2.8, 0),    // Esophagus Entry
-                new THREE.Vector3(-0.2, 2.2, 0.1), // Upper Esophagus transition
-                new THREE.Vector3(-1.8, 2.5, 0.4), // Fundus Bulge (Top Left)
-                new THREE.Vector3(-2.4, 0.5, 0.6), // Greater Curv. (Left Edge)
-                new THREE.Vector3(-1.2, -1.8, 0.4),// Lower Body Curvature
-                new THREE.Vector3(0.5, -1.2, -0.1),// Pyloric Entrance (Lower Right)
-                new THREE.Vector3(1.8, -1.5, -0.3),// Antrum / Pylorus
-                new THREE.Vector3(2.5, -1.0, -0.4) // Duodenum Exit
+                new THREE.Vector3(0.0 * scale, 2.8 * scale, 0),    
+                new THREE.Vector3(-0.2 * scale, 2.2 * scale, 0.1 * scale), 
+                new THREE.Vector3(-1.8 * scale, 2.5 * scale, 0.4 * scale), 
+                new THREE.Vector3(-2.4 * scale, 0.5 * scale, 0.6 * scale), 
+                new THREE.Vector3(-1.2 * scale, -1.8 * scale, 0.4 * scale),
+                new THREE.Vector3(0.5 * scale, -1.2 * scale, -0.1 * scale),
+                new THREE.Vector3(1.8 * scale, -1.5 * scale, -0.3 * scale),
+                new THREE.Vector3(2.5 * scale, -1.0 * scale, -0.4 * scale) 
             ]);
 
-            const particleCount = 3500; // Even higher density for better definition
+            const particleCount = 4550; // 30% increase (3500 * 1.3)
             const geometry = new THREE.BufferGeometry();
             const positions = new Float32Array(particleCount * 3);
 
@@ -575,19 +576,19 @@
                 if (normal.lengthSq() < 0.001) normal.set(1, 0, 0);
                 const binormal = tangent.clone().cross(normal).normalize();
 
-                // Advanced Radius mapping for the bulkiest anatomical segments
+                // Advanced Radius mapping scaled by 0.6
                 let radius;
-                if (t < 0.1) { // Tight Esophagus
-                    radius = 0.2;
-                } else if (t < 0.35) { // Rapid Fundus Expansion
+                if (t < 0.1) { 
+                    radius = 0.2 * scale;
+                } else if (t < 0.35) { 
                     const localT = (t - 0.1) / 0.25;
-                    radius = 0.2 + (Math.sin(localT * Math.PI * 0.5) * 1.6); // Maximum girth at fundus
-                } else if (t < 0.7) { // Main Gastric Body
+                    radius = (0.2 + (Math.sin(localT * Math.PI * 0.5) * 1.6)) * scale;
+                } else if (t < 0.7) { 
                     const localT = (t - 0.35) / 0.35;
-                    radius = 1.8 - (localT * 0.9); // Tapering down
-                } else { // Pyloric Exit
+                    radius = (1.8 - (localT * 0.9)) * scale;
+                } else { 
                     const localT = (t - 0.7) / 0.3;
-                    radius = 0.9 - (localT * 0.5);
+                    radius = (0.9 - (localT * 0.5)) * scale;
                 }
 
                 // Asymmetric "organic" perturbation - slightly flattening the inner curve
