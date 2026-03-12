@@ -553,53 +553,60 @@
             const geometry = new THREE.BufferGeometry();
             const positions = new Float32Array(particleCount * 3);
 
+            // 1. Define Spline Spine for anatomical accuracy
+            const curve = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(0.5, 2.8, 0),   // Esophagus Top
+                new THREE.Vector3(0.5, 1.5, 0),   // Esophagus Bottom
+                new THREE.Vector3(-0.8, 2.0, 0.2), // Fundus (Outer Bulge)
+                new THREE.Vector3(-1.8, 0.5, 0.4), // Greater Curvature
+                new THREE.Vector3(-1.2, -1.0, 0.3), // Lower Body
+                new THREE.Vector3(0.2, -1.5, 0),   // Incisura
+                new THREE.Vector3(1.2, -1.2, -0.2), // Antrum
+                new THREE.Vector3(2.2, -0.6, -0.3)  // Pylorus Exit
+            ]);
+
+            const particleCount = 2800; // Increased density
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+
             for (let i = 0; i < particleCount; i++) {
-                const t = Math.random(); 
+                const t = Math.random();
                 const u = Math.random() * Math.PI * 2;
                 
-                let px, py, pz;
-                let radius;
+                // Get point and orientation (Frenet frame) at t
+                const pos = curve.getPointAt(t);
+                const tangent = curve.getTangentAt(t);
+                
+                // Construct coordinate system around the tangent
+                const normal = new THREE.Vector3(0, 1, 0).cross(tangent).normalize();
+                if (normal.lengthSq() < 0.001) normal.set(1, 0, 0); // Fallback for vertical tangents
+                const binormal = tangent.clone().cross(normal).normalize();
 
-                // 1. Define the Spine (S-curve / J-shape)
-                if (t < 0.2) { // Esophagus (Top Entry)
-                    const localT = t / 0.2;
-                    px = 0.5;
-                    py = 2.5 - localT * 1.0;
-                    pz = 0;
+                // Dynamic Radius mapping (Anatomical proportions)
+                let radius;
+                if (t < 0.15) { // Esophagus
                     radius = 0.25;
-                } else if (t < 0.45) { // Fundus (Top Bulge)
-                    const localT = (t - 0.2) / 0.25;
-                    // Curve from entry towards top-left
-                    px = 0.5 - Math.sin(localT * Math.PI) * 1.5;
-                    py = 1.5 + Math.cos(localT * Math.PI * 0.5) * 0.5;
-                    pz = Math.sin(localT * Math.PI) * 0.2;
-                    radius = 0.3 + localT * 0.7; // Expanding
-                } else if (t < 0.8) { // Body (Greater & Lesser Curvatures)
-                    const localT = (t - 0.45) / 0.35;
-                    const angle = localT * Math.PI * 0.8;
-                    // Lower J-curve
-                    px = -1.0 + Math.sin(angle) * 1.8;
-                    py = 1.0 - Math.cos(angle) * 2.0;
-                    pz = Math.sin(angle) * 0.4;
-                    radius = 1.0 - localT * 0.4; // Tapering
-                } else { // Pylorus (Exit)
-                    const localT = (t - 0.8) / 0.2;
-                    px = 0.8 + localT * 1.2;
-                    py = -0.5 + localT * 0.5;
-                    pz = 0;
-                    radius = 0.4 - localT * 0.15; // Narrowing exit
+                } else if (t < 0.4) { // Fundus Expansion
+                    const localT = (t - 0.15) / 0.25;
+                    radius = 0.25 + Math.sin(localT * Math.PI * 0.5) * 1.0;
+                } else if (t < 0.75) { // Main Body
+                    const localT = (t - 0.4) / 0.35;
+                    radius = 1.25 - localT * 0.6;
+                } else { // Pylorus Taper
+                    const localT = (t - 0.75) / 0.25;
+                    radius = 0.65 - localT * 0.4;
                 }
 
-                // 2. Project points in a ring around the spine
-                // Organic variation: perturb the radius slightly
-                const finalRadius = radius * (0.9 + Math.random() * 0.2);
-                
-                const x = px + Math.cos(u) * finalRadius;
-                const y = py + Math.sin(u) * (finalRadius * 0.8); // Slightly flattened
-                const z = pz + Math.sin(u) * finalRadius;
+                // Apply organic irregularity
+                const organicRadius = radius * (0.85 + Math.random() * 0.3);
+
+                // Project point onto the ring
+                const x = pos.x + (normal.x * Math.cos(u) + binormal.x * Math.sin(u)) * organicRadius;
+                const y = pos.y + (normal.y * Math.cos(u) + binormal.y * Math.sin(u)) * organicRadius;
+                const z = pos.z + (normal.z * Math.cos(u) + binormal.z * Math.sin(u)) * organicRadius;
 
                 positions[i * 3] = x;
-                positions[i * 3 + 1] = y - 0.5; // Offset to center in hero
+                positions[i * 3 + 1] = y - 0.3; // Slight vertical centering
                 positions[i * 3 + 2] = z;
             }
 
