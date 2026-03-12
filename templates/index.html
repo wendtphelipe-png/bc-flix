@@ -322,8 +322,135 @@
         @media (max-width: 768px) {
             nav { padding: 0 5%; }
             .nav-links { display: none; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .bento-item.large, .bento-item.medium { grid-column: span 1; }
+        /* BC Flix Section */
+        .flix-section {
+            padding: 120px 5%;
+            background: var(--medical-white);
+        }
+
+        .flix-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .search-container {
+            width: 300px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 15px;
+            padding-right: 40px;
+            font-size: 0.8rem;
+            border-radius: 0;
+            border: 1px solid rgba(10, 25, 47, 0.1);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--medical-white);
+            border: 1px solid rgba(10, 25, 47, 0.05);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--alabaster-shadow);
+            border-color: var(--vitality-red);
+        }
+
+        .video-thumb {
+            aspect-ratio: 16/9;
+            background: var(--deep-blue);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: var(--transition-smooth);
+        }
+
+        .video-card:hover .video-thumb img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--vitality-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+        }
+
+        .video-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .video-meta {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1200px) {
+            .video-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .video-grid { grid-template-columns: 1fr; }
+            .search-container { width: 100%; }
         }
     </style>
 </head>
@@ -465,6 +592,27 @@
         </div>
     </section>
 
+    <section class="flix-section" id="bc-flix">
+        <div class="flix-header" data-reveal>
+            <div>
+                <p class="mono" style="color: var(--vitality-red);">BC Flix</p>
+                <h2 style="font-size: 2.5rem; margin-top: 10px;">BIBLIOTECA DE VÍDEOS</h2>
+            </div>
+            <div class="search-container">
+                <input type="text" id="video-search" placeholder="BUSCAR NAS TRANSCRIÇÕES..." oninput="filterVideos()">
+                <div style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); opacity: 0.3;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-grid" id="video-display">
+            <!-- Videos will be injected here -->
+            <div class="mono" style="grid-column: 1/-1; text-align: center; padding: 40px; opacity: 0.5;">
+                CARREGANDO ACERVO DIGITAL...
+            </div>
+        </div>
+    </section>
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
             <div class="logo">
@@ -519,6 +667,97 @@
                 statusDiv.style.color = 'var(--vitality-red)';
             }
         }
+
+        // BC Flix Data & Logic
+        const videosData = [
+            {
+                id: "1171125048",
+                title: "Re-defining Enhanced Recovery Surgery Strategies in Bariatric Surgery",
+                thumbnail: "https://i.vimeocdn.com/video/2130520540-124c33353da8d1fa5e8a212c8245f0bf2be2da606636d95b1bfb7433614acf4b-d?region=us",
+                duration: "1:37:56",
+                publish_date: "2026-03-06",
+                transcript: "Enhanced Recovery Surgery Strategies ERAS bariatric surgery webinar Oxford..."
+            },
+            {
+                id: "1171295430",
+                title: "Current and Future Directions of the Incisionless Operating Platform",
+                thumbnail: "https://i.vimeocdn.com/video/2132338600-0e6d601b31525048135837a77e0c40e5a606636d95b1bfb7433614acf4b-d?region=us",
+                duration: "1:42:15",
+                publish_date: "2026-03-09",
+                transcript: "Incisionless Operating Platform obesity treatment endo-gastrointestinal surgery..."
+            },
+            {
+                id: "1171122150",
+                title: "The Stealth of Stray Energy in Minimally Invasive Gastrointestinal Surgery",
+                thumbnail: "https://i.vimeocdn.com/video/2130516917-feb111a49f481d64d775f497679665ba63db832f73d199a30c9e718b20befbc1-d?region=us",
+                duration: "1:28:40",
+                publish_date: "2026-03-08",
+                transcript: "Stray Energy Minimally Invasive Gastrointestinal Surgery complications safety..."
+            },
+            {
+                id: "1171119279",
+                title: "Cancer Risk Reduction Strategies in Bariatric Surgery and Endoscopy",
+                thumbnail: "https://i.vimeocdn.com/video/2130512929-f5bc11c88817b7050e8bb0de002d6f9d70c67c77747b4e9efc879812afc50761-d?region=us",
+                duration: "1:41:22",
+                publish_date: "2026-03-07",
+                transcript: "Cancer Risk Reduction metabolic surgery endoscopy oncological data..."
+            },
+            {
+                id: "1171109656",
+                title: "Innovation Imperative: SMART Laparoscopic/Robotic Port Technology",
+                thumbnail: "https://i.vimeocdn.com/video/2130498206-64cc78879b5bb21feb216c70c6b1d24973ffb2ec4be199fbe331d4b8e5e161ff-d?region=us",
+                duration: "1:35:10",
+                publish_date: "2026-03-06",
+                transcript: "SMART Laparoscopic Robotic Port Technology intelligent sensor-driven access..."
+            },
+            {
+                id: "1171163865",
+                title: "Robo-laparoscopic Bariatric Surgery: Balancing Robotic Precision with Smart Stapling",
+                thumbnail: "https://i.vimeocdn.com/video/2130575583-7ecebd0d2c36475f2a3844918004fc67018c22ffa6fc364cdaf0b4675556e82e-d?region=us",
+                duration: "1:31:30",
+                publish_date: "2026-03-06",
+                transcript: "Robo-laparoscopic Bariatric Surgery robotic precision smart stapling..."
+            }
+        ];
+
+        function renderVideos(filteredVideos) {
+            const display = document.getElementById('video-display');
+            display.innerHTML = filteredVideos.map(video => `
+                <a href="https://vimeo.com/${video.id}" target="_blank" class="video-card" data-reveal>
+                    <div class="video-thumb">
+                        <img src="${video.thumbnail}" alt="${video.title}">
+                        <div class="play-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <p class="mono" style="color: var(--vitality-red); font-size: 0.6rem; margin-bottom: 5px;">VÍDEO AULA</p>
+                        <h4>${video.title}</h4>
+                        <div class="video-meta">
+                            <span>${video.publish_date}</span>
+                            <span class="mono">${video.duration}</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+            
+            // Re-observe new elements
+            document.querySelectorAll('#video-display [data-reveal]').forEach(el => observer.observe(el));
+        }
+
+        function filterVideos() {
+            const term = document.getElementById('video-search').value.toLowerCase();
+            const filtered = videosData.filter(v => 
+                v.title.toLowerCase().includes(term) || 
+                v.transcript.toLowerCase().includes(term)
+            );
+            renderVideos(filtered);
+        }
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVideos(videosData);
+        });
 
         // Add scroll effect for nav
         window.addEventListener('scroll', () => {
