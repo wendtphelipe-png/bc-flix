@@ -43,10 +43,11 @@ jobs:
             package.json
             vercel.json
             build_site.py
-            *.py
-            *.mp4
-            *.jpg
-            *.png
-            *.xlsx
-            *.stl
-            *.webp
+            deploy_trigger.txt
+            /*.py
+            /*.mp4
+            /*.jpg
+            /*.png
+            /*.xlsx
+            /*.stl
+            /*.webp
