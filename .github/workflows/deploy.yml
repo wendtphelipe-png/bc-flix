@@ -32,10 +32,10 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: ./  # Adjust if you want to deploy to a subfolder like /public_html/
+          server-dir: public_html/
           exclude: |
-            **/.git*
-            **/.github*
+            **/.git/**
+            **/.github/**
             scripts/**
             templates/**
             data/**
@@ -44,3 +44,9 @@ jobs:
             vercel.json
             build_site.py
             *.py
+            *.mp4
+            *.jpg
+            *.png
+            *.xlsx
+            *.stl
+            *.webp
