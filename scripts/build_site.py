@@ -14,10 +14,18 @@ os.makedirs(os.path.join(DEPLOY_DIR, 'eventos'), exist_ok=True)
 os.makedirs(os.path.join(DEPLOY_DIR, 'professores'), exist_ok=True)
 os.makedirs(os.path.join(DEPLOY_DIR, 'assets'), exist_ok=True)
 
-# Copia logo animado se existir
-logo_src = os.path.join(BASE_DIR, 'Logo_branco.mp4')
-if os.path.exists(logo_src):
-    shutil.copy(logo_src, os.path.join(DEPLOY_DIR, 'assets', 'Logo_branco.mp4'))
+# Copia vídeos se existirem
+videos_to_copy = {
+    'Logo_branco.mp4': 'Logo_branco.mp4',
+    'BC institucional-1.mp4': 'bc_video.mp4',
+    'Animação_de_Logo_com_VEO.mp4': 'animacao_logo.mp4'
+}
+
+for src_name, dest_name in videos_to_copy.items():
+    src_path = os.path.join(BASE_DIR, src_name)
+    if os.path.exists(src_path):
+        shutil.copy(src_path, os.path.join(DEPLOY_DIR, 'assets', dest_name))
+        print(f" -> Vídeo {dest_name} copiado para assets.")
 
 # Carrega os dados principais
 with open(DATA_FILE, 'r', encoding='utf-8') as f:
