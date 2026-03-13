@@ -1,13 +1,3 @@
-# Huge media files
-*.mp4
-*.MOV
-*.avi
-*.wmv
-assets/*.mp4
-
-# Model files (if large)
-*.stl
-
 # IDE / OS
 .vscode/
 .idea/
