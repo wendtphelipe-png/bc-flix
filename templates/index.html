@@ -248,13 +248,17 @@
 
         .bento-item {
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.8);
             color: var(--medical-white);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             transition: var(--transition-smooth);
             isolation: isolate;
+        }
+
+        .bento-item h3 {
+            color: var(--medical-white) !important;
         }
 
         .bento-item::before {
@@ -642,7 +646,7 @@
                 <div class="surgeon-card-content">
                     <div class="surgeon-img-container" style="margin-bottom: 30px;">
                         <div class="surgeon-img-frame"></div>
-                        <img src="assets/victor_dib.jpg" alt="Dr. Victor Dib">
+                        <img src="assets/victor_dib.jpg" alt="Dr. Victor Dib" style="object-position: 50% 0%;">
                     </div>
                     <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
                     <h3 style="text-align: center;">DR. VICTOR DIB</h3>
@@ -668,7 +672,7 @@
                 <div class="surgeon-card-content">
                     <div class="surgeon-img-container" style="margin-bottom: 30px;">
                         <div class="surgeon-img-frame"></div>
-                        <img src="assets/madalosso.jpg" alt="Dr. Madalosso">
+                        <img src="assets/madalosso.jpg" alt="Dr. Madalosso" style="object-position: 50% 0%;">
                     </div>
                     <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
                     <h3 style="text-align: center;">DR. MADALOSSO</h3>
