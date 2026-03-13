@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corpo Docente | Bariatric Channel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ... previous styles ... */
+        .professor-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .section-white { background: var(--medical-white); }
+        .section-creme { background: var(--soft-creme); }
+        .section-navy { background: var(--deep-blue); color: var(--medical-white); }
+        .section-navy h2, .section-navy h3, .section-navy p { color: var(--medical-white); }
+        .section-navy .professor-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+
+        .prof-section {
+            padding: 80px 5%;
+        }
+
+        @media (max-width: 1200px) {
+            .professor-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .professor-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../home.html" class="logo">
+            <img src="../assets/logo_final.png" alt="Bariatric Channel Logo">
+        </a>
+        <div class="nav-links">
+            <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
+            <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://bariatricchannel.com.br" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-content" data-reveal>
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Excelência Médica</p>
+            <h1>CORPO DOCENTE</h1>
+            <p>Conheça os especialistas e autoridades globais que compõem a elite da cirurgia bariátrica e metabólica.</p>
+        </div>
+    </header>
+
+    <div class="search-container" data-reveal>
+        <input type="text" id="search-prof" class="search-bar" placeholder="BUSCAR POR NOME, ESPECIALIDADE OU PAÍS...">
+    </div>
+
+    <main id="prof-main">
+        {% set section_colors = ['section-white', 'section-creme', 'section-navy'] %}
+        {% for group in professores|batch(15) %}
+            <section class="prof-section {{ section_colors[loop.index0 % 3] }}">
+                <div class="professor-grid">
+                    {% for p in group %}
+                    <div class="professor-card" data-reveal onclick="openProfModal('{{ professores.index(p) }}')" 
+                         data-search="{{ p['Nome']|lower }} {{ p['País']|lower }} {{ p['Mini currículo']|lower }}">
+                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'https://api.dicebear.com/7.x/initials/svg?seed=' ~ p['Nome'] ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" alt="{{ p['Nome'] }}" class="prof-img">
+                        <p class="mono prof-meta">{{ p['País'] if p['País'] else 'INTERNACIONAL' }}</p>
+                        <h3 class="prof-name">{{ p['Nome'] }}</h3>
+                        <p class="mono" style="font-size: 0.65rem; opacity: 0.6;">CLIQUE PARA CURRÍCULO</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+    </main>
+
+    <div class="modal" id="prof-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;">
+                <img id="modal-img" src="" class="prof-img" style="width: 200px; height: 200px; border-radius: 0;">
+                <div>
+                    <p id="modal-meta" class="mono prof-meta"></p>
+                    <h2 id="modal-name" style="margin-bottom: 20px; font-size: 2.5rem;"></h2>
+                    <div id="modal-curriculo" class="mono" style="text-transform: none; line-height: 1.8; opacity: 0.8;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1400px; margin: 0 auto;">
+            <a href="../home.html" class="logo">
+                <img src="../assets/logo_final.png" alt="Logo" style="height: 30px;">
+            </a>
+            <div class="mono" style="font-size: 0.7rem; opacity: 0.5;">
+                &copy; 2026 BARIATRIC CHANNEL. TODOS OS DIREITOS RESERVADOS.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const profData = {{ professores | tojson }};
+
+        function openProfModal(index) {
+            const p = profData[index];
+            document.getElementById('modal-img').src = p['Foto URL'] || `https://api.dicebear.com/7.x/initials/svg?seed=${p['Nome']}&backgroundColor=FF3B30`;
+            document.getElementById('modal-name').innerText = p['Nome'];
+            document.getElementById('modal-meta').innerText = p['País'] || 'INTERNACIONAL';
+            document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || 'Currículo detalhado em processo de atualização.';
+            
+            document.getElementById('prof-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('prof-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Search Filter
+        document.getElementById('search-prof').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.professor-card');
+            cards.forEach(card => {
+                const searchText = card.getAttribute('data-search');
+                if (searchText.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Hide empty sections
+            document.querySelectorAll('.prof-section').forEach(section => {
+                const visibleCards = section.querySelectorAll('.professor-card[style="display: flex;"]');
+                const allCards = section.querySelectorAll('.professor-card');
+                const hiddenCards = section.querySelectorAll('.professor-card[style="display: none;"]');
+                
+                if (hiddenCards.length === allCards.length) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+        });
+
+        // Click outside modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('prof-modal')) {
+                closeModal();
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

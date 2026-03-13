@@ -85,11 +85,11 @@ for evento in data.get('eventos', []):
 # 3. Gerar Página de Professores
 # -------
 print("Gerando página do corpo docente...")
-professores_template = env.get_template('professores/index.html')
+professores_template = env.get_template('professores/corpo_docente.html')
 prof_output_html = professores_template.render(
     professores=palestrantes_data
 )
-prof_output_path = os.path.join(DEPLOY_DIR, 'professores', 'index.html')
+prof_output_path = os.path.join(DEPLOY_DIR, 'professores', 'corpo_docente.html')
 with open(prof_output_path, 'w', encoding='utf-8') as f:
     f.write(prof_output_html)
 print(" -> professores/index.html gerado.")
