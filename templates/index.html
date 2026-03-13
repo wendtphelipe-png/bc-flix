@@ -574,8 +574,8 @@
                     color: 0xFF3B30, // Vitality Red
                     size: 0.015,
                     transparent: true,
-                    opacity: 0.85, // Slightly higher opacity for more color saturation
-                    blending: THREE.NormalBlending // Changed blending to Normal to prevent yellowing from Additive blending
+                    opacity: 0.51, // Reduced by 40% from 0.85 for more transparency
+                    blending: THREE.NormalBlending 
                 });
 
                 particles = new THREE.Points(geometry, material);
