@@ -34,11 +34,11 @@ env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 # -------
 # 1. Gerar Index (Página Inicial)
 # -------
-print("Gerando index.html...")
+print("Gerando home.html...")
 # Cópia direta do index para deploy (ele já tem o design estático, no futuro podemos inserir os dados do db)
 # Como o template index.html está estático, por enquanto apenas copiamos
 # Atualizado: Agora renderizando dinamicamente com dados do database.json
-index_template = env.get_template('index.html')
+index_template = env.get_template('home.html')
 # Pegando o evento BCLS para exibir em destaque na home page
 evento_destaque = data.get('eventos', [{}])[0]
 
@@ -46,7 +46,7 @@ output_index = index_template.render(
     evento_destaque=evento_destaque
 )
 
-with open(os.path.join(DEPLOY_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+with open(os.path.join(DEPLOY_DIR, 'home.html'), 'w', encoding='utf-8') as f:
     f.write(output_index)
 
 
