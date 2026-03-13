@@ -76,32 +76,135 @@
             transition: var(--transition-smooth);
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--deep-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-box {
-            width: 24px;
-            height: 24px;
-            background: var(--vitality-red);
+        .logo img {
+            height: 45px;
+            width: auto;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--deep-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--vitality-red);
+        }
+
+        .nav-link-highlight {
+            color: var(--vitality-red) !important;
+            border: 1px solid var(--vitality-red);
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        /* Masterclass Section */
+        .masterclass-section {
+            background-color: var(--soft-creme);
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(100%);
+        }
+
+        .masterclass-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .masterclass-content p {
+            font-size: 1.1rem;
+            color: var(--dark-slate);
+            margin-bottom: 40px;
+        }
+
+        /* Gestão Section */
+        .gestao-section {
+            background: var(--medical-white);
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .gestao-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .surgeon-card {
+            background: var(--medical-white);
+            padding: 40px;
+            border: 1px solid rgba(10, 25, 47, 0.05);
+            transition: var(--transition-smooth);
+            text-align: left;
+        }
+
+        .surgeon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(10, 25, 47, 0.05);
+            border-color: var(--vitality-red);
+        }
+
+        .surgeon-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--deep-blue);
+        }
+
+        .surgeon-card p {
+            font-size: 0.9rem;
+            color: var(--dark-slate);
+            margin-bottom: 20px;
+        }
+
+        .surgeon-info {
+            border-top: 1px solid rgba(10, 25, 47, 0.05);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* Calendar Adjustments */
+        .educational-section#procedimentos {
+            background-color: var(--deep-blue);
+            color: var(--medical-white);
+        }
+
+        .educational-section#procedimentos h2 {
+            color: var(--medical-white);
+        }
+
+        .bento-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--medical-white);
         }
 
         .nav-links a:hover {
@@ -350,33 +453,29 @@
 
     <nav>
         <div class="logo">
-            <div class="logo-box"></div>
-            INSTITUTO BARIÁTRICO
+            <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
         </div>
         <div class="nav-links">
-            <a href="#procedimentos">PROCEDIMENTOS</a>
-            <a href="#tecnologia">TECNOLOGIA</a>
-            <a href="#unidades">UNIDADES</a>
-            <a href="#contato" style="color: var(--vitality-red);">AGENDAR CONSULTA</a>
+            <a href="#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
+            <a href="professores/index.html">CORPO DOCENTE</a>
+            <a href="https://bariatricchannel.com.br" class="nav-link-highlight">BC FLIX</a>
         </div>
     </nav>
 
     <section class="hero">
         <div id="stomach-canvas"></div>
         <div class="hero-content" data-reveal>
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Liderança em Cirurgia Metabólica</p>
-            <h1>{{ evento_destaque.titulo | default('CIÊNCIA EM CADA BLOCO DA SUA SAÚDE.') }}</h1>
-            <p>{{ evento_destaque.descricao | default('Unindo a autoridade médica clássica com a precisão robótica para transformar trajetórias de vida.') | truncate(150) }}</p>
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">09 DE MAIO * A PARTIR DAS 7HRS</p>
+            <h1>MASTERCLASS BARIÁTRICA</h1>
+            <p>O maior evento de cirurgia bariátrica e metabólica ao vivo do Brasil. Uma imersão completa combinando transmissões em tempo real e discussões técnicas de alto impacto.</p>
             <div style="display: flex; gap: 15px;">
-                <a href="#procedimentos" class="btn-primary">CONHECER O INSTITUTO</a>
-                {% if evento_destaque.link_externo %}
-                <a href="{{ evento_destaque.link_externo }}" target="_blank" class="btn-primary" style="background: var(--deep-blue);">VER EVENTO AO VIVO</a>
-                {% endif %}
+                <a href="#masterclass" class="btn-primary">CONHECER O EVENTO</a>
+                <a href="#gestao" class="btn-primary" style="background: var(--deep-blue);">OS CIRURGIÕES</a>
             </div>
         </div>
 
         <div class="bmi-card" data-reveal style="transition-delay: 0.2s;">
-            <p class="mono">Credenciamento de Membros</p>
+            <p class="mono">100% Online e 100% Gratuito</p>
             <h3 style="margin-top: 10px;">INSCRIÇÃO ONLINE</h3>
             <div class="bmi-grid">
                 <div class="input-group">
@@ -406,42 +505,64 @@
     </section>
 
     <section class="educational-section" id="procedimentos">
-        <div data-reveal>
-            <p class="mono" style="color: var(--vitality-red);">Metodologia Integrada</p>
-            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS E JORNADA</h2>
+        <div data-reveal style="text-align: center; margin-bottom: 60px;">
+            <p class="mono" style="color: var(--vitality-red);">AGENDA OFICIAL</p>
+            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS DO BARIATRIC CHANNEL</h2>
         </div>
 
         <div class="bento-grid">
-            {% if evento_destaque %}
-            <a href="eventos/{{ evento_destaque.id }}.html" class="bento-item large" data-reveal>
-                <div class="bento-tag mono">01 DESTAQUE</div>
-                <h3>{{ evento_destaque.titulo }}</h3>
-                <p>{{ evento_destaque.descricao | truncate(200) }}</p>
-                <div class="mono" style="margin-top: 20px; font-weight: 800; color: var(--vitality-red);">{{ evento_destaque.data }}</div>
-            </a>
-            {% else %}
             <div class="bento-item large" data-reveal>
-                <div class="bento-tag mono">01 PREPARO</div>
-                <h3>MULTIDISCIPLINAR</h3>
-                <p>Equipe composta por nutricionistas, psicólogos e endocrinologistas acompanhando cada passo do pré-operatório.</p>
+                <div class="bento-tag mono">09 MAI</div>
+                <h3>MASTERCLASS BARIÁTRICA AO VIVO</h3>
+                <p>3 Cirurgias simultâneas, 3 Cidades, 1 Transmissão Épica. O evento definitivo para o cirurgião moderno.</p>
+                <div class="mono" style="margin-top: 20px; font-weight: 800; color: var(--vitality-red);">MAIO 2026</div>
             </div>
-            {% endif %}
 
             <div class="bento-item" data-reveal style="transition-delay: 0.1s;">
-                <div class="bento-tag mono">02 TÉCNICA</div>
-                <h3>MINIMAMENTE INVASIVA</h3>
-                <p>Cirurgia laparoscópica e robótica de ponta.</p>
+                <div class="bento-tag mono">22 JUN</div>
+                <h3>WEBINAR: REOPERAÇÃO EM SLEEVE</h3>
+                <p>Discussão de casos complexos e refinamento de técnica.</p>
             </div>
             <div class="bento-item" data-reveal style="transition-delay: 0.2s;">
-                <div class="bento-tag mono">03 SUPORTE</div>
-                <h3>PÓS-OP 24/7</h3>
-                <p>Monitoramento constante após o procedimento.</p>
+                <div class="bento-tag mono">15 JUL</div>
+                <h3>SIMPÓSIO DE ROBÓTICA AVANÇADA</h3>
+                <p>O futuro da cirurgia bariatrica já chegou.</p>
             </div>
             
             <div class="bento-item medium" data-reveal style="transition-delay: 0.3s;">
-                <div class="bento-tag mono">04 EVOLUÇÃO</div>
-                <h3>EDUCAÇÃO CONTINUADA</h3>
-                <p>Acesse nossa plataforma de cursos e atualizações para profissionais.</p>
+                <div class="bento-tag mono">AGOSTO</div>
+                <h3>BC LIVE SURGERY: EDIÇÃO MANAUS</h3>
+                <p>Transmissão direta do coração da Amazônia com foco em Bypass Gástrico.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gestao-section" id="gestao">
+        <div data-reveal>
+            <p class="mono" style="color: var(--vitality-red);">LIDERANÇA E VISÃO</p>
+            <h2 style="font-size: 2.5rem; margin-top: 10px;">GESTÃO BARIATRIC CHANNEL</h2>
+        </div>
+
+        <div class="gestao-grid">
+            <div class="surgeon-card" data-reveal>
+                <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
+                <h3>DR. VICTOR DIB</h3>
+                <p>Referência internacional em Cirurgia Bariátrica e Robótica. Atuação destacada na região Norte, liderando procedimentos de alta complexidade em Manaus.</p>
+                <div class="surgeon-info mono">MANAUS / AM</div>
+            </div>
+
+            <div class="surgeon-card" data-reveal style="transition-delay: 0.1s;">
+                <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
+                <h3>DR. PAULO REIS</h3>
+                <p>Especialista em técnicas minimamente invasivas e gestão de saúde digital. Hub de inovação em Goiânia, conectando o Brasil através do Bariatric Channel.</p>
+                <div class="surgeon-info mono">GOIÂNIA / GO</div>
+            </div>
+
+            <div class="surgeon-card" data-reveal style="transition-delay: 0.2s;">
+                <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
+                <h3>DR. MADALOSSO</h3>
+                <p>Mestre em técnicas de precisão e autoridade em cirurgia metabólica. Referência no Sul do país, operando na vanguarda da tecnologia em Passo Fundo.</p>
+                <div class="surgeon-info mono">PASSO FUNDO / RS</div>
             </div>
         </div>
     </section>

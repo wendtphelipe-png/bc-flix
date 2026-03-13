@@ -1,0 +1,20 @@
+# Huge media files
+*.mp4
+*.MOV
+*.avi
+*.wmv
+assets/*.mp4
+
+# Model files (if large)
+*.stl
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+build/
+*.pyc
+__pycache__/
