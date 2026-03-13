@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -540,83 +541,42 @@
 
         function init3D() {
             const container = document.getElementById('stomach-canvas');
+            if (!container) return;
+
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.z = 6;
+            camera.position.z = 5;
 
             renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
-            // 1. High-Precision Anatomical Spine
-            const scale = 0.9; 
-            const curve = new THREE.CatmullRomCurve3([
-                new THREE.Vector3(1.2 * scale, 3.8 * scale, 0),    // Esophagus Entry
-                new THREE.Vector3(1.0 * scale, 1.8 * scale, 0),    // Cardia
-                new THREE.Vector3(-0.6 * scale, 2.6 * scale, 0.4 * scale), // Fundus Dome
-                new THREE.Vector3(-2.4 * scale, 0.4 * scale, 0.6 * scale), // Greater Curvature Peak
-                new THREE.Vector3(-1.4 * scale, -2.2 * scale, 0.2 * scale),// Lower Greater Curv
-                new THREE.Vector3(1.0 * scale, -1.8 * scale, -0.2 * scale),// Antrum / Incisura
-                new THREE.Vector3(2.4 * scale, -1.0 * scale, -0.5 * scale),// Pylorus Hook
-                new THREE.Vector3(3.2 * scale, 0.2 * scale, -0.6 * scale)  // Duodenum Stage
-            ]);
-
-            const particleCount = 7500; 
-            const geometry = new THREE.BufferGeometry();
-            const positions = new Float32Array(particleCount * 3);
-
-            for (let i = 0; i < particleCount; i++) {
-                const t = Math.random();
-                const u = Math.random() * Math.PI * 2;
+            const loader = new THREE.STLLoader();
+            loader.load('assets/realistic_stomach.stl', function (geometry) {
+                geometry.computeBoundingBox();
+                const center = new THREE.Vector3();
+                geometry.boundingBox.getCenter(center);
+                geometry.translate(-center.x, -center.y, -center.z);
                 
-                const pos = curve.getPointAt(t);
-                const tangent = curve.getTangentAt(t);
-                
-                const normal = new THREE.Vector3(0, 1, 0).cross(tangent).normalize();
-                if (normal.lengthSq() < 0.001) normal.set(1, 0, 0);
-                const binormal = tangent.clone().cross(normal).normalize();
+                const size = new THREE.Vector3();
+                geometry.boundingBox.getSize(size);
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 3.5 / maxDim;
+                geometry.scale(scale, scale, scale);
 
-                // 2. Anatomical Volume Ramping
-                let radius;
-                if (t < 0.18) { // Esophagus
-                    radius = 0.32 * scale;
-                } else if (t < 0.45) { // Fundus Expansion
-                    const localT = (t - 0.18) / 0.27;
-                    radius = (0.32 + Math.sin(localT * Math.PI * 0.5) * 1.8) * scale;
-                } else if (t < 0.8) { // Body Tapering
-                    const localT = (t - 0.45) / 0.35;
-                    radius = (2.12 - localT * 1.4) * scale;
-                } else { // Pylorus
-                    const localT = (t - 0.8) / 0.2;
-                    radius = (0.72 - localT * 0.4) * scale;
-                }
+                const material = new THREE.PointsMaterial({
+                    color: 0xFF3B30,
+                    size: 0.015,
+                    transparent: true,
+                    opacity: 0.7,
+                    blending: THREE.AdditiveBlending
+                });
 
-                // Asymmetry: Greater curvature (outer) is rounder than Lesser curvature (inner)
-                // Lesser curvature is on one side of the normal, Greater on the other.
-                const asymmetry = 1 + Math.cos(u) * 0.35; 
-                const finalRadius = radius * asymmetry * (0.9 + Math.random() * 0.2);
-
-                const x = pos.x + (normal.x * Math.cos(u) + binormal.x * Math.sin(u)) * finalRadius;
-                const y = pos.y + (normal.y * Math.cos(u) + binormal.y * Math.sin(u)) * finalRadius;
-                const z = pos.z + (normal.z * Math.cos(u) + binormal.z * Math.sin(u)) * finalRadius;
-
-                positions[i * 3] = x;
-                positions[i * 3 + 1] = y - 0.2;
-                positions[i * 3 + 2] = z;
-            }
-
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-            const material = new THREE.PointsMaterial({
-                color: 0xFF3B30, 
-                size: 0.022,
-                transparent: true,
-                opacity: 0.75,
-                blending: THREE.AdditiveBlending
+                particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+            }, undefined, function (error) {
+                console.error('Error loading STL:', error);
             });
-
-            particles = new THREE.Points(geometry, material);
-            scene.add(particles);
 
             window.addEventListener('resize', onWindowResize, false);
             document.addEventListener('mousemove', onMouseMove, false);
@@ -631,7 +591,7 @@
 
         function onWindowResize() {
             const container = document.getElementById('stomach-canvas');
-            if (container) {
+            if (container && camera && renderer) {
                 camera.aspect = container.clientWidth / container.clientHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(container.clientWidth, container.clientHeight);
@@ -642,16 +602,14 @@
             requestAnimationFrame(animate3D);
             
             if (particles) {
-                // Breathing and Pulse
                 const time = Date.now() * 0.0012;
-                const pulse = 1 + Math.sin(time) * 0.03;
+                const pulse = 1 + Math.sin(time) * 0.025;
                 particles.scale.set(pulse, pulse, pulse);
                 
-                // Mouse Interaction
-                particles.rotation.y += (mouseX - particles.rotation.y) * 0.04;
-                particles.rotation.x += (mouseY - particles.rotation.x) * 0.04;
+                particles.rotation.y += (mouseX - particles.rotation.y) * 0.05;
+                particles.rotation.x += (mouseY - particles.rotation.x) * 0.05;
                 
-                particles.rotation.z += 0.0005;
+                particles.rotation.z += 0.0003;
             }
 
             renderer.render(scene, camera);
