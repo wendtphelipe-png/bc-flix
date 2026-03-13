@@ -1,0 +1,46 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install jinja2
+
+      - name: 🔨 Run build script
+        run: |
+          python scripts/build_site.py
+
+      - name: 🚀 FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: ./  # Adjust if you want to deploy to a subfolder like /public_html/
+          exclude: |
+            **/.git*
+            **/.github*
+            scripts/**
+            templates/**
+            data/**
+            README.md
+            package.json
+            vercel.json
+            build_site.py
+            *.py
