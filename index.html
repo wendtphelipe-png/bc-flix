@@ -170,17 +170,36 @@
         }
 
         .surgeon-img-container {
-            width: 100%;
-            aspect-ratio: 4/5;
-            overflow: hidden;
-            background: var(--soft-creme);
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .surgeon-img-frame {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border: 2px solid var(--vitality-red);
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            z-index: -1;
+            transition: var(--transition-smooth);
+        }
+
+        .surgeon-card:hover .surgeon-img-frame {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 59, 48, 0.05);
         }
 
         .surgeon-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(20%);
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            filter: grayscale(100%);
             transition: var(--transition-smooth);
         }
 
@@ -231,6 +250,29 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             color: var(--medical-white);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: var(--transition-smooth);
+            isolation: isolate;
+        }
+
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.4));
+            z-index: -1;
+            transition: var(--transition-smooth);
+        }
+
+        .bento-item:hover::before {
+            background: linear-gradient(to top, rgba(255, 59, 48, 0.7), rgba(10, 25, 47, 0.3));
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--vitality-red);
         }
 
         .nav-links a:hover {
@@ -502,7 +544,7 @@
 
         <div class="bmi-card" data-reveal style="transition-delay: 0.2s;">
             <p class="mono">100% Online e 100% Gratuito</p>
-            <h3 style="margin-top: 10px;">INSCRIÇÃO ONLINE</h3>
+            <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA</h3>
             <div class="bmi-grid">
                 <div class="input-group">
                     <label class="mono">Nome Completo</label>
@@ -538,13 +580,18 @@
         </div>
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
             <p class="mono" style="color: var(--vitality-red);">DETALHES DO EVENTO</p>
-            <h2>TECNOLOGIA QUE ROMPE FRONTEIRAS</h2>
-            <p style="margin-bottom: 25px; line-height: 1.8;">No dia 09 de maio, às 7h, a tecnologia rompe as fronteiras geográficas. Estaremos simultaneamente em Manaus com o Dr. Victor Dib, em Goiânia com o Dr. Paulo Reis e em Passo Fundo com o Dr. Madalosso. Milhares de quilômetros de distância se tornam milímetros de precisão na palma da sua mão. Sente-se na primeira fileira da inovação: você não apenas assiste a três procedimentos complexos com clareza digital absoluta, você absorve a estratégia por trás de cada movimento dos grandes mestres.</p>
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">A JORNADA TÉCNICA (SEQUENCIAL):</p>
+            <h2>TECNOLOGIA QUE ROMPE BARREIRAS</h2>
+            <p style="margin-bottom: 25px; line-height: 1.8;">No dia 09 de maio, às 7h, a tecnologia rompe as barreiras geográficas para unir o Brasil em uma jornada técnica sem precedentes. Percorreremos o país — de Manaus com o Dr. Victor Dib, passando por Goiânia com o Dr. Paulo Reis, até Passo Fundo com o Dr. Madalosso — contando ainda com a presença de convidados especialistas de renome para aprofundar cada debate.
+            <br><br>
+            Milhares de quilômetros de distância se dissolvem através de uma transmissão em alta-definição, entregando precisão cirúrgica diretamente na palma da sua mão. Sente-se na primeira fileira da inovação: nesta experiência, você não apenas assiste a procedimentos complexos; você absorve a estratégia clínica e o raciocínio técnico por trás de cada movimento dos grandes mestres.</p>
+            
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">A JORNADA INCLUI:</p>
             <ul class="mono" style="list-style: none; margin-bottom: 30px; opacity: 0.8; font-size: 0.85rem;">
-                <li style="margin-bottom: 10px;">01. MANAUS: BYPASS GÁSTRICO ROBÓTICO (DR. VICTOR DIB)</li>
-                <li style="margin-bottom: 10px;">02. GOIÂNIA: REOPERAÇÃO EM SLEEVE (DR. PAULO REIS)</li>
-                <li style="margin-bottom: 10px;">03. PASSO FUNDO: CIRURGIA METABÓLICA (DR. MADALOSSO)</li>
+                <li style="margin-bottom: 10px;">> Visão Além do Campo Cirúrgico</li>
+                <li style="margin-bottom: 10px;">> Intercâmbio de Idéias</li>
+                <li style="margin-bottom: 10px;">> Tecnologia de Streaming</li>
+                <li style="margin-bottom: 10px;">> Valor de Masterclass 100% gratuito</li>
+                <li style="margin-bottom: 10px;">> Networking Digital</li>
             </ul>
             <a href="#" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
         </div>
@@ -557,25 +604,25 @@
         </div>
 
         <div class="bento-grid">
-            <div class="bento-item large" data-reveal>
+            <div class="bento-item large" data-reveal style="background-image: url('assets/event_masterclass.png');">
                 <div class="bento-tag mono">09 MAI</div>
                 <h3>MASTERCLASS BARIÁTRICA AO VIVO</h3>
-                <p>3 Cirurgias simultâneas, 3 Cidades, 1 Transmissão Épica. O evento definitivo para o cirurgião moderno.</p>
+                <p>3 Cirurgias estratégicas, 3 Cidades, 1 Transmissão de Impacto. O evento definitivo para o cirurgião moderno.</p>
                 <div class="mono" style="margin-top: 20px; font-weight: 800; color: var(--vitality-red);">MAIO 2026</div>
             </div>
 
-            <div class="bento-item" data-reveal style="transition-delay: 0.1s;">
+            <div class="bento-item" data-reveal style="transition-delay: 0.1s; background-image: url('assets/event_sleeve.png');">
                 <div class="bento-tag mono">22 JUN</div>
                 <h3>WEBINAR: REOPERAÇÃO EM SLEEVE</h3>
                 <p>Discussão de casos complexos e refinamento de técnica.</p>
             </div>
-            <div class="bento-item" data-reveal style="transition-delay: 0.2s;">
+            <div class="bento-item" data-reveal style="transition-delay: 0.2s; background-image: url('assets/event_robotics.png');">
                 <div class="bento-tag mono">15 JUL</div>
                 <h3>SIMPÓSIO DE ROBÓTICA AVANÇADA</h3>
                 <p>O futuro da cirurgia bariatrica já chegou.</p>
             </div>
             
-            <div class="bento-item medium" data-reveal style="transition-delay: 0.3s;">
+            <div class="bento-item medium" data-reveal style="transition-delay: 0.3s; background-image: url('assets/event_manaus.png');">
                 <div class="bento-tag mono">AGOSTO</div>
                 <h3>BC LIVE SURGERY: EDIÇÃO MANAUS</h3>
                 <p>Transmissão direta do coração da Amazônia com foco em Bypass Gástrico.</p>
@@ -584,45 +631,49 @@
     </section>
 
     <section class="gestao-section" id="gestao">
-        <div data-reveal>
+        <div data-reveal style="max-width: 800px; margin: 0 auto 60px;">
             <p class="mono" style="color: var(--vitality-red);">LIDERANÇA E VISÃO</p>
-            <h2 style="font-size: 2.5rem; margin-top: 10px;">GESTÃO BARIATRIC CHANNEL</h2>
+            <h2 style="font-size: 2.5rem; margin: 10px 0 30px;">GESTÃO BARIATRIC CHANNEL</h2>
+            <p style="font-size: 1.1rem; opacity: 0.8; line-height: 1.8;">Mais do que referências em suas regiões, estes são os profissionais que aceitaram o desafio de conectar o Brasil através do conhecimento. Unindo décadas de experiência a um olhar visionário sobre a tecnologia, eles lideram um movimento que transcende o centro cirúrgico para transformar a forma como você aprende e pratica a medicina.</p>
         </div>
 
         <div class="gestao-grid">
             <div class="surgeon-card" data-reveal>
-                <div class="surgeon-img-container">
-                    <img src="assets/victor_dib.jpg" alt="Dr. Victor Dib">
-                </div>
                 <div class="surgeon-card-content">
+                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
+                        <div class="surgeon-img-frame"></div>
+                        <img src="assets/victor_dib.jpg" alt="Dr. Victor Dib">
+                    </div>
                     <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
-                    <h3>DR. VICTOR DIB</h3>
-                    <p>Referência internacional em Cirurgia Bariátrica e Robótica. Atuação destacada na região Norte, liderando procedimentos de alta complexidade em Manaus.</p>
-                    <div class="surgeon-info mono">MANAUS / AM</div>
+                    <h3 style="text-align: center;">DR. VICTOR DIB</h3>
+                    <p style="text-align: center; font-size: 0.85rem; height: 80px; overflow: hidden;">Referência internacional em Cirurgia Bariátrica e Robótica. Liderança destacada na região Norte.</p>
+                    <div class="surgeon-info mono" style="text-align: center;">MANAUS / AM</div>
                 </div>
             </div>
 
             <div class="surgeon-card" data-reveal style="transition-delay: 0.1s;">
-                <div class="surgeon-img-container">
-                    <img src="assets/paulo_reis.jpg" alt="Dr. Paulo Reis">
-                </div>
                 <div class="surgeon-card-content">
+                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
+                        <div class="surgeon-img-frame"></div>
+                        <img src="assets/paulo_reis.jpg" alt="Dr. Paulo Reis">
+                    </div>
                     <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
-                    <h3>DR. PAULO REIS</h3>
-                    <p>Especialista em técnicas minimamente invasivas e gestão de saúde digital. Hub de inovação em Goiânia, conectando o Brasil através do Bariatric Channel.</p>
-                    <div class="surgeon-info mono">GOIÂNIA / GO</div>
+                    <h3 style="text-align: center;">DR. PAULO REIS</h3>
+                    <p style="text-align: center; font-size: 0.85rem; height: 80px; overflow: hidden;">Especialista em técnicas minimamente invasivas e gestão de saúde digital. Hub de inovação em Goiânia.</p>
+                    <div class="surgeon-info mono" style="text-align: center;">GOIÂNIA / GO</div>
                 </div>
             </div>
 
             <div class="surgeon-card" data-reveal style="transition-delay: 0.2s;">
-                <div class="surgeon-img-container">
-                    <img src="assets/madalosso.jpg" alt="Dr. Madalosso">
-                </div>
                 <div class="surgeon-card-content">
+                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
+                        <div class="surgeon-img-frame"></div>
+                        <img src="assets/madalosso.jpg" alt="Dr. Madalosso">
+                    </div>
                     <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
-                    <h3>DR. MADALOSSO</h3>
-                    <p>Mestre em técnicas de precisão e autoridade em cirurgia metabólica. Referência no Sul do país, operando na vanguarda da tecnologia em Passo Fundo.</p>
-                    <div class="surgeon-info mono">PASSO FUNDO / RS</div>
+                    <h3 style="text-align: center;">DR. MADALOSSO</h3>
+                    <p style="text-align: center; font-size: 0.85rem; height: 80px; overflow: hidden;">Mestre em técnicas de precisão e autoridade em cirurgia metabólica. Referência no Sul do país.</p>
+                    <div class="surgeon-info mono" style="text-align: center;">PASSO FUNDO / RS</div>
                 </div>
             </div>
         </div>
