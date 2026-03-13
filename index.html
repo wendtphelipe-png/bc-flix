@@ -561,15 +561,15 @@
                 const size = new THREE.Vector3();
                 geometry.boundingBox.getSize(size);
                 const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 3.5 / maxDim;
+                const scale = (3.5 * 1.3) / maxDim; // Increased size by 30%
                 geometry.scale(scale, scale, scale);
 
                 const material = new THREE.PointsMaterial({
-                    color: 0xFF3B30,
+                    color: 0xFF3B30, // Vitality Red
                     size: 0.015,
                     transparent: true,
-                    opacity: 0.7,
-                    blending: THREE.AdditiveBlending
+                    opacity: 0.85, // Slightly higher opacity for more color saturation
+                    blending: THREE.NormalBlending // Changed blending to Normal to prevent yellowing from Additive blending
                 });
 
                 particles = new THREE.Points(geometry, material);
