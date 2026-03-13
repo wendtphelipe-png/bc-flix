@@ -92,6 +92,6 @@ prof_output_html = professores_template.render(
 prof_output_path = os.path.join(DEPLOY_DIR, 'professores', 'corpo_docente.html')
 with open(prof_output_path, 'w', encoding='utf-8') as f:
     f.write(prof_output_html)
-print(" -> professores/index.html gerado.")
+print(" -> professores/corpo_docente.html gerado.")
 
 print("\nDeploy concluído em:", DEPLOY_DIR)
