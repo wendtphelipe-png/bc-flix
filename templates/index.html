@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instituto Bariátrico Avançado | Excelência Cirúrgica</title>
+    <title>Bariatric Channel | O Futuro da Cirurgia Bariátrica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -161,10 +161,36 @@
 
         .surgeon-card {
             background: var(--medical-white);
-            padding: 40px;
+            padding: 0;
             border: 1px solid rgba(10, 25, 47, 0.05);
             transition: var(--transition-smooth);
             text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .surgeon-img-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--soft-creme);
+        }
+
+        .surgeon-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: var(--transition-smooth);
+        }
+
+        .surgeon-card:hover .surgeon-img-container img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .surgeon-card-content {
+            padding: 30px;
         }
 
         .surgeon-card:hover {
@@ -511,16 +537,15 @@
             </video>
         </div>
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
-            <p class="mono" style="color: var(--vitality-red);">02 / DETALHES DO EVENTO</p>
-            <h2>UMA IMERSÃO TÉCNICA SEM PRECEDENTES</h2>
-            <p>A Masterclass Bariátrica não é apenas uma transmissão, é o futuro da educação continuada. Prepare-se para:</p>
+            <p class="mono" style="color: var(--vitality-red);">DETALHES DO EVENTO</p>
+            <h2>TECNOLOGIA QUE ROMPE FRONTEIRAS</h2>
+            <p style="margin-bottom: 25px; line-height: 1.8;">No dia 09 de maio, às 7h, a tecnologia rompe as fronteiras geográficas. Estaremos simultaneamente em Manaus com o Dr. Victor Dib, em Goiânia com o Dr. Paulo Reis e em Passo Fundo com o Dr. Madalosso. Milhares de quilômetros de distância se tornam milímetros de precisão na palma da sua mão. Sente-se na primeira fileira da inovação: você não apenas assiste a três procedimentos complexos com clareza digital absoluta, você absorve a estratégia por trás de cada movimento dos grandes mestres.</p>
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">A JORNADA TÉCNICA (SEQUENCIAL):</p>
             <ul class="mono" style="list-style: none; margin-bottom: 30px; opacity: 0.8; font-size: 0.85rem;">
-                <li style="margin-bottom: 10px;">> 3 PROCEDIMENTOS AO VIVO SIMULTÂNEOS</li>
-                <li style="margin-bottom: 10px;">> DISCUSSÃO TÉCNICA EM TEMPO REAL</li>
-                <li style="margin-bottom: 10px;">> FOCO EM REOPERAÇÕES E CASOS COMPLEXOS</li>
-                <li style="margin-bottom: 10px;">> INTERAÇÃO DIRETA COM OS PRESIDENTES</li>
+                <li style="margin-bottom: 10px;">01. MANAUS: BYPASS GÁSTRICO ROBÓTICO (DR. VICTOR DIB)</li>
+                <li style="margin-bottom: 10px;">02. GOIÂNIA: REOPERAÇÃO EM SLEEVE (DR. PAULO REIS)</li>
+                <li style="margin-bottom: 10px;">03. PASSO FUNDO: CIRURGIA METABÓLICA (DR. MADALOSSO)</li>
             </ul>
-            <p>Conecte-se com os maiores nomes da cirurgia bariatrica brasileira e transforme sua prática cirúrgica.</p>
             <a href="#" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
         </div>
     </section>
@@ -566,24 +591,39 @@
 
         <div class="gestao-grid">
             <div class="surgeon-card" data-reveal>
-                <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
-                <h3>DR. VICTOR DIB</h3>
-                <p>Referência internacional em Cirurgia Bariátrica e Robótica. Atuação destacada na região Norte, liderando procedimentos de alta complexidade em Manaus.</p>
-                <div class="surgeon-info mono">MANAUS / AM</div>
+                <div class="surgeon-img-container">
+                    <img src="assets/victor_dib.jpg" alt="Dr. Victor Dib">
+                </div>
+                <div class="surgeon-card-content">
+                    <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
+                    <h3>DR. VICTOR DIB</h3>
+                    <p>Referência internacional em Cirurgia Bariátrica e Robótica. Atuação destacada na região Norte, liderando procedimentos de alta complexidade em Manaus.</p>
+                    <div class="surgeon-info mono">MANAUS / AM</div>
+                </div>
             </div>
 
             <div class="surgeon-card" data-reveal style="transition-delay: 0.1s;">
-                <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
-                <h3>DR. PAULO REIS</h3>
-                <p>Especialista em técnicas minimamente invasivas e gestão de saúde digital. Hub de inovação em Goiânia, conectando o Brasil através do Bariatric Channel.</p>
-                <div class="surgeon-info mono">GOIÂNIA / GO</div>
+                <div class="surgeon-img-container">
+                    <img src="assets/paulo_reis.jpg" alt="Dr. Paulo Reis">
+                </div>
+                <div class="surgeon-card-content">
+                    <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
+                    <h3>DR. PAULO REIS</h3>
+                    <p>Especialista em técnicas minimamente invasivas e gestão de saúde digital. Hub de inovação em Goiânia, conectando o Brasil através do Bariatric Channel.</p>
+                    <div class="surgeon-info mono">GOIÂNIA / GO</div>
+                </div>
             </div>
 
             <div class="surgeon-card" data-reveal style="transition-delay: 0.2s;">
-                <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
-                <h3>DR. MADALOSSO</h3>
-                <p>Mestre em técnicas de precisão e autoridade em cirurgia metabólica. Referência no Sul do país, operando na vanguarda da tecnologia em Passo Fundo.</p>
-                <div class="surgeon-info mono">PASSO FUNDO / RS</div>
+                <div class="surgeon-img-container">
+                    <img src="assets/madalosso.jpg" alt="Dr. Madalosso">
+                </div>
+                <div class="surgeon-card-content">
+                    <p class="mono" style="color: var(--vitality-red);">PRESIDENTE</p>
+                    <h3>DR. MADALOSSO</h3>
+                    <p>Mestre em técnicas de precisão e autoridade em cirurgia metabólica. Referência no Sul do país, operando na vanguarda da tecnologia em Passo Fundo.</p>
+                    <div class="surgeon-info mono">PASSO FUNDO / RS</div>
+                </div>
             </div>
         </div>
     </section>
