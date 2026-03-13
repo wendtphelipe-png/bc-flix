@@ -23,10 +23,52 @@ if os.path.exists(logo_src):
 with open(DATA_FILE, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
+# Mapeamento de Países para Bandeiras (ISO 3166-1 alpha-2)
+COUNTRY_FLAGS = {
+    'AR': 'ar', 'ARG': 'ar',
+    'ARE': 'ae', 'UAE': 'ae',
+    'B': 'br', 'BR': 'br', 'BRA': 'br', 'Brasil': 'br',
+    'BEL': 'be',
+    'BOL': 'bo',
+    'CAN': 'ca',
+    'CHL': 'cl',
+    'COL': 'co',
+    'DEU': 'de',
+    'ECU': 'ec',
+    'EGY': 'eg',
+    'ENG': 'gb-eng',
+    'ESP': 'es',
+    'FRA': 'fr',
+    'GBR': 'gb',
+    'GTM': 'gt',
+    'IND': 'in',
+    'IRL': 'ie',
+    'IRN': 'ir',
+    'ISR': 'il',
+    'ITA': 'it',
+    'KWT': 'kw',
+    'MEX': 'mx',
+    'PAN': 'pa',
+    'PE': 'pe', 'PER': 'pe',
+    'POR': 'pt', 'PRT': 'pt', 'PT': 'pt',
+    'TUR': 'tr',
+    'USA': 'us',
+    'VEN': 've'
+}
+
 # Carrega a nova base de palestrantes
 PALESTRANTES_FILE = os.path.join(BASE_DIR, 'data', 'palestrantes_raw.json')
 with open(PALESTRANTES_FILE, 'r', encoding='utf-8') as f:
     palestrantes_data = json.load(f)
+
+# Enriquece dados com a URL da bandeira
+for p in palestrantes_data:
+    pais_code = p.get('País', '').upper()
+    iso_code = COUNTRY_FLAGS.get(pais_code)
+    if iso_code:
+        p['FlagURL'] = f"https://flagcdn.com/w40/{iso_code}.png"
+    else:
+        p['FlagURL'] = None
 
 # Configura o Jinja2
 env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
