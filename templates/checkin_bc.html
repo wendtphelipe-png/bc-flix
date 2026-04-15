@@ -4,158 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check-in do Corpo Docente | Bariatric Channel</title>
+    <!-- Import Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --medical-white: #FFFFFF;
-            --soft-creme: #FDFDF5;
-            --deep-blue: #0A192F;
-            --vitality-red: #FF3B30;
-            --electric-cyan: #00F2FF;
-            --dark-slate: #2D3436;
-            --alabaster-shadow: rgba(0, 0, 0, 0.05);
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --medical-white: #FFFFFF; --soft-creme: #FDFDF5; --deep-blue: #0A192F;
+            --vitality-red: #FF3B30; --electric-cyan: #00F2FF; --dark-slate: #2D3436;
+            --alabaster-shadow: rgba(0, 0, 0, 0.05); --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--soft-creme);
-            color: var(--dark-slate);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--soft-creme);
+            color: var(--dark-slate); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
         }
 
         h1, h2, h3 { font-weight: 800; text-transform: uppercase; color: var(--deep-blue); }
         .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
 
         nav {
-            width: 100%;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(10, 25, 47, 0.05);
-            position: relative;
-            z-index: 1000;
+            width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 25, 47, 0.05); position: relative; z-index: 1000;
         }
-
         .logo img { height: 45px; width: auto; }
 
         .checkin-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 5%;
+            flex: 1; display: flex; justify-content: center; align-items: center; padding: 60px 5%;
             background: linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%);
             transition: background 0.8s ease-in-out;
         }
 
         .checkin-card {
-            background: var(--medical-white);
-            border: 1px solid rgba(10, 25, 47, 0.1);
-            border-top: 4px solid var(--deep-blue);
-            padding: 50px;
-            width: 100%;
-            max-width: 800px;
+            background: var(--medical-white); border: 1px solid rgba(10, 25, 47, 0.1);
+            border-top: 4px solid var(--deep-blue); padding: 50px; width: 100%; max-width: 800px;
             box-shadow: 0 30px 60px var(--alabaster-shadow);
         }
 
-        .step-label {
-            color: var(--vitality-red);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        /* Form Elements */
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
+        .step-label { color: var(--vitality-red); margin-bottom: 20px; display: block; }
+        .input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
 
         select, input {
-            padding: 15px;
-            border: 1px solid #E0E0E0;
-            background: #F9F9F9;
-            font-family: inherit;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition-smooth);
-            width: 100%;
+            padding: 15px; border: 1px solid #E0E0E0; background: #F9F9F9;
+            font-family: inherit; font-size: 1rem; outline: none; transition: var(--transition-smooth); width: 100%;
         }
-
         select:focus, input:focus { border-color: var(--vitality-red); background: #FFF; }
 
         /* Dynamic Sections */
-        #speakerStep, #doctorDetails, #formWrapper {
-            display: none;
-            animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        #speakerStep, #doctorDetails, #formWrapper { display: none; animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .schedule-box {
-            background: var(--soft-creme);
-            border: 1px solid rgba(10, 25, 47, 0.1);
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
+        .schedule-box { background: var(--soft-creme); border: 1px solid rgba(10, 25, 47, 0.1); padding: 25px; margin-bottom: 30px; }
         .schedule-title { font-size: 1.1rem; margin-bottom: 15px; color: var(--deep-blue); }
-        
         .schedule-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed rgba(10, 25, 47, 0.1); }
         .schedule-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .schedule-time { color: var(--vitality-red); font-weight: 800; font-size: 0.9rem; }
         .schedule-event { font-weight: 600; color: var(--dark-slate); text-transform: uppercase; }
 
-        .term-box {
-            background: rgba(10, 25, 47, 0.02);
-            border: 1px solid rgba(10, 25, 47, 0.1);
-            padding: 25px;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-            color: var(--dark-slate);
-            line-height: 1.6;
-        }
-
+        .term-box { background: rgba(10, 25, 47, 0.02); border: 1px solid rgba(10, 25, 47, 0.1); padding: 25px; margin-bottom: 30px; font-size: 0.95rem; color: var(--dark-slate); line-height: 1.6; }
         .action-buttons { display: flex; gap: 15px; margin-top: 20px; }
 
-        .btn {
-            padding: 15px 30px; font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800; border: none; cursor: pointer; transition: var(--transition-smooth);
-            text-transform: uppercase; font-size: 0.9rem; flex: 1; text-align: center;
-        }
-
+        .btn { padding: 15px 30px; font-family: inherit; font-weight: 800; border: none; cursor: pointer; transition: var(--transition-smooth); text-transform: uppercase; font-size: 0.9rem; flex: 1; text-align: center; }
         .btn-confirm { background: var(--deep-blue); color: white; }
         .btn-confirm:hover { background: var(--vitality-red); }
-        
         .btn-reject { background: transparent; border: 1px solid rgba(10, 25, 47, 0.2); color: var(--dark-slate); }
         .btn-reject:hover { background: rgba(10, 25, 47, 0.05); }
 
-        .warning-box {
-            background: rgba(255, 59, 48, 0.05);
-            border-left: 4px solid var(--vitality-red);
-            padding: 20px; font-size: 0.95rem; margin-bottom: 30px;
-        }
-
-        #rejectionMsg {
-            display: none; color: var(--vitality-red); font-weight: 600;
-            margin-top: 15px; padding: 15px; background: rgba(255,59,48,0.05);
-        }
+        .warning-box { background: rgba(255, 59, 48, 0.05); border-left: 4px solid var(--vitality-red); padding: 20px; font-size: 0.95rem; margin-bottom: 30px; }
+        #rejectionMsg { display: none; color: var(--vitality-red); font-weight: 600; margin-top: 15px; padding: 15px; background: rgba(255,59,48,0.05); }
     </style>
 </head>
 <body>
@@ -172,10 +92,7 @@
             <div class="input-group">
                 <label class="mono step-label">1. CONFIRME O EVENTO</label>
                 <select id="eventSelect" onchange="onEventSelection()">
-                    <option value="">-- SELECIONE O EVENTO --</option>
-                    {% for ev in eventos %}
-                        <option value="{{ ev.id }}">{{ ev.titulo }}</option>
-                    {% endfor %}
+                    <option value="">-- CONECTANDO NUVEM... --</option>
                 </select>
             </div>
 
@@ -236,8 +153,32 @@
     </div>
 
     <script>
-        const eventosData = {{ eventos | tojson | safe }};
+        // CLIENTE SUPABASE CONECTADO
+        const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
+        const supabaseKey = 'sb_publishable_A-Gxbkir7foDZgZvaOuiHw_pMVXXdEV';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let eventosData = [];
         let currentEvent = null;
+
+        window.onload = async function() {
+            const selectEl = document.getElementById("eventSelect");
+            try {
+                // Fetch All Events via RLS Public
+                const { data, error } = await supabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
+                if(error) throw error;
+                
+                eventosData = data;
+                let options = '<option value="">-- SELECIONE O EVENTO --</option>';
+                eventosData.forEach(ev => {
+                    options += `<option value="${ev.id}">${ev.titulo}</option>`;
+                });
+                selectEl.innerHTML = options;
+            } catch (e) {
+                console.error(e);
+                selectEl.innerHTML = '<option value="">Erro ao carregar banco de dados.</option>';
+            }
+        };
 
         function onEventSelection() {
             const evId = document.getElementById("eventSelect").value;
@@ -262,8 +203,10 @@
                     
                     let options = '<option value="">-- BUSQUE E SELECIONE SEU NOME --</option>';
                     if(currentEvent.palestrantes) {
-                        const sorted = [...currentEvent.palestrantes].sort((a,b) => a.nome.localeCompare(b.nome));
-                        sorted.forEach(p => { options += `<option value="${p.nome}">${p.nome}</option>`; });
+                        const sorted = [...currentEvent.palestrantes].sort((a,b) => (a.nome||'').localeCompare(b.nome||''));
+                        sorted.forEach(p => { 
+                            if(p.nome) options += `<option value="${p.nome}">${p.nome}</option>`; 
+                        });
                     }
                     speakerSelect.innerHTML = options;
                     speakerStep.style.display = "block";
@@ -289,7 +232,6 @@
 
                 if (currentEvent.cronograma) {
                     currentEvent.cronograma.forEach(item => {
-                        // Safe check if palestrante string includes the name
                         if (item.palestrante && item.palestrante.toLowerCase().includes(name.toLowerCase())) {
                             hasSchedule = true;
                             html += `

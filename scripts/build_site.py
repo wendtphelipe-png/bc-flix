@@ -136,14 +136,19 @@ with open(os.path.join(DEPLOY_DIR, 'bc_amazon_week.html'), 'w', encoding='utf-8'
     f.write(output_bc_amazon)
 
 print("Gerando checkin_bc.html...")
-# Check if template exists before attempting to render (to prevent build crashes if template is deleted later)
+# Check if template exists before attempting to render
 if os.path.exists(os.path.join(TEMPLATES_DIR, 'checkin_bc.html')):
     checkin_template = env.get_template('checkin_bc.html')
-    output_checkin = checkin_template.render(
-        eventos=data.get('eventos', [])
-    )
+    output_checkin = checkin_template.render()
     with open(os.path.join(DEPLOY_DIR, 'checkin_bc.html'), 'w', encoding='utf-8') as f:
         f.write(output_checkin)
+
+print("Gerando config_evento.html...")
+if os.path.exists(os.path.join(TEMPLATES_DIR, 'config_evento.html')):
+    config_template = env.get_template('config_evento.html')
+    output_config = config_template.render()
+    with open(os.path.join(DEPLOY_DIR, 'config_evento.html'), 'w', encoding='utf-8') as f:
+        f.write(output_config)
 
 
 
