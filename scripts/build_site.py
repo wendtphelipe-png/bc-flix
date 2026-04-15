@@ -112,6 +112,12 @@ output_masterclass = masterclass_template.render()
 with open(os.path.join(DEPLOY_DIR, 'masterclass.html'), 'w', encoding='utf-8') as f:
     f.write(output_masterclass)
 
+print("Gerando bc_amazon_week.html...")
+bc_amazon_template = env.get_template('bc_amazon_week.html')
+output_bc_amazon = bc_amazon_template.render()
+with open(os.path.join(DEPLOY_DIR, 'bc_amazon_week.html'), 'w', encoding='utf-8') as f:
+    f.write(output_bc_amazon)
+
 
 # -------
 # 2. Gerar Páginas de Eventos
