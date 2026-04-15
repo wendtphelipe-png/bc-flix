@@ -82,6 +82,23 @@ for p in palestrantes_data:
         p['FlagURL'] = None
         p['PaisNome'] = p.get('País') or 'INTERNACIONAL'
 
+# Mapeia cronograma por professor
+speaker_schedules = {}
+for evento in data.get('eventos', []):
+    for item in evento.get('cronograma', []):
+        pal_str = item.get('palestrante', '')
+        if not pal_str: continue
+        for p in palestrantes_data:
+            nome = p.get('Nome', '')
+            if nome and nome.lower() in pal_str.lower():
+                if nome not in speaker_schedules:
+                    speaker_schedules[nome] = []
+                speaker_schedules[nome].append({
+                    "evento": evento.get('titulo'),
+                    "hora": item.get('hora'),
+                    "titulo": item.get('titulo')
+                })
+
 # Configura o Jinja2
 env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
@@ -117,6 +134,17 @@ bc_amazon_template = env.get_template('bc_amazon_week.html')
 output_bc_amazon = bc_amazon_template.render()
 with open(os.path.join(DEPLOY_DIR, 'bc_amazon_week.html'), 'w', encoding='utf-8') as f:
     f.write(output_bc_amazon)
+
+print("Gerando checkin_bc.html...")
+# Check if template exists before attempting to render (to prevent build crashes if template is deleted later)
+if os.path.exists(os.path.join(TEMPLATES_DIR, 'checkin_bc.html')):
+    checkin_template = env.get_template('checkin_bc.html')
+    output_checkin = checkin_template.render(
+        eventos=data.get('eventos', [])
+    )
+    with open(os.path.join(DEPLOY_DIR, 'checkin_bc.html'), 'w', encoding='utf-8') as f:
+        f.write(output_checkin)
+
 
 
 # -------

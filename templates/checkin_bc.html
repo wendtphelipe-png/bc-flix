@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in do Corpo Docente | Bariatric Channel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --medical-white: #FFFFFF;
+            --soft-creme: #FDFDF5;
+            --deep-blue: #0A192F;
+            --vitality-red: #FF3B30;
+            --electric-cyan: #00F2FF;
+            --dark-slate: #2D3436;
+            --alabaster-shadow: rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--soft-creme);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 { font-weight: 800; text-transform: uppercase; color: var(--deep-blue); }
+        .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
+
+        nav {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 25, 47, 0.05);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .logo img { height: 45px; width: auto; }
+
+        .checkin-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%);
+            transition: background 0.8s ease-in-out;
+        }
+
+        .checkin-card {
+            background: var(--medical-white);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            border-top: 4px solid var(--deep-blue);
+            padding: 50px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 30px 60px var(--alabaster-shadow);
+        }
+
+        .step-label {
+            color: var(--vitality-red);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Form Elements */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        select, input {
+            padding: 15px;
+            border: 1px solid #E0E0E0;
+            background: #F9F9F9;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition-smooth);
+            width: 100%;
+        }
+
+        select:focus, input:focus { border-color: var(--vitality-red); background: #FFF; }
+
+        /* Dynamic Sections */
+        #speakerStep, #doctorDetails, #formWrapper {
+            display: none;
+            animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .schedule-box {
+            background: var(--soft-creme);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .schedule-title { font-size: 1.1rem; margin-bottom: 15px; color: var(--deep-blue); }
+        
+        .schedule-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed rgba(10, 25, 47, 0.1); }
+        .schedule-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .schedule-time { color: var(--vitality-red); font-weight: 800; font-size: 0.9rem; }
+        .schedule-event { font-weight: 600; color: var(--dark-slate); text-transform: uppercase; }
+
+        .term-box {
+            background: rgba(10, 25, 47, 0.02);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: var(--dark-slate);
+            line-height: 1.6;
+        }
+
+        .action-buttons { display: flex; gap: 15px; margin-top: 20px; }
+
+        .btn {
+            padding: 15px 30px; font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800; border: none; cursor: pointer; transition: var(--transition-smooth);
+            text-transform: uppercase; font-size: 0.9rem; flex: 1; text-align: center;
+        }
+
+        .btn-confirm { background: var(--deep-blue); color: white; }
+        .btn-confirm:hover { background: var(--vitality-red); }
+        
+        .btn-reject { background: transparent; border: 1px solid rgba(10, 25, 47, 0.2); color: var(--dark-slate); }
+        .btn-reject:hover { background: rgba(10, 25, 47, 0.05); }
+
+        .warning-box {
+            background: rgba(255, 59, 48, 0.05);
+            border-left: 4px solid var(--vitality-red);
+            padding: 20px; font-size: 0.95rem; margin-bottom: 30px;
+        }
+
+        #rejectionMsg {
+            display: none; color: var(--vitality-red); font-weight: 600;
+            margin-top: 15px; padding: 15px; background: rgba(255,59,48,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="home.html" class="logo"><img src="assets/logo_final.png" alt="Bariatric Channel Logo"></a>
+    </nav>
+
+    <div class="checkin-container" id="mainContainer">
+        <div class="checkin-card">
+            <h1>CHECK-IN CORPO DOCENTE</h1>
+            <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
+            
+            <div class="input-group">
+                <label class="mono step-label">1. CONFIRME O EVENTO</label>
+                <select id="eventSelect" onchange="onEventSelection()">
+                    <option value="">-- SELECIONE O EVENTO --</option>
+                    {% for ev in eventos %}
+                        <option value="{{ ev.id }}">{{ ev.titulo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div id="speakerStep">
+                <div class="input-group">
+                    <label class="mono step-label">2. SELECIONE SEU NOME</label>
+                    <select id="speakerSelect" onchange="onSpeakerSelection()">
+                        <option value="">-- BUSQUE E SELECIONE --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="doctorDetails">
+                <div class="schedule-box">
+                    <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
+                    <div id="scheduleListContainer"></div>
+                </div>
+
+                <div class="term-box">
+                    <h3 style="margin-bottom: 15px; font-size: 1.1rem;">TERMO DE CONCESSÃO DE IMAGEM E VOZ</h3>
+                    <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos eventos.</p>
+                    <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais, inclusão no acervo pago para assinantes BC Flix, campanhas institucionais e publicidade) sem limite de tempo, canais e território.</p>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-confirm" onclick="acceptTerms()">CONCORDO</button>
+                        <button class="btn btn-reject" onclick="rejectTerms()">NÃO CONCORDO</button>
+                    </div>
+                    <div id="rejectionMsg">
+                        Para prosseguir com sua participação, precisamos da sua concordância contratual com os termos de imagem. Em caso de dúvidas, por favor, contate a comissão organizadora.
+                    </div>
+                </div>
+            </div>
+
+            <div id="formWrapper">
+                <div class="warning-box">
+                    <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
+                    Após preencher as informações abaixo e concluir este check-in, <strong>você receberá um e-mail automático da nossa equipe</strong> solicitando o envio de uma Foto de Divulgação (alta resolução) e de um Pitch/Vídeo Convite curto que utilizaremos nas campanhas do evento.<br>Por favor, fique atento à sua caixa de entrada e spam.
+                </div>
+
+                <label class="mono step-label">3. CONFIRME SEUS DADOS DE CONTATO</label>
+                
+                <div class="mailerlite-placeholder" style="border: 1px dashed rgba(10,25,47,0.2); padding: 30px; background: #fafafa;">
+                    <form id="bc-checkin-form">
+                        <div class="input-group">
+                            <label class="mono">E-mail Profissional</label>
+                            <input type="email" placeholder="Seu e-mail de contato principal" required>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="input-group"><label class="mono">CRM / UF</label><input type="text" placeholder="000000-UF" required></div>
+                            <div class="input-group"><label class="mono">WhatsApp Exclusivo</label><input type="tel" placeholder="(00) 00000-0000" required></div>
+                        </div>
+                        <button type="button" class="btn btn-confirm" style="width: 100%;" onclick="alert('Formulário base MailerLite')">FINALIZAR CHECK-IN</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const eventosData = {{ eventos | tojson | safe }};
+        let currentEvent = null;
+
+        function onEventSelection() {
+            const evId = document.getElementById("eventSelect").value;
+            const container = document.getElementById("mainContainer");
+            const speakerStep = document.getElementById("speakerStep");
+            const speakerSelect = document.getElementById("speakerSelect");
+            
+            document.getElementById("doctorDetails").style.display = "none";
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "none";
+
+            if (evId) {
+                currentEvent = eventosData.find(e => e.id === evId);
+                if (currentEvent) {
+                    if(currentEvent.imagem) {
+                        container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.8) 0%, rgba(0,242,255,0.4) 100%), url('${currentEvent.imagem}')`;
+                        container.style.backgroundSize = "cover";
+                        container.style.backgroundPosition = "center";
+                    } else {
+                        container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+                    }
+                    
+                    let options = '<option value="">-- BUSQUE E SELECIONE SEU NOME --</option>';
+                    if(currentEvent.palestrantes) {
+                        const sorted = [...currentEvent.palestrantes].sort((a,b) => a.nome.localeCompare(b.nome));
+                        sorted.forEach(p => { options += `<option value="${p.nome}">${p.nome}</option>`; });
+                    }
+                    speakerSelect.innerHTML = options;
+                    speakerStep.style.display = "block";
+                }
+            } else {
+                speakerStep.style.display = "none";
+                container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+            }
+        }
+
+        function onSpeakerSelection() {
+            const name = document.getElementById("speakerSelect").value;
+            const detailsDiv = document.getElementById("doctorDetails");
+            const scheduleList = document.getElementById("scheduleListContainer");
+            
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "none";
+
+            if (name && currentEvent) {
+                detailsDiv.style.display = "block";
+                let html = "";
+                let hasSchedule = false;
+
+                if (currentEvent.cronograma) {
+                    currentEvent.cronograma.forEach(item => {
+                        // Safe check if palestrante string includes the name
+                        if (item.palestrante && item.palestrante.toLowerCase().includes(name.toLowerCase())) {
+                            hasSchedule = true;
+                            html += `
+                            <div class="schedule-item">
+                                <div class="schedule-event">${currentEvent.titulo}</div>
+                                <div class="schedule-time">${item.hora}</div>
+                                <div style="color: var(--dark-slate); font-size: 0.95rem;">${item.titulo}</div>
+                            </div>
+                            `;
+                        }
+                    });
+                }
+                
+                if (!hasSchedule) {
+                    html = "<p style='color: var(--dark-slate); font-style: italic;'>Nenhuma sessão atribuída especificamente a você no cronograma. Por favor, conclua seu check-in normalmente.</p>";
+                }
+                scheduleList.innerHTML = html;
+            } else {
+                detailsDiv.style.display = "none";
+            }
+        }
+
+        function acceptTerms() {
+            document.getElementById("rejectionMsg").style.display = "none";
+            document.getElementById("formWrapper").style.display = "block";
+            document.getElementById("formWrapper").scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function rejectTerms() {
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "block";
+        }
+    </script>
+</body>
+</html>

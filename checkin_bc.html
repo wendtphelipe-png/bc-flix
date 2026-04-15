@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in do Corpo Docente | Bariatric Channel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --medical-white: #FFFFFF;
+            --soft-creme: #FDFDF5;
+            --deep-blue: #0A192F;
+            --vitality-red: #FF3B30;
+            --electric-cyan: #00F2FF;
+            --dark-slate: #2D3436;
+            --alabaster-shadow: rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--soft-creme);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 { font-weight: 800; text-transform: uppercase; color: var(--deep-blue); }
+        .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
+
+        nav {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 25, 47, 0.05);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .logo img { height: 45px; width: auto; }
+
+        .checkin-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%);
+            transition: background 0.8s ease-in-out;
+        }
+
+        .checkin-card {
+            background: var(--medical-white);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            border-top: 4px solid var(--deep-blue);
+            padding: 50px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 30px 60px var(--alabaster-shadow);
+        }
+
+        .step-label {
+            color: var(--vitality-red);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Form Elements */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        select, input {
+            padding: 15px;
+            border: 1px solid #E0E0E0;
+            background: #F9F9F9;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition-smooth);
+            width: 100%;
+        }
+
+        select:focus, input:focus { border-color: var(--vitality-red); background: #FFF; }
+
+        /* Dynamic Sections */
+        #speakerStep, #doctorDetails, #formWrapper {
+            display: none;
+            animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .schedule-box {
+            background: var(--soft-creme);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .schedule-title { font-size: 1.1rem; margin-bottom: 15px; color: var(--deep-blue); }
+        
+        .schedule-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed rgba(10, 25, 47, 0.1); }
+        .schedule-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .schedule-time { color: var(--vitality-red); font-weight: 800; font-size: 0.9rem; }
+        .schedule-event { font-weight: 600; color: var(--dark-slate); text-transform: uppercase; }
+
+        .term-box {
+            background: rgba(10, 25, 47, 0.02);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: var(--dark-slate);
+            line-height: 1.6;
+        }
+
+        .action-buttons { display: flex; gap: 15px; margin-top: 20px; }
+
+        .btn {
+            padding: 15px 30px; font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800; border: none; cursor: pointer; transition: var(--transition-smooth);
+            text-transform: uppercase; font-size: 0.9rem; flex: 1; text-align: center;
+        }
+
+        .btn-confirm { background: var(--deep-blue); color: white; }
+        .btn-confirm:hover { background: var(--vitality-red); }
+        
+        .btn-reject { background: transparent; border: 1px solid rgba(10, 25, 47, 0.2); color: var(--dark-slate); }
+        .btn-reject:hover { background: rgba(10, 25, 47, 0.05); }
+
+        .warning-box {
+            background: rgba(255, 59, 48, 0.05);
+            border-left: 4px solid var(--vitality-red);
+            padding: 20px; font-size: 0.95rem; margin-bottom: 30px;
+        }
+
+        #rejectionMsg {
+            display: none; color: var(--vitality-red); font-weight: 600;
+            margin-top: 15px; padding: 15px; background: rgba(255,59,48,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="home.html" class="logo"><img src="assets/logo_final.png" alt="Bariatric Channel Logo"></a>
+    </nav>
+
+    <div class="checkin-container" id="mainContainer">
+        <div class="checkin-card">
+            <h1>CHECK-IN CORPO DOCENTE</h1>
+            <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
+            
+            <div class="input-group">
+                <label class="mono step-label">1. CONFIRME O EVENTO</label>
+                <select id="eventSelect" onchange="onEventSelection()">
+                    <option value="">-- SELECIONE O EVENTO --</option>
+                    
+                        <option value="ix-bc-live-surgery">IX BC Live Surgery</option>
+                    
+                        <option value="webinar-sleeve">Webinar: Dificuldades no Sleeve</option>
+                    
+                </select>
+            </div>
+
+            <div id="speakerStep">
+                <div class="input-group">
+                    <label class="mono step-label">2. SELECIONE SEU NOME</label>
+                    <select id="speakerSelect" onchange="onSpeakerSelection()">
+                        <option value="">-- BUSQUE E SELECIONE --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="doctorDetails">
+                <div class="schedule-box">
+                    <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
+                    <div id="scheduleListContainer"></div>
+                </div>
+
+                <div class="term-box">
+                    <h3 style="margin-bottom: 15px; font-size: 1.1rem;">TERMO DE CONCESSÃO DE IMAGEM E VOZ</h3>
+                    <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos eventos.</p>
+                    <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais, inclusão no acervo pago para assinantes BC Flix, campanhas institucionais e publicidade) sem limite de tempo, canais e território.</p>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-confirm" onclick="acceptTerms()">CONCORDO</button>
+                        <button class="btn btn-reject" onclick="rejectTerms()">NÃO CONCORDO</button>
+                    </div>
+                    <div id="rejectionMsg">
+                        Para prosseguir com sua participação, precisamos da sua concordância contratual com os termos de imagem. Em caso de dúvidas, por favor, contate a comissão organizadora.
+                    </div>
+                </div>
+            </div>
+
+            <div id="formWrapper">
+                <div class="warning-box">
+                    <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
+                    Após preencher as informações abaixo e concluir este check-in, <strong>você receberá um e-mail automático da nossa equipe</strong> solicitando o envio de uma Foto de Divulgação (alta resolução) e de um Pitch/Vídeo Convite curto que utilizaremos nas campanhas do evento.<br>Por favor, fique atento à sua caixa de entrada e spam.
+                </div>
+
+                <label class="mono step-label">3. CONFIRME SEUS DADOS DE CONTATO</label>
+                
+                <div class="mailerlite-placeholder" style="border: 1px dashed rgba(10,25,47,0.2); padding: 30px; background: #fafafa;">
+                    <form id="bc-checkin-form">
+                        <div class="input-group">
+                            <label class="mono">E-mail Profissional</label>
+                            <input type="email" placeholder="Seu e-mail de contato principal" required>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="input-group"><label class="mono">CRM / UF</label><input type="text" placeholder="000000-UF" required></div>
+                            <div class="input-group"><label class="mono">WhatsApp Exclusivo</label><input type="tel" placeholder="(00) 00000-0000" required></div>
+                        </div>
+                        <button type="button" class="btn btn-confirm" style="width: 100%;" onclick="alert('Formulário base MailerLite')">FINALIZAR CHECK-IN</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const eventosData = [{"cirurgioes": [{"foto": "https://static.wixstatic.com/media/470852_b366b8a10cae45c8b365f7134e18d7c1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/carlos%20domenne_edited.jpg", "nome": "Carlos Domene"}, {"foto": "https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg", "nome": "Carlos Madalosso"}, {"foto": "https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg", "nome": "Diogo Kfouri"}, {"foto": "https://static.wixstatic.com/media/470852_221573fb2a734172adac260abf0f0ca6~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Guilherme%20Goyano_edited.jpg", "nome": "Guilherme Goyano"}, {"foto": "https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg", "nome": "Hiroji Okano"}, {"foto": "https://static.wixstatic.com/media/470852_5aef6b2331d542af994eceb2450987f1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Nicholas%20Kruel%20_edited.jpg", "nome": "Nicholas Kruel"}], "convidados": [{"foto": "https://static.wixstatic.com/media/470852_48babfd362d145a392e87604b39f8d93~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Alonso%20Alvarado.jpeg", "nome": "Alonso Alvarado"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=Alu\u00edsioStoll\u0026backgroundColor=B22222", "nome": "Alu\u00edsio Stoll"}, {"foto": "https://static.wixstatic.com/media/470852_9de78e1701464bd983b72f57730df2c4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Andre%20Bigolin_edited.jpg", "nome": "Andr\u00e9 Bigolin"}, {"foto": "https://static.wixstatic.com/media/470852_b6f43991e2d8404d87980e36128f13c5~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Angelo%20Muniz_edited.jpg", "nome": "Angelo Muniz"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=AntelmoSasso\u0026backgroundColor=B22222", "nome": "Antelmo Sasso"}, {"foto": "https://static.wixstatic.com/media/470852_2cd0de6f95564f1da6270c05f0a207e9~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Juarez%20Antonio%20Dal%20Vesgo_edited.jpg", "nome": "Ant\u00f4nio Torres"}, {"foto": "https://static.wixstatic.com/media/470852_d102f7b789094e1e83992c05ff9da051~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bruno%20ricciardi.jpeg", "nome": "Bruno Filippi Ricciardi"}, {"foto": "https://static.wixstatic.com/media/470852_4ec71025937f4cd39668c2101194fa23~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Caio%20Aquino_edited.jpg", "nome": "Caio Aquino"}, {"foto": "https://static.wixstatic.com/media/470852_800cb85b80f043748bd4cf4a4d59b984~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Dillemburg_edited.jpg", "nome": "Carlos Dillemburg"}, {"foto": "https://static.wixstatic.com/media/470852_b366b8a10cae45c8b365f7134e18d7c1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/carlos%20domenne_edited.jpg", "nome": "Carlos Domene"}, {"foto": "https://static.wixstatic.com/media/470852_832de14125f4403283140039dfc50e56~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Crislei%20Casamalli_edited.jpg", "nome": "Crislei Casamali"}, {"foto": "https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg", "nome": "Diogo Kfouri"}, {"foto": "https://static.wixstatic.com/media/470852_f9370e35f5704afca98b4e0d4f3fe628~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Elias%20Gianni_edited.jpg", "nome": "Elias Gianni"}, {"foto": "https://static.wixstatic.com/media/470852_b64e2c27c2634018ac810f4588a284ae~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Enrique%20Luke%20De%20Leon_edited.jpg", "nome": "Enrique Luque de Leon"}, {"foto": "https://static.wixstatic.com/media/470852_ef71917d716e4875b8b10558072bee3f~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Eudes%20Godoy%20_edited.jpg", "nome": "Eudes Godoy"}, {"foto": "https://static.wixstatic.com/media/470852_32078497502346ad92d3a1d678b2c117~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Felipe%20Koleski_edited.jpg", "nome": "Felipe Koleski"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=FelippeCamarotto\u0026backgroundColor=B22222", "nome": "Felippe Camarotto"}, {"foto": "https://static.wixstatic.com/media/470852_a39fa25a456441559bcee0daba6b799b~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Felix%20I%20Santos_edited.jpg", "nome": "Felix Santos"}, {"foto": "https://static.wixstatic.com/media/470852_db115d8aeae44115a303ac2fcb642c82~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Fernando%20Fornari_edited.jpg", "nome": "Fernando Fornari"}, {"foto": "https://static.wixstatic.com/media/470852_e5a7d1a6fa9049389eb364c6510be5fd~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Fernando%20Manso_edited.jpg", "nome": "Fernando Manso"}, {"foto": "https://static.wixstatic.com/media/470852_b960bdeb33f5487c9799a7d07baa0abd~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/francisco%20diaz.jpeg", "nome": "Francisco Diaz"}, {"foto": "https://static.wixstatic.com/media/470852_351b76df8f0946838552de44ebe450e0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Gabriel%20Vargas_edited.jpg", "nome": "Gabriel Vargas"}, {"foto": "https://static.wixstatic.com/media/470852_dfcc632fb73640688cb681b1d19fea25~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Geisson%20Beck%20Hahn_edited.jpg", "nome": "Geisson Beck Hahn"}, {"foto": "https://static.wixstatic.com/media/470852_031cc8403e9242d7b336d59e44107ebe~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Glauco%20Alvarez%20_edited.jpg", "nome": "Glauco Alvarez"}, {"foto": "https://static.wixstatic.com/media/470852_221573fb2a734172adac260abf0f0ca6~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Guilherme%20Goyano_edited.jpg", "nome": "Guilherme Goyano"}, {"foto": "https://static.wixstatic.com/media/470852_5ec837b7c3464b4cb5eb212b42daea76~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Henrique%20Waltrick%20de%20Albuquerque.jpeg", "nome": "Henrique W. de Albuquerque"}, {"foto": "https://static.wixstatic.com/media/470852_d0e7a247d82244ecbd844b3cbfeeb637~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Igor%20wolwacz%20Jr_edited.jpg", "nome": "Igor Wolwacz Jr"}, {"foto": "https://static.wixstatic.com/media/470852_880c9bc8894a4031a3a0c8a791d15c92~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Jarbas%20Cavalheiro_edited.jpg", "nome": "Jarbas Cavalheiro"}, {"foto": "https://static.wixstatic.com/media/470852_4966dada5c844fa2a4661cad8c63d3b3~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Joe%20Waltrick.jpeg", "nome": "Joe Waltrick"}, {"foto": "https://static.wixstatic.com/media/470852_2cd0de6f95564f1da6270c05f0a207e9~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Juarez%20Antonio%20Dal%20Vesgo_edited.jpg", "nome": "Juarez Antonio Dal Vesco"}, {"foto": "https://static.wixstatic.com/media/470852_ff4c40b6de9e4c8ba6ded15e0a3656ce~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/KALI%20FONTANA%20_edited.jpg", "nome": "Kali Fontana"}, {"foto": "https://static.wixstatic.com/media/470852_0481182567d14217a1e7da7c6b62c4a2~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/katia%20souto_edited.jpg", "nome": "Katia Souto"}, {"foto": "https://static.wixstatic.com/media/470852_a4316bfab06048f880f7d1072f9b08bd~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lucas%20Rossi_edited.jpg", "nome": "Lucas Rossi"}, {"foto": "https://static.wixstatic.com/media/470852_a4316bfab06048f880f7d1072f9b08bd~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lucas%20Rossi_edited.jpg", "nome": "Lucas Schmitt"}, {"foto": "https://static.wixstatic.com/media/470852_482f20c8550346c1888cde9ef914bd30~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lucian%20El-Kadre_edited.jpg", "nome": "Lucian El-Kadre"}, {"foto": "https://static.wixstatic.com/media/470852_f0a36d1a84874ea3958db28c4d0254d2~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/luciano%20santos_edited.jpg", "nome": "Luciano Santos"}, {"foto": "https://static.wixstatic.com/media/470852_892426f961e2451da165906390b3c39a~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,enc_avif,quality_auto/Luiz%20Alberto%20de%20Carli_edited.jpg", "nome": "Luiz Alberto De Carli"}, {"foto": "https://static.wixstatic.com/media/470852_5811b64aa151470a9c70a8e60a7731cb~mv2.png/v1/fill/w_400,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Luiz%20Poggi%20.png", "nome": "Luiz Poggi"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=Lu\u00edsFernandoMartinezPereira\u0026backgroundColor=B22222", "nome": "Lu\u00eds Fernando Martinez Pereira"}, {"foto": "https://static.wixstatic.com/media/470852_f68f6eeca69749b99544ca95453a771a~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mariana%20Calanca.jpeg", "nome": "Mariana Calanca"}, {"foto": "https://static.wixstatic.com/media/470852_fa1d8b0551b04e7da94ee8582985acbe~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mariano%20Menezes_edited.jpg", "nome": "Mariano Menezes"}, {"foto": "https://static.wixstatic.com/media/470852_d2d0da09ad934ee28dbb409228584854~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Maurice%20Formighieri%20_edited.jpg", "nome": "Maurice Formighieri"}, {"foto": "https://static.wixstatic.com/media/470852_57418c7a883a44e2a0f05248c57b8bfa~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mauricio%20Ramos%20_edited.jpg", "nome": "Mauricio Ramos"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=MaurilioRibeiroJr\u0026backgroundColor=B22222", "nome": "Maurilio Ribeiro Jr"}, {"foto": "https://static.wixstatic.com/media/470852_eaa244b5fde44dc3b13a5411ea71a691~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Marcia%20Murussi_edited.jpg", "nome": "M\u00e1rcia Murussi"}, {"foto": "https://static.wixstatic.com/media/470852_89c61b7f5d914f8a84c9bcbe1eef1ce4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Paula%20Volpe%20_edited.jpg", "nome": "Paula Volpe"}, {"foto": "https://static.wixstatic.com/media/470852_5d29b05870664ad7badddcf0b1600771~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rafael%20Rothbarth.jpeg", "nome": "Rafael Rothbarth"}, {"foto": "https://static.wixstatic.com/media/470852_724d859cf6f74ee29c4800a3e4467a49~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ricardo%20L%20Zanin_edited.jpg", "nome": "Ricardo L Zanin"}, {"foto": "https://static.wixstatic.com/media/470852_4379b99402904f6e95b45cfc2ca1087a~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rodolfo%20Oviedo.jpeg", "nome": "Rodolfo Oviedo"}, {"foto": "https://static.wixstatic.com/media/470852_ffb9716e602c4f4892bd3802359c37a3~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rui%20Ribeiro_edited.jpg", "nome": "Rui Ribeiro"}, {"foto": "https://static.wixstatic.com/media/470852_e922635202284c269050fc8092fd3b0d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Victor%20Dib_edited.jpg", "nome": "Victor Dib"}], "cronograma": [{"hora": "Dia 27 08:00", "palestrante": "Victor Dib, Carlos Madalosso, Paulo Reis e Convidados", "titulo": "Cirurgias ao Vivo (Rob\u00f3tica e Laparoscopia)"}, {"hora": "Dia 28 08:00", "palestrante": "Diversos Convidados Nacionais e Internacionais", "titulo": "Sess\u00f5es Te\u00f3ricas e Discuss\u00e3o de Casos"}, {"hora": "12:30", "palestrante": "Comiss\u00e3o Organizadora", "titulo": "Encerramento e Certifica\u00e7\u00e3o"}], "data": "27 e 28/02/26", "descricao": "O maior evento de cirurgia bari\u00e1trica e metab\u00f3lica ao vivo do Sul do Brasil. Uma imers\u00e3o completa combinando teoria e pr\u00e1tica em formato h\u00edbrido. Acompanhe cirurgias rob\u00f3ticas e laparosc\u00f3picas reais com explica\u00e7\u00f5es e aprofunde seus conhecimentos.", "horario": "08:00 \u00e0s 18:00", "id": "ix-bc-live-surgery", "imagem": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format\u0026fit=crop\u0026q=80\u0026w=1200", "link_externo": "https://www.bclivesurgery.com.br/", "local": "Hospital de Cl\u00ednicas e Audit\u00f3rio C. Madalosso - Passo Fundo, RS", "localizacao": [{"dia": "Dia 1 - 27/02", "endereco": "Rua Uruguai, 590, Centro - Passo Fundo, RS", "horario": "8h \u00e0s 18h", "link_maps": "https://www.google.com/maps/place/R.+Uruguai,+590+-+Centro,+Passo+Fundo+-+RS,+99010-110/@-28.2563142,-52.4083686,17z/", "titulo": "Hospital de Cl\u00ednicas de Passo Fundo"}, {"dia": "Dia 2 - 28/02", "endereco": "Rua Uruguai 1953, 9\u00ba andar - Passo Fundo, RS", "horario": "8h \u00e0s 12h30", "link_maps": "https://www.google.com/maps/place/R.+Uruguai,+1953+-+9%C2%BA+andar+-+Centro,+Passo+Fundo+-+RS,+99010-111/@-28.2619889,-52.4185818,17z/", "titulo": "Audit\u00f3rio Carlos Madalosso"}], "palestrantes": [{"foto": "https://static.wixstatic.com/media/470852_0c47ff079a0e4741aed5006f16dd3163~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Admar%20Concon_edited.jpg", "nome": "Admar Concon"}, {"foto": "https://static.wixstatic.com/media/470852_9de78e1701464bd983b72f57730df2c4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Andre%20Bigolin_edited.jpg", "nome": "Andr\u00e9 Teixeira"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=AntelmoSasso\u0026backgroundColor=B22222", "nome": "Antelmo Sasso"}, {"foto": "https://static.wixstatic.com/media/470852_800cb85b80f043748bd4cf4a4d59b984~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Dillemburg_edited.jpg", "nome": "Carlos Dillemburg"}, {"foto": "https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg", "nome": "Carlos Madalosso"}, {"foto": "https://static.wixstatic.com/media/470852_fbabdbbb73b44a608b2139b35d1866d0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Daiane%20Weber_edited.jpg", "nome": "Daiane Weber"}, {"foto": "https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg", "nome": "Diogo Kfouri"}, {"foto": "https://static.wixstatic.com/media/470852_e5f18deac9214c139f8da24cc0d0b6ef~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Eduardo%20Grecco_edited.jpg", "nome": "Eduardo Grecco"}, {"foto": "https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg", "nome": "Hiroji Okano"}, {"foto": "https://api.dicebear.com/7.x/initials/svg?seed=HugoSantos\u0026backgroundColor=B22222", "nome": "Hugo Santos"}, {"foto": "https://static.wixstatic.com/media/470852_4966dada5c844fa2a4661cad8c63d3b3~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Joe%20Waltrick.jpeg", "nome": "Joe Waltrick"}, {"foto": "https://static.wixstatic.com/media/470852_768b8bc937634ba49ade2c195aaa3abc~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/jessica_edited.jpg", "nome": "J\u00e9ssica Zandon\u00e1"}, {"foto": "https://static.wixstatic.com/media/470852_e9665ec4b8574aedb33c5a33ee17be06~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Luiz%20Gustavo%20Quadros.jpeg", "nome": "Luiz Gustavo Quadros"}, {"foto": "https://static.wixstatic.com/media/470852_3c918e7ebb424e7486cc36db8eb19cff~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Manoel%20Galv%C3%A3o%20Neto_edited.jpg", "nome": "Manoel Galv\u00e3o Neto"}, {"foto": "https://static.wixstatic.com/media/470852_5864c775f8674f4587bd1bbbb4bdfd5d~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Milton%20Kawahara%20-%20SP.jpeg", "nome": "Milton Kawahara"}, {"foto": "https://static.wixstatic.com/media/470852_eaa244b5fde44dc3b13a5411ea71a691~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Marcia%20Murussi_edited.jpg", "nome": "M\u00e1rcia Murussi"}, {"foto": "https://static.wixstatic.com/media/470852_964942490a304f359a832379f82b3778~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Paulo%20Reis_jpg.jpeg", "nome": "Paulo Reis"}, {"foto": "https://static.wixstatic.com/media/470852_9717e634b48e47d3b759a08e11377a55~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,enc_avif,quality_auto/Persio%20Stobbe_edited.jpg", "nome": "Persio Stobbe"}, {"foto": "https://static.wixstatic.com/media/470852_8b6a40868444490184923077b064f43d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Raquel%20Fraga_edited.jpg", "nome": "Raquel Fraga"}, {"foto": "https://static.wixstatic.com/media/470852_1b14dc8469504a5dba39723d187829f0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Renato%20Souza_edited.jpg", "nome": "Renato Souza"}, {"foto": "https://static.wixstatic.com/media/470852_e922635202284c269050fc8092fd3b0d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Victor%20Dib_edited.jpg", "nome": "Victor Dib"}], "publico": "Cirurgi\u00f5es Bari\u00e1tricos e Estudantes", "titulo": "IX BC Live Surgery"}, {"cronograma": [], "data": "05 Outubro 2026", "descricao": "Mesa redonda debatendo complica\u00e7\u00f5es e casos at\u00edpicos em gastrectomia vertical.", "horario": "19:00", "id": "webinar-sleeve", "imagem": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format\u0026fit=crop\u0026q=80\u0026w=1200", "local": "Online", "publico": "Membros BC Flix", "titulo": "Webinar: Dificuldades no Sleeve"}];
+        let currentEvent = null;
+
+        function onEventSelection() {
+            const evId = document.getElementById("eventSelect").value;
+            const container = document.getElementById("mainContainer");
+            const speakerStep = document.getElementById("speakerStep");
+            const speakerSelect = document.getElementById("speakerSelect");
+            
+            document.getElementById("doctorDetails").style.display = "none";
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "none";
+
+            if (evId) {
+                currentEvent = eventosData.find(e => e.id === evId);
+                if (currentEvent) {
+                    if(currentEvent.imagem) {
+                        container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.8) 0%, rgba(0,242,255,0.4) 100%), url('${currentEvent.imagem}')`;
+                        container.style.backgroundSize = "cover";
+                        container.style.backgroundPosition = "center";
+                    } else {
+                        container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+                    }
+                    
+                    let options = '<option value="">-- BUSQUE E SELECIONE SEU NOME --</option>';
+                    if(currentEvent.palestrantes) {
+                        const sorted = [...currentEvent.palestrantes].sort((a,b) => a.nome.localeCompare(b.nome));
+                        sorted.forEach(p => { options += `<option value="${p.nome}">${p.nome}</option>`; });
+                    }
+                    speakerSelect.innerHTML = options;
+                    speakerStep.style.display = "block";
+                }
+            } else {
+                speakerStep.style.display = "none";
+                container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+            }
+        }
+
+        function onSpeakerSelection() {
+            const name = document.getElementById("speakerSelect").value;
+            const detailsDiv = document.getElementById("doctorDetails");
+            const scheduleList = document.getElementById("scheduleListContainer");
+            
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "none";
+
+            if (name && currentEvent) {
+                detailsDiv.style.display = "block";
+                let html = "";
+                let hasSchedule = false;
+
+                if (currentEvent.cronograma) {
+                    currentEvent.cronograma.forEach(item => {
+                        // Safe check if palestrante string includes the name
+                        if (item.palestrante && item.palestrante.toLowerCase().includes(name.toLowerCase())) {
+                            hasSchedule = true;
+                            html += `
+                            <div class="schedule-item">
+                                <div class="schedule-event">${currentEvent.titulo}</div>
+                                <div class="schedule-time">${item.hora}</div>
+                                <div style="color: var(--dark-slate); font-size: 0.95rem;">${item.titulo}</div>
+                            </div>
+                            `;
+                        }
+                    });
+                }
+                
+                if (!hasSchedule) {
+                    html = "<p style='color: var(--dark-slate); font-style: italic;'>Nenhuma sessão atribuída especificamente a você no cronograma. Por favor, conclua seu check-in normalmente.</p>";
+                }
+                scheduleList.innerHTML = html;
+            } else {
+                detailsDiv.style.display = "none";
+            }
+        }
+
+        function acceptTerms() {
+            document.getElementById("rejectionMsg").style.display = "none";
+            document.getElementById("formWrapper").style.display = "block";
+            document.getElementById("formWrapper").scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function rejectTerms() {
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "block";
+        }
+    </script>
+</body>
+</html>
