@@ -103,6 +103,15 @@ output_index = index_template.render(
 with open(os.path.join(DEPLOY_DIR, 'home.html'), 'w', encoding='utf-8') as f:
     f.write(output_index)
 
+# -------
+# 1.5 Gerar Masterclass Landing Page
+# -------
+print("Gerando masterclass.html...")
+masterclass_template = env.get_template('masterclass.html')
+output_masterclass = masterclass_template.render()
+with open(os.path.join(DEPLOY_DIR, 'masterclass.html'), 'w', encoding='utf-8') as f:
+    f.write(output_masterclass)
+
 
 # -------
 # 2. Gerar Páginas de Eventos

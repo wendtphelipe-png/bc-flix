@@ -25,7 +25,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair;
         }
 
         body {
@@ -545,7 +544,7 @@
             <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA</h3>
             <div class="row-success" style="display: none; margin-top: 25px;">
                 <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 0.8rem; text-align: center; border: 1px solid var(--electric-cyan); padding: 20px; border-radius: 4px;">
-                    INSCRIÇÃO REALIZADA COM SUCESSO!<br>FIQUE ATENTO AO SEU EMAIL.
+                    INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>Você será redirecionado em <span id="redirect-counter">5</span> segundos...
                 </div>
             </div>
             <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/184814682394068288/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
@@ -715,6 +714,19 @@
             var $ = ml_jQuery || jQuery;
             $('.ml-subscribe-form-39949181 .row-success').show();
             $('.ml-subscribe-form-39949181 .row-form').hide();
+            
+            var countdown = 5;
+            var counterElement = document.getElementById('redirect-counter');
+            var redirectInterval = setInterval(function() {
+                countdown--;
+                if(counterElement) {
+                    counterElement.innerText = countdown;
+                }
+                if(countdown <= 0) {
+                    clearInterval(redirectInterval);
+                    window.location.href = "https://bariatricchannel.com/masterclass";
+                }
+            }, 1000);
         }
 
         // 3D Stomach Particle Animation

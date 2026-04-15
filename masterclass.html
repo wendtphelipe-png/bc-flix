@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Bariátrica Ao Vivo | Bariatric Channel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --medical-white: #FFFFFF;
+            --soft-creme: #FDFDF5;
+            --deep-blue: #0A192F;
+            --vitality-red: #FF3B30;
+            --electric-cyan: #00F2FF;
+            --dark-slate: #2D3436;
+            --alabaster-shadow: rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--soft-creme);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--deep-blue);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(253, 253, 245, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 25, 47, 0.05);
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-blue);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--vitality-red);
+        }
+
+        .hero {
+            padding: 180px 5% 100px;
+            background: var(--deep-blue);
+            color: var(--medical-white);
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--medical-white);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .details-section {
+            padding: 100px 5%;
+            background: var(--medical-white);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: var(--soft-creme);
+            padding: 40px;
+            border: 1px solid rgba(10, 25, 47, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--vitality-red);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: var(--medical-white);
+            padding: 80px 5%;
+            border-top: 1px solid rgba(10, 25, 47, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="home.html" class="logo">
+            <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
+        </a>
+        <div class="nav-links">
+            <a href="home.html">VOLTAR PARA INÍCIO</a>
+            <a href="https://bariatricchannel.com.br" class="nav-link-highlight" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="mono" style="color: var(--vitality-red); margin-bottom: 20px;">TRANSMISSÃO AO VIVO • 09 DE MAIO</p>
+        <h1>MASTERCLASS BARIÁTRICA DO BC</h1>
+        <p>A imersão que vai transformar sua visão cirúrgica. Três especialistas, três cidades conectadas, e um debate técnico de altíssimo nível em tempo real.</p>
+    </section>
+
+    <section class="details-section">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <p class="mono" style="color: var(--vitality-red);">A EXPEDIÇÃO CIRÚRGICA</p>
+            <h2>PROGRAMAÇÃO E CIRURGIÕES</h2>
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">MANAUS / AM</p>
+                <h3>DR. VICTOR DIB</h3>
+                <p>Referência em Cirurgia Bariátrica e Robótica. Uma aula magistral diretamente do coração da região Norte.</p>
+            </div>
+            
+            <div class="card">
+                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">GOIÂNIA / GO</p>
+                <h3>DR. PAULO REIS</h3>
+                <p>Especialista em técnicas minimamente invasivas e cirurgia metabólica demonstrando casos de alta complexidade.</p>
+            </div>
+
+            <div class="card">
+                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">PASSO FUNDO / RS</p>
+                <h3>DR. CARLOS MADALOSSO</h3>
+                <p>Mestre em precisão anatômica com décadas de atuação revolucionando o sul do país no tratamento da obesidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+            <a href="home.html" class="logo">
+                <img src="assets/logo_final.png" alt="Bariatric Channel Logo" style="height: 40px;">
+            </a>
+            <div class="mono" style="font-size: 0.7rem; opacity: 0.5;">
+                &copy; 2026 BARIATRIC CHANNEL. TODOS OS DIREITOS RESERVADOS.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
