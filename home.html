@@ -540,33 +540,37 @@
             </div>
         </div>
 
-        <div class="bmi-card" data-reveal style="transition-delay: 0.2s;">
+        <div class="bmi-card ml-subscribe-form ml-subscribe-form-39949181" data-reveal style="transition-delay: 0.2s;">
             <p class="mono">100% Online e 100% Gratuito</p>
             <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA</h3>
-            <div class="bmi-grid">
+            <div class="row-success" style="display: none; margin-top: 25px;">
+                <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 0.8rem; text-align: center; border: 1px solid var(--electric-cyan); padding: 20px; border-radius: 4px;">
+                    INSCRIÇÃO REALIZADA COM SUCESSO!<br>FIQUE ATENTO AO SEU EMAIL.
+                </div>
+            </div>
+            <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/184814682394068288/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
                 <div class="input-group">
                     <label class="mono">Nome Completo</label>
-                    <input type="text" id="name" placeholder="DIGITE SEU NOME">
+                    <input type="text" id="name" name="fields[name]" placeholder="DIGITE SEU NOME" required>
                 </div>
                 <div class="input-group">
                     <label class="mono">E-mail Profissional</label>
-                    <input type="email" id="email" placeholder="EMAIL@EXEMPLO.COM">
+                    <input type="email" id="email" name="fields[email]" placeholder="EMAIL@EXEMPLO.COM" required>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div class="input-group">
                         <label class="mono">CRM / UF</label>
-                        <input type="text" id="crm" placeholder="000000-UF">
+                        <input type="text" id="crm" name="fields[z_i_p]" placeholder="000000-UF" required>
                     </div>
                     <div class="input-group">
                         <label class="mono">WhatsApp</label>
-                        <input type="tel" id="whatsapp" placeholder="(00) 00000-0000">
+                        <input type="tel" id="whatsapp" name="fields[phone]" placeholder="(00) 00000-0000" required>
                     </div>
                 </div>
-                <button class="btn-primary" onclick="submitRegistration()" style="padding: 15px; margin-top: 10px;">SOLICITAR INSCRIÇÃO</button>
-                <div id="reg-status" class="mono" style="margin-top: 15px; font-weight: 800; color: var(--vitality-red); display: none; font-size: 0.7rem;">
-                    PROCESSANDO SOLICITAÇÃO...
-                </div>
-            </div>
+                <input type="hidden" name="ml-submit" value="1">
+                <input type="hidden" name="anticsrf" value="true">
+                <button type="submit" class="btn-primary primary" style="padding: 15px; margin-top: 10px; width: 100%; border: none;">SOLICITAR INSCRIÇÃO</button>
+            </form>
         </div>
     </section>
 
@@ -706,31 +710,11 @@
 
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-        // Registration Logic
-        function submitRegistration() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const statusDiv = document.getElementById('reg-status');
-
-            if (name && email) {
-                statusDiv.style.display = 'block';
-                statusDiv.innerText = 'SOLICITAÇÃO ENVIADA COM SUCESSO. AGUARDE CONTATO.';
-                statusDiv.style.color = 'var(--electric-cyan)';
-                
-                // Reset form fields
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                if(document.getElementById('crm')) document.getElementById('crm').value = '';
-                if(document.getElementById('whatsapp')) document.getElementById('whatsapp').value = '';
-
-                setTimeout(() => {
-                    statusDiv.style.display = 'none';
-                }, 5000);
-            } else {
-                statusDiv.style.display = 'block';
-                statusDiv.innerText = 'POR FAVOR, PREENCHA OS CAMPOS OBRIGATÓRIOS.';
-                statusDiv.style.color = 'var(--vitality-red)';
-            }
+        // MailerLite Success Callback
+        function ml_webform_success_39949181() {
+            var $ = ml_jQuery || jQuery;
+            $('.ml-subscribe-form-39949181 .row-success').show();
+            $('.ml-subscribe-form-39949181 .row-form').hide();
         }
 
         // 3D Stomach Particle Animation
@@ -824,7 +808,9 @@
             50% { transform: scale(1.05); color: var(--electric-cyan); }
             100% { transform: scale(1); }
         }
-    </style>
-
+    </style>    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/2110375/forms/184814682394068288/takel")
+    </script>
 </body>
 </html>
