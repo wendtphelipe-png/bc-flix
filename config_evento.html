@@ -483,9 +483,9 @@
         const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
         
-        let supabase;
+        let bcSupabase;
         try {
-            supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            bcSupabase = window.supabase.createClient(supabaseUrl, supabaseKey);
         } catch (e) {
             console.error("Supabase Error:", e);
         }
@@ -512,7 +512,7 @@
                 const statusEl = document.getElementById('app-status');
                 if(statusEl) statusEl.style.display = 'none';
                 
-                if (!supabase) {
+                if (!bcSupabase) {
                     alert("Erro: Biblioteca Supabase não carregada.");
                     return;
                 }
@@ -521,7 +521,7 @@
             methods: {
                 async checkSession() {
                     try {
-                        const { data: { session } } = await supabase.auth.getSession();
+                        const { data: { session } } = await bcSupabase.auth.getSession();
                         this.session = session;
                         if (this.session) this.fetchEventos();
                     } catch (e) { console.error("Session check fail:", e); }
@@ -530,7 +530,7 @@
                     this.loading = true;
                     this.loginError = '';
                     try {
-                        const { data, error } = await supabase.auth.signInWithPassword({
+                        const { data, error } = await bcSupabase.auth.signInWithPassword({
                             email: this.email,
                             password: this.password
                         });
@@ -544,11 +544,11 @@
                     this.loading = false;
                 },
                 async handleLogout() {
-                    await supabase.auth.signOut();
+                    await bcSupabase.auth.signOut();
                     this.session = null;
                 },
                 async fetchEventos() {
-                    const { data, error } = await supabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
+                    const { data, error } = await bcSupabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
                     if (error) {
                         this.showToast('Erro ao buscar do Supabase.', 'error');
                     } else {
@@ -582,7 +582,7 @@
                 },
                 async saveEventToCloud() {
                     this.saving = true;
-                    const { error } = await supabase.from('eventos_bc').upsert({
+                    const { error } = await bcSupabase.from('eventos_bc').upsert({
                         id: this.activeEvent.id,
                         titulo: this.activeEvent.titulo,
                         data: this.activeEvent.data,
@@ -598,7 +598,7 @@
                 },
                 async deleteEvent(id) {
                     if (confirm('Deletar?')) {
-                        await supabase.from('eventos_bc').delete().eq('id', id);
+                        await bcSupabase.from('eventos_bc').delete().eq('id', id);
                         this.fetchEventos();
                         this.activeEvent = null;
                     }
