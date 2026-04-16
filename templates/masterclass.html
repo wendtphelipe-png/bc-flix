@@ -87,6 +87,12 @@
             color: var(--vitality-red);
         }
 
+        .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
+        .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
+        .lang-switcher img { width: 22px; height: auto; border: 1px solid #ccc; border-radius: 2px; }
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+
         .hero {
             padding: 180px 5% 100px;
             background: var(--deep-blue);
@@ -152,6 +158,11 @@
         <div class="nav-links">
             <a href="home.html">VOLTAR PARA INÍCIO</a>
             <a href="https://bariatricchannel.com.br" class="nav-link-highlight" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+            <div class="lang-switcher" style="display:flex; gap:5px; margin-left: 10px;">
+                <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+                <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+                <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
+            </div>
         </div>
     </nav>
 
@@ -198,6 +209,18 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLang(lang) {
+            let select = document.querySelector('select.goog-te-combo');
+            if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
+        }
+    </script>
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
