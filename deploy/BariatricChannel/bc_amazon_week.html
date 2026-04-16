@@ -571,17 +571,18 @@
             function findSpeaker(searchName) {
                 if (!searchName) return null;
                 
-                // --- HARD OVERRIDES PARA MÉDICOS CRÍTICOS ---
+                // --- HARD OVERRIDES (Normalizados) ---
                 const hardMap = {
-                    "Manoel Galvão": "assets/manoel_galvao.jpg",
-                    "André Weiss": "assets/andre_weiss.jpg",
-                    "Maurílio Ribeiro Junior": "assets/maurilio_junior.jpg",
-                    "Maurílio Ribeiro": "assets/maurilio_junior.jpg",
-                    "Maurílio Junior": "assets/maurilio_junior.jpg"
+                    "MANOEL GALVAO": "assets/manoel_galvao.jpg",
+                    "ANDRE WEISS": "assets/andre_weiss.jpg",
+                    "MAURILIO RIBEIRO JUNIOR": "assets/maurilio_junior.jpg",
+                    "MAURILIO RIBEIRO": "assets/maurilio_junior.jpg",
+                    "MAURILIO JUNIOR": "assets/maurilio_junior.jpg"
                 };
                 
-                if (hardMap[searchName]) {
-                    return { "Nome": searchName, "Foto URL": hardMap[searchName] };
+                const normSearch = normalize(searchName);
+                if (hardMap[normSearch]) {
+                    return { "Nome": searchName, "Foto URL": hardMap[normSearch] };
                 }
                 // --------------------------------------------
 
