@@ -324,180 +324,179 @@
         </div>
     </nav>
 
+    <!-- Dependências do Sistema Cloud (Vue + Supabase) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <div class="checkin-container" id="mainContainer">
-        <div class="checkin-card">
-            <h1>CHECK-IN CORPO DOCENTE</h1>
-            <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do
-                ecossistema Bariatric Channel.</p>
+        {% raw %}
+        <div id="app" v-cloak>
+            <div class="checkin-card">
+                <h1>CHECK-IN CORPO DOCENTE</h1>
+                <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
 
-            <div class="input-group">
-                <label class="mono step-label">1. CONFIRME O EVENTO</label>
-                <select id="eventSelect" onchange="onEventSelection()">
-                    <option value="">-- SELECIONE O EVENTO --</option>
-                    <option value="amazon">2º BC AMAZON WEEK</option>
-                    <option value="masterclass">MASTERCLASS BARIÁTRICA</option>
-                </select>
-            </div>
-
-            <div id="speakerStep">
                 <div class="input-group">
-                    <label class="mono step-label">2. SELECIONE SEU NOME</label>
-                    <select id="speakerSelect" onchange="onSpeakerSelection()">
-                        <option value="">-- BUSQUE E SELECIONE SEU NOME --</option>
+                    <label class="mono step-label">1. CONFIRME O EVENTO</label>
+                    <select v-model="selectedEventId" @change="onEventChange">
+                        <option value="">-- SELECIONE O EVENTO --</option>
+                        <option v-for="ev in eventos" :key="ev.id" :value="ev.id">{{ ev.titulo }}</option>
                     </select>
                 </div>
-            </div>
 
-            <div id="doctorDetails">
-                <div class="schedule-box">
-                    <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
-                    <div id="scheduleListContainer"></div>
-                </div>
-
-                <div class="term-box">
-                    <h3 style="margin-bottom: 15px; font-size: 1.1rem;">TERMO DE CONCESSÃO DE IMAGEM E VOZ</h3>
-                    <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter
-                        definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha
-                        imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos
-                        eventos.</p>
-                    <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais,
-                        inclusão no acervo pago para assinantes BC Flix, campanhas institucionais e publicidade) sem
-                        limite de tempo, canais e território.</p>
-
-                    <div class="action-buttons">
-                        <button class="btn btn-confirm" onclick="acceptTerms()">CONCORDO</button>
-                        <button class="btn btn-reject" onclick="rejectTerms()">NÃO CONCORDO</button>
-                    </div>
-                    <div id="rejectionMsg">
-                        Para prosseguir com sua participação, precisamos da sua concordância contratual com os termos de
-                        imagem. Em caso de dúvidas, por favor, contate a comissão organizadora.
-                    </div>
-                </div>
-            </div>
-
-            <div id="formWrapper">
-                <div class="warning-box">
-                    <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
-                    Após preencher as informações abaixo e concluir este check-in, <strong>você receberá um e-mail
-                        automático da nossa equipe</strong> solicitando o envio de uma Foto de Divulgação (alta
-                    resolução) e de um Pitch/Vídeo Convite curto que utilizaremos nas campanhas do evento.<br>Por favor,
-                    fique atento à sua caixa de entrada e spam.
-                </div>
-
-                <label class="mono step-label">3. CONFIRME SEUS DADOS DE CONTATO</label>
-
-                <div class="form-grid">
+                <div v-if="selectedEventId" id="speakerStep" style="display: block;">
                     <div class="input-group">
-                        <label class="mono">QUAL NOME PREFERE SER CHAMADO / ANUNCIADO?</label>
-                        <input type="text" placeholder="Ex: Dr. Nome Sobrenome">
+                        <label class="mono step-label">2. SELECIONE SEU NOME</label>
+                        <select v-model="selectedSpeakerName" @change="onSpeakerChange">
+                            <option value="">-- BUSQUE E SELECIONE SEU NOME --</option>
+                            <option v-for="p in availableSpeakers" :key="p.nome" :value="p.nome">{{ p.nome }}</option>
+                        </select>
                     </div>
-                    <div class="input-group">
-                        <label class="mono">E-mail Profissional</label>
-                        <input type="email" placeholder="Seu e-mail de contato principal">
+                </div>
+
+                <div v-if="selectedSpeaker" id="doctorDetails" style="display: block;">
+                    <div class="schedule-box">
+                        <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
+                        <div id="scheduleListContainer">
+                            <div v-for="(aula, aIdx) in selectedSpeakerAulas" :key="aIdx" class="schedule-item">
+                                <div class="schedule-event">{{ activeEvent.titulo }}</div>
+                                <div class="schedule-time">SESSÃO CONFIRMADA</div>
+                                <div style="font-size: 0.95rem;">{{ aula.titulo }} - {{ aula.hora }}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="input-group"><label class="mono">CRM / UF</label><input type="text"
-                                placeholder="000000-UF"></div>
-                        <div class="input-group"><label class="mono">WhatsApp Exclusivo</label><input type="tel"
-                                placeholder="(00) 00000-0000"></div>
+
+                    <div class="term-box">
+                        <h3 style="margin-bottom: 15px; font-size: 1.1rem;">TERMO DE CONCESSÃO DE IMAGEM E VOZ</h3>
+                        <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos eventos.</p>
+                        <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais, inclusão no acervo pago para assinantes BC Flix, campanhas institucionais e publicidade) sem limite de tempo, canais e território.</p>
+
+                        <div class="action-buttons" v-if="!termsAccepted">
+                            <button class="btn btn-confirm" @click="termsAccepted = true">CONCORDO</button>
+                            <button class="btn btn-reject" @click="showRejection = true">NÃO CONCORDO</button>
+                        </div>
+                        <div v-if="showRejection" id="rejectionMsg" style="display: block;">
+                            Para prosseguir com sua participação, precisamos da sua concordância contratual com os termos de imagem. Em caso de dúvidas, por favor, contate a comissão organizadora.
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label class="mono">ADICIONE UMA VERSÃO RESUMIDA DO SEU CURRÍCULO</label>
-                        <textarea placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
+                </div>
+
+                <div v-if="termsAccepted" id="formWrapper" style="display: block;">
+                    <div class="warning-box">
+                        <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
+                        Após preencher as informações abaixo e concluir este check-in, <strong>você receberá um e-mail automático da nossa equipe</strong> solicitando o envio de uma Foto de Divulgação (alta resolução) e de um Pitch/Vídeo Convite curto que utilizaremos nas campanhas do evento.<br>Por favor, fique atento à sua caixa de entrada e spam.
                     </div>
-                    <button class="btn btn-confirm" style="width: 100%;"
-                        onclick="alert('Check-in finalizado com sucesso! Nossa equipe entrará em contato.')">CONCLUIR
-                        CHECK-IN</button>
+
+                    <label class="mono step-label">3. CONFIRME SEUS DADOS DE CONTATO</label>
+
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label class="mono">QUAL NOME PREFERE SER CHAMADO / ANUNCIADO?</label>
+                            <input v-model="formData.nomeAnuncio" type="text" placeholder="Ex: Dr. Nome Sobrenome">
+                        </div>
+                        <div class="input-group">
+                            <label class="mono">E-mail Profissional</label>
+                            <input v-model="formData.email" type="email" placeholder="Seu e-mail de contato principal">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="input-group"><label class="mono">CRM / UF</label><input v-model="formData.crm" type="text" placeholder="000000-UF"></div>
+                            <div class="input-group"><label class="mono">WhatsApp Exclusivo</label><input v-model="formData.whatsapp" type="tel" placeholder="(00) 00000-0000"></div>
+                        </div>
+                        <div class="input-group">
+                            <label class="mono">ADICIONE UMA VERSÃO RESUMIDA DO SEU CURRÍCULO</label>
+                            <textarea v-model="formData.bio" placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
+                        </div>
+                        <button class="btn btn-confirm" style="width: 100%;" @click="finishCheckin">CONCLUIR CHECK-IN</button>
+                    </div>
                 </div>
             </div>
-
         </div>
+        {% endraw %}
     </div>
 
     <script>
-        const eventos = {
-            'amazon': {
-                titulo: '2º BC AMAZON WEEK',
-                imagem: 'assets/onça low.jpg',
-                palestrantes: [
-                    { nome: 'Dr. Paulo Reis', aulas: ['Abertura - Inovações em Bipartição', 'Cirurgia ao Vivo: Transit Bipartition'] },
-                    { nome: 'Dr. Victor Dib', aulas: ['Robótica na Amazônia', 'Cirurgia ao Vivo: Sleeve Robótico'] },
-                    { nome: 'Dr. Carlos Madalosso', aulas: ['Refluxo Pós-Bariátrica', 'Simpósio Latino-Americano'] }
-                ]
-            },
-            'masterclass': {
-                titulo: 'MASTERCLASS BARIÁTRICA',
-                imagem: '',
-                palestrantes: [
-                    { nome: 'Dr. Paulo Reis', aulas: ['Módulo 1: Anatomia Metabólica'] },
-                    { nome: 'Dr. Victor Dib', aulas: ['Módulo 2: Gestão de Complicações'] }
-                ]
-            }
-        };
+        const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        function onEventSelection() {
-            const id = document.getElementById("eventSelect").value;
-            const speakerStep = document.getElementById("speakerStep");
-            const speakerSelect = document.getElementById("speakerSelect");
-            const container = document.getElementById("mainContainer");
+        const { createApp } = Vue;
 
-            // Reset
-            speakerStep.style.display = "none";
-            document.getElementById("doctorDetails").style.display = "none";
-            document.getElementById("formWrapper").style.display = "none";
-
-            if (id && eventos[id]) {
-                const event = eventos[id];
-                if (event.imagem) {
-                    container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.85) 0%, rgba(0,242,255,0.4) 100%), url('${event.imagem}')`;
-                } else {
-                    container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+        createApp({
+            data() {
+                return {
+                    eventos: [],
+                    selectedEventId: '',
+                    selectedSpeakerName: '',
+                    termsAccepted: false,
+                    showRejection: false,
+                    formData: {
+                        nomeAnuncio: '',
+                        email: '',
+                        crm: '',
+                        whatsapp: '',
+                        bio: ''
+                    }
                 }
-
-                let options = '<option value="">-- BUSQUE E SELECIONE SEU NOME --</option>';
-                event.palestrantes.forEach(p => {
-                    options += `<option value="${p.nome}">${p.nome}</option>`;
-                });
-                speakerSelect.innerHTML = options;
-                speakerStep.style.display = "block";
-            } else {
-                container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+            },
+            computed: {
+                activeEvent() {
+                    return this.eventos.find(ev => ev.id === this.selectedEventId);
+                },
+                availableSpeakers() {
+                    return this.activeEvent ? this.activeEvent.palestrantes : [];
+                },
+                selectedSpeaker() {
+                    return this.availableSpeakers.find(p => p.nome === this.selectedSpeakerName);
+                },
+                selectedSpeakerAulas() {
+                    if (!this.activeEvent || !this.selectedSpeakerName) return [];
+                    return this.activeEvent.cronograma.filter(c => 
+                        c.palestrante.toUpperCase().includes(this.selectedSpeakerName.toUpperCase())
+                    );
+                }
+            },
+            mounted() {
+                this.fetchEventos();
+            },
+            methods: {
+                async fetchEventos() {
+                    const { data, error } = await supabase.from('eventos_bc').select('*');
+                    if (!error) this.eventos = data;
+                },
+                onEventChange() {
+                    this.selectedSpeakerName = '';
+                    this.termsAccepted = false;
+                    this.showRejection = false;
+                    const container = document.getElementById("mainContainer");
+                    if (this.activeEvent && this.activeEvent.imagem) {
+                        container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.85) 0%, rgba(0,242,255,0.4) 100%), url('${this.activeEvent.imagem}')`;
+                    } else {
+                        container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+                    }
+                },
+                onSpeakerChange() {
+                    this.termsAccepted = false;
+                    this.showRejection = false;
+                },
+                async finishCheckin() {
+                    const payload = {
+                        evento_id: this.selectedEventId,
+                        medico_nome: this.selectedSpeakerName,
+                        ...this.formData,
+                        data_checkin: new Date().toISOString()
+                    };
+                    
+                    const { error } = await supabase.from('checkins_realizados').insert([payload]);
+                    
+                    if (!error) {
+                        alert('Check-in finalizado com sucesso! Nossa equipe entrará em contato.');
+                        window.location.reload();
+                    } else {
+                        alert('Erro ao salvar check-in. Por favor, tente novamente.');
+                    }
+                }
             }
-        }
-
-        function onSpeakerSelection() {
-            const eventId = document.getElementById("eventSelect").value;
-            const name = document.getElementById("speakerSelect").value;
-            const details = document.getElementById("doctorDetails");
-            const scheduleList = document.getElementById("scheduleListContainer");
-
-            if (name && eventId) {
-                const doc = eventos[eventId].palestrantes.find(p => p.nome === name);
-                let html = "";
-                doc.aulas.forEach(aula => {
-                    html += `<div class="schedule-item">
-                        <div class="schedule-event">${eventos[eventId].titulo}</div>
-                        <div class="schedule-time">SESSÃO CONFIRMADA</div>
-                        <div style="font-size: 0.95rem;">${aula}</div>
-                    </div>`;
-                });
-                scheduleList.innerHTML = html;
-                details.style.display = "block";
-            } else {
-                details.style.display = "none";
-            }
-        }
-
-        function acceptTerms() {
-            document.getElementById("rejectionMsg").style.display = "none";
-            document.getElementById("formWrapper").style.display = "block";
-            document.getElementById("formWrapper").scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function rejectTerms() {
-            document.getElementById("formWrapper").style.display = "none";
-            document.getElementById("rejectionMsg").style.display = "block";
-        }
+        }).mount('#app');
+    </script>
 
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');

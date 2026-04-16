@@ -94,8 +94,8 @@
 
         .flag-corner {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: -15px;
+            right: -15px;
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -510,7 +510,6 @@
     <!-- SLIDE 11 - FULL MEMBERS -->
     <section class="amazon-slide slide-dark" id="slide-11">
         <div class="slide-content-wrapper layout-center">
-            <h2 class="title-white">FULL MEMBERS (CONT.)</h2>
             <div class="speaker-grid" id="grid-members-2">
                 <!-- Injetado via JS -->
             </div>
@@ -562,21 +561,21 @@
             const allSpeakers = {% if palestrantes %}{{ palestrantes | tojson }}{% else %}[]{% endif %};
 
             const groups = {
-                diretoria: ["VICTOR RAMOS MUSSA DIB", "CARLOS MADALOSSO", "PAULO REIS", "PATRICK NOEL"],
-                honorary: ["CARLOS EDUARDO DOMENE", "ANTONIO TORRES", "ALMINO CARDOSO RAMOS"],
-                team: ["RUI RIBEIRO", "ELINTON ADAMI CHAIM", "JORGE BRAVO LOPEZ", "AMADOR GARCIA RUIZ DE GORDEJUELA", "EDUARDO GRECCO", "HALIT EREN TASKIN", "MANOEL PASSOS GALVÃO NETO"],
-                members1: ["ANA CAROLINA CALDEIRA CARVALHO FERNANDES", "ANDRÉ WEISS", "ANTELMO SASSO FIN", "Carlos Dillemburg", "CARLOS TANIZAWA", "DIOGO SWAIN KFOURI", "Felix Antonio Insaurriaga dos Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "HIROJI OKANO JUNIOR"],
-                members2: ["IBRAHIM MASSUQUETO ANDRADE GOMES DE SOUZA", "Joe JoaquimWaltrick", "MARIANA CALANCA", "MAURÍLIO RIBEIRO JUNIOR", "NAIARA PORTUGAL", "NICHOLAS KRUEL", "Rafel Abaid", "RODRIGO FERNANDES", "REINALDO MORIOKA"]
+                diretoria: ["Victor Dib", "CARLOS MADALOSSO", "PAULO REIS", "Patrick Noel"],
+                honorary: ["Carlos Domene", "ANTONIO TORRES", "Almino Ramos"],
+                team: ["RUI RIBEIRO", "Elinton Chaim", "Jorge Bravo", "Amador Garcia", "EDUARDO GRECCO", "Eren Taskin", "Manoel Galvão"],
+                members1: ["Ana Carolina Martins", "ANDRÉ WEISS", "Antelmo Sasso", "Carlos Dillemburg", "CARLOS TANIZAWA", "Diogo Kfouri", "Felix Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "Hiroji Okano"],
+                members2: ["Ibrahim Massuqueto", "Joe Waltrick", "MARIANA CALANCA", "MAURÍLIO RIBEIRO JUNIOR", "NAIARA PORTUGAL", "NICHOLAS KRUEL", "Rafael Abaid", "RODRIGO FERNANDES", "REINALDO MORIOKA"]
             };
 
             const rolesOverride = {
-                "VICTOR RAMOS MUSSA DIB": "FOUNDER/PRESIDENT",
+                "Victor Dib": "FOUNDER/PRESIDENT",
                 "CARLOS MADALOSSO": "FOUNDER/VICE PRESIDENT",
                 "PAULO REIS": "EXECUTIVE DIRECTOR",
-                "PATRICK NOEL": "INTERNATIONAL DIRECTOR",
-                "CARLOS EDUARDO DOMENE": "Honorary President",
+                "Patrick Noel": "INTERNATIONAL DIRECTOR",
+                "Carlos Domene": "Honorary President",
                 "ANTONIO TORRES": "Honorary President",
-                "ALMINO CARDOSO RAMOS": "Honorary President"
+                "Almino Ramos": "Honorary President"
             };
 
             function normalize(str) {
@@ -629,7 +628,7 @@
                     const role = rolesOverride[name] || (miniCurr ? miniCurr.split('\n')[0].substring(0, 40) : "");
 
                     card.innerHTML = `
-                        <div class="image-container" onclick="openBio('${name}')">
+                        <div class="image-container">
                             <div class="irregular-frame"></div>
                             ${photo}
                             ${flagUrl ? `<img src="${flagUrl}" class="flag-corner">` : ''}
