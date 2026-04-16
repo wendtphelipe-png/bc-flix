@@ -566,6 +566,19 @@
                 return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
             }
 
+            function findSpeaker(searchName) {
+                if (!searchName) return null;
+                const searchParts = normalize(searchName).split(" ").filter(p => p.length > 2);
+                if (searchParts.length === 0) return null;
+                
+                return allSpeakers.find(s => {
+                    if (!s || !s.Nome) return false;
+                    const sName = normalize(s.Nome);
+                    // Match se TODAS as partes do nome buscado estiverem no nome do banco
+                    return searchParts.every(part => sName.includes(part));
+                });
+            }
+
             function initSpeakers() {
                 try {
                     renderGroup(groups.diretoria, 'grid-diretoria');
@@ -584,30 +597,24 @@
                 if (!grid) return;
 
                 names.forEach(name => {
-                    const normName = normalize(name);
-                    const speaker = allSpeakers.find(s => {
-                        const sName = normalize(s.Nome);
-                        return sName.includes(normName) || normName.includes(sName);
-                    });
-                    
+                    const speaker = findSpeaker(name);
                     const card = document.createElement('div');
                     card.className = 'speaker-card';
                     
-                    // Tratamento flexível para nomes de chaves (lidar com mojibake)
-                    const getVal = (obj, key) => {
-                        if (!obj) return null;
-                        for (let k in obj) {
-                            if (normalize(k) === normalize(key)) return obj[k];
-                        }
-                        return null;
-                    };
-
-                    const photoUrl = getVal(speaker, "Foto URL");
-                    const country = getVal(speaker, "País");
+                    if (!speaker) {
+                        console.warn('Palestrante não encontrado:', name);
+                    }
                     
-                    const photo = photoUrl ? `<img src="${photoUrl}" class="speaker-photo">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
-                    const flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country)}.png` : '';
-                    const miniCurr = getVal(speaker, "Mini currículo");
+                    const photoUrl = speaker ? (speaker["Foto URL"] || speaker["FotoURL"]) : null;
+                    const country = speaker ? (speaker["País"] || speaker["Pais"]) : null;
+                    
+                    if (speaker && !photoUrl) {
+                        console.warn('URL de foto ausente para:', speaker.Nome);
+                    }
+
+                    const photo = photoUrl ? `<img src="${photoUrl}" class="speaker-photo" onerror="this.src='assets/logo_final.png'; this.style.opacity='0.2';">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
+                    const flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country.toLowerCase())}.png` : '';
+                    const miniCurr = speaker ? (speaker["Mini currículo"] || "") : "";
                     const role = rolesOverride[name] || (miniCurr ? miniCurr.split('\n')[0].substring(0, 40) : "");
 
                     card.innerHTML = `

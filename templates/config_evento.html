@@ -22,7 +22,7 @@
             --alabaster-shadow: rgba(0, 0, 0, 0.05);
         }
 
-        [v-cloak] { display: none !important; }
+        /* [v-cloak] { display: none !important; } */
 
         * {
             margin: 0;
@@ -326,6 +326,8 @@
 
 <body>
     {% raw %}
+    <div id="app-status" style="position:fixed; top:10px; right:10px; font-size:10px; color:#aaa; z-index:9999;">CMS V1.2 - Aguardando Vue...</div>
+    
     <div id="app" v-cloak>
         <!-- LOGIN SCREEN -->
         <div class="login-wrap" v-if="!session">
@@ -469,14 +471,26 @@
         
         let supabase;
         try {
+            const statusEl = document.getElementById('app-status');
+            if(statusEl) statusEl.innerText = "CMS V1.2 - Conectando Supabase...";
+            
             supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            
+            if(statusEl) statusEl.innerText = "CMS V1.2 - Inicializando Vue...";
         } catch (e) {
-            console.error("Supabase initialize failed:", e);
+            console.error("Erro Fatal Supabase:", e);
+            document.body.innerHTML = "<h1 style='color:red; padding:20px;'>Erro Crítico: Supabase falhou ao iniciar. Verifique sua conexão e chaves API.</h1>";
         }
 
         const { createApp } = Vue;
 
         createApp({
+            mounted() {
+                const statusEl = document.getElementById('app-status');
+                if(statusEl) statusEl.style.display = 'none';
+                console.log("Vue montado com sucesso.");
+                this.checkSession();
+            },
             data() {
                 return {
                     session: null,
@@ -493,9 +507,7 @@
                     toastState: ''
                 }
             },
-            mounted() {
-                this.checkSession();
-            },
+
             methods: {
                 async checkSession() {
                     const { data: { session } } = await supabase.auth.getSession();
