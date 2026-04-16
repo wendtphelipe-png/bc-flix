@@ -462,35 +462,21 @@
         </div>
 
         <div :class="['toast', toastState]" v-if="toastMsg">{{ toastMsg }}</div>
-    </div>
-
-    <script>
-        // INICIALIZAÇÃO SUPABASE (Utilizando a URL e Key fornecidas)
+      <script>
+        // CONFIGURAÇÕES SUPABASE
         const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
         
         let supabase;
         try {
-            const statusEl = document.getElementById('app-status');
-            if(statusEl) statusEl.innerText = "CMS V1.2 - Conectando Supabase...";
-            
             supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-            
-            if(statusEl) statusEl.innerText = "CMS V1.2 - Inicializando Vue...";
         } catch (e) {
-            console.error("Erro Fatal Supabase:", e);
-            document.body.innerHTML = "<h1 style='color:red; padding:20px;'>Erro Crítico: Supabase falhou ao iniciar. Verifique sua conexão e chaves API.</h1>";
+            console.error("Supabase Error:", e);
         }
 
         const { createApp } = Vue;
 
-        createApp({
-            mounted() {
-                const statusEl = document.getElementById('app-status');
-                if(statusEl) statusEl.style.display = 'none';
-                console.log("Vue montado com sucesso.");
-                this.checkSession();
-            },
+        const app = createApp({
             data() {
                 return {
                     session: null,
@@ -498,47 +484,57 @@
                     password: '',
                     loginError: '',
                     loading: false,
-
                     eventos: [],
                     activeEvent: null,
                     saving: false,
-
                     toastMsg: '',
                     toastState: ''
                 }
             },
-
+            mounted() {
+                console.log("Vue App Iniciado");
+                const statusEl = document.getElementById('app-status');
+                if(statusEl) statusEl.style.display = 'none';
+                
+                if (!supabase) {
+                    alert("Erro: Biblioteca Supabase não carregada.");
+                    return;
+                }
+                this.checkSession();
+            },
             methods: {
                 async checkSession() {
-                    const { data: { session } } = await supabase.auth.getSession();
-                    this.session = session;
-                    if (this.session) this.fetchEventos();
+                    try {
+                        const { data: { session } } = await supabase.auth.getSession();
+                        this.session = session;
+                        if (this.session) this.fetchEventos();
+                    } catch (e) { console.error("Session check fail:", e); }
                 },
                 async handleLogin() {
                     this.loading = true;
                     this.loginError = '';
-                    const { data, error } = await supabase.auth.signInWithPassword({
-                        email: this.email,
-                        password: this.password
-                    });
-                    if (error) {
-                        this.loginError = "Login falhou: verifique e-mail e senha.";
-                    } else {
-                        this.session = data.session;
-                        this.fetchEventos();
-                    }
+                    try {
+                        const { data, error } = await supabase.auth.signInWithPassword({
+                            email: this.email,
+                            password: this.password
+                        });
+                        if (error) {
+                            this.loginError = "Login falhou: verifique e-mail e senha.";
+                        } else {
+                            this.session = data.session;
+                            this.fetchEventos();
+                        }
+                    } catch (e) { this.loginError = "Erro de conexão."; }
                     this.loading = false;
                 },
                 async handleLogout() {
-                    const { error } = await supabase.auth.signOut();
+                    await supabase.auth.signOut();
                     this.session = null;
                 },
-
                 async fetchEventos() {
                     const { data, error } = await supabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
                     if (error) {
                         this.showToast('Erro ao buscar do Supabase.', 'error');
-                        console.error(error);
                     } else {
                         this.eventos = data;
                         if (this.eventos.length > 0) this.activeEvent = this.eventos[0];
@@ -548,66 +544,47 @@
                     this.activeEvent = ev;
                 },
                 createEventModal() {
-                    const id = prompt("Digite um nome curto (ID) sem espaços para o evento (Ex: amazon, livesurgery2026):");
+                    const id = prompt("ID único:");
                     if (!id) return;
-
-                    const novoEvento = {
-                        id: id, titulo: "Novo Congresso", data: "", local: "", horario: "",
-                        imagem: "assets/onça.png", cronograma: [], palestrantes: []
-                    };
-
-                    this.eventos.unshift(novoEvento); // Joga pro topo
-                    this.activeEvent = novoEvento;
+                    const novo = { id: id, titulo: "Novo", data: "", local: "", horario: "", imagem: "assets/onça.png", cronograma: [], palestrantes: [] };
+                    this.eventos.unshift(novo);
+                    this.activeEvent = novo;
                 },
                 addPalestrante() {
                     if (!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
                     this.activeEvent.palestrantes.push({ nome: "" });
                 },
                 removePalestrante(idx) {
-                    if (confirm('Remover médico?')) this.activeEvent.palestrantes.splice(idx, 1);
+                    this.activeEvent.palestrantes.splice(idx, 1);
                 },
                 addCronograma() {
                     if (!this.activeEvent.cronograma) this.activeEvent.cronograma = [];
                     this.activeEvent.cronograma.push({ hora: "", titulo: "", palestrante: "" });
                 },
                 removeCronograma(idx) {
-                    if (confirm('Remover aula?')) this.activeEvent.cronograma.splice(idx, 1);
+                    this.activeEvent.cronograma.splice(idx, 1);
                 },
                 async saveEventToCloud() {
                     this.saving = true;
-                    try {
-                        // Upsert: Insere se não existir ID, Atualiza se existir
-                        const { data, error } = await supabase
-                            .from('eventos_bc')
-                            .upsert({
-                                id: this.activeEvent.id,
-                                titulo: this.activeEvent.titulo,
-                                data: this.activeEvent.data,
-                                local: this.activeEvent.local,
-                                horario: this.activeEvent.horario,
-                                imagem: this.activeEvent.imagem,
-                                palestrantes: this.activeEvent.palestrantes || [],
-                                cronograma: this.activeEvent.cronograma || []
-                            });
-
-                        if (error) throw error;
-                        this.showToast('Salvo Globalmente no Supabase!', 'success');
-                    } catch (e) {
-                        this.showToast('Permissão Negada ou Falha de Rede', 'error');
-                        console.error(e);
-                    }
+                    const { error } = await supabase.from('eventos_bc').upsert({
+                        id: this.activeEvent.id,
+                        titulo: this.activeEvent.titulo,
+                        data: this.activeEvent.data,
+                        local: this.activeEvent.local,
+                        horario: this.activeEvent.horario,
+                        imagem: this.activeEvent.imagem,
+                        palestrantes: this.activeEvent.palestrantes || [],
+                        cronograma: this.activeEvent.cronograma || []
+                    });
+                    if (error) this.showToast('Erro ao salvar', 'error');
+                    else this.showToast('Salvo com sucesso!', 'success');
                     this.saving = false;
                 },
                 async deleteEvent(id) {
-                    if (confirm('Certeza absoluta que quer DELETAR este evento da face da terra?')) {
-                        const { error } = await supabase.from('eventos_bc').delete().eq('id', id);
-                        if (!error) {
-                            this.showToast('Excluído com sucesso.', 'success');
-                            this.fetchEventos(); // Refresh global
-                            this.activeEvent = null;
-                        } else {
-                            this.showToast('Erro ao excluir.', 'error');
-                        }
+                    if (confirm('Deletar?')) {
+                        await supabase.from('eventos_bc').delete().eq('id', id);
+                        this.fetchEventos();
+                        this.activeEvent = null;
                     }
                 },
                 showToast(msg, state) {
@@ -616,7 +593,9 @@
                     setTimeout(() => { this.toastMsg = ''; }, 4000);
                 }
             }
-        }).mount('#app');
+        });
+        
+        app.mount('#app');
     </script>
     
 </body>

@@ -295,7 +295,7 @@
     <section class="amazon-slide slide-dark" id="slide-1">
         <div class="slide-content-wrapper layout-center">
             <p class="mono parallax-text" style="color: var(--medical-white); font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO, 2026</p>
-            <h1 class="hero-title parallax-text" id="congress-title">2º BC AMAZON WEEK</h1>
+            <h1 class="hero-title parallax-text notranslate" id="congress-title" translate="no">2º BC AMAZON WEEK</h1>
             <p class="text-body parallax-text" style="font-size: 1.5rem; text-transform: uppercase;">II Congresso Internacional Bariatric Channel<br>X Cirurgias Ao Vivo Bariatric Channel<br>II Simpósio LATAM Bariatric Channel</p>
         </div>
     </section>
@@ -566,8 +566,25 @@
                 return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
             }
 
+            // Função de busca inteligente: verifica se TODAS as partes do nome buscado
+            // estão presentes no nome do palestrante no banco de dados.
             function findSpeaker(searchName) {
                 if (!searchName) return null;
+                
+                // --- HARD OVERRIDES PARA MÉDICOS CRÍTICOS ---
+                const hardMap = {
+                    "Manoel Galvão": "assets/manoel_galvao.jpg",
+                    "André Weiss": "assets/andre_weiss.jpg",
+                    "Maurílio Ribeiro Junior": "assets/maurilio_junior.jpg",
+                    "Maurílio Ribeiro": "assets/maurilio_junior.jpg",
+                    "Maurílio Junior": "assets/maurilio_junior.jpg"
+                };
+                
+                if (hardMap[searchName]) {
+                    return { "Nome": searchName, "Foto URL": hardMap[searchName] };
+                }
+                // --------------------------------------------
+
                 const searchParts = normalize(searchName).split(" ").filter(p => p.length > 2);
                 if (searchParts.length === 0) return null;
                 
