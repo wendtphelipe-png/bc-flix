@@ -138,6 +138,8 @@ output_index = index_template.render(
 
 with open(os.path.join(DEPLOY_DIR, 'home.html'), 'w', encoding='utf-8') as f:
     f.write(output_index)
+with open(os.path.join(DEPLOY_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+    f.write(output_index)
 
 # -------
 # 1.5 Gerar Masterclass Landing Page
@@ -216,5 +218,21 @@ prof_output_path = os.path.join(DEPLOY_DIR, 'professores', 'corpo_docente.html')
 with open(prof_output_path, 'w', encoding='utf-8') as f:
     f.write(prof_output_html)
 print(" -> professores/corpo_docente.html gerado.")
+
+# -------
+# 4. Sincronização com pasta Deploy Legada (opcional)
+# -------
+LEGACY_DEPLOY = os.path.join(BASE_DIR, 'deploy', 'BariatricChannel')
+if os.path.exists(LEGACY_DEPLOY):
+    print("\nSincronizando com pasta de deploy legada...")
+    # Copia os arquivos principais gerados para a pasta legada
+    files_to_sync = ['index.html', 'home.html', 'bc_amazon_week.html', 'checkin_bc.html', 'config_evento.html']
+    for f in files_to_sync:
+        src = os.path.join(DEPLOY_DIR, f)
+        if os.path.exists(src):
+            shutil.copy(src, os.path.join(LEGACY_DEPLOY, f))
+            # Se for index.html, copia também para a raiz do BariatricChannel se necessário
+            # mas o shutil.copy já está fazendo para a pasta destino.
+    print(" -> Sincronização concluída.")
 
 print("\nDeploy concluído em:", DEPLOY_DIR)

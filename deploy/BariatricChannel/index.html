@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instituto Bariátrico Avançado | Excelência Cirúrgica</title>
+    <title>Bariatric Channel | O Futuro da Cirurgia Bariátrica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -23,7 +25,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair;
         }
 
         body {
@@ -74,32 +75,203 @@
             transition: var(--transition-smooth);
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--deep-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-box {
-            width: 24px;
-            height: 24px;
-            background: var(--vitality-red);
+        .logo img {
+            height: 45px;
+            width: auto;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--deep-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--vitality-red);
+        }
+
+        .nav-link-highlight {
+            color: var(--vitality-red) !important;
+            border: 1px solid var(--vitality-red);
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        .lang-switcher button {
+            background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s;
+        }
+        .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
+        .lang-switcher img { width: 22px; height: auto; border: 1px solid #ccc; border-radius: 2px; }
+        
+        /* Hide Google Translate ToolBar completely */
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+
+        /* Masterclass Section */
+        .masterclass-section {
+            background-color: var(--soft-creme);
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(100%);
+        }
+
+        .masterclass-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .masterclass-content p {
+            font-size: 1.1rem;
+            color: var(--dark-slate);
+            margin-bottom: 40px;
+        }
+
+        /* Gestão Section */
+        .gestao-section {
+            background: var(--medical-white);
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .gestao-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .surgeon-card {
+            background: var(--medical-white);
+            padding: 0;
+            border: 1px solid rgba(10, 25, 47, 0.05);
+            transition: var(--transition-smooth);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .surgeon-img-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .surgeon-img-frame {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border: 2px solid var(--vitality-red);
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            z-index: -1;
+            transition: var(--transition-smooth);
+        }
+
+        .surgeon-card:hover .surgeon-img-frame {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 59, 48, 0.05);
+        }
+
+        .surgeon-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            filter: grayscale(100%);
+            transition: var(--transition-smooth);
+        }
+
+        .surgeon-card:hover .surgeon-img-container img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .surgeon-card-content {
+            padding: 30px;
+        }
+
+        .surgeon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(10, 25, 47, 0.05);
+            border-color: var(--vitality-red);
+        }
+
+        .surgeon-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--deep-blue);
+        }
+
+        .surgeon-card p {
+            font-size: 0.9rem;
+            color: var(--dark-slate);
+            margin-bottom: 20px;
+        }
+
+        .surgeon-info {
+            border-top: 1px solid rgba(10, 25, 47, 0.05);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* Calendar Adjustments */
+        .educational-section#procedimentos {
+            background-color: var(--deep-blue);
+            color: var(--medical-white);
+        }
+
+        .educational-section#procedimentos h2 {
+            color: var(--medical-white);
+        }
+
+
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.4));
+            z-index: -1;
+            transition: var(--transition-smooth);
+        }
+
+        .bento-item:hover::before {
+            background: linear-gradient(to top, rgba(255, 59, 48, 0.7), rgba(10, 25, 47, 0.3));
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--vitality-red);
         }
 
         .nav-links a:hover {
@@ -147,6 +319,23 @@
         .btn-primary:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(255, 59, 48, 0.3);
+        }
+
+        /* 3D Background */
+        #stomach-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .hero-content, .bmi-card {
+            position: relative;
+            z-index: 2;
         }
 
         /* BMI Calculator Widget */
@@ -204,22 +393,30 @@
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 300px);
+            grid-auto-rows: 300px;
             gap: 20px;
             margin-top: 60px;
         }
 
         .bento-item {
-            background: var(--medical-white);
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.8);
             padding: 40px;
             position: relative;
             transition: var(--transition-smooth);
-            border: 1px solid rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             text-decoration: none;
-            color: inherit;
+            color: var(--medical-white);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            isolation: isolate;
+        }
+
+        .bento-item h3 {
+            color: var(--medical-white) !important;
         }
 
         .bento-item:hover {
@@ -234,9 +431,43 @@
             position: absolute;
             top: 40px;
             left: 40px;
-            color: var(--vitality-red);
+            color: var(--medical-white);
             font-weight: 800;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Sombra pesada p destacar em qqr imagem */
         }
+
+        /* Amazon Hero Integration */
+        .amazon-hero-section {
+            background: linear-gradient(to right, rgba(4,16,9,0.9), rgba(10,47,26,0.8)), url('assets/onça low.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5% 60px;
+            position: relative;
+        }
+        .amazon-hero-section h1 {
+            color: #ffb703;
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        .amazon-hero-section p.subtitle {
+            font-size: 1.5rem; font-weight: 300; color: #f1f5f2;
+            max-width: 800px; margin: 0 auto 40px; opacity: 0.9;
+        }
+        .btn-amazon {
+            display: inline-block; padding: 20px 40px; background: #ffb703; color: #041009;
+            text-decoration: none; font-weight: 800; border-radius: 4px; transition: var(--transition-smooth);
+            font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 183, 3, 0.2);
+        }
+        .btn-amazon:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 183, 3, 0.4); }
 
         /* Technology Section (Dark) */
         .tech-section {
@@ -315,153 +546,280 @@
         /* Responsive */
         @media (max-width: 1024px) {
             section.hero, .tech-grid { grid-template-columns: 1fr; gap: 60px; }
-            .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-            .bento-item.large, .bento-item.medium { grid-column: span 2; height: 300px; }
+            .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(300px, auto); }
+            .bento-item.large, .bento-item.medium { grid-column: span 2; }
+            .educational-section { padding-top: 50px; }
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0 5%; }
-            .nav-links { display: none; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .bento-item.large, .bento-item.medium { grid-column: span 1; }
+            nav { padding: 0 5%; flex-wrap: wrap; }
+            .nav-links { display: flex; width: 100%; justify-content: center; gap: 15px; margin-top: 10px; margin-bottom: 5px;}
+            .nav-links a { font-size: 0.65rem; }
+            
+            section.hero, .amazon-hero-section { padding-top: 120px; min-height: auto;}
+            section.hero h1 { font-size: 2.2rem; }
+            .hero-date { font-size: 1.2rem !important; }
+            
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: minmax(280px, auto); gap: 10px; margin-top: 30px; }
+            .bento-item.large, .bento-item.medium { grid-column: span 1 !important; grid-row: span 1 !important; }
+            .bento-item { padding: 30px; min-height: 280px; }
+            .bento-tag { font-size: 1.2rem; }
+            
+            .tech-grid { padding-top: 40px; }
+            .tech-section h2, .masterclass-content h2, .gestao-section h2 { font-size: 1.8rem; }
+            .robotic-visual { height: 350px; }
+            
+            .gestao-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">
-            <div class="logo-box"></div>
-            INSTITUTO BARIÁTRICO
-        </div>
+        <a href="home.html" class="logo">
+            <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
+        </a>
         <div class="nav-links">
-            <a href="#procedimentos">PROCEDIMENTOS</a>
-            <a href="#tecnologia">TECNOLOGIA</a>
-            <a href="#unidades">UNIDADES</a>
-            <a href="#contato" style="color: var(--vitality-red);">AGENDAR CONSULTA</a>
+            <a href="#procedimentos">PRÓXIMOS EVENTOS</a>
+            <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://bariatricchannel.com.br" class="nav-link-highlight">BC FLIX</a>
+            <div class="lang-switcher" style="display:flex; gap:5px; margin-left: 10px;">
+                <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+                <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+                <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
+            </div>
         </div>
     </nav>
 
+    <!-- NOVO HERO: AMAZON WEEK -->
+    <section class="amazon-hero-section">
+        <div data-reveal>
+            <p class="mono" style="color: #f1f5f2; font-size: 1rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO DE 2026</p>
+            <h1>2º BC AMAZON WEEK</h1>
+            <p class="subtitle">A Confluência da Alta Cirurgia no Coração da Amazônia. Tecnologia e Natureza em Sintonia.</p>
+            <div style="margin-top: 50px;">
+                <a href="bc_amazon_week.html" class="btn-amazon">SABER MAIS SOBRE O EVENTO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVISÃO E CONTINUAÇÃO: MASTERCLASS -->
+    <div style="width: 100%; height: 10px; background: var(--vitality-red);"></div>
+
     <section class="hero">
+        <div id="stomach-canvas"></div>
         <div class="hero-content" data-reveal>
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Liderança em Cirurgia Metabólica</p>
-            <h1>IX BC Live Surgery</h1>
-            <p>O maior evento de cirurgia bariátrica e metabólica ao vivo do Sul do Brasil. Uma imersão completa combinando teoria e prática em formato híbrido....</p>
+            <h2 class="mono hero-date" style="color: var(--vitality-red); font-size: 1.8rem; letter-spacing: -0.02em; font-weight: 800; margin-bottom: 10px; background: rgba(255, 59, 48, 0.05); display: inline-block; padding: 10px 20px; border-radius: 4px; border: 1px solid rgba(255,59,48,0.2);">09 DE MAIO * A PARTIR DAS 7:00H</h2>
+            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">MASTERCLASS BARIÁTRICA</h1>
+            <p>O maior evento de cirurgia bariátrica e metabólica ao vivo do Brasil. Uma imersão completa combinando transmissões em tempo real e discussões técnicas de alto impacto.</p>
             <div style="display: flex; gap: 15px;">
-                <a href="#procedimentos" class="btn-primary">CONHECER O INSTITUTO</a>
-                
-                <a href="https://www.bclivesurgery.com.br/" target="_blank" class="btn-primary" style="background: var(--deep-blue);">VER EVENTO AO VIVO</a>
-                
+                <a href="#masterclass" class="btn-primary">CONHECER O EVENTO</a>
+                <a href="#gestao" class="btn-primary" style="background: var(--deep-blue);">OS CIRURGIÕES</a>
             </div>
         </div>
 
-        <div class="bmi-card" data-reveal style="transition-delay: 0.2s;">
-            <p class="mono">Módulo de Diagnóstico Rápido</p>
-            <h3 style="margin-top: 10px;">CALCULADORA IMC</h3>
-            <div class="bmi-grid">
-                <div class="input-group">
-                    <label class="mono">Peso (kg)</label>
-                    <input type="number" id="weight" placeholder="00.0">
-                </div>
-                <div class="input-group">
-                    <label class="mono">Altura (cm)</label>
-                    <input type="number" id="height" placeholder="000">
-                </div>
-                <button class="btn-primary" onclick="calculateBMI()" style="padding: 15px; margin-top: 10px;">CALCULAR AGORA</button>
-                <div id="bmi-result" class="mono" style="margin-top: 15px; font-weight: 800; color: var(--vitality-red); display: none;">
-                    RESULTADO: <span id="bmi-val">--</span>
+        <div id="mlb2-39949181" class="bmi-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-39949181" data-reveal style="transition-delay: 0.2s;">
+            <p class="mono">100% Online e 100% Gratuito</p>
+            <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA</h3>
+            <div class="row-success" style="display: none; margin-top: 25px;">
+                <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 0.8rem; text-align: center; border: 1px solid var(--electric-cyan); padding: 20px; border-radius: 4px;">
+                    INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>Você será redirecionado em <span id="redirect-counter">5</span> segundos...
                 </div>
             </div>
+            <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/184814682394068288/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
+                <div class="input-group">
+                    <label class="mono">Nome Completo</label>
+                    <input type="text" id="name" name="fields[name]" placeholder="DIGITE SEU NOME" required>
+                </div>
+                <div class="input-group">
+                    <label class="mono">E-mail Profissional</label>
+                    <input type="email" id="email" name="fields[email]" placeholder="EMAIL@EXEMPLO.COM" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label class="mono">CRM / UF</label>
+                        <input type="text" id="crm" name="fields[z_i_p]" placeholder="000000-UF" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="mono">WhatsApp</label>
+                        <input type="tel" id="whatsapp" name="fields[phone]" placeholder="(00) 00000-0000" required>
+                    </div>
+                </div>
+                <input type="hidden" name="ml-submit" value="1">
+                <input type="hidden" name="anticsrf" value="true">
+                <button type="submit" class="btn-primary primary" style="padding: 15px; margin-top: 10px; width: 100%; border: none;">SOLICITAR INSCRIÇÃO</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="masterclass-section" id="masterclass">
+        <div class="video-container" data-reveal>
+            <video autoplay muted loop playsinline style="mask-image: linear-gradient(to right, black, transparent); -webkit-mask-image: linear-gradient(to right, black, transparent);">
+                <source src="assets/bc_video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
+            <p class="mono" style="color: var(--vitality-red);">DETALHES DO EVENTO</p>
+            <h2>TECNOLOGIA QUE ROMPE BARREIRAS</h2>
+            <p style="margin-bottom: 25px; line-height: 1.8;">No dia 09 de maio, às 7h, a tecnologia rompe as barreiras geográficas para unir o Brasil em uma jornada técnica sem precedentes. Percorreremos o país — de Manaus com o Dr. Victor Dib, passando por Goiânia com o Dr. Paulo Reis, até Passo Fundo com o Dr. Madalosso — contando ainda com a presença de convidados especialistas de renome para aprofundar cada debate.
+            <br><br>
+            Milhares de quilômetros de distância se dissolvem através de uma transmissão em alta-definição, entregando precisão cirúrgica diretamente na palma da sua mão. Sente-se na primeira fileira da inovação: nesta experiência, você não apenas assiste a procedimentos complexos; você absorve a estratégia clínica e o raciocínio técnico por trás de cada movimento dos grandes mestres.</p>
+            
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">A JORNADA INCLUI:</p>
+            <ul class="mono" style="list-style: none; margin-bottom: 30px; opacity: 0.8; font-size: 0.85rem;">
+                <li style="margin-bottom: 10px;">> Visão Além do Campo Cirúrgico</li>
+                <li style="margin-bottom: 10px;">> Intercâmbio de Idéias</li>
+                <li style="margin-bottom: 10px;">> Tecnologia de Streaming</li>
+                <li style="margin-bottom: 10px;">> Valor de Masterclass 100% gratuito</li>
+                <li style="margin-bottom: 10px;">> Networking Digital</li>
+            </ul>
+            <a href="#" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
         </div>
     </section>
 
     <section class="educational-section" id="procedimentos">
-        <div data-reveal>
-            <p class="mono" style="color: var(--vitality-red);">Metodologia Integrada</p>
-            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS E JORNADA</h2>
+        <div data-reveal style="text-align: center; margin-bottom: 60px;">
+            <p class="mono" style="color: var(--vitality-red);">AGENDA OFICIAL</p>
+            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS DO BARIATRIC CHANNEL</h2>
         </div>
 
         <div class="bento-grid">
-            
-            <a href="eventos/ix-bc-live-surgery.html" class="bento-item large" data-reveal>
-                <div class="bento-tag mono">01 DESTAQUE</div>
-                <h3>IX BC Live Surgery</h3>
-                <p>O maior evento de cirurgia bariátrica e metabólica ao vivo do Sul do Brasil. Uma imersão completa combinando teoria e prática em formato híbrido. Acompanhe cirurgias robóticas e laparoscópicas...</p>
-                <div class="mono" style="margin-top: 20px; font-weight: 800; color: var(--vitality-red);">27 e 28/02/26</div>
-            </a>
-            
+            <div class="bento-item large" data-reveal style="background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_masterclass.png');">
+                <div class="bento-tag mono">09 MAI<br><span style="font-size: 0.9rem; opacity: 0.8;">MAY 09th</span></div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">MASTERCLASS BARIÁTRICA</h3>
+                <p>3 Cirurgias estratégicas, 3 Cidades, 1 Transmissão de Impacto. O evento definitivo para o cirurgião moderno.</p>
+            </div>
 
-            <div class="bento-item" data-reveal style="transition-delay: 0.1s;">
-                <div class="bento-tag mono">02 TÉCNICA</div>
-                <h3>MINIMAMENTE INVASIVA</h3>
-                <p>Cirurgia laparoscópica e robótica de ponta.</p>
-            </div>
-            <div class="bento-item" data-reveal style="transition-delay: 0.2s;">
-                <div class="bento-tag mono">03 SUPORTE</div>
-                <h3>PÓS-OP 24/7</h3>
-                <p>Monitoramento constante após o procedimento.</p>
+            <div class="bento-item medium" data-reveal style="transition-delay: 0.1s; background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_sleeve.png');">
+                <div class="bento-tag mono">19 ABR<br><span style="font-size: 0.7rem; opacity: 0.8;">APRIL 19th</span></div>
+                <h3 style="font-size: 1.3rem;">FÍGADO E CIRURGIA METABÓLICA <br><span style="font-size: 0.9rem; opacity:0.8; font-weight: 600;">LIVER & METABOLIC SURGERY</span></h3>
             </div>
             
-            <div class="bento-item medium" data-reveal style="transition-delay: 0.3s;">
-                <div class="bento-tag mono">04 EVOLUÇÃO</div>
-                <h3>EDUCAÇÃO CONTINUADA</h3>
-                <p>Acesse nossa plataforma de cursos e atualizações para profissionais.</p>
+            <div class="bento-item medium" data-reveal style="transition-delay: 0.2s; background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_robotics.png');">
+                <div class="bento-tag mono">MAIO<br><span style="font-size: 0.7rem; opacity: 0.8;">MAY</span></div>
+                <h3 style="font-size: 1.3rem;">BIPARTIÇÃO DE TRÂNSITO INTESTINAL <br><span style="font-size: 0.9rem; opacity:0.8; font-weight: 600;">TRANSIT BIPARTITION</span></h3>
+            </div>
+            
+            <div class="bento-item large" data-reveal style="transition-delay: 0.3s; background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_manaus.png');">
+                <div class="bento-tag mono">JUNHO<br><span style="font-size: 0.9rem; opacity: 0.8;">JUNE</span></div>
+                <h3 style="font-size: 1.8rem;">VARIAÇÕES DE BIPARTIÇÕES DE TRÂNSITO: ASPECTOS TÉCNICO-FUNCIONAIS<br><span style="font-size: 1rem; opacity:0.8; font-weight: 600;">TRANSIT BIPARTITION VARIATIONS: TECHNICAL-FUNCTIONAL ASPECTS</span></h3>
+            </div>
+
+            <a href="bc_amazon_week.html" class="bento-item" data-reveal style="grid-column: 1 / -1; min-height: 400px; background-image: linear-gradient(to top, rgba(10,25,47,0.9) 0%, rgba(10,25,47,0.1) 50%, rgba(10,25,47,0.9) 100%), url('assets/onça.png'); background-position: center; transition-delay: 0.4s;">
+                <div class="bento-tag mono" style="font-size: 2.5rem;">19 A 23 OUT<br><span style="font-size: 1.5rem; opacity: 0.8;">OCTOBER 19th-23rd, 2026</span></div>
+                <h3 style="font-size: 3rem;">2º BC AMAZON WEEK</h3>
+                <p style="font-size: 1.2rem; font-weight: 600;">Manaus/Brasil • Foco: Inovação, Alta Tecnologia e Excelência Técnica em Cirurgia Bariátrica e Metabólica</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="gestao-section" id="gestao">
+        <div data-reveal style="max-width: 800px; margin: 0 auto 60px;">
+            <p class="mono" style="color: var(--vitality-red);">LIDERANÇA E VISÃO</p>
+            <h2 style="font-size: 2.5rem; margin: 10px 0 30px;">GESTÃO BARIATRIC CHANNEL</h2>
+            <p style="font-size: 1.1rem; opacity: 0.8; line-height: 1.8;">Mais do que referências em suas regiões, estes são os profissionais que aceitaram o desafio de conectar o Brasil através do conhecimento. Unindo décadas de experiência a um olhar visionário sobre a tecnologia, eles lideram um movimento que transcende o centro cirúrgico para transformar a forma como você aprende e pratica a medicina.</p>
+        </div>
+
+        <div class="gestao-grid">
+            <!-- Dr. Victor Dib -->
+            <div class="surgeon-card" data-reveal>
+                <div class="surgeon-card-content">
+                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
+                        <div class="surgeon-img-frame"></div>
+                        <img src="assets/victor_dib.jpg" alt="Dr. Victor Dib" style="object-position: 50% 0%;">
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 style="margin-bottom: 5px;">DR. VICTOR DIB</h3>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 15px;">Fundador/Presidente</p>
+                    </div>
+                    <p style="text-align: center; font-size: 0.85rem; height: 80px; overflow: hidden;">Referência internacional em Cirurgia Bariátrica e Robótica. Liderança destacada na região Norte.</p>
+                    <div class="surgeon-info mono" style="text-align: center;">MANAUS / AM</div>
+                </div>
+            </div>
+
+            <!-- Dr. Carlos Madalosso -->
+            <div class="surgeon-card" data-reveal style="transition-delay: 0.1s;">
+                <div class="surgeon-card-content">
+                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
+                        <div class="surgeon-img-frame"></div>
+                        <img src="assets/madalosso.jpg" alt="Dr. Carlos Madalosso" style="object-position: 50% 0%;">
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 style="margin-bottom: 5px;">DR. CARLOS MADALOSSO</h3>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 15px;">Fundador/Vice-Presidente</p>
+                    </div>
+                    <p style="text-align: center; font-size: 0.85rem; height: 80px; overflow: hidden;">Mestre em técnicas de precisão e autoridade em cirurgia metabólica. Referência no Sul do país.</p>
+                    <div class="surgeon-info mono" style="text-align: center;">PASSO FUNDO / RS</div>
+                </div>
+            </div>
+
+            <!-- Dr. Paulo Reis -->
+            <div class="surgeon-card" data-reveal style="transition-delay: 0.2s;">
+                <div class="surgeon-card-content">
+                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
+                        <div class="surgeon-img-frame"></div>
+                        <img src="assets/paulo_reis_v2.jpg" alt="Dr. Paulo Reis" style="object-position: 50% 20%;">
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 style="margin-bottom: 5px;">DR. PAULO REIS</h3>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 15px;">Diretor Executivo</p>
+                    </div>
+                    <p style="text-align: center; font-size: 0.85rem; height: 80px; overflow: hidden;">Especialista em técnicas minimamente invasivas e gestão de saúde digital. Hub de inovação em Goiânia.</p>
+                    <div class="surgeon-info mono" style="text-align: center;">GOIÂNIA / GO</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="tech-section" id="tecnologia">
-        <div class="tech-grid">
-            <div data-reveal>
-                <p class="mono" style="color: var(--electric-cyan);">Tecnologia Cirúrgica</p>
-                <h2 style="font-size: 3rem; margin-top: 10px;">PRECISÃO ROBÓTICA</h2>
-                <div class="glass-panel">
-                    <div class="data-point">
-                        <div class="mono" style="display: flex; justify-content: space-between;">
-                            <span>EXATIDÃO DE INCISÃO</span>
-                            <span>99.9%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 99.9%;"></div></div>
-                    </div>
-                    <div class="data-point">
-                        <div class="mono" style="display: flex; justify-content: space-between;">
-                            <span>TEMPO DE RECUPERAÇÃO</span>
-                            <span>-40%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-                    </div>
-                    <p style="font-size: 0.9rem; opacity: 0.7;">Utilizamos plataformas robóticas de última geração que permitem visualização 3D HD e movimentos articulados superiores à mão humana.</p>
-                </div>
+    <section class="government-incentive" style="background: var(--medical-white); padding: 80px 5%; text-align: center; position: relative; overflow: hidden;">
+        <div class="anatomy-line" style="top: 0; left: 15%; height: 100%;"></div>
+        <div class="anatomy-line" style="top: 0; right: 15%; height: 100%;"></div>
+        <div data-reveal style="max-width: 900px; margin: 0 auto; background: var(--soft-creme); padding: 50px; border: 1px solid rgba(10, 25, 47, 0.1); border-top: 4px solid var(--vitality-red); box-shadow: 0 20px 40px rgba(0,0,0,0.05); position: relative; z-index: 2;">
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">APOIO E INCENTIVO INSTITUCIONAL</p>
+            <h2 style="font-size: 2rem; margin-bottom: 25px;">1º BC AMAZON WEEK</h2>
+            <div style="font-size: 1.1rem; color: var(--dark-slate); margin-bottom: 40px; line-height: 1.8;">
+                <p><strong>Projeto:</strong> 1º Congresso Internacional do Bariatric Channel</p>
+                <p><strong>TERMO DE FOMENTO CELEBRADO:</strong> 003/2025</p>
+                <p>Execução conforme MROSC</p>
+                <p>Emenda Parlamentar de Bancada Estadual de Saúde nº 050/2025</p>
             </div>
-
-            <div class="robotic-visual" data-reveal>
-                <svg width="300" height="400" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="var(--electric-cyan)" stroke-width="0.2" opacity="0.5" />
-                    <path d="M50 5 L50 95 M5 50 L95 50" stroke="var(--electric-cyan)" stroke-width="0.1" />
-                    <rect x="30" y="30" width="40" height="40" fill="none" stroke="var(--vitality-red)" stroke-width="0.5">
-                        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" />
-                    </rect>
-                    <!-- Simulated robotic arm lines -->
-                    <path d="M10 90 L40 60 L60 60 L90 30" fill="none" stroke="var(--electric-cyan)" stroke-width="0.5" stroke-dasharray="1,2" />
-                </svg>
-                <div style="position: absolute; bottom: 20px; right: 20px;" class="mono">SISTEMA_ATIVO: TRUE</div>
+            <div style="display: flex; justify-content: center; gap: 50px; align-items: center; flex-wrap: wrap; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(10, 25, 47, 0.05);">
+                <img src="assets/apoio_institucional_v2.png" alt="Governo do Amazonas e Secretaria de Saúde" style="max-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                
+                <img src="assets/governo_amazonas.jpeg" alt="Fundo de Fomento" style="max-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                
+                <img src="assets/logo_final.png" alt="Bariatric Channel" style="max-height: 60px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
             </div>
         </div>
     </section>
 
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
-            <div class="logo">
-                <div class="logo-box"></div>
-                INSTITUTO BARIÁTRICO
+            <div style="display: flex; align-items: center; gap: 30px;">
+                <a href="home.html" class="logo">
+                    <img src="assets/logo_final.png" alt="Bariatric Channel Logo" style="height: 40px;">
+                </a>
+                <img src="assets/Check-in.png" alt="Parceiro Check-in" style="height: 120px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
             </div>
             <div class="mono" style="font-size: 0.7rem; opacity: 0.5;">
-                &copy; 2026 INSTITUTO BARIÁTRICO AVANÇADO. TODOS OS DIREITOS RESERVADOS.
+                &copy; 2026 BARIATRIC CHANNEL. TODOS OS DIREITOS RESERVADOS.
             </div>
         </div>
     </footer>
 
     <script>
+        // Google Translate Engine
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLang(lang) {
+            let select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+        }
+
         // Reveal Animation
         const observerOptions = {
             threshold: 0.15
@@ -477,35 +835,108 @@
 
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-        // BMI Calculator Logic
-        function calculateBMI() {
-            const weight = document.getElementById('weight').value;
-            const height = document.getElementById('height').value / 100;
-            const resultDiv = document.getElementById('bmi-result');
-            const valSpan = document.getElementById('bmi-val');
+        // MailerLite Success Callback
+        function ml_webform_success_39949181() {
+            var $ = ml_jQuery || jQuery;
+            $('.ml-subscribe-form-39949181 .row-success').show();
+            $('.ml-subscribe-form-39949181 .row-form').hide();
+            
+            var countdown = 5;
+            var counterElement = document.getElementById('redirect-counter');
+            var redirectInterval = setInterval(function() {
+                countdown--;
+                if(counterElement) {
+                    counterElement.innerText = countdown;
+                }
+                if(countdown <= 0) {
+                    clearInterval(redirectInterval);
+                    window.location.href = "https://bariatricchannel.com/masterclass";
+                }
+            }, 1000);
+        }
 
-            if (weight > 0 && height > 0) {
-                const bmi = (weight / (height * height)).toFixed(1);
-                valSpan.innerText = bmi;
-                resultDiv.style.display = 'block';
+        // 3D Stomach Particle Animation
+        let scene, camera, renderer, particles;
+        let mouseX = 0, mouseY = 0;
+
+        function init3D() {
+            const container = document.getElementById('stomach-canvas');
+            if (!container) return;
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            const loader = new THREE.STLLoader();
+            loader.load('assets/realistic_stomach.stl', function (geometry) {
+                geometry.computeBoundingBox();
+                const center = new THREE.Vector3();
+                geometry.boundingBox.getCenter(center);
+                geometry.translate(-center.x, -center.y, -center.z);
                 
-                // Add a little pulse animation
-                resultDiv.style.animation = 'none';
-                resultDiv.offsetHeight; 
-                resultDiv.style.animation = 'pulse 0.5s ease-out';
+                const size = new THREE.Vector3();
+                geometry.boundingBox.getSize(size);
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = (3.5 * 1.3) / maxDim; // Increased size by 30%
+                geometry.scale(scale, scale, scale);
+
+                const material = new THREE.PointsMaterial({
+                    color: 0xFF3B30, // Vitality Red
+                    size: 0.015,
+                    transparent: true,
+                    opacity: 0.2, // Set to 20% as requested
+                    blending: THREE.NormalBlending 
+                });
+
+                particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+            }, undefined, function (error) {
+                console.error('Error loading STL:', error);
+            });
+
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousemove', onMouseMove, false);
+
+            animate3D();
+        }
+
+        function onMouseMove(event) {
+            mouseX = (event.clientX - window.innerWidth / 2) * 0.0008;
+            mouseY = (event.clientY - window.innerHeight / 2) * 0.0008;
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('stomach-canvas');
+            if (container && camera && renderer) {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
             }
         }
 
-        // Add scroll effect for nav
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.height = '60px';
-                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
-            } else {
-                nav.style.height = '80px';
-                nav.style.boxShadow = 'none';
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            
+            if (particles) {
+                const time = Date.now() * 0.0012;
+                const pulse = 1 + Math.sin(time) * 0.025;
+                particles.scale.set(pulse, pulse, pulse);
+                
+                particles.rotation.y += (mouseX - particles.rotation.y) * 0.05;
+                particles.rotation.x += (mouseY - particles.rotation.x) * 0.05;
+                
+                particles.rotation.z += 0.0003;
             }
+
+            renderer.render(scene, camera);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            init3D();
         });
     </script>
 
@@ -515,7 +946,11 @@
             50% { transform: scale(1.05); color: var(--electric-cyan); }
             100% { transform: scale(1); }
         }
-    </style>
-
+    </style>    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/2110375/forms/184814682394068288/takel")
+    </script>
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

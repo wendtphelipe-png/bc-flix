@@ -528,24 +528,7 @@
         </div>
     </section>
 
-    <!-- MODAL BIO -->
-    <div class="modal" id="bio-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeBio()">&times;</span>
-            <div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;" id="modal-body-content">
-                <div class="image-container" style="width:200px; height:240px; margin:0;">
-                    <div class="irregular-frame"></div>
-                    <img id="modal-img" src="" class="speaker-photo">
-                </div>
-                <div>
-                    <p id="modal-flag" class="mono" style="color:var(--amazon-gold); margin-bottom:10px;"></p>
-                    <h2 id="modal-name" style="color:var(--medical-white); margin-bottom:15px; font-size: 2.2rem;"></h2>
-                    <p id="modal-role" class="speaker-role" style="font-size:1rem; margin-bottom:20px;"></p>
-                    <div id="modal-bio" style="color: rgba(255,255,255,0.8); line-height:1.8; font-size: 0.95rem;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <footer>
         <a href="home.html" class="logo">
@@ -561,7 +544,7 @@
             const allSpeakers = {% if palestrantes %}{{ palestrantes | tojson }}{% else %}[]{% endif %};
 
             const groups = {
-                diretoria: ["Victor Dib", "CARLOS MADALOSSO", "PAULO REIS", "Patrick Noel"],
+                diretoria: ["Victor Dib", "Carlos Madalosso", "Paulo Reis", "Patrick Noel"],
                 honorary: ["Carlos Domene", "ANTONIO TORRES", "Almino Ramos"],
                 team: ["RUI RIBEIRO", "Elinton Chaim", "Jorge Bravo", "Amador Garcia", "EDUARDO GRECCO", "Eren Taskin", "Manoel Galvão"],
                 members1: ["Ana Carolina Martins", "ANDRÉ WEISS", "Antelmo Sasso", "Carlos Dillemburg", "CARLOS TANIZAWA", "Diogo Kfouri", "Felix Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "Hiroji Okano"],
@@ -645,28 +628,7 @@
                 return map[c.toLowerCase()] || c.toLowerCase();
             }
 
-            function openBio(name) {
-                const speaker = allSpeakers.find(s => s.Nome.toUpperCase().includes(name.toUpperCase()) || name.toUpperCase().includes(s.Nome.toUpperCase()));
-                if (!speaker) return;
 
-                document.getElementById('modal-img').src = speaker["Foto URL"] || '';
-                document.getElementById('modal-name').innerText = speaker.Nome;
-                document.getElementById('modal-role').innerText = rolesOverride[name] || "";
-                document.getElementById('modal-flag').innerText = speaker["País"] || "";
-                document.getElementById('modal-bio').innerHTML = speaker["Mini currículo"] ? speaker["Mini currículo"].replace(/\n/g, '<br>') : "Currículo em atualização.";
-                
-                document.getElementById('bio-modal').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeBio() {
-                document.getElementById('bio-modal').style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-
-            window.onclick = function(event) {
-                if (event.target == document.getElementById('bio-modal')) closeBio();
-            }
 
             // Inicialização
             initSpeakers();
