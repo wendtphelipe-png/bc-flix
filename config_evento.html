@@ -753,23 +753,29 @@
                 },
                 async saveEventToCloud() {
                     this.saving = true;
+                    
+                    // Sanitização: Converte strings vazias em null para colunas de Data/Hora/Texto
+                    // para evitar erros de casting no PostgreSQL
+                    const sanitize = (val) => (val === "" ? null : val);
+
                     const payload = {
                         id: this.activeEvent.id,
-                        titulo: this.activeEvent.titulo,
-                        data_inicio: this.activeEvent.data_inicio,
-                        data_fim: this.activeEvent.data_fim,
+                        titulo: sanitize(this.activeEvent.titulo),
+                        data_inicio: sanitize(this.activeEvent.data_inicio),
+                        data_fim: sanitize(this.activeEvent.data_fim),
                         usar_data_fim: this.activeEvent.usar_data_fim,
-                        horario_inicio: this.activeEvent.horario_inicio,
-                        horario_fim: this.activeEvent.horario_fim,
+                        horario_inicio: sanitize(this.activeEvent.horario_inicio),
+                        horario_fim: sanitize(this.activeEvent.horario_fim),
                         usar_horario_fim: this.activeEvent.usar_horario_fim,
-                        endereco: this.activeEvent.endereco,
+                        endereco: sanitize(this.activeEvent.endereco),
                         ao_vivo: this.activeEvent.ao_vivo,
-                        link_ao_vivo: this.activeEvent.link_ao_vivo,
-                        imagem: this.activeEvent.imagem,
+                        link_ao_vivo: sanitize(this.activeEvent.link_ao_vivo),
+                        imagem: sanitize(this.activeEvent.imagem),
                         palestrantes: this.activeEvent.palestrantes || [],
                         cronograma: this.activeEvent.cronograma || []
                     };
 
+                    console.log("Enviando payload:", payload);
                     const { error } = await bcSupabase.from('eventos_bc').upsert(payload);
                     if (error) {
                         console.error(error);
