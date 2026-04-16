@@ -123,7 +123,8 @@
             <div class="input-group">
                 <label class="mono step-label">1. CONFIRME O EVENTO</label>
                 <select id="eventSelect" onchange="onEventSelection()">
-                    <option value="">-- CONECTANDO NUVEM... --</option>
+                    <option value="">-- SELECIONE O EVENTO --</option>
+                    <option value="evento-demo">2º BC Amazon Week (Modo Demonstração)</option>
                 </select>
             </div>
 
@@ -192,12 +193,19 @@
     </div>
 
     <script>
-        // CLIENTE SUPABASE CONECTADO
+        // CLIENTE SUPABASE CONECTADO (Com proteção de falha)
         const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
         const supabaseKey = 'sb_publishable_A-Gxbkir7foDZgZvaOuiHw_pMVXXdEV';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        let supabase = null;
+        try {
+            if (window.supabase) {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            }
+        } catch (e) {
+            console.error("Supabase SDK failed to initialize.");
+        }
 
-        // MODO DEMONSTRAÇÃO ATIVADO POR PADRÃO PARA GARANTIR FUNCIONAMENTO
+        // MODO DEMONSTRAÇÃO ATIVADO POR PADRÃO
         let eventosData = [
             {
                 id: 'evento-demo',
@@ -209,39 +217,45 @@
                     {nome: 'Dr. Madalosso'},
                     {nome: 'Dr. Italo Braghetto (Chile)'},
                     {nome: 'Dr. André Teixeira (USA)'}
+                ],
+                cronograma: [
+                    { hora: "08:00", titulo: "Abertura Masterclass", palestrante: "Dr. Paulo Reis" },
+                    { hora: "10:00", titulo: "Cirurgia ao Vivo", palestrante: "Dr. Victor Dib" }
                 ]
             }
         ];
         let currentEvent = null;
 
-        window.onload = async function() {
-            const selectEl = document.getElementById("eventSelect");
+        // Inicializa imediatamente com o demo
+        window.addEventListener('DOMContentLoaded', () => {
+            renderEventOptions();
+            // Tenta carregar dados reais em background
+            loadRealEvents();
+        });
+
+        async function loadRealEvents() {
             try {
-                // Tenta buscar eventos reais no Supabase
                 const { data, error } = await supabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
-                
                 if(!error && data && data.length > 0) {
-                    console.log("Supabase Conectado. Carregando eventos reais...");
-                    // Se houver dados reais, podemos mesclar ou apenas usar os reais
-                    // Vamos manter o demo no topo para o usuário ver agora
-                    eventosData = [...eventosData, ...data];
-                } else {
-                    console.warn("Usando apenas Modo Demonstração (Banco vazio ou restrito).");
+                    // Remove duplicatas do demo se vier do banco e concatena
+                    const realData = data.filter(d => d.id !== 'evento-demo');
+                    eventosData = [eventosData[0], ...realData];
+                    renderEventOptions();
                 }
             } catch (e) {
-                console.warn("Falha na conexão Supabase. Mantendo Modo Demonstração.");
-            } finally {
-                renderEventOptions();
+                console.warn("Supabase bypass active.");
             }
-        };
+        }
 
         function renderEventOptions() {
             const selectEl = document.getElementById("eventSelect");
+            const currentVal = selectEl.value;
             let options = '<option value="">-- SELECIONE O EVENTO --</option>';
             eventosData.forEach(ev => {
                 options += `<option value="${ev.id}">${ev.titulo}</option>`;
             });
             selectEl.innerHTML = options;
+            selectEl.value = currentVal; // Mantém seleção se já houver
         }
 
         function onEventSelection() {
