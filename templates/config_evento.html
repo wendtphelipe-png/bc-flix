@@ -778,8 +778,8 @@
                     console.log("Enviando payload:", payload);
                     const { error } = await bcSupabase.from('eventos_bc').upsert(payload);
                     if (error) {
-                        console.error(error);
-                        this.showToast('Erro ao salvar no Supabase.', 'error');
+                        console.error("Erro Supabase:", error);
+                        this.showToast('Erro: ' + (error.message || 'Falha ao salvar no Supabase.'), 'error');
                     } else {
                         this.showToast('Salvo com sucesso!', 'success');
                         this.fetchEventos(); // Refresh

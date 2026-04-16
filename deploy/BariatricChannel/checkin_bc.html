@@ -339,7 +339,10 @@
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
                     <select v-model="selectedEventId" @change="onEventChange">
                         <option value="">-- SELECIONE O EVENTO --</option>
-                        <option v-for="ev in eventos" :key="ev.id" :value="ev.id">{{ ev.titulo }}</option>
+                        <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
+                            {{ ev.titulo }} 
+                            ({{ formatDate(ev.data_inicio) }}{{ ev.usar_data_fim ? ' a ' + formatDate(ev.data_fim) : '' }})
+                        </option>
                     </select>
                 </div>
 
@@ -461,6 +464,11 @@
                 async fetchEventos() {
                     const { data, error } = await supabase.from('eventos_bc').select('*');
                     if (!error) this.eventos = data;
+                },
+                formatDate(dateStr) {
+                    if (!dateStr) return '--/--';
+                    const [y, m, d] = dateStr.split('-');
+                    return `${d}/${m}`;
                 },
                 onEventChange() {
                     this.selectedSpeakerName = '';
