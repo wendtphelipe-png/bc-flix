@@ -758,9 +758,31 @@
                     // para evitar erros de casting no PostgreSQL
                     const sanitize = (val) => (val === "" ? null : val);
 
+                    // Reconstrução Automática de campos legados (Retrocompatibilidade)
+                    const fmtDateShort = (d) => {
+                        if (!d) return "";
+                        const [y, m, day] = d.split('-');
+                        return `${day}/${m}`;
+                    };
+                    
+                    let legacyData = fmtDateShort(this.activeEvent.data_inicio);
+                    if (this.activeEvent.usar_data_fim && this.activeEvent.data_fim) {
+                        legacyData += " a " + fmtDateShort(this.activeEvent.data_fim);
+                    }
+                    if (this.activeEvent.data_inicio) legacyData += "/" + this.activeEvent.data_inicio.split('-')[0].substring(2);
+
+                    let legacyLocal = this.activeEvent.ao_vivo ? "AO VIVO (Online)" : (this.activeEvent.endereco || "");
+                    let legacyHorario = (this.activeEvent.horario_inicio || "");
+                    if (this.activeEvent.usar_horario_fim && this.activeEvent.horario_fim) {
+                        legacyHorario += " às " + this.activeEvent.horario_fim;
+                    }
+
                     const payload = {
                         id: this.activeEvent.id,
                         titulo: sanitize(this.activeEvent.titulo),
+                        data: legacyData,      // Salva campo legado
+                        local: legacyLocal,    // Salva campo legado
+                        horario: legacyHorario, // Salva campo legado
                         data_inicio: sanitize(this.activeEvent.data_inicio),
                         data_fim: sanitize(this.activeEvent.data_fim),
                         usar_data_fim: this.activeEvent.usar_data_fim,

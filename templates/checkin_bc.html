@@ -341,9 +341,19 @@
                         <option value="">-- SELECIONE O EVENTO --</option>
                         <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
                             {{ ev.titulo }} 
-                            ({{ formatDate(ev.data_inicio) }}{{ ev.usar_data_fim ? ' a ' + formatDate(ev.data_fim) : '' }})
                         </option>
                     </select>
+                </div>
+
+                <!-- Resumo do Evento Selecionado -->
+                <div v-if="activeEvent" class="schedule-box" style="margin-top: -10px; border-left: 4px solid var(--vitality-red);">
+                    <div style="font-weight: 800; color: var(--deep-blue); margin-bottom: 5px;">DETALHES DO EVENTO:</div>
+                    <div style="font-size: 0.9rem; display: flex; flex-direction: column; gap: 5px;">
+                        <div>📅 <strong>DATA:</strong> {{ formatDateFull(activeEvent) }}</div>
+                        <div>⏰ <strong>HORÁRIO:</strong> {{ activeEvent.horario }}</div>
+                        <div v-if="activeEvent.ao_vivo">🌐 <strong>LINK AO VIVO:</strong> <a :href="activeEvent.link_ao_vivo" target="_blank" style="color: var(--vitality-red);">Acessar Sala Virtual</a></div>
+                        <div v-else>📍 <strong>LOCAL:</strong> {{ activeEvent.endereco || activeEvent.local }}</div>
+                    </div>
                 </div>
 
                 <div v-if="selectedEventId" id="speakerStep" style="display: block;">
@@ -466,9 +476,19 @@
                     if (!error) this.eventos = data;
                 },
                 formatDate(dateStr) {
-                    if (!dateStr) return '--/--';
-                    const [y, m, d] = dateStr.split('-');
-                    return `${d}/${m}`;
+                    if (!dateStr) return '';
+                    const parts = dateStr.split('-');
+                    if (parts.length < 3) return dateStr;
+                    return `${parts[2]}/${parts[1]}`;
+                },
+                formatDateFull(ev) {
+                    if (!ev.data_inicio) return ev.data || 'Data a confirmar';
+                    let str = this.formatDate(ev.data_inicio);
+                    if (ev.usar_data_fim && ev.data_fim) {
+                        str += ' a ' + this.formatDate(ev.data_fim);
+                    }
+                    const year = ev.data_inicio.split('-')[0];
+                    return `${str}/${year}`;
                 },
                 onEventChange() {
                     this.selectedSpeakerName = '';
