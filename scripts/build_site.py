@@ -14,18 +14,20 @@ os.makedirs(os.path.join(DEPLOY_DIR, 'eventos'), exist_ok=True)
 os.makedirs(os.path.join(DEPLOY_DIR, 'professores'), exist_ok=True)
 os.makedirs(os.path.join(DEPLOY_DIR, 'assets'), exist_ok=True)
 
-# Copia vídeos se existirem
-videos_to_copy = {
+# Copia assets e vídeos se existirem
+assets_to_copy = {
     'Logo_branco.mp4': 'Logo_branco.mp4',
     'BC institucional-1.mp4': 'bc_video.mp4',
-    'Animação_de_Logo_com_VEO.mp4': 'animacao_logo.mp4'
+    'Animação_de_Logo_com_VEO.mp4': 'animacao_logo.mp4',
+    'Check-in.png': 'Check-in.png',
+    'onça low.jpg': 'onça low.jpg'
 }
 
-for src_name, dest_name in videos_to_copy.items():
+for src_name, dest_name in assets_to_copy.items():
     src_path = os.path.join(BASE_DIR, src_name)
     if os.path.exists(src_path):
         shutil.copy(src_path, os.path.join(DEPLOY_DIR, 'assets', dest_name))
-        print(f" -> Vídeo {dest_name} copiado para assets.")
+        print(f" -> Asset {dest_name} copiado para assets.")
 
 # Copia Fotos do Design sem nome para assets/participantes
 design_dir = os.path.join(BASE_DIR, 'Design sem nome')

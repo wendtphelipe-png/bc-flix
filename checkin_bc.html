@@ -208,6 +208,25 @@
                 if(error) throw error;
                 
                 eventosData = data;
+                
+                // MOCK DE TESTE PARA USUÁRIO PODER VER A PÁGINA FUNCIONANDO ENQUANTO O SUPABASE ESTÁ VAZIO
+                if(eventosData.length === 0) {
+                    eventosData = [
+                        {
+                            id: 'evento-demo',
+                            titulo: '2º BC Amazon Week (Modo Demonstração)',
+                            imagem: 'assets/onça low.jpg',
+                            palestrantes: [
+                                {nome: 'Dr. Paulo Reis'},
+                                {nome: 'Dr. Victor Dib'},
+                                {nome: 'Dr. Madalosso'},
+                                {nome: 'Dr. Italo Braghetto (Chile)'},
+                                {nome: 'Dr. André Teixeira (USA)'}
+                            ]
+                        }
+                    ];
+                }
+
                 let options = '<option value="">-- SELECIONE O EVENTO --</option>';
                 eventosData.forEach(ev => {
                     options += `<option value="${ev.id}">${ev.titulo}</option>`;

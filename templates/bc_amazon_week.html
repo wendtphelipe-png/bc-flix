@@ -10,7 +10,7 @@
     <style>
         :root {
             /* Tema Selva / Amazon Theme */
-            --jungle-dark: #041009;
+            --jungle-dark: #020804;
             --jungle-green: #0a2f1a;
             --jungle-light: #1b4332;
             --amazon-gold: #ffb703;
@@ -28,7 +28,6 @@
             color: var(--medical-white);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Scroll padding para navegação suave */
             scroll-behavior: smooth;
         }
 
@@ -36,7 +35,7 @@
         .forest-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background: linear-gradient(to bottom, rgba(4,16,9,0.8), rgba(10,47,26,0.9)), url('assets/onça.png');
+            background: linear-gradient(to bottom, rgba(2,8,4,0.8), rgba(10,47,26,0.95)), url('assets/onça low.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -46,8 +45,8 @@
 
         .leaf-particle {
             position: fixed;
-            width: 150px; height: 150px;
-            background: radial-gradient(circle, rgba(27,67,50,0.3) 0%, transparent 70%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(27,67,50,0.4) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(20px);
             z-index: -1;
@@ -60,7 +59,7 @@
 
         nav {
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; background: rgba(4, 16, 9, 0.8); backdrop-filter: blur(15px);
+            padding: 0 5%; background: rgba(2, 8, 4, 0.85); backdrop-filter: blur(15px);
             z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: var(--transition-smooth);
         }
@@ -77,57 +76,59 @@
         .skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* Hero Imersivo */
-        section.hero {
-            min-height: 100vh;
+        /* Blocos Semânticos de Slide */
+        .amazon-slide {
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 5% 60px;
+            padding: 100px 5%;
             position: relative;
-            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
         }
 
-        .hero h1 {
+        /* Variações de fundo dos slides para profundidade */
+        .slide-dark { background: transparent; } /* Usa o fixed parallax */
+        .slide-glass { background: linear-gradient(180deg, rgba(10,47,26,0.3), rgba(2,8,4,0.9)); backdrop-filter: blur(5px); }
+        .slide-solid { background: var(--jungle-dark); }
+        .slide-green { background: var(--jungle-green); position: relative; }
+        
+        .slide-content-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
             color: var(--amazon-gold);
             font-size: clamp(3rem, 7vw, 7rem);
             line-height: 1;
             margin-bottom: 20px;
             text-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            position: relative;
         }
 
-        .hero p.subtitle {
-            font-size: 1.5rem; font-weight: 300; color: var(--soft-creme);
-            max-width: 800px; margin: 0 auto 40px; opacity: 0.9;
+        .title-gold { color: var(--amazon-gold); font-size: clamp(2rem, 4vw, 4rem); margin-bottom: 30px; }
+        .title-white { color: var(--medical-white); font-size: clamp(2rem, 4vw, 4rem); margin-bottom: 30px; }
+        
+        .text-body {
+            font-size: 1.25rem; color: var(--soft-creme); margin-bottom: 40px; opacity: 0.9;
+            line-height: 1.8;
         }
 
-        /* Glassmorphism Forest Block */
-        .content-section {
-            padding: 100px 5%;
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(180deg, transparent 0%, var(--jungle-dark) 100%);
-        }
-
-        .glass-panel {
+        .glass-box {
             background: rgba(10, 47, 26, 0.4);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-top: 2px solid var(--amazon-gold);
-            padding: 80px 5%;
+            padding: 50px;
             border-radius: 12px;
             box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
+            width: 100%;
         }
 
-        .glass-panel h2 {
-            font-size: 2.5rem; color: var(--medical-white); margin-bottom: 30px;
-        }
-
-        /* Botão Orgânico */
         .btn-amazon {
             display: inline-block; padding: 20px 40px; background: var(--amazon-gold); color: var(--jungle-dark);
             text-decoration: none; font-weight: 800; border-radius: 4px; transition: var(--transition-smooth);
@@ -135,58 +136,30 @@
         }
         .btn-amazon:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 183, 3, 0.4); }
 
-        /* Galeria Corpo Docente */
-        .galeria-section {
-            padding: 100px 5%; background: var(--jungle-dark); position: relative; z-index: 3;
-        }
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 60px auto 0;
-        }
-
-        /* Cards Injetados */
-        .guest-card {
-            background: #000; border-radius: 8px; overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition-smooth); position: relative;
-            aspect-ratio: 4/5; cursor: pointer;
-        }
-        .guest-card img {
-            width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease;
-        }
-        .guest-card:hover { transform: translateY(-10px); border-color: var(-- अमेजन-gold); box-shadow: 0 30px 60px rgba(255,183,3,0.1); }
-        .guest-card:hover img { transform: scale(1.05); filter: brightness(1.1); }
-
         footer {
-            background: #020804; padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05);
+            background: #000; padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05);
             text-align: center; position: relative; z-index: 3;
         }
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
-            section.hero { padding-top: 150px; }
-            .hero h1 { font-size: 3.5rem; }
-            .glass-panel { padding: 40px 20px; }
-            .galeria-grid { grid-template-columns: 1fr 1fr; gap: 15px;}
+            .glass-box { padding: 30px 20px; }
+            .amazon-slide { min-height: auto; padding: 80px 5%; }
         }
-        @media (max-width: 500px) {
-            .galeria-grid { grid-template-columns: 1fr; }
-        }
+
+        /* Layout Types */
+        .layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .layout-center { text-align: center; display: flex; flex-direction: column; align-items: center;}
+        @media(max-width: 900px) { .layout-split { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- Background Elements -->
     <div class="forest-overlay"></div>
-    <div class="leaf-particle" style="top: 20%; left: 10%;"></div>
-    <div class="leaf-particle" style="top: 60%; right: 5%; background: radial-gradient(circle, rgba(255,183,3,0.15) 0%, transparent 70%);"></div>
-    
+    <div class="leaf-particle" style="top: 10%; right: 10%;"></div>
+    <div class="leaf-particle" style="bottom: 20%; left: 5%; background: radial-gradient(circle, rgba(255,183,3,0.15) 0%, transparent 70%);"></div>
+
     <nav>
-        <a href="home.html" class="logo">
-            <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
-        </a>
+        <a href="home.html" class="logo"><img src="assets/logo_final.png" alt="Bariatric Channel Logo"></a>
         <div class="nav-links">
             <a href="home.html#procedimentos">PRÓXIMOS EVENTOS</a>
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
@@ -196,67 +169,198 @@
                 <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
             </div>
         </div>
-        <!-- Mobile falha segura -->
         <div class="lang-switcher" style="display:flex; gap:5px; margin-left:auto;" id="flags-only-mobile">
             <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
             <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
             <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
         </div>
     </nav>
-    <style>
-        @media (min-width: 901px) { #flags-only-mobile { display: none !important; } }
-    </style>
+    <style>@media (min-width: 901px) { #flags-only-mobile { display: none !important; } }</style>
 
-    <section class="hero">
-        <div>
-            <p class="mono parallax-text" style="color: var(--medical-white); font-size: 1rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO DE 2026</p>
-            <h1 class="parallax-text">2º BC AMAZON WEEK</h1>
-            <p class="subtitle parallax-text">A Confluência da Alta Cirurgia no Coração da Amazônia. Tecnologia e Natureza em Sintonia.</p>
-            <div style="margin-top: 50px;" class="parallax-text">
-                <a href="#detalhes" class="btn-amazon">ENTRAR NA IMERSÃO</a>
+    <!-- SLIDE 1 (Equivalente à imagem 1.jpg) -->
+    <section class="amazon-slide slide-dark" id="slide-1">
+        <div class="slide-content-wrapper layout-center">
+            <p class="mono parallax-text" style="color: var(--medical-white); font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">OCTOBER 19–23, 2026</p>
+            <h1 class="hero-title parallax-text">2º BC AMAZON WEEK</h1>
+            <p class="text-body parallax-text" style="font-size: 1.5rem; text-transform: uppercase;">II International Bariatric Channel Congress<br>X Bariatric Channel Live Surgeries<br>II Bariatric Channel LATAM Symposium</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 2 (Equivalente à imagem 2.jpg) -->
+    <section class="amazon-slide slide-glass" id="slide-2">
+        <div class="slide-content-wrapper layout-split">
+            <div>
+                <p class="mono" style="color: var(--amazon-gold);">BASED ON 1ST BC CONGRESS 2025</p>
+                <h2 class="title-white">HISTORY & TRACK RECORD</h2>
+                <div class="text-body">
+                    A community of over 900 active bariatric surgeons connected through the most innovative academic platform in Latin America.
+                </div>
+            </div>
+            <div class="glass-box">
+                <ul style="color: var(--medical-white); line-height: 2.2; list-style: none; font-size: 1.1rem; padding:0;">
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Total Attendees:</strong> 422 surgeons</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Scientific Faculty:</strong> 77 speakers (35 international and 42 national)</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Surgical Volume:</strong> 30 live surgeries, including 5 remote broadcasts from partner cities (Florianópolis/SC, Vitória/ES, Curitiba/PR, and Orlando/USA)</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Platform Reach:</strong> A community of over 900 active bariatric surgeons.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section class="content-section" id="detalhes">
-        <div class="glass-panel">
-            <p class="mono" style="color: var(--amazon-gold); margin-bottom: 15px;">INOVAÇÃO, ALTA TECNOLOGIA E EXCELÊNCIA TÉCNICA</p>
-            <h2>BEM-VINDO À SELVA DE CONHECIMENTO</h2>
-            <p style="font-size: 1.25rem; color: var(--soft-creme); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                O Bariatric Channel traz para Manaus a segunda edição de um evento emblemático. Unindo o espírito majestoso e misterioso da selva amazônica à precisão cirúrgica de ponta mundial.
+    <!-- SLIDE 3 (Equivalente à imagem 3.jpg) -->
+    <section class="amazon-slide slide-solid" id="slide-3">
+        <div class="slide-content-wrapper layout-center">
+            <h2 class="title-gold">A HIGH-END CLINICAL PROSPECTUS</h2>
+            <p class="text-body" style="max-width: 900px; font-size: 1.8rem; line-height: 1.4;">
+                Dedicated to Innovation, High Technology, and Technical Excellence in Bariatric and Metabolic Surgery.
             </p>
             
-            <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
-                <div style="text-align: left;">
-                    <div style="font-size: 2rem; color: var(--amazon-gold); font-weight: 800;">05</div>
-                    <div class="mono" style="opacity: 0.7;">Dias de Imersão</div>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; width: 100%;">
+                <div class="glass-box" style="flex: 1; min-width: 250px; text-align: center; border-top: 2px solid var(--amazon-gold);">
+                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Advanced Surgical Technique</h3>
                 </div>
-                <div style="text-align: left;">
-                    <div style="font-size: 2rem; color: var(--amazon-gold); font-weight: 800;">+20</div>
-                    <div class="mono" style="opacity: 0.7;">Procedimentos ao Vivo</div>
+                <div class="glass-box" style="flex: 1; min-width: 250px; text-align: center; border-top: 2px solid var(--medical-white);">
+                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Metabolic Pharmacology</h3>
                 </div>
-                <div style="text-align: left;">
-                    <div style="font-size: 2rem; color: var(--amazon-gold); font-weight: 800;">Top 1%</div>
-                    <div class="mono" style="opacity: 0.7;">Corpo Docente Global</div>
+                <div class="glass-box" style="flex: 1; min-width: 250px; text-align: center; border-top: 2px solid var(--jungle-green);">
+                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Artificial Intelligence Integration</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="galeria-section">
-        <div style="text-align: center;">
-            <p class="mono" style="color: var(--amazon-gold);">OS MESTRES</p>
-            <h2 style="font-size: 3rem; margin-top: 10px;">CORPO DOCENTE</h2>
-            <p style="opacity: 0.7; max-width: 600px; margin: 15px auto;">Experiência global reunida para elevar o nível da prática metabólica.</p>
-        </div>
-
-        <div class="galeria-grid">
-            {% for i in range(1, 13) %}
-            <div class="guest-card">
-                <!-- Usando o script build_site.py estas imagens estarao no assets -->
-                <img src="assets/participantes/{{ i }}.jpg" alt="Palestrante Amazon Week {{ i }}" onerror="this.src='assets/onça.png'; this.style.opacity=0.3;">
+    <!-- SLIDE 4 (Equivalente à imagem 4.jpg) -->
+    <section class="amazon-slide slide-dark" id="slide-4">
+        <div class="slide-content-wrapper layout-center">
+            <h2 class="title-white">EVENT PHASES</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; text-align: left;">
+                <div style="background: rgba(10,47,26,0.8); padding: 40px; border-left: 4px solid var(--amazon-gold);">
+                    <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">PHASE A (OCT 19-20)</p>
+                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">PRE-CONGRESS MASTER LABS</h3>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">Intimate, High-Focus. The site for specialized immersions and private OR transmissions.</p>
+                </div>
+                <div style="background: rgba(2,8,4,0.8); padding: 40px; border-left: 4px solid var(--medical-white);">
+                    <p class="mono" style="color: var(--medical-white); margin-bottom: 10px;">PHASE B (OCT 21-23)</p>
+                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">MAIN PLENARY & LIVE BROADCASTS</h3>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">Mass Audience. The core scientific theater.</p>
+                </div>
+                <div style="background: rgba(27,67,50,0.8); padding: 40px; border-left: 4px solid var(--jungle-light);">
+                    <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">PHASE C (OCT 21-23)</p>
+                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">THE BUSINESS FAIR</h3>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">The Sponsor Epicenter. Intersecting the flow of all attendees.</p>
+                </div>
             </div>
-            {% endfor %}
+        </div>
+    </section>
+    
+    <!-- SLIDE 5 (Equivalente à imagem 5.jpg) -->
+    <section class="amazon-slide slide-glass" id="slide-5">
+        <div class="slide-content-wrapper">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <p class="mono" style="color: var(--amazon-gold);">OCT 19-20</p>
+                <h2 class="title-white" style="margin-bottom: 10px;">PRE-CONGRESS MASTER ACTIVITIES</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <!-- Column 1 -->
+                <div>
+                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">SURGICAL IMMERSION<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(MedTech Focus)</span></h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 20px;">
+                            <strong style="color: var(--medical-white);">Course 1 (Ileal Surgeries)</strong>
+                            <p style="font-size: 0.9rem; color: var(--soft-creme); opacity: 0.8; margin-top: 5px;">16 Total Surgeries | 2 Days | 4 Simultaneous Operating Rooms<br><br>Participants are physically inside the OR with the surgeons. Key point lectures, tips and interaction with special faculty. High-Value Exposure: Direct contact with premium surgical technology and devices.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">METABOLIC & CLINICAL PROGRESSION<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Pharma/Diagnostic)</span></h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 2: FibroScan</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Hands-on, 20 cases)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 3: Diabetes</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Clinical/surgical treatment)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 4: MASLD</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Metabolic liver disease)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 5: Incretin Peptides</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Obesity pharmacology & GLP-1 protocols)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 6: Nutritional Supplementation</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Therapies & ethics)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">FUTURE PRACTICE<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Health-Tech Focus)</span></h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 7: AI in Medical Practice</strong></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 8: Medical Marketing & AI</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Visibility & ROI)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6 (Equivalente à imagem 6.jpg) -->
+    <section class="amazon-slide slide-solid" id="slide-6">
+        <div class="slide-content-wrapper layout-center">
+            <h2 class="title-gold" style="margin-bottom: 10px;">THE SCIENTIFIC ELITE</h2>
+            <p class="mono" style="color: var(--medical-white); margin-bottom: 50px;">2026 CONFIRMED GLOBAL FACULTY</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; width: 100%;">
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">CHILE</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Alex Escalona<br>Camilo Boza<br>Italo Braghetto<br>Jorge Bravo Lopez</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">MEXICO</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Sérgio Verboonen<br>Manuel Aceves</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">SPAIN</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Amador Garcia<br>Antonio Torres</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">ARGENTINA</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Daniel Caiña</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">FRANCE</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Patrick Noel</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">PERU</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Luiz Poggi</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">GERMANY</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Ricardo Zorron</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">PORTUGAL</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Rui Ribeiro</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">USA</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Júlio Teixeira<br>André Teixeira<br>Mitchel Roslin<br>Manoel Galvão Neto</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">EMIRATES</h4>
+                    <p style="color: var(--medical-white); line-height: 1.8;">Laurent Layani</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <p class="text-body" style="font-size: 1rem; max-width: 800px; margin: 0 auto;">These are the initial confirmed speakers. Our final faculty will include several additional world-renowned experts, further expanding our lineup of global references in bariatric surgery.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDES RESTANTES (PARA AGUARDAR O USUARIO) -->
+    <section class="amazon-slide slide-green" id="slide-7-12">
+        <div class="slide-content-wrapper layout-center">
+            <h2 class="title-white">ENVIO DOS PRÓXIMOS MÓDULOS</h2>
+            <div class="glass-box" style="margin-top: 40px; text-align: left;">
+                <p class="text-body" style="font-weight: 800; color: var(--amazon-gold);">Aguardando Textos das fotos 7 até 12:</p>
+                <p class="text-body">Pode mandar a continuação que eu já encaixo daqui para baixo!</p>
+            </div>
         </div>
     </section>
 
@@ -277,28 +381,25 @@
                 let select = document.querySelector('select.goog-te-combo');
                 if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
             }
+            
+            // Parallax Scroll Script
+            document.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallaxTexts = document.querySelectorAll('.parallax-text');
+                const particles = document.querySelectorAll('.leaf-particle');
+                
+                parallaxTexts.forEach(el => {
+                    el.style.transform = `translateY(${scrolled * 0.4}px)`;
+                    el.style.opacity = 1 - (scrolled * 0.003);
+                });
+                
+                particles[0].style.transform = `translateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
+                particles[1].style.transform = `translateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
+            });
         </script>
         <div id="google_translate_element" style="display:none;"></div>
         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </footer>
 
-    <!-- Parallax Scroll Script -->
-    <script>
-        document.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxTexts = document.querySelectorAll('.parallax-text');
-            const particles = document.querySelectorAll('.leaf-particle');
-            
-            // Texto descendo suave
-            parallaxTexts.forEach(el => {
-                el.style.transform = `translateY(${scrolled * 0.4}px)`;
-                el.style.opacity = 1 - (scrolled * 0.003);
-            });
-            
-            // Partículas da selva subindo suave
-            particles[0].style.transform = `translateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
-            particles[1].style.transform = `translateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
-        });
-    </script>
 </body>
 </html>
