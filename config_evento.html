@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,116 +8,334 @@
     <!-- Import Vue 3 and Supabase -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --medical-white: #FFFFFF; --soft-creme: #FDFDF5; --deep-blue: #0A192F;
-            --vitality-red: #FF3B30; --electric-cyan: #00F2FF; --dark-slate: #2D3436;
+            --medical-white: #FFFFFF;
+            --soft-creme: #FDFDF5;
+            --deep-blue: #0A192F;
+            --vitality-red: #FF3B30;
+            --electric-cyan: #00F2FF;
+            --dark-slate: #2D3436;
             --alabaster-shadow: rgba(0, 0, 0, 0.05);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f4f6f8; color: var(--dark-slate); }
-        
-        /* Previne exibição de tags Vue antes do carregamento completo */
+
         [v-cloak] { display: none !important; }
 
-        .header { background: var(--deep-blue); color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--vitality-red); }
-        .header h1 { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; }
-        .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f4f6f8;
+            color: var(--dark-slate);
+        }
+
+        .header {
+            background: var(--deep-blue);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
         /* LOGIN PANEL */
-        .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--deep-blue); padding: 20px; }
-        .login-card { background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-        .login-card h2 { color: var(--deep-blue); margin-bottom: 10px; font-weight: 800; text-align: center; }
-        .login-card p { text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 30px; }
-        .login-card input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: 0.3s; }
-        .login-card input:focus { border-color: var(--vitality-red); outline: none; }
-        .login-card button { width: 100%; padding: 15px; background: var(--vitality-red); color: white; border: none; border-radius: 6px; font-weight: 800; cursor: pointer; transition: 0.3s; font-size: 1rem; }
-        .login-card button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,59,48,0.3); }
-        .login-card button:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        .login-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: var(--deep-blue);
+        }
 
-        /* LAYOUT ADMIN */
-        .layout { display: grid; grid-template-columns: 350px 1fr; min-height: calc(100vh - 85px); }
-        .sidebar { background: var(--medical-white); border-right: 1px solid rgba(10,25,47,0.1); padding: 30px; overflow-y: auto; }
-        .event-list { list-style: none; margin-top: 20px; }
-        .event-list li { padding: 20px; border: 1px solid #E0E0E0; border-radius: 8px; margin-bottom: 15px; cursor: pointer; transition: 0.2s; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .event-list li:hover { border-color: var(--vitality-red); transform: translateX(5px); }
-        .event-list li.active { background: var(--deep-blue); color: white; border-color: var(--deep-blue); box-shadow: 0 10px 20px rgba(10,25,47,0.2); }
-        
-        .btn-add { display: block; width: 100%; padding: 15px; border: 2px dashed #ccc; background: transparent; cursor: pointer; border-radius: 8px; font-weight: 800; color: #666; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; }
-        .btn-add:hover { border-color: var(--vitality-red); color: var(--vitality-red); background: rgba(255,59,48,0.02); }
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
 
-        .editor { padding: 40px; overflow-y: auto; background: #f8fafc; }
-        .section-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #edf2f7; }
-        .section-box h2 { font-size: 1.3rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 25px; color: var(--deep-blue); display: flex; align-items: center; gap: 10px; }
-        .section-box h2::before { content: ''; width: 4px; height: 1.2em; background: var(--vitality-red); display: inline-block; }
+        .login-card h2 {
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
 
-        .form-group { margin-bottom: 25px; display: flex; flex-direction: column; gap: 10px; }
-        .form-group label { font-weight: 700; font-size: 0.85rem; color: #4a5568; text-transform: uppercase; letter-spacing: 0.05em; }
-        .form-group input { padding: 12px 15px; border: 1px solid #e2e8f0; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: 0.2s; }
-        .form-group input:focus { border-color: var(--vitality-red); outline: none; background: #fff; }
-        
-        .image-preview { width: 100%; height: 250px; background: #f1f5f9; border-radius: 8px; margin-top: 15px; background-size: cover; background-position: center; border: 2px dashed #cbd5e1; display: flex; align-items: center; justify-content: center; }
-        .image-preview[style*="url"]::after { content: none; }
-        .image-preview::after { content: 'Visualização da Imagem'; color: #94a3b8; font-weight: 600; font-size: 0.9rem; }
-        
-        .list-group { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
-        .list-item { padding: 25px; border-bottom: 1px solid #e2e8f0; background: #fff; display: grid; gap: 15px; position: relative; transition: 0.2s; }
-        .list-item:hover { background: #f8fafc; }
-        .list-item:last-child { border-bottom: none; }
-        .list-item .trash { position: absolute; right: 20px; top: 20px; color: var(--vitality-red); cursor: pointer; background: rgba(255,59,48,0.1); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: none; transition: 0.3s; }
-        .list-item .trash:hover { background: var(--vitality-red); color: white; transform: rotate(90deg); }
+        .login-card input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        
-        .top-bar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        
-        .btn-save { background: var(--vitality-red); color: white; border: none; padding: 18px 40px; border-radius: 8px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3); transition: 0.3s; font-size: 1rem; text-transform: uppercase; }
-        .btn-save:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255, 59, 48, 0.4); }
-        .btn-save:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
-        
-        .btn-logout { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; }
-        .btn-logout:hover { background: var(--vitality-red); border-color: var(--vitality-red); }
+        .login-card button {
+            width: 100%;
+            padding: 15px;
+            background: var(--vitality-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-        .toast { position: fixed; bottom: 40px; right: 40px; background: #1e293b; color: white; padding: 20px 35px; border-radius: 12px; display: none; font-weight: 700; z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: slideIn 0.4s ease-out; }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        .toast.success { background: #10b981; display: block; border-left: 5px solid #059669; }
-        .toast.error { background: var(--vitality-red); display: block; border-left: 5px solid #b91c1c; }
+        .login-card button:hover {
+            opacity: 0.9;
+        }
 
-        @media (max-width: 1024px) {
-            .layout { grid-template-columns: 1fr; }
-            .sidebar { border-right: none; border-bottom: 1px solid #ddd; height: 300px; }
+        .layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: calc(100vh - 75px);
+        }
+
+        .sidebar {
+            background: var(--medical-white);
+            border-right: 1px solid rgba(10, 25, 47, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .event-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .event-list li {
+            padding: 15px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #fafafa;
+        }
+
+        .event-list li:hover {
+            border-color: var(--deep-blue);
+        }
+
+        .event-list li.active {
+            background: var(--deep-blue);
+            color: white;
+            border-color: var(--deep-blue);
+        }
+
+        .btn-add {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #ccc;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #666;
+            transition: 0.2s;
+        }
+
+        .btn-add:hover {
+            border-color: var(--vitality-red);
+            color: var(--vitality-red);
+        }
+
+        .editor {
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .section-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px var(--alabaster-shadow);
+            margin-bottom: 30px;
+        }
+
+        .section-box h2 {
+            font-size: 1.2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            color: var(--deep-blue);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            margin-top: 10px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #ddd;
+        }
+
+        .list-group {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .list-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            display: grid;
+            gap: 10px;
+            position: relative;
+        }
+
+        .list-item .trash {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: var(--vitality-red);
+            cursor: pointer;
+            background: rgba(255, 59, 48, 0.1);
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-save {
+            background: var(--vitality-red);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 59, 48, 0.2);
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-save:disabled,
+        .btn-logout {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            color: #333;
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 6px;
+            display: none;
+            font-weight: 600;
+            z-index: 9999;
+        }
+
+        .toast.success {
+            background: #4CAF50;
+            display: block;
+        }
+
+        .toast.error {
+            background: var(--vitality-red);
+            display: block;
         }
     </style>
 </head>
-<body>
 
+<body>
+    
     <div id="app" v-cloak>
         <!-- LOGIN SCREEN -->
         <div class="login-wrap" v-if="!session">
             <div class="login-card">
-                <div style="text-align:center; margin-bottom:20px;">
-                    <img src="assets/logo_final.png" alt="Logo" style="height:50px; filter:invert(1);">
+                <h2>Acesso CMS Supabase</h2>
+                <div v-if="loginError" style="color: red; margin-bottom: 10px; font-size: 0.9rem;">{{ loginError }}
                 </div>
-                <h2>CMS ADMIN</h2>
-                <p>Acesso exclusivo para gestão de eventos na nuvem.</p>
-                
-                <div v-if="loginError" style="background:rgba(255,59,48,0.1); color:var(--vitality-red); padding:12px; border-radius:6px; margin-bottom:20px; font-size:0.85rem; font-weight:700; text-align:center;">
-                    ⚠️ {{ loginError }}
-                </div>
-                
-                <div class="form-group">
-                    <label>E-mail Corporativo</label>
-                    <input v-model="email" type="email" placeholder="admin@bariatricchannel.com" @keyup.enter="handleLogin">
-                </div>
-                <div class="form-group">
-                    <label>Senha de Acesso</label>
-                    <input v-model="password" type="password" placeholder="••••••••" @keyup.enter="handleLogin">
-                </div>
-                
-                <button @click="handleLogin" :disabled="loading">
-                    {{ loading ? 'AUTENTICANDO...' : 'ENTRAR NO PAINEL' }}
-                </button>
+                <input v-model="email" type="email" placeholder="E-mail Administrativo" @keyup.enter="handleLogin">
+                <input v-model="password" type="password" placeholder="Senha" @keyup.enter="handleLogin">
+                <button @click="handleLogin" :disabled="loading">{{ loading ? 'Entrando...' : 'ENTRAR' }}</button>
             </div>
         </div>
 
@@ -124,115 +343,117 @@
         <div v-else>
             <header class="header">
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <h1>BC CLOUD CMS</h1>
-                    <div class="mono" style="background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:4px; font-size:0.6rem;">v2.0 STABLE</div>
+                    <h1 style="border-left: 5px solid var(--vitality-red); padding-left: 15px;">BC CLOUD EVENTS</h1>
                 </div>
-                <div class="mono" style="color: rgba(255,255,255,0.7); display: flex; gap: 25px; align-items: center;">
-                    <span v-if="saving" style="color:var(--electric-cyan); font-weight:bold;">● SINCRONIZANDO...</span>
-                    <span><i style="opacity:0.6">Logado como:</i> {{ session.user.email }}</span>
+                <div class="mono" style="color: rgba(255,255,255,0.7); display: flex; gap: 20px; align-items: center;">
+                    <span v-if="saving">Salvando Nuvem...</span>
+                    <span>Admin Logado: {{ session.user.email }}</span>
                     <button class="btn-logout mono" @click="handleLogout">Sair</button>
                 </div>
             </header>
 
             <div class="layout">
                 <div class="sidebar">
-                    <div class="mono" style="color: var(--vitality-red); margin-bottom: 20px; font-weight:800;">BIBLIOTECA DE EVENTOS</div>
-                    
-                    <button class="btn-add" @click="createEventModal">+ ADICIONAR NOVO EVENTO</button>
-
-                    <div v-if="eventos.length === 0" style="margin-top:40px; text-align:center; color:#94a3b8;">
-                        <p class="mono">Buscando na nuvem...</p>
+                    <div class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">SELECIONE OU CRIE EVENTOS
                     </div>
-                    
+                    <!-- The prompt inside this method will block until resolved -->
+                    <button class="btn-add" @click="createEventModal">+ NOVO EVENTO</button>
+
+                    <p v-if="eventos.length === 0" style="margin-top:20px; font-size:0.9em; color:#888;">Buscando base
+                        de dados...</p>
                     <ul class="event-list">
-                        <li v-for="ev in eventos" :key="ev.id" :class="{active: activeEvent && activeEvent.id === ev.id}" @click="selectEvent(ev)">
-                            <div style="font-weight: 800; font-size:1rem; margin-bottom:5px;">{{ ev.titulo || 'Sem Título' }}</div>
-                            <div style="font-size: 0.75rem; opacity: 0.7;" class="mono">{{ ev.data || 'DATA NÃO DEFINIDA' }}</div>
+                        <li v-for="ev in eventos" :key="ev.id"
+                            :class="{active: activeEvent && activeEvent.id === ev.id}" @click="selectEvent(ev)">
+                            <div style="font-weight: 800;">{{ ev.titulo || 'Sem Título' }}</div>
+                            <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;" class="mono">{{ ev.data }}
+                            </div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="editor" v-if="activeEvent">
                     <div class="top-bar">
-                        <div style="max-width:60%">
-                            <div class="mono" style="color: var(--vitality-red); margin-bottom:10px; font-weight:800;">EDITOR DE CONTEÚDO</div>
-                            <h2 style="font-size: 2.2rem; color: var(--deep-blue); line-height:1.1; word-break: break-word;">{{ activeEvent.titulo || 'Novo Evento' }}</h2>
-                            <p class="mono" style="margin-top:10px; opacity:0.5;">ID ÚNICO: {{ activeEvent.id }}</p>
+                        <div>
+                            <div class="mono" style="color: var(--vitality-red);">EDITANDO (ID: {{ activeEvent.id }})
+                            </div>
+                            <h2 style="font-size: 2rem; color: var(--deep-blue); margin-top: 5px;">{{ activeEvent.titulo
+                                }}</h2>
                         </div>
-                        <div style="display: flex; gap: 15px; align-items: center;">
-                            <button @click="deleteEvent(activeEvent.id)" style="background:transparent; color:#94a3b8; border:none; cursor:pointer;" class="mono">DELETAR EVENTO</button>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-save"
+                                style="background:#f4f6f8; color:red; border:1px solid red; box-shadow:none;"
+                                @click="deleteEvent(activeEvent.id)">EXCLUIR</button>
                             <button class="btn-save" @click="saveEventToCloud" :disabled="saving">
-                                {{ saving ? 'SINCRONIZANDO...' : 'SALVAR NA NUVEM' }}
+                                {{ saving ? 'SALVANDO NA NUVEM...' : 'SALVAR NO SUPABASE' }}
                             </button>
                         </div>
                     </div>
 
                     <!-- Campos principais -->
                     <div class="section-box">
-                        <h2>Dados Gerais do Evento</h2>
+                        <h2>Dados Principais (Visão Geral)</h2>
                         <div class="grid-2">
                             <div class="form-group">
-                                <label>Título Público</label>
-                                <input v-model="activeEvent.titulo" type="text" placeholder="Ex: 2º Congresso Internacional...">
+                                <label>Título do Evento</label><input v-model="activeEvent.titulo" type="text">
                             </div>
                             <div class="form-group">
-                                <label>Data de Exibição</label>
-                                <input v-model="activeEvent.data" type="text" placeholder="Ex: 19 a 23 de Outubro, 2026">
+                                <label>Data (Ex: 19 a 23/10/26)</label><input v-model="activeEvent.data" type="text">
                             </div>
                         </div>
                         <div class="grid-2">
                             <div class="form-group">
-                                <label>Horário (Local ou UTC)</label>
-                                <input v-model="activeEvent.horario" type="text" placeholder="Ex: 08:00 às 18:00">
+                                <label>Horário Geral</label><input v-model="activeEvent.horario" type="text">
                             </div>
                             <div class="form-group">
-                                <label>Local físico ou Plataforma</label>
-                                <input v-model="activeEvent.local" type="text" placeholder="Ex: Manaus/AM ou Transmissão Online">
+                                <label>Localização Completa</label><input v-model="activeEvent.local" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>URL da Imagem de Background (Hero)</label>
-                            <input v-model="activeEvent.imagem" type="text" placeholder="https://dominio.com/assets/img.jpg">
-                            <div class="image-preview" :style="{ backgroundImage: 'url(' + (activeEvent.imagem || '') + ')' }"></div>
+                            <label>URL Imagem de Fundo</label>
+                            <input v-model="activeEvent.imagem" type="text"
+                                placeholder="https://seudominio.com/assets/img.png">
+                            <div class="image-preview"
+                                :style="{ backgroundImage: 'url(' + (activeEvent.imagem || '') + ')' }"></div>
                         </div>
                     </div>
 
                     <div class="section-box">
-                        <h2>Corpo Docente (Lista de Check-in)</h2>
-                        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">Estes nomes aparecerão no formulário de confirmação de presença.</p>
-                        
+                        <h2>Corpo Docente (Participantes)</h2>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Aparecerão no Dropdown do
+                            Check-in deste evento.</p>
+
                         <div class="list-group">
-                            <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item">
-                                <div class="form-group" style="margin:0">
-                                    <label>NOME COMPLETO DO MÉDICO / PROFESSOR</label>
-                                    <input v-model="pal.nome" type="text" placeholder="Ex: Dr. Paulo Reis">
-                                </div>
-                                <button class="trash" @click="removePalestrante(pIdx)">×</button>
+                            <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item"
+                                style="grid-template-columns: 1fr;">
+                                <input v-model="pal.nome" type="text" placeholder="Nome Completo do Médico">
+                                <button class="trash" @click="removePalestrante(pIdx)">X</button>
                             </div>
                         </div>
-                        <button class="btn-add" @click="addPalestrante">+ ADICIONAR MEMBRO AO CORPO DOCENTE</button>
+                        <button class="btn-add" @click="addPalestrante">+ ADICIONAR PROFESSOR</button>
                     </div>
 
                     <div class="section-box">
-                        <h2>Cronograma de Aulas</h2>
+                        <h2>Aulas / Cronograma</h2>
                         <div class="list-group">
-                            <div v-for="(c, cIdx) in activeEvent.cronograma" :key="cIdx" class="list-item" style="grid-template-columns: 1fr 2fr 2fr; align-items: start;">
-                                <div class="form-group" style="margin: 0;"><label>Hora/Dia</label><input v-model="c.hora" type="text" placeholder="08:30"></div>
-                                <div class="form-group" style="margin: 0;"><label>Título da Aula</label><input v-model="c.titulo" type="text" placeholder="Título da Palestra"></div>
-                                <div class="form-group" style="margin: 0;"><label>Palestrantes</label><input v-model="c.palestrante" type="text" placeholder="Nomes separados por vírgula"></div>
-                                <button class="trash" @click="removeCronograma(cIdx)" style="top: 30px;">×</button>
+                            <div v-for="(c, cIdx) in activeEvent.cronograma" :key="cIdx" class="list-item"
+                                style="grid-template-columns: 1fr 2fr 2fr; align-items: start;">
+                                <div class="form-group" style="margin: 0;"><label>Data/Hora</label><input
+                                        v-model="c.hora" type="text"></div>
+                                <div class="form-group" style="margin: 0;"><label>Título</label><input
+                                        v-model="c.titulo" type="text"></div>
+                                <div class="form-group" style="margin: 0;"><label>Palestrante(s)</label><input
+                                        v-model="c.palestrante" type="text"></div>
+                                <button class="trash" @click="removeCronograma(cIdx)" style="top: 25px;">X</button>
                             </div>
                         </div>
-                        <button class="btn-add" @click="addCronograma">+ INSERIR BLOCO NA AGENDA</button>
+                        <button class="btn-add" @click="addCronograma">+ AULA NA AGENDA</button>
                     </div>
                 </div>
-
                 <!-- Vazio -->
                 <div class="editor" v-else>
-                    <div style="text-align: center; color: #94a3b8; margin-top: 15vh;">
-                        <img src="assets/logo_final.png" style="height:80px; opacity:0.05; margin-bottom:30px;">
-                        <h2 style="color: #cbd5e1; margin-bottom: 10px;">AGUARDANDO SELEÇÃO</h2>
-                        <p class="mono">Escolha um item na barra lateral ou crie um novo evento para começar.</p>
+                    <div style="text-align: center; color: #999; margin-top: 100px;">
+                        <h2 style="color: #ccc; margin-bottom: 10px;">SELECIONE UM EVENTO NA NUVEM</h2>
+                        <p>O Supabase está sincronizado e aguardando comandos.</p>
                     </div>
                 </div>
             </div>
@@ -242,14 +463,10 @@
     </div>
 
     <script>
-        // CONFIGURAÇÕES SUPABASE
+        // INICIALIZAÇÃO SUPABASE (Chaves Protegidas pelo Cliente Autorizado)
         const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
         const supabaseKey = 'sb_publishable_A-Gxbkir7foDZgZvaOuiHw_pMVXXdEV';
-        
-        let supabaseClient = null;
-        try {
-            supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-        } catch(e) { console.error("Falha ao iniciar Supabase", e); }
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         const { createApp } = Vue;
 
@@ -261,93 +478,88 @@
                     password: '',
                     loginError: '',
                     loading: false,
-                    
+
                     eventos: [],
                     activeEvent: null,
                     saving: false,
-                    
+
                     toastMsg: '',
                     toastState: ''
                 }
             },
-            async mounted() {
-                if (supabaseClient) {
-                    const { data: { session } } = await supabaseClient.auth.getSession();
-                    this.session = session;
-                    if (this.session) this.fetchEventos();
-                }
+            mounted() {
+                this.checkSession();
             },
             methods: {
+                async checkSession() {
+                    const { data: { session } } = await supabase.auth.getSession();
+                    this.session = session;
+                    if (this.session) this.fetchEventos();
+                },
                 async handleLogin() {
-                    if (!supabaseClient) {
-                        this.loginError = "SDK do Supabase não carregado.";
-                        return;
-                    }
                     this.loading = true;
                     this.loginError = '';
-                    
-                    try {
-                        const { data, error } = await supabaseClient.auth.signInWithPassword({
-                            email: this.email,
-                            password: this.password
-                        });
-                        if (error) {
-                            this.loginError = "Acesso Negado: Verifique e-mail e senha.";
-                        } else {
-                            this.session = data.session;
-                            this.fetchEventos();
-                        }
-                    } catch(e) {
-                        this.loginError = "Erro de conexão com o servidor.";
-                    } finally {
-                        this.loading = false;
+                    const { data, error } = await supabase.auth.signInWithPassword({
+                        email: this.email,
+                        password: this.password
+                    });
+                    if (error) {
+                        this.loginError = "Login falhou: verifique e-mail e senha.";
+                    } else {
+                        this.session = data.session;
+                        this.fetchEventos();
                     }
+                    this.loading = false;
                 },
                 async handleLogout() {
-                    await supabaseClient.auth.signOut();
+                    const { error } = await supabase.auth.signOut();
                     this.session = null;
                 },
-                
+
                 async fetchEventos() {
-                    const { data, error } = await supabaseClient.from('eventos_bc').select('*').order('titulo', { ascending: true });
-                    if (!error) {
+                    const { data, error } = await supabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
+                    if (error) {
+                        this.showToast('Erro ao buscar do Supabase.', 'error');
+                        console.error(error);
+                    } else {
                         this.eventos = data;
-                        if(this.eventos.length > 0 && !this.activeEvent) this.activeEvent = this.eventos[0];
+                        if (this.eventos.length > 0) this.activeEvent = this.eventos[0];
                     }
                 },
                 selectEvent(ev) {
                     this.activeEvent = ev;
                 },
                 createEventModal() {
-                    const id = prompt("Digite um ID (slug) para o evento (Ex: amazon2026):");
+                    const id = prompt("Digite um nome curto (ID) sem espaços para o evento (Ex: amazon, livesurgery2026):");
                     if (!id) return;
-                    
+
                     const novoEvento = {
-                        id: id, titulo: "Novo Evento Bariatric Channel", data: "", local: "", horario: "", 
-                        imagem: "assets/onça low.jpg", cronograma: [], palestrantes: []
+                        id: id, titulo: "Novo Congresso", data: "", local: "", horario: "",
+                        imagem: "assets/onça.png", cronograma: [], palestrantes: []
                     };
-                    
-                    this.eventos.unshift(novoEvento);
+
+                    this.eventos.unshift(novoEvento); // Joga pro topo
                     this.activeEvent = novoEvento;
                 },
                 addPalestrante() {
-                    if(!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
+                    if (!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
                     this.activeEvent.palestrantes.push({ nome: "" });
                 },
                 removePalestrante(idx) {
-                    if(confirm('Remover do corpo docente?')) this.activeEvent.palestrantes.splice(idx, 1);
+                    if (confirm('Remover médico?')) this.activeEvent.palestrantes.splice(idx, 1);
                 },
                 addCronograma() {
-                    if(!this.activeEvent.cronograma) this.activeEvent.cronograma = [];
+                    if (!this.activeEvent.cronograma) this.activeEvent.cronograma = [];
                     this.activeEvent.cronograma.push({ hora: "", titulo: "", palestrante: "" });
                 },
                 removeCronograma(idx) {
-                    if(confirm('Excluir este bloco da agenda?')) this.activeEvent.cronograma.splice(idx, 1);
+                    if (confirm('Remover aula?')) this.activeEvent.cronograma.splice(idx, 1);
                 },
                 async saveEventToCloud() {
                     this.saving = true;
                     try {
-                        const { error } = await supabaseClient
+                        // Upsert: Insere se não existir ID, Atualiza se existir
+                        const { data, error } = await supabase
                             .from('eventos_bc')
                             .upsert({
                                 id: this.activeEvent.id,
@@ -359,33 +571,36 @@
                                 palestrantes: this.activeEvent.palestrantes || [],
                                 cronograma: this.activeEvent.cronograma || []
                             });
-                            
+
                         if (error) throw error;
-                        this.showToast('Salvo com sucesso!', 'success');
-                        this.fetchEventos();
+                        this.showToast('Salvo Globalmente no Supabase!', 'success');
                     } catch (e) {
-                        this.showToast('Falha ao salvar na nuvem.', 'error');
+                        this.showToast('Permissão Negada ou Falha de Rede', 'error');
+                        console.error(e);
                     }
                     this.saving = false;
                 },
                 async deleteEvent(id) {
-                    if(confirm('DELETAR EVENTO? Esta ação não pode ser desfeita.')) {
-                        const { error } = await supabaseClient.from('eventos_bc').delete().eq('id', id);
-                        if(!error) {
-                            this.showToast('Excluído.', 'success');
-                            this.fetchEventos();
+                    if (confirm('Certeza absoluta que quer DELETAR este evento da face da terra?')) {
+                        const { error } = await supabase.from('eventos_bc').delete().eq('id', id);
+                        if (!error) {
+                            this.showToast('Excluído com sucesso.', 'success');
+                            this.fetchEventos(); // Refresh global
                             this.activeEvent = null;
+                        } else {
+                            this.showToast('Erro ao excluir.', 'error');
                         }
                     }
                 },
                 showToast(msg, state) {
                     this.toastMsg = msg;
                     this.toastState = state;
-                    setTimeout(() => { this.toastMsg = ''; }, 3000);
+                    setTimeout(() => { this.toastMsg = ''; }, 4000);
                 }
             }
         }).mount('#app');
     </script>
-
+    
 </body>
+
 </html>

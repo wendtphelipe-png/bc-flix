@@ -558,9 +558,8 @@
         
         <!-- Script Tradutor Google -->
         <script>
-            // Configurações Globais
-            const speakerDataUrl = 'data/palestrantes_raw.json';
-            let allSpeakers = [];
+            // Dados injetados pelo build_site.py
+            const allSpeakers = {% if palestrantes %}{{ palestrantes | tojson }}{% else %}[]{% endif %};
 
             const groups = {
                 diretoria: ["VICTOR RAMOS MUSSA DIB", "CARLOS MADALOSSO", "PAULO REIS", "PATRICK NOEL"],
@@ -580,18 +579,21 @@
                 "ALMINO CARDOSO RAMOS": "Honorary President"
             };
 
-            async function initSpeakers() {
+            function normalize(str) {
+                if (!str) return "";
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+            }
+
+            function initSpeakers() {
                 try {
-                    const resp = await fetch(speakerDataUrl);
-                    allSpeakers = await resp.json();
-                    
                     renderGroup(groups.diretoria, 'grid-diretoria');
                     renderGroup(groups.honorary, 'grid-honorary');
                     renderGroup(groups.team, 'grid-team');
                     renderGroup(groups.members1, 'grid-members-1');
                     renderGroup(groups.members2, 'grid-members-2');
+                    console.log("Speakers initialized");
                 } catch (e) {
-                    console.error("Erro ao carregar palestrantes:", e);
+                    console.error("Erro ao processar palestrantes:", e);
                 }
             }
 
@@ -600,15 +602,31 @@
                 if (!grid) return;
 
                 names.forEach(name => {
-                    const speaker = allSpeakers.find(s => s.Nome.toUpperCase().includes(name.toUpperCase()) || name.toUpperCase().includes(s.Nome.toUpperCase()));
+                    const normName = normalize(name);
+                    const speaker = allSpeakers.find(s => {
+                        const sName = normalize(s.Nome);
+                        return sName.includes(normName) || normName.includes(sName);
+                    });
                     
                     const card = document.createElement('div');
                     card.className = 'speaker-card';
                     
-                    const photo = speaker && speaker["Foto URL"] ? `<img src="${speaker["Foto URL"]}" class="speaker-photo">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
-                    const country = speaker && speaker["País"] ? speaker["País"].toLowerCase() : '';
+                    // Tratamento flexível para nomes de chaves (lidar com mojibake)
+                    const getVal = (obj, key) => {
+                        if (!obj) return null;
+                        for (let k in obj) {
+                            if (normalize(k) === normalize(key)) return obj[k];
+                        }
+                        return null;
+                    };
+
+                    const photoUrl = getVal(speaker, "Foto URL");
+                    const country = getVal(speaker, "País");
+                    
+                    const photo = photoUrl ? `<img src="${photoUrl}" class="speaker-photo">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
                     const flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country)}.png` : '';
-                    const role = rolesOverride[name] || (speaker ? speaker["Mini currículo"]?.split('\n')[0].substring(0, 40) : "");
+                    const miniCurr = getVal(speaker, "Mini currículo");
+                    const role = rolesOverride[name] || (miniCurr ? miniCurr.split('\n')[0].substring(0, 40) : "");
 
                     card.innerHTML = `
                         <div class="image-container" onclick="openBio('${name}')">
