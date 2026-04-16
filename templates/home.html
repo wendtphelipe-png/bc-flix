@@ -438,6 +438,37 @@
             text-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Sombra pesada p destacar em qqr imagem */
         }
 
+        /* Amazon Hero Integration */
+        .amazon-hero-section {
+            background: linear-gradient(to right, rgba(4,16,9,0.9), rgba(10,47,26,0.8)), url('assets/onça.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5% 60px;
+            position: relative;
+        }
+        .amazon-hero-section h1 {
+            color: #ffb703;
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        .amazon-hero-section p.subtitle {
+            font-size: 1.5rem; font-weight: 300; color: #f1f5f2;
+            max-width: 800px; margin: 0 auto 40px; opacity: 0.9;
+        }
+        .btn-amazon {
+            display: inline-block; padding: 20px 40px; background: #ffb703; color: #041009;
+            text-decoration: none; font-weight: 800; border-radius: 4px; transition: var(--transition-smooth);
+            font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 183, 3, 0.2);
+        }
+        .btn-amazon:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 183, 3, 0.4); }
+
         /* Technology Section (Dark) */
         .tech-section {
             background: var(--deep-blue);
@@ -525,7 +556,7 @@
             .nav-links { display: flex; width: 100%; justify-content: center; gap: 15px; margin-top: 10px; margin-bottom: 5px;}
             .nav-links a { font-size: 0.65rem; }
             
-            section.hero { padding-top: 120px; }
+            section.hero, .amazon-hero-section { padding-top: 120px; min-height: auto;}
             section.hero h1 { font-size: 2.2rem; }
             .hero-date { font-size: 1.2rem !important; }
             
@@ -559,6 +590,21 @@
             </div>
         </div>
     </nav>
+
+    <!-- NOVO HERO: AMAZON WEEK -->
+    <section class="amazon-hero-section">
+        <div data-reveal>
+            <p class="mono" style="color: #f1f5f2; font-size: 1rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO DE 2026</p>
+            <h1>2º BC AMAZON WEEK</h1>
+            <p class="subtitle">A Confluência da Alta Cirurgia no Coração da Amazônia. Tecnologia e Natureza em Sintonia.</p>
+            <div style="margin-top: 50px;">
+                <a href="bc_amazon_week.html" class="btn-amazon">SABER MAIS SOBRE O EVENTO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVISÃO E CONTINUAÇÃO: MASTERCLASS -->
+    <div style="width: 100%; height: 10px; background: var(--vitality-red);"></div>
 
     <section class="hero">
         <div id="stomach-canvas"></div>
@@ -730,8 +776,7 @@
             </div>
             <div style="display: flex; justify-content: center; gap: 50px; align-items: center; flex-wrap: wrap; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(10, 25, 47, 0.05);">
                 <img src="assets/governo_amazonas.jpeg" alt="Governo do Amazonas e Secretaria de Saúde" style="max-height: 100px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
-                
-                <img src="assets/Check-in.png" alt="Parceiro" style="max-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+
                 
                 <img src="assets/logo_final.png" alt="Bariatric Channel" style="max-height: 60px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
             </div>
@@ -740,9 +785,12 @@
 
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
-            <a href="home.html" class="logo">
-                <img src="assets/logo_final.png" alt="Bariatric Channel Logo" style="height: 40px;">
-            </a>
+            <div style="display: flex; align-items: center; gap: 30px;">
+                <a href="home.html" class="logo">
+                    <img src="assets/logo_final.png" alt="Bariatric Channel Logo" style="height: 40px;">
+                </a>
+                <img src="assets/Check-in.png" alt="Parceiro Check-in" style="height: 40px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+            </div>
             <div class="mono" style="font-size: 0.7rem; opacity: 0.5;">
                 &copy; 2026 BARIATRIC CHANNEL. TODOS OS DIREITOS RESERVADOS.
             </div>

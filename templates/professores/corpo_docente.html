@@ -307,7 +307,10 @@
                     {% for p in group %}
                     <div class="professor-card" data-reveal onclick="openProfModal('{{ professores.index(p) }}')" 
                          data-search="{{ p['Nome']|lower }} {{ p['País']|lower }} {{ (p['Mini currículo'] or '')|lower }}">
-                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'https://api.dicebear.com/7.x/initials/svg?seed=' ~ p['Nome'] ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" alt="{{ p['Nome'] }}" class="prof-img">
+                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'https://api.dicebear.com/7.x/initials/svg?seed=' ~ (p['Nome'] | urlencode) ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" 
+                             alt="{{ p['Nome'] }}" 
+                             class="prof-img"
+                             onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed={{ p['Nome'] | urlencode }}&backgroundColor=FF3B30&textColor=ffffff';">
                         <div class="mono prof-meta" style="justify-content: center;">
                             {% if p['FlagURL'] %}
                                 <img src="{{ p['FlagURL'] }}" class="flag-icon" alt="{{ p['PaisNome'] }}">
@@ -352,7 +355,9 @@
 
         function openProfModal(index) {
             const p = profData[index];
-            document.getElementById('modal-img').src = p['Foto URL'] || `https://api.dicebear.com/7.x/initials/svg?seed=${p['Nome']}&backgroundColor=FF3B30`;
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = p['Foto URL'] || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`;
+            imgEl.onerror = function() { this.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`; this.onerror=null; };
             document.getElementById('modal-name').innerText = p['Nome'];
             document.getElementById('modal-meta').innerText = p['PaisNome'] || 'INTERNACIONAL';
             document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || 'Currículo detalhado em processo de atualização.';

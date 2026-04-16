@@ -27,6 +27,17 @@ for src_name, dest_name in videos_to_copy.items():
         shutil.copy(src_path, os.path.join(DEPLOY_DIR, 'assets', dest_name))
         print(f" -> Vídeo {dest_name} copiado para assets.")
 
+# Copia Fotos do Design sem nome para assets/participantes
+design_dir = os.path.join(BASE_DIR, 'Design sem nome')
+participantes_dir = os.path.join(DEPLOY_DIR, 'assets', 'participantes')
+os.makedirs(participantes_dir, exist_ok=True)
+if os.path.exists(design_dir):
+    for filename in os.listdir(design_dir):
+        if filename.endswith(('.jpg', '.png', '.jpeg')):
+            src_path = os.path.join(design_dir, filename)
+            shutil.copy(src_path, os.path.join(participantes_dir, filename))
+    print(f" -> Imagens da Galeria copiadas para assets/participantes.")
+
 # Carrega os dados principais
 with open(DATA_FILE, 'r', encoding='utf-8') as f:
     data = json.load(f)
@@ -81,6 +92,10 @@ for p in palestrantes_data:
     else:
         p['FlagURL'] = None
         p['PaisNome'] = p.get('País') or 'INTERNACIONAL'
+    
+    # Consertar a URL das imagens que ficaram no servidor .com.br invés do .com principal
+    if p.get('Foto URL'):
+        p['Foto URL'] = p['Foto URL'].replace('bariatricchannel.com/event/', 'bariatricchannel.com.br/event/')
 
 # Mapeia cronograma por professor
 speaker_schedules = {}
