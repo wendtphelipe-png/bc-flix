@@ -32,15 +32,129 @@
         }
 
         /* Parallax Background Noise & Forest Overlay */
+        /* Background Selva Fixo */
         .forest-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background: linear-gradient(to bottom, rgba(2,8,4,0.8), rgba(10,47,26,0.95)), url('assets/onça low.jpg');
+            background: linear-gradient(to bottom, rgba(2,8,4,0.7), rgba(2,8,4,0.9)), url('assets/amazon_jungle_bg.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-blend-mode: multiply;
             z-index: -2;
+        }
+
+        /* Moldura Orgânica e Cards */
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .speaker-card {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .speaker-card:hover { transform: translateY(-10px); }
+
+        .image-container {
+            position: relative;
+            width: 200px;
+            height: 240px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .irregular-frame {
+            position: absolute;
+            inset: 0;
+            border: 8px solid #1b4332;
+            border-radius: 30px 15px 40px 20px / 20px 40px 15px 35px; /* Efeito orgânico */
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .speaker-card:hover .irregular-frame {
+            border-color: var(--amazon-gold);
+            border-radius: 15px 40px 20px 30px / 40px 15px 35px 20px;
+        }
+
+        .speaker-photo {
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            object-fit: cover;
+            border-radius: 20px 10px 30px 15px / 15px 30px 10px 25px;
+        }
+
+        .flag-corner {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid #1b4332;
+            object-fit: cover;
+            background: white;
+            z-index: 2;
+        }
+
+        .speaker-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--medical-white);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .speaker-role {
+            font-size: 0.7rem;
+            color: var(--amazon-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 1.4;
+        }
+
+        /* Modal Bio */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 8, 4, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--jungle-green);
+            max-width: 900px;
+            width: 100%;
+            padding: 60px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-left: 10px solid var(--amazon-gold);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: var(--amazon-gold);
+            line-height: 1;
         }
 
         .leaf-particle {
@@ -177,132 +291,132 @@
     </nav>
     <style>@media (min-width: 901px) { #flags-only-mobile { display: none !important; } }</style>
 
-    <!-- SLIDE 1 (Equivalente à imagem 1.jpg) -->
+    <!-- SLIDE 1 -->
     <section class="amazon-slide slide-dark" id="slide-1">
         <div class="slide-content-wrapper layout-center">
-            <p class="mono parallax-text" style="color: var(--medical-white); font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">OCTOBER 19–23, 2026</p>
-            <h1 class="hero-title parallax-text">2º BC AMAZON WEEK</h1>
-            <p class="text-body parallax-text" style="font-size: 1.5rem; text-transform: uppercase;">II International Bariatric Channel Congress<br>X Bariatric Channel Live Surgeries<br>II Bariatric Channel LATAM Symposium</p>
+            <p class="mono parallax-text" style="color: var(--medical-white); font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO, 2026</p>
+            <h1 class="hero-title parallax-text" id="congress-title">2º BC AMAZON WEEK</h1>
+            <p class="text-body parallax-text" style="font-size: 1.5rem; text-transform: uppercase;">II Congresso Internacional Bariatric Channel<br>X Cirurgias Ao Vivo Bariatric Channel<br>II Simpósio LATAM Bariatric Channel</p>
         </div>
     </section>
 
-    <!-- SLIDE 2 (Equivalente à imagem 2.jpg) -->
+    <!-- SLIDE 2 -->
     <section class="amazon-slide slide-glass" id="slide-2">
         <div class="slide-content-wrapper layout-split">
             <div>
-                <p class="mono" style="color: var(--amazon-gold);">BASED ON 1ST BC CONGRESS 2025</p>
-                <h2 class="title-white">HISTORY & TRACK RECORD</h2>
+                <p class="mono" style="color: var(--amazon-gold);">BASEADO NO 1º CONGRESSO BC 2025</p>
+                <h2 class="title-white">HISTÓRICO E TRAJETÓRIA</h2>
                 <div class="text-body">
-                    A community of over 900 active bariatric surgeons connected through the most innovative academic platform in Latin America.
+                    Uma comunidade de mais de 900 cirurgiões bariátricos ativos conectados através da plataforma acadêmica mais inovadora da América Latina.
                 </div>
             </div>
             <div class="glass-box">
                 <ul style="color: var(--medical-white); line-height: 2.2; list-style: none; font-size: 1.1rem; padding:0;">
-                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Total Attendees:</strong> 422 surgeons</li>
-                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Scientific Faculty:</strong> 77 speakers (35 international and 42 national)</li>
-                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Surgical Volume:</strong> 30 live surgeries, including 5 remote broadcasts from partner cities (Florianópolis/SC, Vitória/ES, Curitiba/PR, and Orlando/USA)</li>
-                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Platform Reach:</strong> A community of over 900 active bariatric surgeons.</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Total de Participantes:</strong> 422 cirurgiões</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Corpo Docente Científico:</strong> 77 palestrantes (35 internacionais e 42 nacionais)</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Volume Cirúrgico:</strong> 30 cirurgias ao vivo, incluindo 5 transmissões remotas de cidades parceiras (Florianópolis/SC, Vitória/ES, Curitiba/PR e Orlando/EUA)</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Alcance da Plataforma:</strong> Uma comunidade de mais de 900 cirurgiões bariátricos ativos.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- SLIDE 3 (Equivalente à imagem 3.jpg) -->
+    <!-- SLIDE 3 -->
     <section class="amazon-slide slide-solid" id="slide-3">
         <div class="slide-content-wrapper layout-center">
-            <h2 class="title-gold">A HIGH-END CLINICAL PROSPECTUS</h2>
+            <h2 class="title-gold">UM PROSPECTO CLÍNICO DE ALTA PERFORMANCE</h2>
             <p class="text-body" style="max-width: 900px; font-size: 1.8rem; line-height: 1.4;">
-                Dedicated to Innovation, High Technology, and Technical Excellence in Bariatric and Metabolic Surgery.
+                Dedicado à Inovação, Alta Tecnologia e Excelência Técnica em Cirurgia Bariátrica e Metabólica.
             </p>
             
             <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; width: 100%;">
                 <div class="glass-box" style="flex: 1; min-width: 250px; text-align: center; border-top: 2px solid var(--amazon-gold);">
-                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Advanced Surgical Technique</h3>
+                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Técnica Cirúrgica Avançada</h3>
                 </div>
                 <div class="glass-box" style="flex: 1; min-width: 250px; text-align: center; border-top: 2px solid var(--medical-white);">
-                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Metabolic Pharmacology</h3>
+                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Farmacologia Metabólica</h3>
                 </div>
                 <div class="glass-box" style="flex: 1; min-width: 250px; text-align: center; border-top: 2px solid var(--jungle-green);">
-                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Artificial Intelligence Integration</h3>
+                    <h3 style="color: var(--medical-white); font-size: 1.2rem;">Integração de Inteligência Artificial</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SLIDE 4 (Equivalente à imagem 4.jpg) -->
+    <!-- SLIDE 4 -->
     <section class="amazon-slide slide-dark" id="slide-4">
         <div class="slide-content-wrapper layout-center">
-            <h2 class="title-white">EVENT PHASES</h2>
+            <h2 class="title-white">FASES DO EVENTO</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; text-align: left;">
                 <div style="background: rgba(10,47,26,0.8); padding: 40px; border-left: 4px solid var(--amazon-gold);">
-                    <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">PHASE A (OCT 19-20)</p>
-                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">PRE-CONGRESS MASTER LABS</h3>
-                    <p class="text-body" style="margin: 0; font-size: 1rem;">Intimate, High-Focus. The site for specialized immersions and private OR transmissions.</p>
+                    <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">FASE A (19-20 OUT)</p>
+                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">PRÉ-CONGRESSO MASTER LABS</h3>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">Íntimo, Foco Total. O local para imersões especializadas e transmissões de centro cirúrgico privado.</p>
                 </div>
                 <div style="background: rgba(2,8,4,0.8); padding: 40px; border-left: 4px solid var(--medical-white);">
-                    <p class="mono" style="color: var(--medical-white); margin-bottom: 10px;">PHASE B (OCT 21-23)</p>
-                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">MAIN PLENARY & LIVE BROADCASTS</h3>
-                    <p class="text-body" style="margin: 0; font-size: 1rem;">Mass Audience. The core scientific theater.</p>
+                    <p class="mono" style="color: var(--medical-white); margin-bottom: 10px;">FASE B (21-23 OUT)</p>
+                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">PLENÁRIA PRINCIPAL E TRANSMISSÕES AO VIVO</h3>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">Grande Audiência. O coração do teatro científico.</p>
                 </div>
                 <div style="background: rgba(27,67,50,0.8); padding: 40px; border-left: 4px solid var(--jungle-light);">
-                    <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">PHASE C (OCT 21-23)</p>
-                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">THE BUSINESS FAIR</h3>
-                    <p class="text-body" style="margin: 0; font-size: 1rem;">The Sponsor Epicenter. Intersecting the flow of all attendees.</p>
+                    <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">FASE C (21-23 OUT)</p>
+                    <h3 style="color: var(--medical-white); margin-bottom: 15px;">A FEIRA DE NEGÓCIOS</h3>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">O Epicentro dos Patrocinadores. Cruzando o fluxo de todos os participantes.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- SLIDE 5 (Equivalente à imagem 5.jpg) -->
+    <!-- SLIDE 5 -->
     <section class="amazon-slide slide-glass" id="slide-5">
         <div class="slide-content-wrapper">
             <div style="text-align: center; margin-bottom: 60px;">
-                <p class="mono" style="color: var(--amazon-gold);">OCT 19-20</p>
-                <h2 class="title-white" style="margin-bottom: 10px;">PRE-CONGRESS MASTER ACTIVITIES</h2>
+                <p class="mono" style="color: var(--amazon-gold);">19-20 OUT</p>
+                <h2 class="title-white" style="margin-bottom: 10px;">ATIVIDADES MASTER PRÉ-CONGRESSO</h2>
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
-                <!-- Column 1 -->
+                <!-- Coluna 1 -->
                 <div>
-                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">SURGICAL IMMERSION<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(MedTech Focus)</span></h3>
+                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">IMERSÃO CIRÚRGICA<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Foco MedTech)</span></h3>
                     <ul style="list-style: none; padding: 0;">
                         <li style="margin-bottom: 20px;">
-                            <strong style="color: var(--medical-white);">Course 1 (Ileal Surgeries)</strong>
-                            <p style="font-size: 0.9rem; color: var(--soft-creme); opacity: 0.8; margin-top: 5px;">16 Total Surgeries | 2 Days | 4 Simultaneous Operating Rooms<br><br>Participants are physically inside the OR with the surgeons. Key point lectures, tips and interaction with special faculty. High-Value Exposure: Direct contact with premium surgical technology and devices.</p>
+                            <strong style="color: var(--medical-white);">Curso 1 (Cirurgias Ileais)</strong>
+                            <p style="font-size: 0.9rem; color: var(--soft-creme); opacity: 0.8; margin-top: 5px;">16 Cirurgias Totais | 2 Dias | 4 Salas de Cirurgia Simultâneas<br><br>Os participantes estão fisicamente dentro da sala de cirurgia com os cirurgiões. Palestras de pontos-chave, dicas e interação com professores especiais. Exposição de Alto Valor: Contato direto com tecnologia e dispositivos cirúrgicos premium.</p>
                         </li>
                     </ul>
                 </div>
                 
-                <!-- Column 2 -->
+                <!-- Coluna 2 -->
                 <div>
-                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">METABOLIC & CLINICAL PROGRESSION<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Pharma/Diagnostic)</span></h3>
+                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">PROGRESSÃO METABÓLICA E CLÍNICA<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Foco Farma/Diagnóstico)</span></h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 2: FibroScan</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Hands-on, 20 cases)</span></li>
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 3: Diabetes</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Clinical/surgical treatment)</span></li>
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 4: MASLD</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Metabolic liver disease)</span></li>
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 5: Incretin Peptides</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Obesity pharmacology & GLP-1 protocols)</span></li>
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 6: Nutritional Supplementation</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Therapies & ethics)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 2: FibroScan</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Prático, 20 casos)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 3: Diabetes</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Tratamento clínico/cirúrgico)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 4: MASLD</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Doença hepática metabólica)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 5: Peptídeos Incretínicos</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Farmacologia da obesidade e protocolos GLP-1)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 6: Suplementação Nutricional</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Terapias e ética)</span></li>
                     </ul>
                 </div>
 
-                <!-- Column 3 -->
+                <!-- Coluna 3 -->
                 <div>
-                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">FUTURE PRACTICE<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Health-Tech Focus)</span></h3>
+                    <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">PRÁTICA DO FUTURO<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Foco Health-Tech)</span></h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 7: AI in Medical Practice</strong></li>
-                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Course 8: Medical Marketing & AI</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Visibility & ROI)</span></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 7: IA na Prática Médica</strong></li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--medical-white);">Curso 8: Marketing Médico & IA</strong><br><span style="font-size:0.85rem; color: var(--soft-creme); opacity:0.8;">(Visibilidade e ROI)</span></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SLIDE 6 (Equivalente à imagem 6.jpg) -->
+    <!-- SLIDE 6 -->
     <section class="amazon-slide slide-solid" id="slide-6">
         <div class="slide-content-wrapper layout-center">
-            <h2 class="title-gold" style="margin-bottom: 10px;">THE SCIENTIFIC ELITE</h2>
-            <p class="mono" style="color: var(--medical-white); margin-bottom: 50px;">2026 CONFIRMED GLOBAL FACULTY</p>
+            <h2 class="title-gold" style="margin-bottom: 10px;">A ELITE CIENTÍFICA</h2>
+            <p class="mono" style="color: var(--medical-white); margin-bottom: 50px;">CORPO DOCENTE GLOBAL CONFIRMADO 2026</p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; width: 100%;">
                 <div>
@@ -310,11 +424,11 @@
                     <p style="color: var(--medical-white); line-height: 1.8;">Alex Escalona<br>Camilo Boza<br>Italo Braghetto<br>Jorge Bravo Lopez</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">MEXICO</h4>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">MÉXICO</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Sérgio Verboonen<br>Manuel Aceves</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">SPAIN</h4>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">ESPANHA</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Amador Garcia<br>Antonio Torres</p>
                 </div>
                 <div>
@@ -322,7 +436,7 @@
                     <p style="color: var(--medical-white); line-height: 1.8;">Daniel Caiña</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">FRANCE</h4>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">FRANÇA</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Patrick Noel</p>
                 </div>
                 <div>
@@ -330,7 +444,7 @@
                     <p style="color: var(--medical-white); line-height: 1.8;">Luiz Poggi</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">GERMANY</h4>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">ALEMANHA</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Ricardo Zorron</p>
                 </div>
                 <div>
@@ -338,73 +452,101 @@
                     <p style="color: var(--medical-white); line-height: 1.8;">Rui Ribeiro</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">USA</h4>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">EUA</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Júlio Teixeira<br>André Teixeira<br>Mitchel Roslin<br>Manoel Galvão Neto</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">EMIRATES</h4>
+                    <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">EMIRADOS ÁRABES</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Laurent Layani</p>
                 </div>
             </div>
             
             <div style="margin-top: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
-                <p class="text-body" style="font-size: 1rem; max-width: 800px; margin: 0 auto;">These are the initial confirmed speakers. Our final faculty will include several additional world-renowned experts, further expanding our lineup of global references in bariatric surgery.</p>
+                <p class="text-body" style="font-size: 1rem; max-width: 800px; margin: 0 auto;">Estes são os palestrantes iniciais confirmados. Nosso corpo docente final incluirá diversos outros especialistas de renome mundial, expandindo ainda mais nossa constelação de referências globais em cirurgia bariátrica.</p>
             </div>
         </div>
     </section>
 
-    <!-- SLIDES 7 A 12 (Participantes e Encerramento) -->
+    <!-- SLIDE 7 - NOSSO TIME -->
     <section class="amazon-slide slide-glass" id="slide-7">
         <div class="slide-content-wrapper layout-center">
-            <div class="glass-box" style="padding: 10px; border-top: none; border-bottom: 3px solid var(--amazon-gold);">
-                <img src="assets/participantes/7.jpg" alt="Slide 7" style="width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <h2 class="title-white">DIRETORIA EXECUTIVA</h2>
+            <div class="speaker-grid" id="grid-diretoria">
+                <!-- Injetado via JS -->
             </div>
         </div>
     </section>
 
+    <!-- SLIDE 8 - NOSSO TIME -->
     <section class="amazon-slide slide-dark" id="slide-8">
         <div class="slide-content-wrapper layout-center">
-            <div class="glass-box" style="padding: 10px; border-top: none; border-bottom: 3px solid var(--medical-white);">
-                <img src="assets/participantes/8.jpg" alt="Slide 8" style="width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <h2 class="title-white" style="color:var(--amazon-gold)">PRESIDENTES DE HONRA</h2>
+            <div class="speaker-grid" id="grid-honorary">
+                <!-- Injetado via JS -->
             </div>
         </div>
     </section>
 
+    <!-- SLIDE 9 - NOSSO TIME -->
     <section class="amazon-slide slide-glass" id="slide-9">
         <div class="slide-content-wrapper layout-center">
-            <div class="glass-box" style="padding: 10px; border-top: none; border-bottom: 3px solid var(--amazon-gold);">
-                <img src="assets/participantes/9.jpg" alt="Slide 9" style="width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <h2 class="title-white">NOSSO TIME</h2>
+            <div class="speaker-grid" id="grid-team">
+                <!-- Injetado via JS -->
             </div>
         </div>
     </section>
 
+    <!-- SLIDE 10 - FULL MEMBERS -->
     <section class="amazon-slide slide-solid" id="slide-10">
         <div class="slide-content-wrapper layout-center">
-            <div class="glass-box" style="padding: 10px; border-top: none; border-bottom: 3px solid var(--amazon-gold);">
-                <img src="assets/participantes/10.jpg" alt="Slide 10" style="width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <h2 class="title-white">FULL MEMBERS</h2>
+            <div class="speaker-grid" id="grid-members-1">
+                <!-- Injetado via JS -->
             </div>
         </div>
     </section>
 
+    <!-- SLIDE 11 - FULL MEMBERS -->
     <section class="amazon-slide slide-dark" id="slide-11">
         <div class="slide-content-wrapper layout-center">
-            <div class="glass-box" style="padding: 10px; border-top: none; border-bottom: 3px solid var(--medical-white);">
-                <img src="assets/participantes/11.jpg" alt="Slide 11" style="width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <h2 class="title-white">FULL MEMBERS (CONT.)</h2>
+            <div class="speaker-grid" id="grid-members-2">
+                <!-- Injetado via JS -->
             </div>
         </div>
     </section>
 
+    <!-- SLIDE 12 -->
     <section class="amazon-slide slide-glass" id="slide-12">
         <div class="slide-content-wrapper layout-center">
-            <div class="glass-box" style="padding: 10px; border-top: none; border-bottom: 3px solid var(--amazon-gold);">
-                <img src="assets/participantes/12.jpg" alt="Slide 12" style="width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-            </div>
+            <h1 class="hero-title" style="font-size: 4rem;">NOS VEMOS NA SELVA!</h1>
+            <p class="text-body" style="text-align: center;">Prepare-se para a experiência acadêmica mais intensa do ano.</p>
             
             <div style="margin-top: 60px;">
                 <a href="checkin_bc.html" class="btn-amazon">GARANTIR MEU CHECK-IN</a>
             </div>
         </div>
     </section>
+
+    <!-- MODAL BIO -->
+    <div class="modal" id="bio-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBio()">&times;</span>
+            <div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;" id="modal-body-content">
+                <div class="image-container" style="width:200px; height:240px; margin:0;">
+                    <div class="irregular-frame"></div>
+                    <img id="modal-img" src="" class="speaker-photo">
+                </div>
+                <div>
+                    <p id="modal-flag" class="mono" style="color:var(--amazon-gold); margin-bottom:10px;"></p>
+                    <h2 id="modal-name" style="color:var(--medical-white); margin-bottom:15px; font-size: 2.2rem;"></h2>
+                    <p id="modal-role" class="speaker-role" style="font-size:1rem; margin-bottom:20px;"></p>
+                    <div id="modal-bio" style="color: rgba(255,255,255,0.8); line-height:1.8; font-size: 0.95rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <a href="home.html" class="logo">
@@ -416,6 +558,103 @@
         
         <!-- Script Tradutor Google -->
         <script>
+            // Configurações Globais
+            const speakerDataUrl = 'data/palestrantes_raw.json';
+            let allSpeakers = [];
+
+            const groups = {
+                diretoria: ["VICTOR RAMOS MUSSA DIB", "CARLOS MADALOSSO", "PAULO REIS", "PATRICK NOEL"],
+                honorary: ["CARLOS EDUARDO DOMENE", "ANTONIO TORRES", "ALMINO CARDOSO RAMOS"],
+                team: ["RUI RIBEIRO", "ELINTON ADAMI CHAIM", "JORGE BRAVO LOPEZ", "AMADOR GARCIA RUIZ DE GORDEJUELA", "EDUARDO GRECCO", "HALIT EREN TASKIN", "MANOEL PASSOS GALVÃO NETO"],
+                members1: ["ANA CAROLINA CALDEIRA CARVALHO FERNANDES", "ANDRÉ WEISS", "ANTELMO SASSO FIN", "Carlos Dillemburg", "CARLOS TANIZAWA", "DIOGO SWAIN KFOURI", "Felix Antonio Insaurriaga dos Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "HIROJI OKANO JUNIOR"],
+                members2: ["IBRAHIM MASSUQUETO ANDRADE GOMES DE SOUZA", "Joe JoaquimWaltrick", "MARIANA CALANCA", "MAURÍLIO RIBEIRO JUNIOR", "NAIARA PORTUGAL", "NICHOLAS KRUEL", "Rafel Abaid", "RODRIGO FERNANDES", "REINALDO MORIOKA"]
+            };
+
+            const rolesOverride = {
+                "VICTOR RAMOS MUSSA DIB": "FOUNDER/PRESIDENT",
+                "CARLOS MADALOSSO": "FOUNDER/VICE PRESIDENT",
+                "PAULO REIS": "EXECUTIVE DIRECTOR",
+                "PATRICK NOEL": "INTERNATIONAL DIRECTOR",
+                "CARLOS EDUARDO DOMENE": "Honorary President",
+                "ANTONIO TORRES": "Honorary President",
+                "ALMINO CARDOSO RAMOS": "Honorary President"
+            };
+
+            async function initSpeakers() {
+                try {
+                    const resp = await fetch(speakerDataUrl);
+                    allSpeakers = await resp.json();
+                    
+                    renderGroup(groups.diretoria, 'grid-diretoria');
+                    renderGroup(groups.honorary, 'grid-honorary');
+                    renderGroup(groups.team, 'grid-team');
+                    renderGroup(groups.members1, 'grid-members-1');
+                    renderGroup(groups.members2, 'grid-members-2');
+                } catch (e) {
+                    console.error("Erro ao carregar palestrantes:", e);
+                }
+            }
+
+            function renderGroup(names, gridId) {
+                const grid = document.getElementById(gridId);
+                if (!grid) return;
+
+                names.forEach(name => {
+                    const speaker = allSpeakers.find(s => s.Nome.toUpperCase().includes(name.toUpperCase()) || name.toUpperCase().includes(s.Nome.toUpperCase()));
+                    
+                    const card = document.createElement('div');
+                    card.className = 'speaker-card';
+                    
+                    const photo = speaker && speaker["Foto URL"] ? `<img src="${speaker["Foto URL"]}" class="speaker-photo">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
+                    const country = speaker && speaker["País"] ? speaker["País"].toLowerCase() : '';
+                    const flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country)}.png` : '';
+                    const role = rolesOverride[name] || (speaker ? speaker["Mini currículo"]?.split('\n')[0].substring(0, 40) : "");
+
+                    card.innerHTML = `
+                        <div class="image-container" onclick="openBio('${name}')">
+                            <div class="irregular-frame"></div>
+                            ${photo}
+                            ${flagUrl ? `<img src="${flagUrl}" class="flag-corner">` : ''}
+                        </div>
+                        <div class="speaker-name">${name.split(',')[0]}</div>
+                        <div class="speaker-role">${role}</div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            function getCountryCode(c) {
+                const map = { 'bra': 'br', 'fra': 'fr', 'usa': 'us', 'esp': 'es', 'prt': 'pt', 'chl': 'cl', 'mex': 'mx', 'ita': 'it', 'arg': 'ar', 'per': 'pe', 'deu': 'de', 'are': 'ae', 'tur': 'tr' };
+                return map[c.toLowerCase()] || c.toLowerCase();
+            }
+
+            function openBio(name) {
+                const speaker = allSpeakers.find(s => s.Nome.toUpperCase().includes(name.toUpperCase()) || name.toUpperCase().includes(s.Nome.toUpperCase()));
+                if (!speaker) return;
+
+                document.getElementById('modal-img').src = speaker["Foto URL"] || '';
+                document.getElementById('modal-name').innerText = speaker.Nome;
+                document.getElementById('modal-role').innerText = rolesOverride[name] || "";
+                document.getElementById('modal-flag').innerText = speaker["País"] || "";
+                document.getElementById('modal-bio').innerHTML = speaker["Mini currículo"] ? speaker["Mini currículo"].replace(/\n/g, '<br>') : "Currículo em atualização.";
+                
+                document.getElementById('bio-modal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeBio() {
+                document.getElementById('bio-modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == document.getElementById('bio-modal')) closeBio();
+            }
+
+            // Inicialização
+            initSpeakers();
+
+            // Google Translate
             function googleTranslateElementInit() {
                 new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
             }
@@ -435,8 +674,10 @@
                     el.style.opacity = 1 - (scrolled * 0.003);
                 });
                 
-                particles[0].style.transform = `translateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
-                particles[1].style.transform = `translateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
+                if(particles.length >= 2) {
+                    particles[0].style.transform = `translateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
+                    particles[1].style.transform = `translateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
+                }
             });
         </script>
         <div id="google_translate_element" style="display:none;"></div>

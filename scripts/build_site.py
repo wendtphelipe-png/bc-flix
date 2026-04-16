@@ -20,7 +20,9 @@ assets_to_copy = {
     'BC institucional-1.mp4': 'bc_video.mp4',
     'Animação_de_Logo_com_VEO.mp4': 'animacao_logo.mp4',
     'Check-in.png': 'Check-in.png',
-    'onça low.jpg': 'onça low.jpg'
+    'onça low.jpg': 'onça low.jpg',
+    'IMG_2037.JPG.jpeg': 'paulo_reis_v2.jpg',
+    'unnamed.png': 'apoio_institucional_v2.png'
 }
 
 for src_name, dest_name in assets_to_copy.items():

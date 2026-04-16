@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check-in do Corpo Docente | Bariatric Channel</title>
+    <!-- Import Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -115,9 +117,7 @@
             <div class="input-group">
                 <label class="mono step-label">1. CONFIRME O EVENTO</label>
                 <select id="eventSelect" onchange="onEventSelection()">
-                    <option value="">-- SELECIONE O EVENTO --</option>
-                    <option value="amazon">2º BC AMAZON WEEK</option>
-                    <option value="masterclass">MASTERCLASS BARIÁTRICA</option>
+                    <option value="">-- CONECTANDO NUVEM... --</option>
                 </select>
             </div>
 
@@ -184,83 +184,149 @@
     </div>
 
     <script>
-        const eventos = {
-            'amazon': {
-                titulo: '2º BC AMAZON WEEK',
+        // CLIENTE SUPABASE CONECTADO (Com proteção de falha)
+        const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
+        const supabaseKey = 'sb_publishable_A-Gxbkir7foDZgZvaOuiHw_pMVXXdEV';
+        let supabase = null;
+        try {
+            if (window.supabase) {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            }
+        } catch (e) {
+            console.error("Supabase SDK failed to initialize.");
+        }
+
+        // MODO DEMONSTRAÇÃO ATIVADO POR PADRÃO
+        let eventosData = [
+            {
+                id: 'evento-demo',
+                titulo: '2º BC Amazon Week (Modo Demonstração)',
                 imagem: 'assets/onça low.jpg',
                 palestrantes: [
-                    { nome: 'Dr. Paulo Reis', aulas: ['Abertura - Inovações em Bipartição', 'Cirurgia ao Vivo: Transit Bipartition'] },
-                    { nome: 'Dr. Victor Dib', aulas: ['Robótica na Amazônia', 'Cirurgia ao Vivo: Sleeve Robótico'] },
-                    { nome: 'Dr. Carlos Madalosso', aulas: ['Refluxo Pós-Bariátrica', 'Simpósio Latino-Americano'] }
-                ]
-            },
-            'masterclass': {
-                titulo: 'MASTERCLASS BARIÁTRICA',
-                imagem: '',
-                palestrantes: [
-                    { nome: 'Dr. Paulo Reis', aulas: ['Módulo 1: Anatomia Metabólica'] },
-                    { nome: 'Dr. Victor Dib', aulas: ['Módulo 2: Gestão de Complicações'] }
+                    {nome: 'Dr. Paulo Reis'},
+                    {nome: 'Dr. Victor Dib'},
+                    {nome: 'Dr. Madalosso'},
+                    {nome: 'Dr. Italo Braghetto (Chile)'},
+                    {nome: 'Dr. André Teixeira (USA)'}
+                ],
+                cronograma: [
+                    { hora: "08:00", titulo: "Abertura Masterclass", palestrante: "Dr. Paulo Reis" },
+                    { hora: "10:00", titulo: "Cirurgia ao Vivo", palestrante: "Dr. Victor Dib" }
                 ]
             }
-        };
+        ];
+        let currentEvent = null;
+
+        // Inicializa imediatamente com o demo
+        window.addEventListener('DOMContentLoaded', () => {
+            renderEventOptions();
+            // Tenta carregar dados reais em background se o SDK estiver ativo
+            if (supabase) loadRealEvents();
+        });
+
+        async function loadRealEvents() {
+            try {
+                const { data, error } = await supabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
+                if(!error && data && data.length > 0) {
+                    // Mescla mantendo o demo no topo ou apenas os reais
+                    const realData = data.filter(d => d.id !== 'evento-demo');
+                    eventosData = [...eventosData, ...realData];
+                    renderEventOptions();
+                }
+            } catch (e) {
+                console.warn("Supabase bypass active.");
+            }
+        }
+
+        function renderEventOptions() {
+            const selectEl = document.getElementById("eventSelect");
+            const currentVal = selectEl.value;
+            let options = '<option value="">-- SELECIONE O EVENTO --</option>';
+            eventosData.forEach(ev => {
+                options += `<option value="${ev.id}">${ev.titulo}</option>`;
+            });
+            selectEl.innerHTML = options;
+            if (currentVal) selectEl.value = currentVal;
+        }
 
         function onEventSelection() {
-            const id = document.getElementById("eventSelect").value;
+            const evId = document.getElementById("eventSelect").value;
+            const container = document.getElementById("mainContainer");
             const speakerStep = document.getElementById("speakerStep");
             const speakerSelect = document.getElementById("speakerSelect");
-            const container = document.getElementById("mainContainer");
             
-            // Reset
-            speakerStep.style.display = "none";
             document.getElementById("doctorDetails").style.display = "none";
             document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "none";
 
-            if (id && eventos[id]) {
-                const event = eventos[id];
-                if (event.imagem) {
-                    container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.85) 0%, rgba(0,242,255,0.4) 100%), url('${event.imagem}')`;
-                } else {
-                    container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+            if (evId) {
+                currentEvent = eventosData.find(e => e.id === evId);
+                if (currentEvent) {
+                    if(currentEvent.imagem) {
+                        container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.8) 0%, rgba(0,242,255,0.4) 100%), url('${currentEvent.imagem}')`;
+                        container.style.backgroundSize = "cover";
+                        container.style.backgroundPosition = "center";
+                    } else {
+                        container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
+                    }
+                    
+                    let options = '<option value="">-- BUSQUE E SELECIONE SEU NOME --</option>';
+                    if(currentEvent.palestrantes) {
+                        const sorted = [...currentEvent.palestrantes].sort((a,b) => (a.nome||'').localeCompare(b.nome||''));
+                        sorted.forEach(p => { 
+                            if(p.nome) options += `<option value="${p.nome}">${p.nome}</option>`; 
+                        });
+                    }
+                    speakerSelect.innerHTML = options;
+                    speakerStep.style.display = "block";
                 }
-
-                let options = '<option value="">-- BUSQUE E SELECIONE SEU NOME --</option>';
-                event.palestrantes.forEach(p => {
-                    options += `<option value="${p.nome}">${p.nome}</option>`;
-                });
-                speakerSelect.innerHTML = options;
-                speakerStep.style.display = "block";
             } else {
+                speakerStep.style.display = "none";
                 container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
             }
         }
 
         function onSpeakerSelection() {
-            const eventId = document.getElementById("eventSelect").value;
             const name = document.getElementById("speakerSelect").value;
-            const details = document.getElementById("doctorDetails");
+            const detailsDiv = document.getElementById("doctorDetails");
             const scheduleList = document.getElementById("scheduleListContainer");
+            
+            document.getElementById("formWrapper").style.display = "none";
+            document.getElementById("rejectionMsg").style.display = "none";
 
-            if (name && eventId) {
-                const doc = eventos[eventId].palestrantes.find(p => p.nome === name);
+            if (name && currentEvent) {
+                detailsDiv.style.display = "block";
                 let html = "";
-                doc.aulas.forEach(aula => {
-                    html += `<div class="schedule-item">
-                        <div class="schedule-event">${eventos[eventId].titulo}</div>
-                        <div class="schedule-time">SESSÃO CONFIRMADA</div>
-                        <div style="font-size: 0.95rem;">${aula}</div>
-                    </div>`;
-                });
+                let hasSchedule = false;
+
+                if (currentEvent.cronograma) {
+                    currentEvent.cronograma.forEach(item => {
+                        if (item.palestrante && item.palestrante.toLowerCase().includes(name.toLowerCase())) {
+                            hasSchedule = true;
+                            html += `
+                            <div class="schedule-item">
+                                <div class="schedule-event">${currentEvent.titulo}</div>
+                                <div class="schedule-time">${item.hora || 'HORÁRIO A DEFINIR'}</div>
+                                <div style="color: var(--dark-slate); font-size: 0.95rem;">${item.titulo}</div>
+                            </div>
+                            `;
+                        }
+                    });
+                }
+                
+                if (!hasSchedule) {
+                    html = "<p style='color: var(--dark-slate); font-style: italic;'>Nenhuma sessão atribuída especificamente a você no cronograma. Por favor, conclua seu check-in normalmente.</p>";
+                }
                 scheduleList.innerHTML = html;
-                details.style.display = "block";
             } else {
-                details.style.display = "none";
+                detailsDiv.style.display = "none";
             }
         }
 
         function acceptTerms() {
             document.getElementById("rejectionMsg").style.display = "none";
             document.getElementById("formWrapper").style.display = "block";
-            document.getElementById("formWrapper").scrollIntoView({ behavior: 'smooth' });
+            document.getElementById("formWrapper").scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function rejectTerms() {
