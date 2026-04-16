@@ -261,10 +261,66 @@
             border: none;
         }
 
-        .grid-2 {
+        .grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
+        }
+
+        .check-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .check-group input { width: auto; height: auto; }
+
+        .btn-mini {
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            background: #eef2f7;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-mini:hover { background: var(--vitality-red); color: white; border-color: var(--vitality-red); }
+
+        .btn-save-row {
+            padding: 8px 15px;
+            font-size: 0.75rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .image-preview-box {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
         }
 
         .top-bar {
@@ -409,62 +465,130 @@
 
                     <!-- Campos principais -->
                     <div class="section-box">
-                        <h2>Dados Principais (Visão Geral)</h2>
-                        <div class="grid-2">
-                            <div class="form-group">
-                                <label>Título do Evento</label><input v-model="activeEvent.titulo" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label>Data (Ex: 19 a 23/10/26)</label><input v-model="activeEvent.data" type="text">
-                            </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="margin:0;">Dados Principais</h2>
+                            <button class="btn-save-row" @click="saveEventToCloud">SALVAR ALTERAÇÕES GERAIS</button>
                         </div>
-                        <div class="grid-2">
-                            <div class="form-group">
-                                <label>Horário Geral</label><input v-model="activeEvent.horario" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label>Localização Completa</label><input v-model="activeEvent.local" type="text">
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
-                            <label>URL Imagem de Fundo</label>
-                            <input v-model="activeEvent.imagem" type="text"
-                                placeholder="https://seudominio.com/assets/img.png">
-                            <div class="image-preview"
-                                :style="{ backgroundImage: 'url(' + (activeEvent.imagem || '') + ')' }"></div>
+                            <label>Título do Evento</label>
+                            <input v-model="activeEvent.titulo" type="text" placeholder="Ex: 2º BC Amazon Week">
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Data de Início</label>
+                                <input v-model="activeEvent.data_inicio" type="date">
+                            </div>
+                            <div class="form-group">
+                                <label class="check-group">
+                                    <input type="checkbox" v-model="activeEvent.usar_data_fim"> Terá data de término?
+                                </label>
+                                <input v-model="activeEvent.data_fim" type="date" :disabled="!activeEvent.usar_data_fim">
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Horário de Início</label>
+                                <input v-model="activeEvent.horario_inicio" type="time">
+                            </div>
+                            <div class="form-group">
+                                <label class="check-group">
+                                    <input type="checkbox" v-model="activeEvent.usar_horario_fim"> Terá horário de término?
+                                </label>
+                                <input v-model="activeEvent.horario_fim" type="time" :disabled="!activeEvent.usar_horario_fim">
+                            </div>
+                        </div>
+
+                        <hr style="opacity: 0.1; margin: 20px 0;">
+
+                        <div class="form-group">
+                            <label class="check-group">
+                                <input type="checkbox" v-model="activeEvent.ao_vivo"> Evento ao Vivo (Online)?
+                            </label>
+                            
+                            <div v-if="activeEvent.ao_vivo">
+                                <label>Link do Evento (Zoom, YouTube, etc)</label>
+                                <input v-model="activeEvent.link_ao_vivo" type="text" placeholder="https://zoom.us/j/...">
+                            </div>
+                            <div v-else>
+                                <label>Endereço Completo</label>
+                                <input v-model="activeEvent.endereco" type="text" placeholder="Rua, Número, Cidade - Estado">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Imagem de Fundo (Backdrop)</label>
+                            <div class="image-preview-box">
+                                <div class="image-preview" :style="{ backgroundImage: 'url(' + (activeEvent.imagem || '') + ')' }"></div>
+                                <div style="flex: 1;">
+                                    <input v-model="activeEvent.imagem" type="text" placeholder="URL da imagem..." style="margin-bottom: 10px;">
+                                    <div class="file-input-wrapper">
+                                        <button class="btn-add">ESCOLHER ARQUIVO DO DISPOSITIVO</button>
+                                        <input type="file" @change="handleFileUpload" accept="image/*">
+                                    </div>
+                                    <p v-if="uploading" class="mono" style="font-size: 0.7rem; color: var(--vitality-red); margin-top: 5px;">Enviando para Nuvem...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="section-box">
-                        <h2>Corpo Docente (Participantes)</h2>
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Aparecerão no Dropdown do
-                            Check-in deste evento.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="margin:0;">Corpo Docente</h2>
+                            <button class="btn-save-row" @click="saveEventToCloud">ATUALIZAR LISTA</button>
+                        </div>
 
                         <div class="list-group">
                             <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item"
-                                style="grid-template-columns: 1fr;">
-                                <input v-model="pal.nome" type="text" placeholder="Nome Completo do Médico">
+                                style="grid-template-columns: 2fr 1fr 50px;">
+                                <input v-model="pal.nome" type="text" placeholder="Nome Completo">
+                                <select v-model="pal.funcao" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                                    <option value="Professor(a)">Professor(a)</option>
+                                    <option value="Moderador(a)">Moderador(a)</option>
+                                    <option value="Presidente">Presidente</option>
+                                    <option value="Debatedor(a)">Debatedor(a)</option>
+                                </select>
                                 <button class="trash" @click="removePalestrante(pIdx)">X</button>
                             </div>
                         </div>
-                        <button class="btn-add" @click="addPalestrante">+ ADICIONAR PROFESSOR</button>
+                        <button class="btn-add" @click="addPalestrante">+ ADICIONAR PESSOA</button>
                     </div>
 
                     <div class="section-box">
-                        <h2>Aulas / Cronograma</h2>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="margin:0;">Cronograma de Aulas</h2>
+                            <button class="btn-save-row" @click="saveEventToCloud">SALVAR CRONOGRAMA</button>
+                        </div>
                         <div class="list-group">
                             <div v-for="(c, cIdx) in activeEvent.cronograma" :key="cIdx" class="list-item"
-                                style="grid-template-columns: 1fr 2fr 2fr; align-items: start;">
-                                <div class="form-group" style="margin: 0;"><label>Data/Hora</label><input
-                                        v-model="c.hora" type="text"></div>
-                                <div class="form-group" style="margin: 0;"><label>Título</label><input
-                                        v-model="c.titulo" type="text"></div>
-                                <div class="form-group" style="margin: 0;"><label>Palestrante(s)</label><input
-                                        v-model="c.palestrante" type="text"></div>
+                                style="grid-template-columns: 1fr 2fr 2fr 50px; align-items: start;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>Duração/Início</label>
+                                    <input v-model="c.hora" type="text" placeholder="08:00">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>Título da Aula</label>
+                                    <input v-model="c.titulo" type="text" placeholder="Nome da Palestra">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>Palestrante (Lista Docente)</label>
+                                    <select v-model="c.palestrante" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd; width: 100%;">
+                                        <option value="">Selecione...</option>
+                                        <option v-for="p in activeEvent.palestrantes" :key="p.nome" :value="p.nome">{{ p.nome }}</option>
+                                    </select>
+                                </div>
                                 <button class="trash" @click="removeCronograma(cIdx)" style="top: 25px;">X</button>
                             </div>
                         </div>
-                        <button class="btn-add" @click="addCronograma">+ AULA NA AGENDA</button>
+                        <button class="btn-add" @click="addCronograma">+ NOVA AULA</button>
+                    </div>
+                    
+                    <div style="margin: 40px 0; text-align: right;">
+                        <button class="btn-save" style="font-size: 1.5rem; padding: 20px 40px;" @click="saveEventToCloud" :disabled="saving">
+                            {{ saving ? 'ESTABELECENDO CONEXÃO...' : 'SALVAR EVENTO COMPLETO' }}
+                        </button>
                     </div>
                 </div>
                 <!-- Vazio -->
@@ -500,6 +624,7 @@
                     password: '',
                     loginError: '',
                     loading: false,
+                    uploading: false,
                     eventos: [],
                     activeEvent: null,
                     saving: false,
@@ -519,6 +644,35 @@
                 this.checkSession();
             },
             methods: {
+                async handleFileUpload(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    this.uploading = true;
+                    try {
+                        const fileExt = file.name.split('.').pop();
+                        const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
+                        const filePath = `${fileName}`;
+
+                        const { data, error } = await bcSupabase.storage
+                            .from('event_images')
+                            .upload(filePath, file);
+
+                        if (error) throw error;
+
+                        const { data: { publicUrl } } = bcSupabase.storage
+                            .from('event_images')
+                            .getPublicUrl(filePath);
+
+                        this.activeEvent.imagem = publicUrl;
+                        this.showToast('Imagem enviada com sucesso!', 'success');
+                    } catch (e) {
+                        console.error(e);
+                        this.showToast('Erro no upload. Verifique o Storage.', 'error');
+                    } finally {
+                        this.uploading = false;
+                    }
+                },
                 async checkSession() {
                     try {
                         const { data: { session } } = await bcSupabase.auth.getSession();
@@ -553,22 +707,39 @@
                         this.showToast('Erro ao buscar do Supabase.', 'error');
                     } else {
                         this.eventos = data;
-                        if (this.eventos.length > 0) this.activeEvent = this.eventos[0];
+                        if (this.eventos.length > 0) {
+                            this.activeEvent = this.eventos[0];
+                        }
                     }
                 },
                 selectEvent(ev) {
                     this.activeEvent = ev;
                 },
                 createEventModal() {
-                    const id = prompt("ID único:");
+                    const id = prompt("ID único (ex: amazon-2026):");
                     if (!id) return;
-                    const novo = { id: id, titulo: "Novo", data: "", local: "", horario: "", imagem: "assets/onça.png", cronograma: [], palestrantes: [] };
+                    const novo = { 
+                        id: id, 
+                        titulo: "Novo Evento", 
+                        data_inicio: "", 
+                        data_fim: "",
+                        usar_data_fim: false,
+                        horario_inicio: "",
+                        horario_fim: "",
+                        usar_horario_fim: false,
+                        endereco: "",
+                        ao_vivo: false,
+                        link_ao_vivo: "",
+                        imagem: "assets/onça.png", 
+                        cronograma: [], 
+                        palestrantes: [] 
+                    };
                     this.eventos.unshift(novo);
                     this.activeEvent = novo;
                 },
                 addPalestrante() {
                     if (!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
-                    this.activeEvent.palestrantes.push({ nome: "" });
+                    this.activeEvent.palestrantes.push({ nome: "", funcao: "Professor(a)" });
                 },
                 removePalestrante(idx) {
                     this.activeEvent.palestrantes.splice(idx, 1);
@@ -582,18 +753,31 @@
                 },
                 async saveEventToCloud() {
                     this.saving = true;
-                    const { error } = await bcSupabase.from('eventos_bc').upsert({
+                    const payload = {
                         id: this.activeEvent.id,
                         titulo: this.activeEvent.titulo,
-                        data: this.activeEvent.data,
-                        local: this.activeEvent.local,
-                        horario: this.activeEvent.horario,
+                        data_inicio: this.activeEvent.data_inicio,
+                        data_fim: this.activeEvent.data_fim,
+                        usar_data_fim: this.activeEvent.usar_data_fim,
+                        horario_inicio: this.activeEvent.horario_inicio,
+                        horario_fim: this.activeEvent.horario_fim,
+                        usar_horario_fim: this.activeEvent.usar_horario_fim,
+                        endereco: this.activeEvent.endereco,
+                        ao_vivo: this.activeEvent.ao_vivo,
+                        link_ao_vivo: this.activeEvent.link_ao_vivo,
                         imagem: this.activeEvent.imagem,
                         palestrantes: this.activeEvent.palestrantes || [],
                         cronograma: this.activeEvent.cronograma || []
-                    });
-                    if (error) this.showToast('Erro ao salvar', 'error');
-                    else this.showToast('Salvo com sucesso!', 'success');
+                    };
+
+                    const { error } = await bcSupabase.from('eventos_bc').upsert(payload);
+                    if (error) {
+                        console.error(error);
+                        this.showToast('Erro ao salvar no Supabase.', 'error');
+                    } else {
+                        this.showToast('Salvo com sucesso!', 'success');
+                        this.fetchEventos(); // Refresh
+                    }
                     this.saving = false;
                 },
                 async deleteEvent(id) {
