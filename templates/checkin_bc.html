@@ -33,6 +33,17 @@
         }
         .logo img { height: 45px; width: auto; }
 
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--deep-blue); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition-smooth); }
+        .nav-links a:hover { color: var(--vitality-red); }
+        .nav-link-highlight { color: var(--vitality-red) !important; border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px; }
+
+        .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
+        .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
+        .lang-switcher img { width: 22px; height: auto; border: 1px solid #ccc; border-radius: 2px; }
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+
         .checkin-container {
             flex: 1; display: flex; justify-content: center; align-items: center; padding: 60px 5%;
             background: linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%);
@@ -48,11 +59,11 @@
         .step-label { color: var(--vitality-red); margin-bottom: 20px; display: block; }
         .input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
 
-        select, input {
+        select, input, textarea {
             padding: 15px; border: 1px solid #E0E0E0; background: #F9F9F9;
             font-family: inherit; font-size: 1rem; outline: none; transition: var(--transition-smooth); width: 100%;
         }
-        select:focus, input:focus { border-color: var(--vitality-red); background: #FFF; }
+        select:focus, input:focus, textarea:focus { border-color: var(--vitality-red); background: #FFF; }
 
         /* Dynamic Sections */
         #speakerStep, #doctorDetails, #formWrapper { display: none; animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -82,7 +93,27 @@
 
     <nav>
         <a href="home.html" class="logo"><img src="assets/logo_final.png" alt="Bariatric Channel Logo"></a>
+        <div class="nav-links" style="display:none;" id="nav-links-mobile-hide">
+            <a href="home.html#procedimentos">PRÓXIMOS EVENTOS</a>
+            <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://bariatricchannel.com.br" class="nav-link-highlight">BC FLIX</a>
+            <div class="lang-switcher" style="display:flex; gap:5px; margin-left:10px;">
+                <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+                <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+                <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
+            </div>
+        </div>
+        <!-- Always show flags even if hidden links on mobile -->
+        <div class="lang-switcher" style="display:flex; gap:5px; margin-left:auto;" id="flags-only-mobile">
+            <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+            <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+            <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
+        </div>
     </nav>
+    <style>
+        @media (min-width: 769px) { #flags-only-mobile { display: none !important; } #nav-links-mobile-hide { display: flex !important; } }
+        @media (max-width: 768px) { #nav-links-mobile-hide { display: none !important; } }
+    </style>
 
     <div class="checkin-container" id="mainContainer">
         <div class="checkin-card">
@@ -137,12 +168,20 @@
                 <div class="mailerlite-placeholder" style="border: 1px dashed rgba(10,25,47,0.2); padding: 30px; background: #fafafa;">
                     <form id="bc-checkin-form">
                         <div class="input-group">
+                            <label class="mono">COMO PREFERE SER CHAMADO / ANUNCIADO?</label>
+                            <input type="text" placeholder="Ex: Dr. Nome Sobrenome" required>
+                        </div>
+                        <div class="input-group">
                             <label class="mono">E-mail Profissional</label>
                             <input type="email" placeholder="Seu e-mail de contato principal" required>
                         </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div class="input-group"><label class="mono">CRM / UF</label><input type="text" placeholder="000000-UF" required></div>
                             <div class="input-group"><label class="mono">WhatsApp Exclusivo</label><input type="tel" placeholder="(00) 00000-0000" required></div>
+                        </div>
+                        <div class="input-group">
+                            <label class="mono">ADICIONE UMA VERSÃO RESUMIDA DO SEU CURRÍCULO</label>
+                            <textarea placeholder="Cole aqui seu mini currículo... (Ex: Especialista em XYZ, Membro Titular SBCBM...)" rows="4" style="resize: vertical;" required></textarea>
                         </div>
                         <button type="button" class="btn btn-confirm" style="width: 100%;" onclick="alert('Formulário base MailerLite')">FINALIZAR CHECK-IN</button>
                     </form>
@@ -264,6 +303,16 @@
             document.getElementById("formWrapper").style.display = "none";
             document.getElementById("rejectionMsg").style.display = "block";
         }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLang(lang) {
+            let select = document.querySelector('select.goog-te-combo');
+            if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
+        }
     </script>
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
