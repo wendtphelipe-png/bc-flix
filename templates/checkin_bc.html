@@ -306,6 +306,8 @@
                 flex-direction: column;
             }
         }
+
+        [v-cloak] { display: none !important; }
     </style>
 </head>
 
@@ -356,7 +358,7 @@
                     </div>
                 </div>
 
-                <div v-if="selectedEventId" id="speakerStep" style="display: block;">
+                <div v-if="selectedEventId" id="speakerStep">
                     <div class="input-group">
                         <label class="mono step-label">2. SELECIONE SEU NOME</label>
                         <select v-model="selectedSpeakerName" @change="onSpeakerChange">
@@ -366,7 +368,7 @@
                     </div>
                 </div>
 
-                <div v-if="selectedSpeaker" id="doctorDetails" style="display: block;">
+                <div v-if="selectedSpeaker" id="doctorDetails">
                     <div class="schedule-box">
                         <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
                         <div id="scheduleListContainer">
@@ -393,7 +395,7 @@
                     </div>
                 </div>
 
-                <div v-if="termsAccepted" id="formWrapper" style="display: block;">
+                <div v-if="termsAccepted" id="formWrapper">
                     <div class="warning-box">
                         <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
                         Após preencher as informações abaixo e concluir este check-in, <strong>você receberá um e-mail automático da nossa equipe</strong> solicitando o envio de uma Foto de Divulgação (alta resolução) e de um Pitch/Vídeo Convite curto que utilizaremos nas campanhas do evento.<br>Por favor, fique atento à sua caixa de entrada e spam.
@@ -526,6 +528,7 @@
         }).mount('#app');
     </script>
 
+    <script>
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');
         }
