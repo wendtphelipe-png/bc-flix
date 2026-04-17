@@ -426,6 +426,10 @@
             </div>
         </div>
         {% endraw %}
+        <!-- Diagnóstico (Apenas se houver erro ou para teste) -->
+        <div v-if="selectedEventId" style="margin-top: 20px; font-size: 10px; opacity: 0.5; color: #666; max-width: 800px; overflow: auto; background: #eee; padding: 10px;">
+            DEBUG DATA: {{ activeEvent }}
+        </div>
     </div>
 
     <script>
@@ -457,15 +461,18 @@
                     const ev = this.eventos.find(ev => ev.id === this.selectedEventId);
                     if (!ev) return null;
                     
-                    // Garante que palestrantes e cronograma sejam arrays
-                    if (typeof ev.palestrantes === 'string') {
-                        try { ev.palestrantes = JSON.parse(ev.palestrantes); } catch(e) { ev.palestrantes = []; }
-                    }
-                    if (typeof ev.cronograma === 'string') {
-                        try { ev.cronograma = JSON.parse(ev.cronograma); } catch(e) { ev.cronograma = []; }
+                    // Se palestrantes vier como string (por erro de tipo no banco), tenta converter
+                    let pals = ev.palestrantes;
+                    if (typeof pals === 'string') {
+                        try { pals = JSON.parse(pals); } catch(e) { pals = []; }
                     }
                     
-                    return ev;
+                    let crono = ev.cronograma;
+                    if (typeof crono === 'string') {
+                        try { crono = JSON.parse(crono); } catch(e) { crono = []; }
+                    }
+
+                    return { ...ev, palestrantes: pals || [], cronograma: crono || [] };
                 },
                 availableSpeakers() {
                     return this.activeEvent ? (this.activeEvent.palestrantes || []) : [];
@@ -488,7 +495,12 @@
             methods: {
                 async fetchEventos() {
                     const { data, error } = await bcSupabase.from('eventos_bc').select('*');
-                    if (!error) this.eventos = data;
+                    if (!error) {
+                        console.log("Eventos carregados:", data);
+                        this.eventos = data;
+                    } else {
+                        console.error("Erro ao buscar eventos:", error);
+                    }
                 },
                 formatDate(dateStr) {
                     if (!dateStr) return '';
