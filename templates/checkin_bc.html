@@ -332,10 +332,6 @@
     <div class="checkin-container" id="mainContainer">
         {% raw %}
         <div id="app" v-cloak>
-            <div class="checkin-card">
-                <div style="background: #e6fffa; color: #008672; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid #b2f5ea; text-align: center;">
-                    ✅ SISTEMA ATUALIZADO (V2.5) - DIAGNÓSTICO ATIVO
-                </div>
                 <h1>CHECK-IN CORPO DOCENTE</h1>
                 <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
 
@@ -365,7 +361,13 @@
                         <label class="mono step-label">2. SELECIONE SEU NOME</label>
                         <select v-model="selectedSpeakerName" @change="onSpeakerChange">
                             <option value="">-- BUSQUE E SELECIONE SEU NOME --</option>
-                            <option v-for="p in availableSpeakers" :key="p.nome" :value="p.nome">{{ p.nome }}</option>
+                            <option v-for="p in availableSpeakers" 
+                                    :key="p.nome" 
+                                    :value="p.nome"
+                                    :disabled="isCheckinDone(p.nome)"
+                                    :style="{ color: isCheckinDone(p.nome) ? '#999' : 'inherit' }">
+                                {{ p.nome }} {{ isCheckinDone(p.nome) ? '(Check-in realizado)' : '' }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -423,19 +425,7 @@
                             <textarea v-model="formData.bio" placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
                         </div>
                         <button class="btn btn-confirm" style="width: 100%;" @click="finishCheckin">CONCLUIR CHECK-IN</button>
-                    <button class="btn btn-confirm" style="width: 100%;" @click="finishCheckin">CONCLUIR CHECK-IN</button>
                 </div>
-            </div>
-
-            <!-- Diagnóstico (AGORA DENTRO DO VUE) -->
-            <div v-if="selectedEventId" style="margin-top: 30px; font-size: 11px; color: #666; background: #f0f0f0; padding: 15px; border: 1px dashed #ccc; overflow: auto; max-width: 100%;">
-                <div style="font-weight: bold; margin-bottom: 5px; color: var(--vitality-red);">PAINEL DE DIAGNÓSTICO (V2.6):</div>
-                <strong>ID Selecionado:</strong> "{{ selectedEventId }}"<br>
-                <strong>Evento Encontrado:</strong> {{ activeEvent ? 'SIM' : 'NÃO' }}<br>
-                <strong>Qtd Professores:</strong> {{ availableSpeakers.length }}<br>
-                <hr style="margin: 10px 0;">
-                <strong>DADOS BRUTOS:</strong><br>
-                {{ activeEvent }}
             </div>
         </div>
         {% endraw %}
@@ -456,6 +446,7 @@
                     selectedSpeakerName: '',
                     termsAccepted: false,
                     showRejection: false,
+                    checkinsRealizados: [], // Nova lista
                     formData: {
                         nomeAnuncio: '',
                         email: '',
@@ -529,10 +520,22 @@
                     const year = ev.data_inicio.split('-')[0];
                     return `${str}/${year}`;
                 },
-                onEventChange() {
+                isCheckinDone(name) {
+                    return this.checkinsRealizados.some(c => c.medico_nome === name);
+                },
+                async onEventChange() {
                     this.selectedSpeakerName = '';
                     this.termsAccepted = false;
                     this.showRejection = false;
+                    this.checkinsRealizados = [];
+
+                    if (this.selectedEventId) {
+                        const { data } = await bcSupabase.from('checkins_realizados')
+                            .select('medico_nome')
+                            .eq('evento_id', this.selectedEventId);
+                        this.checkinsRealizados = data || [];
+                    }
+
                     const container = document.getElementById("mainContainer");
                     if (this.activeEvent && this.activeEvent.imagem) {
                         container.style.backgroundImage = `linear-gradient(135deg, rgba(10,25,47,0.85) 0%, rgba(0,242,255,0.4) 100%), url('${this.activeEvent.imagem}')`;
