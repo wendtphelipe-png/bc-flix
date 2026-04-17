@@ -12,6 +12,13 @@ ADD COLUMN IF NOT EXISTS link_ao_vivo TEXT,
 ADD COLUMN IF NOT EXISTS palestrantes JSONB DEFAULT '[]',
 ADD COLUMN IF NOT EXISTS cronograma JSONB DEFAULT '[]';
 
+-- FORÇAR CONVERSÃO CASO JÁ EXISTAM COMO TEXTO (Retrocompatibilidade)
+-- Caso as colunas já existissem como outro tipo, o comando acima não altera o tipo.
+-- O comando abaixo garante que sejam JSONB.
+ALTER TABLE eventos_bc 
+ALTER COLUMN palestrantes TYPE JSONB USING palestrantes::JSONB,
+ALTER COLUMN cronograma TYPE JSONB USING cronograma::JSONB;
+
 -- 2. CRIAR BUCKET DE IMAGENS (Se não possuir o bucket 'event_images')
 INSERT INTO storage.buckets (id, name, public) 
 VALUES ('event_images', 'event_images', true)
