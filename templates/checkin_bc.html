@@ -424,15 +424,22 @@
                             <textarea v-model="formData.bio" placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
                         </div>
                         <button class="btn btn-confirm" style="width: 100%;" @click="finishCheckin">CONCLUIR CHECK-IN</button>
-                    </div>
+                    <button class="btn btn-confirm" style="width: 100%;" @click="finishCheckin">CONCLUIR CHECK-IN</button>
                 </div>
+            </div>
+
+            <!-- Diagnóstico (AGORA DENTRO DO VUE) -->
+            <div v-if="selectedEventId" style="margin-top: 30px; font-size: 11px; color: #666; background: #f0f0f0; padding: 15px; border: 1px dashed #ccc; overflow: auto; max-width: 100%;">
+                <div style="font-weight: bold; margin-bottom: 5px; color: var(--vitality-red);">PAINEL DE DIAGNÓSTICO (V2.6):</div>
+                <strong>ID Selecionado:</strong> "{{ selectedEventId }}"<br>
+                <strong>Evento Encontrado:</strong> {{ activeEvent ? 'SIM' : 'NÃO' }}<br>
+                <strong>Qtd Professores:</strong> {{ availableSpeakers.length }}<br>
+                <hr style="margin: 10px 0;">
+                <strong>DADOS BRUTOS:</strong><br>
+                {{ activeEvent }}
             </div>
         </div>
         {% endraw %}
-        <!-- Diagnóstico (Apenas se houver erro ou para teste) -->
-        <div v-if="selectedEventId" style="margin-top: 20px; font-size: 10px; opacity: 0.5; color: #666; max-width: 800px; overflow: auto; background: #eee; padding: 10px;">
-            DEBUG DATA: {{ activeEvent }}
-        </div>
     </div>
 
     <script>
