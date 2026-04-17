@@ -366,7 +366,7 @@
                                     :value="p.nome"
                                     :disabled="isCheckinDone(p.nome)"
                                     :style="{ color: isCheckinDone(p.nome) ? '#999' : 'inherit' }">
-                                {{ p.nome }} {{ isCheckinDone(p.nome) ? '(Check-in realizado)' : '' }}
+                                [{{ p.funcao || 'Professor(a)' }}] {{ p.nome }} {{ isCheckinDone(p.nome) ? '(Check-in realizado)' : '' }}
                             </option>
                         </select>
                     </div>
@@ -374,6 +374,11 @@
 
                 <div v-if="selectedSpeaker" id="doctorDetails">
                     <div class="schedule-box">
+                        <div style="font-size: 0.8rem; color: var(--vitality-red); font-weight: 800; margin-bottom: 5px;" class="mono">
+                            {{ selectedSpeaker.funcao || 'Professor(a)' }} Confirmado(a)
+                        </div>
+                        <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, {{ selectedSpeaker.nome }}</h3>
+                        
                         <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
                         <div id="scheduleListContainer">
                             <div v-for="(aula, aIdx) in selectedSpeakerAulas" :key="aIdx" class="schedule-item">
