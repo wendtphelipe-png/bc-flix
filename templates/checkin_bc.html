@@ -454,19 +454,32 @@
             },
             computed: {
                 activeEvent() {
-                    return this.eventos.find(ev => ev.id === this.selectedEventId);
+                    const ev = this.eventos.find(ev => ev.id === this.selectedEventId);
+                    if (!ev) return null;
+                    
+                    // Garante que palestrantes e cronograma sejam arrays
+                    if (typeof ev.palestrantes === 'string') {
+                        try { ev.palestrantes = JSON.parse(ev.palestrantes); } catch(e) { ev.palestrantes = []; }
+                    }
+                    if (typeof ev.cronograma === 'string') {
+                        try { ev.cronograma = JSON.parse(ev.cronograma); } catch(e) { ev.cronograma = []; }
+                    }
+                    
+                    return ev;
                 },
                 availableSpeakers() {
-                    return this.activeEvent ? this.activeEvent.palestrantes : [];
+                    return this.activeEvent ? (this.activeEvent.palestrantes || []) : [];
                 },
                 selectedSpeaker() {
+                    if (!this.availableSpeakers) return null;
                     return this.availableSpeakers.find(p => p.nome === this.selectedSpeakerName);
                 },
                 selectedSpeakerAulas() {
-                    if (!this.activeEvent || !this.selectedSpeakerName) return [];
-                    return this.activeEvent.cronograma.filter(c => 
-                        c.palestrante.toUpperCase().includes(this.selectedSpeakerName.toUpperCase())
-                    );
+                    if (!this.activeEvent || !this.selectedSpeakerName || !this.activeEvent.cronograma) return [];
+                    return this.activeEvent.cronograma.filter(c => {
+                        if (!c.palestrante) return false;
+                        return c.palestrante.toUpperCase().includes(this.selectedSpeakerName.toUpperCase());
+                    });
                 }
             },
             mounted() {

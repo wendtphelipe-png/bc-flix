@@ -8,7 +8,9 @@ ADD COLUMN IF NOT EXISTS horario_fim TIME,
 ADD COLUMN IF NOT EXISTS usar_horario_fim BOOLEAN DEFAULT FALSE,
 ADD COLUMN IF NOT EXISTS endereco TEXT,
 ADD COLUMN IF NOT EXISTS ao_vivo BOOLEAN DEFAULT FALSE,
-ADD COLUMN IF NOT EXISTS link_ao_vivo TEXT;
+ADD COLUMN IF NOT EXISTS link_ao_vivo TEXT,
+ADD COLUMN IF NOT EXISTS palestrantes JSONB DEFAULT '[]',
+ADD COLUMN IF NOT EXISTS cronograma JSONB DEFAULT '[]';
 
 -- 2. CRIAR BUCKET DE IMAGENS (Se não possuir o bucket 'event_images')
 INSERT INTO storage.buckets (id, name, public) 
