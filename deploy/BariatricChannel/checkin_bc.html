@@ -334,6 +334,9 @@
         
         <div id="app" v-cloak>
             <div class="checkin-card">
+                <div style="background: #e6fffa; color: #008672; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid #b2f5ea; text-align: center;">
+                    ✅ SISTEMA ATUALIZADO (V2.5) - DIAGNÓSTICO ATIVO
+                </div>
                 <h1>CHECK-IN CORPO DOCENTE</h1>
                 <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
 
@@ -458,7 +461,9 @@
             },
             computed: {
                 activeEvent() {
-                    const ev = this.eventos.find(ev => ev.id === this.selectedEventId);
+                    if (!this.selectedEventId) return null;
+                    const cleanId = String(this.selectedEventId).trim();
+                    const ev = this.eventos.find(ev => String(ev.id).trim() === cleanId);
                     if (!ev) return null;
                     
                     // Se palestrantes vier como string (por erro de tipo no banco), tenta converter
