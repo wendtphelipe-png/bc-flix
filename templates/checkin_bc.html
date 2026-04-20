@@ -549,7 +549,9 @@
             },
             methods: {
                 async fetchEventos() {
-                    const { data, error } = await bcSupabase.from('eventos_bc').select('*');
+                    const { data, error } = await bcSupabase.from('eventos_bc')
+                        .select('*')
+                        .order('data_inicio', { ascending: true });
                     if (!error) {
                         console.log("Eventos carregados:", data);
                         this.eventos = data;
