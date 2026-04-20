@@ -717,7 +717,7 @@
                     // Ordenação por data de início (mais recentes primeiro)
                     const { data, error } = await bcSupabase.from('eventos_bc')
                         .select('*')
-                        .order('data_inicio', { ascending: false });
+                        .order('data_inicio', { ascending: true });
                     
                     if (error) {
                         this.showToast('Erro ao buscar do Supabase.', 'error');
