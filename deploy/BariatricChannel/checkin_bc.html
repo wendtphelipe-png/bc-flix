@@ -231,6 +231,36 @@
             text-transform: uppercase;
         }
 
+        .highlighted-session {
+            background: rgba(0, 242, 255, 0.05);
+            border-left: 4px solid var(--electric-cyan) !important;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2) !important;
+            padding: 20px;
+            margin: 0 -10px 15px -10px;
+            border-radius: 4px;
+        }
+
+        .user-badge {
+            background: var(--electric-cyan);
+            color: var(--deep-blue);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+            letter-spacing: 0.05em;
+        }
+
+        .other-colleagues {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .term-box {
             background: rgba(10, 25, 47, 0.02);
             border: 1px solid rgba(10, 25, 47, 0.1);
@@ -380,12 +410,24 @@
                         </div>
                         <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, {{ selectedSpeaker.nome }}</h3>
                         
-                        <h3 class="schedule-title">SUAS AULAS E ATRIBUIÇÕES:</h3>
-                        <div id="scheduleListContainer">
-                            <div v-for="(aula, aIdx) in selectedSpeakerAulas" :key="aIdx" class="schedule-item">
-                                <div class="schedule-event">{{ activeEvent.titulo }}</div>
-                                <div class="schedule-time">SESSÃO CONFIRMADA</div>
-                                <div style="font-size: 0.95rem;">{{ aula.titulo }} - {{ aula.hora }}</div>
+                        <h3 class="schedule-title">PROGRAMAÇÃO DO EVENTO E SUAS ATRIBUIÇÕES:</h3>
+                        <div id="scheduleListContainer" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                            <div v-for="(aula, aIdx) in activeEvent.cronograma" 
+                                 :key="aIdx" 
+                                 class="schedule-item"
+                                 :class="{ 'highlighted-session': isUserSpeaker(aula.palestrante) }">
+                                
+                                <div class="schedule-time">
+                                    {{ aula.hora }}
+                                    <span v-if="isUserSpeaker(aula.palestrante)" class="user-badge">SUA ATRIBUIÇÃO</span>
+                                </div>
+                                <div class="schedule-event" :style="{ color: isUserSpeaker(aula.palestrante) ? 'var(--deep-blue)' : 'inherit' }">
+                                    {{ aula.titulo }}
+                                </div>
+                                <div class="other-colleagues">
+                                    <span>🎙️ Integrantes:</span>
+                                    <span style="font-weight: 500;">{{ aula.palestrante }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -569,6 +611,16 @@
                     } else {
                         alert('Erro ao salvar check-in. Por favor, tente novamente.');
                     }
+                },
+                normalizeStr(str) {
+                    if (!str) return '';
+                    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+                },
+                isUserSpeaker(palestranteStr) {
+                    if (!palestranteStr || !this.selectedSpeakerName) return false;
+                    const normPal = this.normalizeStr(palestranteStr);
+                    const normUser = this.normalizeStr(this.selectedSpeakerName);
+                    return normPal.includes(normUser);
                 }
             }
         }).mount('#app');
