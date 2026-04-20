@@ -584,6 +584,18 @@
                         </div>
                         <button class="btn-add" @click="addCronograma">+ NOVA AULA</button>
                     </div>
+
+                    <!-- Informações Extras -->
+                    <div class="section-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="margin:0;">Informações Extras / Discussão</h2>
+                            <button class="btn-save-row" @click="saveEventToCloud">SALVAR NOTAS</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Notas Adicionais (Presidentes, Debatedores, Tempo de discussão, etc.)</label>
+                            <textarea v-model="activeEvent.info_extra" placeholder="Descreva aqui os detalhes que aparecerão no check-in do professor..." rows="6" style="width: 100%; padding: 15px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; font-size: 0.95rem;"></textarea>
+                        </div>
+                    </div>
                     
                     <div style="margin: 40px 0; text-align: right;">
                         <button class="btn-save" style="font-size: 1.5rem; padding: 20px 40px;" @click="saveEventToCloud" :disabled="saving">
@@ -701,14 +713,23 @@
                     await bcSupabase.auth.signOut();
                     this.session = null;
                 },
-                async fetchEventos() {
-                    const { data, error } = await bcSupabase.from('eventos_bc').select('*').order('titulo', { ascending: true });
+                async fetchEventos(selectedId = null) {
+                    // Ordenação por data de início (mais recentes primeiro)
+                    const { data, error } = await bcSupabase.from('eventos_bc')
+                        .select('*')
+                        .order('data_inicio', { ascending: false });
+                    
                     if (error) {
                         this.showToast('Erro ao buscar do Supabase.', 'error');
                     } else {
                         this.eventos = data;
                         if (this.eventos.length > 0) {
-                            this.activeEvent = this.eventos[0];
+                            if (selectedId) {
+                                const found = this.eventos.find(ev => ev.id === selectedId);
+                                this.activeEvent = found || this.eventos[0];
+                            } else if (!this.activeEvent) {
+                                this.activeEvent = this.eventos[0];
+                            }
                         }
                     }
                 },
@@ -732,7 +753,8 @@
                         link_ao_vivo: "",
                         imagem: "assets/onça.png", 
                         cronograma: [], 
-                        palestrantes: [] 
+                        palestrantes: [],
+                        info_extra: "" 
                     };
                     this.eventos.unshift(novo);
                     this.activeEvent = novo;
@@ -794,8 +816,11 @@
                         link_ao_vivo: sanitize(this.activeEvent.link_ao_vivo),
                         imagem: sanitize(this.activeEvent.imagem),
                         palestrantes: this.activeEvent.palestrantes || [],
-                        cronograma: this.activeEvent.cronograma || []
+                        cronograma: this.activeEvent.cronograma || [],
+                        info_extra: sanitize(this.activeEvent.info_extra)
                     };
+                    
+                    const currentId = this.activeEvent.id;
 
                     console.log("Enviando payload:", payload);
                     const { error } = await bcSupabase.from('eventos_bc').upsert(payload);
@@ -805,7 +830,7 @@
                     } else {
                         console.log("Salvo com sucesso!");
                         this.showToast('Salvo com sucesso!', 'success');
-                        this.fetchEventos();
+                        await this.fetchEventos(currentId);
                     }
                     this.saving = false;
                 },

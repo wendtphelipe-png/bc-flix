@@ -432,6 +432,11 @@
                         </div>
                     </div>
 
+                    <div v-if="activeEvent.info_extra" class="term-box" style="background: rgba(0, 242, 255, 0.05); border-left: 4px solid var(--electric-cyan); margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 10px; font-size: 1rem; color: var(--deep-blue);">📌 INFORMAÇÕES IMPORTANTES DO EVENTO:</h3>
+                        <p style="white-space: pre-wrap; font-size: 0.9rem; color: var(--dark-slate); line-height: 1.5;">{{ activeEvent.info_extra }}</p>
+                    </div>
+
                     <div class="term-box">
                         <h3 style="margin-bottom: 15px; font-size: 1.1rem;">TERMO DE CONCESSÃO DE IMAGEM E VOZ</h3>
                         <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos eventos.</p>
