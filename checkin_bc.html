@@ -337,6 +337,71 @@
         }
 
         [v-cloak] { display: none !important; }
+
+        /* Estilos MailerLite Customizados para manter o visual do site */
+        #mlb2-40215303.ml-form-embedContainer {
+            width: 100% !important;
+            margin: 0 !important;
+            font-family: inherit !important;
+        }
+        #mlb2-40215303 .ml-form-embedWrapper {
+            background-color: transparent !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        #mlb2-40215303 .ml-form-embedBody {
+            padding: 0 !important;
+        }
+        #mlb2-40215303 .ml-form-fieldRow {
+            margin-bottom: 20px !important;
+        }
+        #mlb2-40215303 input, #mlb2-40215303 textarea {
+            padding: 15px !important;
+            border: 1px solid #E0E0E0 !important;
+            background: #F9F9F9 !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 1rem !important;
+            border-radius: 0 !important;
+            width: 100% !important;
+            transition: all 0.3s ease !important;
+        }
+        #mlb2-40215303 input:focus, #mlb2-40215303 textarea:focus {
+            border-color: var(--vitality-red) !important;
+            background: #FFF !important;
+            outline: none !important;
+        }
+        #mlb2-40215303 .ml-form-embedSubmit button {
+            background-color: var(--deep-blue) !important;
+            color: white !important;
+            padding: 15px 30px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            font-size: 0.9rem !important;
+            border: none !important;
+            border-radius: 0 !important;
+            cursor: pointer !important;
+            width: 100% !important;
+            transition: all 0.3s ease !important;
+        }
+        #mlb2-40215303 .ml-form-embedSubmit button:hover {
+            background-color: var(--vitality-red) !important;
+        }
+        #mlb2-40215303 .ml-form-successBody {
+            background: rgba(0, 242, 255, 0.05) !important;
+            border-left: 4px solid var(--electric-cyan) !important;
+            padding: 20px !important;
+            margin-top: 20px !important;
+        }
+        #mlb2-40215303 .ml-form-successContent h4 {
+            color: var(--deep-blue) !important;
+            font-weight: 800 !important;
+            margin-bottom: 10px !important;
+        }
+        #mlb2-40215303 .ml-form-successContent p {
+            color: var(--dark-slate) !important;
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+        }
     </style>
 </head>
 
@@ -452,32 +517,64 @@
                     </div>
                 </div>
 
-                <div v-if="termsAccepted" id="formWrapper">
+                <div v-show="termsAccepted" id="formWrapper" style="margin-top: 30px;">
                     <div class="warning-box">
                         <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
-                        Após preencher as informações abaixo e concluir este check-in, <strong>você receberá um e-mail automático da nossa equipe</strong> solicitando o envio de uma Foto de Divulgação (alta resolução) e de um Pitch/Vídeo Convite curto que utilizaremos nas campanhas do evento.<br>Por favor, fique atento à sua caixa de entrada e spam.
+                        Após preencher as informações abaixo e concluir este check-in, <strong>você passará a ser parte da lista oficial do evento</strong>. Você receberá comunicações adicionais em seu e-mail.<br>Por favor, fique atento à sua caixa de entrada e spam.
                     </div>
 
                     <label class="mono step-label">3. CONFIRME SEUS DADOS DE CONTATO</label>
 
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label class="mono">QUAL NOME PREFERE SER CHAMADO / ANUNCIADO?</label>
-                            <input v-model="formData.nomeAnuncio" type="text" placeholder="Ex: Dr. Nome Sobrenome">
+                    <!-- MailerLite Form Embed -->
+                    <div id="mlb2-40215303" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40215303">
+                        <div class="ml-form-align-center">
+                            <div class="ml-form-embedWrapper embedForm">
+                                <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                                    <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/185362284482135844/subscribe" data-code="" method="post" target="_blank">
+                                        <div class="ml-form-formContent">
+                                            <div class="ml-form-fieldRow">
+                                                <div class="ml-field-group ml-field-name ml-validate-required">
+                                                    <input aria-label="name" aria-required="true" type="text" class="form-control" name="fields[name]" placeholder="Nome Completo / Como deseja ser anunciado" autocomplete="given-name">
+                                                </div>
+                                            </div>
+                                            <div class="ml-form-fieldRow">
+                                                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                                    <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Seu melhor e-mail" autocomplete="email">
+                                                </div>
+                                            </div>
+                                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="ml-form-fieldRow">
+                                                <div class="ml-field-group ml-field-z_i_p ml-validate-required">
+                                                    <input aria-label="z_i_p" aria-required="true" type="text" class="form-control" name="fields[z_i_p]" placeholder="CRM / UF" autocomplete="">
+                                                </div>
+                                                <div class="ml-field-group ml-field-phone ml-validate-required">
+                                                    <input aria-label="phone" aria-required="true" type="text" class="form-control" name="fields[phone]" placeholder="WhatsApp" autocomplete="">
+                                                </div>
+                                            </div>
+                                            <div class="ml-form-fieldRow ml-last-item">
+                                                <div class="ml-field-group ml-field-company ml-validate-required">
+                                                    <textarea class="form-control" name="fields[company]" aria-label="company" aria-required="true" maxlength="1024" placeholder="Breve currículo resumido" rows="5"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="ml-submit" value="1">
+                                        <div class="ml-form-embedSubmit">
+                                            <button type="submit" class="primary">CONCLUIR CHECK-IN</button>
+                                            <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                                <div class="ml-form-embedSubmitLoad"></div>
+                                            </button>
+                                        </div>
+                                        <input type="hidden" name="anticsrf" value="true">
+                                    </form>
+                                </div>
+                                <div class="ml-form-successBody row-success" style="display: none">
+                                    <div class="ml-form-successContent">
+                                        <h4>Check-in Confirmado!</h4>
+                                        <p>Sua confirmação foi registrada com sucesso para este evento. Fique atento em seu e-mail, vamos solicitar informações adicionais por la. Obrigado</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label class="mono">E-mail Profissional</label>
-                            <input v-model="formData.email" type="email" placeholder="Seu e-mail de contato principal">
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="input-group"><label class="mono">CRM / UF</label><input v-model="formData.crm" type="text" placeholder="000000-UF"></div>
-                            <div class="input-group"><label class="mono">WhatsApp Exclusivo</label><input v-model="formData.whatsapp" type="tel" placeholder="(00) 00000-0000"></div>
-                        </div>
-                        <div class="input-group">
-                            <label class="mono">ADICIONE UMA VERSÃO RESUMIDA DO SEU CURRÍCULO</label>
-                            <textarea v-model="formData.bio" placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
-                        </div>
-                        <button class="btn btn-confirm" style="width: 100%;" @click="finishCheckin">CONCLUIR CHECK-IN</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -603,20 +700,29 @@
                     this.showRejection = false;
                 },
                 async finishCheckin() {
+                    // Este método agora é invocado indiretamente via callback do MailerLite
+                    if (!this.selectedEventId || !this.selectedSpeakerName) return;
+
+                    const form = document.querySelector('.ml-subscribe-form-40215303 form');
+                    const formData = new FormData(form);
+
                     const payload = {
                         evento_id: this.selectedEventId,
                         medico_nome: this.selectedSpeakerName,
-                        ...this.formData,
+                        nomeAnuncio: formData.get('fields[name]'),
+                        email: formData.get('fields[email]'),
+                        crm: formData.get('fields[z_i_p]'),
+                        whatsapp: formData.get('fields[phone]'),
+                        bio: formData.get('fields[company]'),
                         data_checkin: new Date().toISOString()
                     };
                     
                     const { error } = await bcSupabase.from('checkins_realizados').insert([payload]);
                     
-                    if (!error) {
-                        alert('Check-in finalizado com sucesso! Nossa equipe entrará em contato.');
-                        window.location.reload();
+                    if (error) {
+                        console.error('Erro ao sincronizar com Supabase:', error);
                     } else {
-                        alert('Erro ao salvar check-in. Por favor, tente novamente.');
+                        console.log('Check-in sincronizado com Supabase.');
                     }
                 },
                 normalizeStr(str) {
@@ -631,6 +737,32 @@
                 }
             }
         }).mount('#app');
+
+        // Callback Global para o MailerLite
+        function ml_webform_success_40215303() {
+            try {
+                // Acessa a instância do Vue para rodar o Sync do Supabase
+                const appElement = document.getElementById('app');
+                if (appElement && appElement.__vue_app__) {
+                    const vm = appElement.__vue_app__._instance.proxy;
+                    vm.finishCheckin();
+                }
+            } catch (e) {
+                console.error("Erro no callback de sucesso:", e);
+            }
+            
+            // Comportamento padrão do MailerLite
+            const successBody = document.querySelector('.ml-subscribe-form-40215303 .row-success');
+            const formBody = document.querySelector('.ml-subscribe-form-40215303 .row-form');
+            if (successBody) successBody.style.display = 'block';
+            if (formBody) formBody.style.display = 'none';
+        }
+    </script>
+
+    <!-- Scripts MailerLite -->
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/2110375/forms/185362284482135844/takel")
     </script>
 
     <script>
