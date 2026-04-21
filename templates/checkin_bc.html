@@ -533,7 +533,7 @@
                             <div v-if="groupDebaters.length > 0">
                                 <div class="role-group-header">DEBATEDOR(A)</div>
                                 <div v-for="(p, dIdx) in groupDebaters" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
-                                    <span style="font-weight: 600;">DEBATEDOR {{ dIdx + 1 }}: {{ p.nome }}</span>
+                                    <span style="font-weight: 600;">{{ p.nome }}</span>
                                     <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
                             </div>
@@ -773,6 +773,14 @@
                 onSpeakerChange() {
                     this.termsAccepted = false;
                     this.showRejection = false;
+                    
+                    // Auto-scroll para a atribuição destacada
+                    this.$nextTick(() => {
+                        const highlighted = document.querySelector('.highlighted-session');
+                        if (highlighted) {
+                            highlighted.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
                 },
                 async finishCheckin() {
                     // Este método agora é invocado indiretamente via callback do MailerLite
