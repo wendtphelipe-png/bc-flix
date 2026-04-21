@@ -603,10 +603,6 @@
                                 <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
                                     <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/185362284482135844/subscribe" data-code="" method="post" target="_blank">
                                         <div class="ml-form-formContent">
-                                            <!-- Hidden Fields for Internal Sync (Mapped to State/City as per ML config) -->
-                                            <input type="hidden" name="fields[state]" :value="activeEvent ? activeEvent.titulo : ''">
-                                            <input type="hidden" name="fields[city]" :value="selectedSpeaker ? (selectedSpeaker.funcao + ' - ' + selectedSpeaker.nome) : ''">
-
                                             <div class="ml-form-fieldRow">
                                                 <div class="input-group ml-field-group ml-field-name ml-validate-required">
                                                     <label class="mono">NOME COMPLETO / COMO DESEJA SER ANUNCIADO</label>
@@ -633,6 +629,18 @@
                                                 <div class="input-group ml-field-group ml-field-company ml-validate-required">
                                                     <label class="mono">ADICIONE UMA VERSÃO RESUMIDA DO SEU CURRÍCULO</label>
                                                     <textarea class="form-control" name="fields[company]" aria-label="company" aria-required="true" maxlength="1024" placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- Hidden Sync Fields (Using ML structure to ensure capture) -->
+                                            <div class="ml-form-fieldRow" style="display: none !important;">
+                                                <div class="ml-field-group ml-field-state">
+                                                    <textarea name="fields[state]" :value="activeEvent ? activeEvent.titulo : ''"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="ml-form-fieldRow" style="display: none !important;">
+                                                <div class="ml-field-group ml-field-city">
+                                                    <textarea name="fields[city]" :value="selectedSpeaker ? (selectedSpeaker.funcao + ' - ' + selectedSpeaker.nome) : ''"></textarea>
                                                 </div>
                                             </div>
                                         </div>
