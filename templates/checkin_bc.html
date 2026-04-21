@@ -232,13 +232,47 @@
         }
 
         .highlighted-session {
-            background: linear-gradient(90deg, rgba(255, 59, 48, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
-            border-left: 6px solid var(--vitality-red) !important;
-            border-bottom: 1px solid rgba(255, 59, 48, 0.1) !important;
-            padding: 25px;
-            margin: 0 -10px 20px -10px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.05);
+            background: var(--deep-blue) !important;
+            border-left: 8px solid var(--electric-cyan) !important;
+            padding: 30px;
+            margin: 0 -15px 25px -15px;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 255, 0.2);
+            position: relative;
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+        .highlighted-session * {
+            color: white !important;
+        }
+        .highlighted-session .user-badge {
+            background: var(--electric-cyan);
+            color: var(--deep-blue) !important;
+            animation: pulse-cyan 2s infinite;
+        }
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 242, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
+        }
+        .role-group-header {
+            font-size: 0.8rem;
+            color: var(--vitality-red);
+            font-weight: 800;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border-bottom: 1px solid rgba(10, 25, 47, 0.1);
+            padding-bottom: 5px;
+        }
+        .role-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px dashed rgba(10, 25, 47, 0.1);
+            transition: var(--transition-smooth);
         }
 
         .user-badge {
@@ -477,7 +511,36 @@
                         <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, {{ selectedSpeaker.nome }}</h3>
                         
                         <h3 class="schedule-title">PROGRAMAÇÃO DO EVENTO E SUAS ATRIBUIÇÕES:</h3>
-                        <div id="scheduleListContainer" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                        <div id="scheduleListContainer" style="max-height: 500px; overflow-y: auto; padding-right: 15px;">
+                            
+                            <!-- SEÇÃO: MESA DIRETORA E COMISSÃO -->
+                            <div v-if="groupPresidents.length > 0">
+                                <div class="role-group-header">PRESIDENTE</div>
+                                <div v-for="p in groupPresidents" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
+                                    <span style="font-weight: 600;">{{ p.nome }}</span>
+                                    <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
+                                </div>
+                            </div>
+
+                            <div v-if="groupModerators.length > 0">
+                                <div class="role-group-header">MODERADOR(A)</div>
+                                <div v-for="p in groupModerators" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
+                                    <span style="font-weight: 600;">{{ p.nome }}</span>
+                                    <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
+                                </div>
+                            </div>
+
+                            <div v-if="groupDebaters.length > 0">
+                                <div class="role-group-header">DEBATEDOR(A)</div>
+                                <div v-for="(p, dIdx) in groupDebaters" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
+                                    <span style="font-weight: 600;">DEBATEDOR {{ dIdx + 1 }}: {{ p.nome }}</span>
+                                    <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
+                                </div>
+                            </div>
+
+                            <!-- SEÇÃO: CRONOGRAMA TÉCNICO -->
+                            <div class="role-group-header" style="margin-top: 40px; color: var(--deep-blue); border-bottom: 2px solid var(--deep-blue);">CRONOGRAMA DE AULAS / PROFESSORES</div>
+                            
                             <div v-for="(aula, aIdx) in activeEvent.cronograma" 
                                  :key="aIdx" 
                                  class="schedule-item"
@@ -487,12 +550,12 @@
                                     {{ aula.hora }}
                                     <span v-if="isUserSpeaker(aula.palestrante)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
-                                <div class="schedule-event" :style="{ color: isUserSpeaker(aula.palestrante) ? 'var(--deep-blue)' : 'inherit' }">
+                                <div class="schedule-event" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
                                     {{ aula.titulo }}
                                 </div>
                                 <div class="other-colleagues">
-                                    <span>🎤 Participantes:</span>
-                                    <span style="font-weight: 500;">
+                                    <span style="opacity: 0.8;">🎤 Participantes:</span>
+                                    <span style="font-weight: 600;">
                                         {{ formatParticipantsWithRoles(aula.palestrante) }}
                                     </span>
                                 </div>
@@ -501,7 +564,7 @@
                     </div>
 
                     <div v-if="activeEvent.info_extra" class="term-box" style="background: rgba(0, 242, 255, 0.05); border-left: 4px solid var(--electric-cyan); margin-bottom: 20px;">
-                        <h3 style="margin-bottom: 10px; font-size: 1rem; color: var(--deep-blue);">📌 INFORMAÇÕES IMPORTANTES DO EVENTO:</h3>
+                        <h3 style="margin-bottom: 10px; font-size: 1rem; color: var(--deep-blue);">📌 NOTAS DE DISCUSSÃO / EXTRAS:</h3>
                         <p style="white-space: pre-wrap; font-size: 0.9rem; color: var(--dark-slate); line-height: 1.5;">{{ activeEvent.info_extra }}</p>
                     </div>
 
@@ -642,6 +705,15 @@
                         if (!c.palestrante) return false;
                         return c.palestrante.toUpperCase().includes(this.selectedSpeakerName.toUpperCase());
                     });
+                },
+                groupPresidents() {
+                    return this.availableSpeakers.filter(s => s.funcao === 'Presidente');
+                },
+                groupModerators() {
+                    return this.availableSpeakers.filter(s => s.funcao && s.funcao.includes('Moderador'));
+                },
+                groupDebaters() {
+                    return this.availableSpeakers.filter(s => s.funcao && s.funcao.includes('Debatedor'));
                 }
             },
             mounted() {
