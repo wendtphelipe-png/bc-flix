@@ -640,7 +640,7 @@
                                             </div>
                                             <div class="ml-form-fieldRow" style="display: none !important;">
                                                 <div class="ml-field-group ml-field-city">
-                                                    <textarea name="fields[city]" :value="selectedSpeaker ? (selectedSpeaker.funcao + ' - ' + selectedSpeaker.nome) : ''"></textarea>
+                                                    <textarea name="fields[city]" :value="getSpeakerAssignmentsText()"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -815,7 +815,7 @@
                         evento_id: this.selectedEventId,
                         evento_titulo: this.activeEvent ? this.activeEvent.titulo : '',
                         medico_nome: this.selectedSpeakerName,
-                        medico_funcao: this.selectedSpeaker ? this.selectedSpeaker.funcao : '',
+                        medico_funcao: this.getSpeakerAssignmentsText(),
                         nomeAnuncio: formData.get('fields[name]'),
                         email: formData.get('fields[email]'),
                         crm: formData.get('fields[z_i_p]'),
@@ -854,6 +854,36 @@
                         return name;
                     });
                     return enriched.join(', ');
+                },
+                getSpeakerAssignmentsText() {
+                    if (!this.selectedSpeakerName || !this.activeEvent) return '';
+                    let items = [];
+                    const normUser = this.normalizeStr(this.selectedSpeakerName);
+                    
+                    // 1. Grupos de Liderança (Puxando a função exata do cadastro)
+                    this.groupPresidents.filter(p => this.normalizeStr(p.nome) === normUser)
+                        .forEach(p => items.push(p.funcao.toUpperCase()));
+                    
+                    this.groupModerators.filter(p => this.normalizeStr(p.nome) === normUser)
+                        .forEach(p => items.push(p.funcao.toUpperCase()));
+                    
+                    this.groupDebaters.filter(p => this.normalizeStr(p.nome) === normUser)
+                        .forEach(p => items.push(p.funcao.toUpperCase()));
+                    
+                    // 2. Aulas no Cronograma
+                    this.selectedSpeakerAulas.forEach(aula => {
+                        items.push(`Aula: ${aula.titulo} (${aula.hora})`);
+                    });
+                    
+                    // Remover duplicatas caso o nome apareça 2x com a mesma função
+                    const uniqueItems = [...new Set(items)];
+                    
+                    // Fallback
+                    if (uniqueItems.length === 0 && this.selectedSpeaker) {
+                        return this.selectedSpeaker.funcao || 'Professor(a)';
+                    }
+                    
+                    return uniqueItems.join(' | ');
                 }
             }
         }).mount('#app');
