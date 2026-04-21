@@ -396,9 +396,10 @@
             background: #F9F9F9 !important;
             font-family: 'Plus Jakarta Sans', sans-serif !important;
             font-size: 1rem !important;
-            border-radius: 0 !important;
+            border-radius: 4px !important;
             width: 100% !important;
-            transition: all 0.3s ease !important;
+            transition: var(--transition-smooth) !important;
+            color: var(--dark-slate) !important;
         }
         #mlb2-40215303 input:focus, #mlb2-40215303 textarea:focus {
             border-color: var(--vitality-red) !important;
@@ -409,14 +410,15 @@
             background-color: var(--deep-blue) !important;
             color: white !important;
             padding: 15px 30px !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
             font-weight: 800 !important;
             text-transform: uppercase !important;
             font-size: 0.9rem !important;
             border: none !important;
-            border-radius: 0 !important;
+            border-radius: 4px !important;
             cursor: pointer !important;
             width: 100% !important;
-            transition: all 0.3s ease !important;
+            transition: var(--transition-smooth) !important;
         }
         #mlb2-40215303 .ml-form-embedSubmit button:hover {
             background-color: var(--vitality-red) !important;
@@ -599,26 +601,31 @@
                                     <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/185362284482135844/subscribe" data-code="" method="post" target="_blank">
                                         <div class="ml-form-formContent">
                                             <div class="ml-form-fieldRow">
-                                                <div class="ml-field-group ml-field-name ml-validate-required">
-                                                    <input aria-label="name" aria-required="true" type="text" class="form-control" name="fields[name]" placeholder="Nome Completo / Como deseja ser anunciado" autocomplete="given-name">
+                                                <div class="input-group ml-field-group ml-field-name ml-validate-required">
+                                                    <label class="mono">NOME COMPLETO / COMO DESEJA SER ANUNCIADO</label>
+                                                    <input aria-label="name" aria-required="true" type="text" class="form-control" name="fields[name]" placeholder="Ex: Dr. Nome Sobrenome" autocomplete="given-name">
                                                 </div>
                                             </div>
                                             <div class="ml-form-fieldRow">
-                                                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                                                    <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Seu melhor e-mail" autocomplete="email">
+                                                <div class="input-group ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                                    <label class="mono">E-MAIL PROFISSIONAL</label>
+                                                    <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Seu melhor e-mail de contato" autocomplete="email">
                                                 </div>
                                             </div>
                                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="ml-form-fieldRow">
-                                                <div class="ml-field-group ml-field-z_i_p ml-validate-required">
-                                                    <input aria-label="z_i_p" aria-required="true" type="text" class="form-control" name="fields[z_i_p]" placeholder="CRM / UF" autocomplete="">
+                                                <div class="input-group ml-field-group ml-field-z_i_p ml-validate-required">
+                                                    <label class="mono">CRM / UF</label>
+                                                    <input aria-label="z_i_p" aria-required="true" type="text" class="form-control" name="fields[z_i_p]" placeholder="000000-UF" autocomplete="">
                                                 </div>
-                                                <div class="ml-field-group ml-field-phone ml-validate-required">
-                                                    <input aria-label="phone" aria-required="true" type="text" class="form-control" name="fields[phone]" placeholder="WhatsApp" autocomplete="">
+                                                <div class="input-group ml-field-group ml-field-phone ml-validate-required">
+                                                    <label class="mono">WHATSAPP EXCLUSIVO</label>
+                                                    <input aria-label="phone" aria-required="true" type="text" class="form-control" name="fields[phone]" placeholder="(00) 00000-0000" autocomplete="">
                                                 </div>
                                             </div>
                                             <div class="ml-form-fieldRow ml-last-item">
-                                                <div class="ml-field-group ml-field-company ml-validate-required">
-                                                    <textarea class="form-control" name="fields[company]" aria-label="company" aria-required="true" maxlength="1024" placeholder="Breve currículo resumido" rows="5"></textarea>
+                                                <div class="input-group ml-field-group ml-field-company ml-validate-required">
+                                                    <label class="mono">ADICIONE UMA VERSÃO RESUMIDA DO SEU CURRÍCULO</label>
+                                                    <textarea class="form-control" name="fields[company]" aria-label="company" aria-required="true" maxlength="1024" placeholder="Cole aqui seu mini currículo resumido..." rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
