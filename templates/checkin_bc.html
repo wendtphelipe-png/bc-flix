@@ -474,7 +474,7 @@
 
                 <div class="input-group">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
-                    <select v-model="selectedEventId" @change="onEventChange">
+                    <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
                         <option value="">-- SELECIONE O EVENTO --</option>
                         <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
                             {{ ev.titulo }} 
@@ -556,7 +556,7 @@
                                     {{ aula.hora }}
                                     <span v-if="isUserSpeaker(aula.palestrante)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
-                                <div class="schedule-event" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
+                                <div class="schedule-event notranslate" translate="no" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
                                     {{ aula.titulo }}
                                 </div>
                                 <div class="other-colleagues">
