@@ -345,11 +345,15 @@
         }
 
         .warning-box {
-            background: rgba(255, 59, 48, 0.05);
-            border-left: 4px solid var(--vitality-red);
-            padding: 20px;
+            background: rgba(255, 59, 48, 0.08);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            border-left: 8px solid var(--vitality-red);
+            padding: 25px;
             font-size: 0.95rem;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.05);
+            line-height: 1.6;
         }
 
         #rejectionMsg {
@@ -588,7 +592,8 @@
                 <div v-show="termsAccepted" id="formWrapper" style="margin-top: 30px;">
                     <div class="warning-box">
                         <strong>⚠️ PRÓXIMOS PASSOS:</strong><br><br>
-                        Após preencher as informações abaixo e concluir este check-in, <strong>você passará a ser parte da lista oficial do evento</strong>. Você receberá comunicações adicionais em seu e-mail.<br>Por favor, fique atento à sua caixa de entrada e spam.
+                        Após a conclusão do formulário, você receberá um e-mail onde vamos solicitar uma <strong>foto para divulgação</strong> e enviaremos um <strong>roteiro</strong> para que você possa gravar um vídeo de divulgação do evento.<br><br>
+                        Por favor, fique atento à sua caixa de entrada ou caixa de spam.
                     </div>
 
                     <!-- MailerLite Form Embed -->
