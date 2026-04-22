@@ -677,38 +677,165 @@
         </div>
     </section>
 
-    <section class="educational-section" id="procedimentos">
-        <div data-reveal style="text-align: center; margin-bottom: 60px;">
+    <style>
+        .calendar-section {
+            padding: 120px 5%;
+            background: var(--soft-creme);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .card-masterclass {
+            grid-column: span 2;
+            background: var(--deep-blue);
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 8px solid var(--vitality-red);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .card-masterclass::before {
+            content: 'DESTAQUE';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--vitality-red);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            transform: rotate(45deg);
+        }
+
+        .card-webinars-col {
+            grid-column: span 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card-webinar {
+            background: var(--medical-white);
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            padding: 25px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 4px solid var(--electric-cyan);
+            height: 100%;
+        }
+
+        .card-webinar:hover {
+            transform: translateX(-10px);
+            border-right-color: var(--vitality-red);
+            box-shadow: 0 10px 30px var(--alabaster-shadow);
+        }
+
+        .card-congress {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffb703;
+            text-decoration: none;
+            border: 2px solid #ffb703;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .card-congress::after {
+            content: 'O GRANDE EVENTO';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffb703;
+            color: #041009;
+            padding: 5px 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+        }
+
+        .card-congress h2 { color: #ffb703; font-size: 3rem; margin: 0; }
+        .card-congress p { color: #f1f5f2; margin: 10px 0 0; opacity: 0.9; }
+
+        .tag-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .webinar-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--deep-blue);
+            line-height: 1.2;
+        }
+
+        @media (max-width: 1024px) {
+            .calendar-grid { grid-template-columns: 1fr; }
+            .card-masterclass, .card-webinars-col, .card-congress { grid-column: span 1; }
+            .card-congress { flex-direction: column; text-align: center; gap: 30px; }
+            .card-congress h2 { font-size: 2rem; }
+        }
+    </style>
+
+    <section class="calendar-section" id="procedimentos">
+        <div data-reveal style="text-align: center;">
             <p class="mono" style="color: var(--vitality-red);">AGENDA OFICIAL</p>
-            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS DO BARIATRIC CHANNEL</h2>
+            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS</h2>
         </div>
 
-        <div class="bento-grid">
-            <div class="bento-item large" data-reveal style="background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_masterclass.png');">
-                <div class="bento-tag mono">09 MAI<br><span style="font-size: 0.9rem; opacity: 0.8;">MAY 09th</span></div>
-                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">MASTERCLASS BARIÁTRICA</h3>
-                <p>3 Cirurgias estratégicas, 3 Cidades, 1 Transmissão de Impacto. O evento definitivo para o cirurgião moderno.</p>
+        <div class="calendar-grid">
+            <!-- Masterclass (Destaque Esquerda/Centro) -->
+            <a href="#masterclass" class="card-masterclass" data-reveal>
+                <span class="tag-date" style="color: var(--vitality-red);">09 DE MAIO</span>
+                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">MASTERCLASS BARIÁTRICA</h2>
+                <p style="opacity: 0.8; font-size: 1.1rem; max-width: 500px;">3 Cirurgias estratégicas, 3 Cidades, 1 Transmissão de Impacto. O evento definitivo para o cirurgião moderno.</p>
+                <div class="mono" style="margin-top: 30px; font-weight: 800;">100% ONLINE & GRATUITO</div>
+            </a>
+
+            <!-- Webinars (Coluna Direita) -->
+            <div class="card-webinars-col" data-reveal style="transition-delay: 0.1s;">
+                <a href="webinar-maio.html" class="card-webinar">
+                    <span class="tag-date" style="color: var(--electric-cyan);">19 MAIO</span>
+                    <h3 class="webinar-title">FÍGADO E CIRURGIA METABÓLICA</h3>
+                </a>
+                <a href="webinar-junho.html" class="card-webinar">
+                    <span class="tag-date" style="color: var(--electric-cyan);">09 JUNHO</span>
+                    <h3 class="webinar-title">BIPARTIÇÃO DE TRÂNSITO INTESTINAL</h3>
+                </a>
+                <a href="webinar-julho.html" class="card-webinar">
+                    <span class="tag-date" style="color: var(--electric-cyan);">14 JULHO</span>
+                    <h3 class="webinar-title">VARIAÇÕES DE BIPARTIÇÕES DE TRÂNSITO</h3>
+                </a>
             </div>
 
-            <a href="webinar-maio.html" class="bento-item medium" data-reveal style="transition-delay: 0.1s; background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_sleeve.png');">
-                <div class="bento-tag mono">19 MAI<br><span style="font-size: 0.7rem; opacity: 0.8;">MAY 19th</span></div>
-                <h3 style="font-size: 1.3rem;">FÍGADO E CIRURGIA METABÓLICA <br><span style="font-size: 0.9rem; opacity:0.8; font-weight: 600;">LIVER & METABOLIC SURGERY</span></h3>
-            </a>
-            
-            <a href="webinar-junho.html" class="bento-item medium" data-reveal style="transition-delay: 0.2s; background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_robotics.png');">
-                <div class="bento-tag mono">JUNHO<br><span style="font-size: 0.7rem; opacity: 0.8;">JUNE</span></div>
-                <h3 style="font-size: 1.3rem;">BIPARTIÇÃO DE TRÂNSITO INTESTINAL <br><span style="font-size: 0.9rem; opacity:0.8; font-weight: 600;">TRANSIT BIPARTITION</span></h3>
-            </a>
-            
-            <a href="webinar-julho.html" class="bento-item large" data-reveal style="transition-delay: 0.3s; background-image: linear-gradient(to top, rgba(10,25,47,0.9), transparent), url('assets/event_manaus.png');">
-                <div class="bento-tag mono">JULHO<br><span style="font-size: 0.9rem; opacity: 0.8;">JULY</span></div>
-                <h3 style="font-size: 1.8rem;">VARIAÇÕES DE BIPARTIÇÕES DE TRÂNSITO: ASPECTOS TÉCNICO-FUNCIONAIS<br><span style="font-size: 1rem; opacity:0.8; font-weight: 600;">TRANSIT BIPARTITION VARIATIONS: TECHNICAL-FUNCTIONAL ASPECTS</span></h3>
-            </a>
-
-            <a href="bc_amazon_week.html" class="bento-item" data-reveal style="grid-column: 1 / -1; min-height: 400px; background-image: linear-gradient(to top, rgba(10,25,47,0.9) 0%, rgba(10,25,47,0.1) 50%, rgba(10,25,47,0.9) 100%), url('assets/onça.png'); background-position: center; transition-delay: 0.4s;">
-                <div class="bento-tag mono" style="font-size: 2.5rem;">19 A 23 OUT<br><span style="font-size: 1.5rem; opacity: 0.8;">OCTOBER 19th-23rd, 2026</span></div>
-                <h3 style="font-size: 3rem;">2º BC AMAZON WEEK</h3>
-                <p style="font-size: 1.2rem; font-weight: 600;">Manaus/Brasil • Foco: Inovação, Alta Tecnologia e Excelência Técnica em Cirurgia Bariátrica e Metabólica</p>
+            <!-- Congresso (Destaque Total Inferior) -->
+            <a href="bc_amazon_week.html" class="card-congress" data-reveal style="transition-delay: 0.2s;">
+                <div>
+                    <span class="tag-date">19 A 23 DE OUTUBRO, 2026</span>
+                    <h2>2º BC AMAZON WEEK</h2>
+                    <p>Inovação, Alta Tecnologia e Excelência Técnica no Coração da Amazônia.</p>
+                </div>
+                <div class="btn-amazon">CONHECER O CONGRESSO</div>
             </a>
         </div>
     </section>

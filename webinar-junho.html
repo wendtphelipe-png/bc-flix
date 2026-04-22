@@ -381,7 +381,7 @@
         <div class="hero-content">
             <h2 class="edition mono">2º BC Webinar</h2>
             <h1>BIPARTIÇÃO DE TRÂNSITO INTESTINAL</h1>
-            <div class="date-box mono">JUNHO | JUNE</div>
+            <div class="date-box mono">09 DE JUNHO | JUNE 09th</div>
             <p>Um debate profundo sobre o racional cirúrgico, efeitos metabólicos e resultados de longo prazo da Bipartição de Trânsito Intestinal (BTI).</p>
             <div class="mono" style="color: var(--vitality-red); font-weight: 800; letter-spacing: 0.2em;">
                 100% ONLINE • 100% GRATUITO
@@ -417,6 +417,32 @@
         </div>
     </section>
 
+    <style>
+        .card-img-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--vitality-red);
+            display: none; /* Hidden by default, shown if photo exists */
+        }
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card.has-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .card.has-photo .card-img-container {
+            display: block;
+        }
+    </style>
+
     <section class="participants-section">
         <div class="section-header">
             <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">CORPO CIENTÍFICO</p>
@@ -427,12 +453,14 @@
         <div class="role-group">
             <h3 class="role-title mono">Presidente & Moderador</h3>
             <div class="grid">
-                <div class="card">
+                <div class="card" data-speaker="Rafael Abaid">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">BRA</span>
                     <h4>Rafael Abaid</h4>
                     <p class="mono" style="font-size: 0.7rem;">Presidente / Chair</p>
                 </div>
-                <div class="card">
+                <div class="card" data-speaker="Almino Ramos">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">BRA</span>
                     <h4>Almino Ramos</h4>
                     <p class="mono" style="font-size: 0.7rem;">Moderador / Moderator</p>
@@ -443,15 +471,18 @@
         <div class="role-group">
             <h3 class="role-title mono">Debatedores / Debaters</h3>
             <div class="grid">
-                <div class="card">
+                <div class="card" data-speaker="Carlos Vaz">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">PRT</span>
                     <h4>Carlos Vaz</h4>
                 </div>
-                <div class="card">
+                <div class="card" data-speaker="Mário Nora">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">PRT</span>
                     <h4>Mário Nora</h4>
                 </div>
-                <div class="card">
+                <div class="card" data-speaker="Rui Ribeiro">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">PRT</span>
                     <h4>Rui Ribeiro</h4>
                 </div>
@@ -463,43 +494,50 @@
             <h3 class="role-title mono">Professores & Aulas</h3>
             <div class="grid">
                 <!-- Aula 1 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Sérgio Santoro">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Racional Cirúrgico e Efeitos Metabólicos<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Surgical Rational and Metabolic Effects</small></h3>
                     <span class="speaker-name">Sérgio Santoro (BRA)</span>
                 </div>
                 <!-- Aula 2 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Eren Taskin">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Resultados de Perda de Peso e Controle de Comorbidades no Longo Prazo<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Long-Term Weight Loss and Comorbidities Control Results</small></h3>
                     <span class="speaker-name">Eren Taskin (TUR)</span>
                 </div>
                 <!-- Aula 3 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Eudes Godoy">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Perda de Peso Excessiva ou Insuficiente: Falha Técnica?<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Excess or Insufficient Weight Loss: Technical Failure?</small></h3>
                     <span class="speaker-name">Eudes Godoy (BRA)</span>
                 </div>
                 <!-- Aula 4 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Manuel Aceves">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Podemos Considerar a BTI uma Boa Opção em Pacientes Obesos Graves com DRGE Severa?<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Is TB a Good Option for Severe Obesity with Severe GERD?</small></h3>
                     <span class="speaker-name">Manuel Aceves (MEX)</span>
                 </div>
                 <!-- Aula 5 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Luiz Alfredo">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>BTI em Diabéticos com Obesidade Leve: O Que Esperar?<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">TB in Diabetics with Mild Obesity: What to Expect?</small></h3>
                     <span class="speaker-name">Luiz Alfredo D’Almeida (BRA)</span>
                 </div>
                 <!-- Aula 6 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Ricardo Zorron">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Bipartição de Trânsito para Situações Complexas<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Transit Bipartition for Complex Situations</small></h3>
                     <span class="speaker-name">Ricardo Zorrón (POR)</span>
                 </div>
                 <!-- Aula 7 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Julio Teixeira">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Porque a BTI Não Faz parte de Meu Arsenal Cirúrgico<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Why TB Is Not Part of My Surgical Armamentarium</small></h3>
                     <span class="speaker-name">Júlio Teixeira (USA)</span>
@@ -518,6 +556,38 @@
             </div>
         </div>
     </section>
+
+    <script>
+        async function loadSpeakerPhotos() {
+            try {
+                const response = await fetch('data/database.json');
+                const data = await response.json();
+                const allSpeakers = data.palestrantes || [];
+
+                function normalize(str) {
+                    return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase() : "";
+                }
+
+                document.querySelectorAll('[data-speaker]').forEach(card => {
+                    const searchName = card.getAttribute('data-speaker');
+                    const normSearch = normalize(searchName);
+                    
+                    const speaker = allSpeakers.find(s => normalize(s.nome).includes(normSearch));
+                    
+                    if (speaker && speaker.foto) {
+                        const img = card.querySelector('.card-img-container img');
+                        if (img) {
+                            img.src = speaker.foto;
+                            card.classList.add('has-photo');
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("Erro ao carregar fotos:", e);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', loadSpeakerPhotos);
+    </script>
 
     <section class="footer-cta">
         <h2>PARTICIPE DO FUTURO DA CIRURGIA</h2>

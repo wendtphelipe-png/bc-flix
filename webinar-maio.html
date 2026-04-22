@@ -417,6 +417,32 @@
         </div>
     </section>
 
+    <style>
+        .card-img-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--vitality-red);
+            display: none; /* Hidden by default, shown if photo exists */
+        }
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card.has-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .card.has-photo .card-img-container {
+            display: block;
+        }
+    </style>
+
     <section class="participants-section">
         <div class="section-header">
             <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">CORPO CIENTÍFICO</p>
@@ -427,12 +453,14 @@
         <div class="role-group">
             <h3 class="role-title mono">Presidente & Moderador</h3>
             <div class="grid">
-                <div class="card">
+                <div class="card" data-speaker="Rafael Abaid">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">BRA</span>
                     <h4>Rafael Abaid</h4>
                     <p class="mono" style="font-size: 0.7rem;">Presidente / Chair</p>
                 </div>
-                <div class="card">
+                <div class="card" data-speaker="Ramon Vilallonga">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">ESP</span>
                     <h4>Ramon Vilallonga</h4>
                     <p class="mono" style="font-size: 0.7rem;">Moderador / Moderator</p>
@@ -443,15 +471,18 @@
         <div class="role-group">
             <h3 class="role-title mono">Debatedores / Debaters</h3>
             <div class="grid">
-                <div class="card">
+                <div class="card" data-speaker="Luis Poggi">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">PER</span>
                     <h4>Luis Poggi</h4>
                 </div>
-                <div class="card">
+                <div class="card" data-speaker="Laurent Layani">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">UEA</span>
                     <h4>Laurent Layani</h4>
                 </div>
-                <div class="card">
+                <div class="card" data-speaker="Manoel Luiz Neto">
+                    <div class="card-img-container"><img src="" alt=""></div>
                     <span class="country">BRA</span>
                     <h4>Manoel Luiz Neto</h4>
                 </div>
@@ -463,25 +494,29 @@
             <h3 class="role-title mono">Professores & Aulas</h3>
             <div class="grid">
                 <!-- Aula 1 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Cristina Melo">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Fisiopatologia da Doença Hepática Metabólica na Obesidade<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Pathophysiology of Metabolic-Associated Liver Disease</small></h3>
                     <span class="speaker-name">Cristina Melo (BRA)</span>
                 </div>
                 <!-- Aula 2 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Ana Carolina Cardoso">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Métodos Diagnósticos do MASLD: da Esteatose à Hipertensão Portal<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Diagnostic Methods in MASLD: From Steatosis to Portal Hypertension</small></h3>
                     <span class="speaker-name">Ana Carolina Cardoso (BRA)</span>
                 </div>
                 <!-- Aula 3 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Fernando de Barros">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Preparando o Paciente para a Cirurgia e Evitando Surpresas Intra-operatórias<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">Preparing the Patient for Surgery & Avoiding Intraoperative Surprises</small></h3>
                     <span class="speaker-name">Fernando de Barros (BRA)</span>
                 </div>
                 <!-- Aula 4 -->
-                <div class="lecture-card">
+                <div class="lecture-card card-dynamic" data-speaker="Luis Carneiro">
+                    <div class="card-img-container" style="margin: 0 auto 20px; border-color: var(--electric-cyan);"><img src="" alt=""></div>
                     <h4>PALESTRA / LECTURE</h4>
                     <h3>Quando Envolver a Equipe de Transplante Hepático e como Associar a Cirurgia Metabólica?<br><small style="font-size: 0.8rem; font-weight: 400; opacity: 0.7;">When to Involve the Liver Transplant Team and How to Combine with Metabolic Surgery?</small></h3>
                     <span class="speaker-name">Tiago Onzi – Prof. Luis Carneiro (BRA)</span>
@@ -500,6 +535,38 @@
             </div>
         </div>
     </section>
+
+    <script>
+        async function loadSpeakerPhotos() {
+            try {
+                const response = await fetch('data/database.json');
+                const data = await response.json();
+                const allSpeakers = data.palestrantes || [];
+
+                function normalize(str) {
+                    return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase() : "";
+                }
+
+                document.querySelectorAll('[data-speaker]').forEach(card => {
+                    const searchName = card.getAttribute('data-speaker');
+                    const normSearch = normalize(searchName);
+                    
+                    const speaker = allSpeakers.find(s => normalize(s.nome).includes(normSearch));
+                    
+                    if (speaker && speaker.foto) {
+                        const img = card.querySelector('.card-img-container img');
+                        if (img) {
+                            img.src = speaker.foto;
+                            card.classList.add('has-photo');
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("Erro ao carregar fotos:", e);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', loadSpeakerPhotos);
+    </script>
 
     <section class="footer-cta">
         <h2>PARTICIPE DO FUTURO DA CIRURGIA</h2>
