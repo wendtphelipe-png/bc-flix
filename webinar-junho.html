@@ -101,11 +101,16 @@
 
         /* Form Card - LIGHT BACKGROUND */
         .form-card {
-            background: #FFFFFF; padding: 40px; border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3); color: var(--deep-blue); position: relative;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            color: var(--deep-blue);
+            position: relative;
         }
 
         .form-card h3 { color: var(--deep-blue); margin-bottom: 10px; font-size: 1.4rem; }
+        .input-group { margin-bottom: 15px; text-align: left; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: 800; font-size: 0.7rem; color: var(--deep-blue); opacity: 0.6; }
         
         input {
@@ -123,6 +128,12 @@
         }
 
         .btn-submit:hover { background: var(--vitality-red); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3); }
+
+        /* Overview Section */
+        .overview-section { padding: 80px 5%; background: #050B14; border-bottom: 1px solid rgba(0,242,255,0.05); }
+        .overview-container { max-width: 900px; margin: 0 auto; text-align: left; border-left: 1px solid rgba(0,242,255,0.2); padding-left: 40px; }
+        .overview-section h2 { font-size: 2.2rem; margin-bottom: 25px; color: #FFFFFF; }
+        .overview-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.8; }
 
         /* Participants Section */
         .participants-section { padding: 100px 5%; background: #08111D; }
@@ -143,7 +154,6 @@
         .card-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: 0.5s; position: absolute; inset: 0; z-index: 2; }
         .card-img-container img.loaded { opacity: 1; }
         
-        /* Initials Fallback */
         .initials-fallback {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
             background: linear-gradient(135deg, #0A192F 0%, #172A45 100%);
@@ -196,24 +206,46 @@
             </div>
         </div>
 
-        <div class="form-card" id="inscricao">
-            <h3 class="mono">FAÇA SUA INSCRIÇÃO</h3>
-            <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 25px; font-weight: 600;">INSIRA SEUS DADOS PARA SE CADASTRAR</p>
-            <form action="#">
-                <div class="input-group">
-                    <label class="mono">USER_NAME</label>
-                    <input type="text" placeholder="NOME COMPLETO" required>
+        <div id="mlb2-40272407" class="form-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40272407">
+            <div class="ml-form-embedWrapper embedForm">
+                <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                    <h3 class="mono">FAÇA SUA INSCRIÇÃO</h3>
+                    <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 25px; font-weight: 600;">INSIRA SEUS DADOS PARA SE CADASTRAR</p>
+                    
+                    <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/185458920325645845/subscribe" data-code="" method="post" target="_blank">
+                        <div class="ml-form-formContent">
+                            <div class="input-group">
+                                <label class="mono">Nome</label>
+                                <input aria-label="name" aria-required="true" type="text" name="fields[name]" placeholder="Seu nome completo" required>
+                            </div>
+                            <div class="input-group">
+                                <label class="mono">E-mail</label>
+                                <input aria-label="email" aria-required="true" type="email" name="fields[email]" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="input-group">
+                                <label class="mono">Phone</label>
+                                <input aria-label="phone" aria-required="true" type="text" name="fields[phone]" placeholder="Whatsapp" required>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="ml-submit" value="1">
+                        <input type="hidden" name="anticsrf" value="true">
+                        
+                        <button type="submit" class="btn-submit primary">CONFIRMAR INSCRIÇÃO</button>
+                        
+                        <button disabled="disabled" style="display: none;" type="button" class="loading">
+                            <span class="mono">PROCESSANDO...</span>
+                        </button>
+                    </form>
                 </div>
-                <div class="input-group">
-                    <label class="mono">USER_EMAIL</label>
-                    <input type="email" placeholder="EMAIL@EXEMPLO.COM" required>
+
+                <div class="ml-form-successBody row-success" style="display: none; padding: 20px; text-align: center;">
+                    <div class="ml-form-successContent">
+                        <h4 class="mono" style="color: var(--deep-blue); margin-bottom: 10px;">SUCESSO!</h4>
+                        <p style="color: var(--deep-blue);">Você se cadastrou com sucesso. Em breve receberá as informações por e-mail.</p>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label class="mono">CONTACT_NUMBER</label>
-                    <input type="tel" placeholder="+55 (00) 00000-0000" required>
-                </div>
-                <button type="submit" class="btn-submit">CONFIRMAR INSCRIÇÃO</button>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -224,14 +256,6 @@
             <p>A Bipartição de Trânsito Intestinal (BTI) consolidou-se como uma técnica de potente resposta metabólica, fundamentada no racional da exclusão duodenal funcional. Neste encontro, exploramos os mecanismos fisiológicos que sustentam a remissão de comorbidades e a manutenção da perda ponderal a longo prazo. O foco técnico recai sobre o manejo de resultados subótimos ou perda de peso excessiva, além de debater o papel da BTI em cenários desafiadores, como pacientes com Doença do Refluxo Gastroesofágico (DRGE) severa. Uma imersão científica focada na segurança do paciente e na previsibilidade dos resultados metabólicos.</p>
         </div>
     </section>
-
-    <style>
-        .overview-section { padding: 80px 5%; background: #050B14; border-bottom: 1px solid rgba(0,242,255,0.05); }
-        .overview-container { max-width: 900px; margin: 0 auto; text-align: left; border-left: 1px solid rgba(0,242,255,0.2); padding-left: 40px; }
-        .overview-section h2 { font-size: 2.2rem; margin-bottom: 25px; color: #FFFFFF; }
-        .overview-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.8; }
-        @media (max-width: 768px) { .overview-container { padding-left: 20px; } .overview-section h2 { font-size: 1.8rem; } }
-    </style>
 
     <section class="participants-section">
         <div class="role-group">
@@ -327,6 +351,11 @@
             if (select) { select.value = lang; select.dispatchEvent(new Event('change')); }
         }
 
+        function ml_webform_success_40272407() {
+            document.querySelector('.ml-subscribe-form-40272407 .row-success').style.display = 'block';
+            document.querySelector('.ml-subscribe-form-40272407 .row-form').style.display = 'none';
+        }
+
         async function loadSpeakerPhotos() {
             const localPhotos = {
                 'RAFAEL ABAID': 'assets/rafael_abaid.jpeg',
@@ -369,5 +398,6 @@
         }
         window.addEventListener('DOMContentLoaded', loadSpeakerPhotos);
     </script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
 </body>
 </html>
