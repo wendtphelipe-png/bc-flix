@@ -634,15 +634,9 @@
                     <label class="mono">E-mail Profissional</label>
                     <input type="email" id="email" name="fields[email]" placeholder="EMAIL@EXEMPLO.COM" required>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div class="input-group">
-                        <label class="mono">CRM / UF</label>
-                        <input type="text" id="crm" name="fields[z_i_p]" placeholder="000000-UF" required>
-                    </div>
-                    <div class="input-group">
-                        <label class="mono">WhatsApp</label>
-                        <input type="tel" id="whatsapp" name="fields[phone]" placeholder="(00) 00000-0000" required>
-                    </div>
+                <div class="input-group">
+                    <label class="mono">Telefone ou Whatsapp</label>
+                    <input type="tel" id="whatsapp" name="fields[phone]" placeholder="+00 (00) 00000-0000" required>
                 </div>
                 <input type="hidden" name="ml-submit" value="1">
                 <input type="hidden" name="anticsrf" value="true">
