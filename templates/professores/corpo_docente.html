@@ -360,7 +360,7 @@
             imgEl.onerror = function() { this.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`; this.onerror=null; };
             document.getElementById('modal-name').innerText = p['Nome'];
             document.getElementById('modal-meta').innerText = p['PaisNome'] || 'INTERNACIONAL';
-            document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || 'Currículo detalhado em processo de atualização.';
+            document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || p['Mini currculo'] || 'Currículo detalhado em processo de atualização.';
             
             document.getElementById('prof-modal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
