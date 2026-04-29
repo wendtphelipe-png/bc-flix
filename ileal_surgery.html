@@ -67,7 +67,7 @@
 
         /* Hero Section */
         .hero-ileal {
-            padding: 160px 5% 100px;
+            padding: 120px 5% 40px;
             background: radial-gradient(circle at 50% 0%, var(--deep-blue) 0%, #050d17 100%);
             color: var(--medical-white);
             text-align: center;
@@ -109,7 +109,7 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
-            margin: 0 auto 60px;
+            margin: 0 auto 30px;
             font-weight: 300;
         }
 
@@ -117,8 +117,9 @@
         .doctors-image-container {
             position: relative;
             max-width: 1200px;
-            margin: 0 auto;
-            margin-bottom: 30px;
+            margin: 0 auto 15px auto;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .img-arc-glow {
@@ -126,12 +127,26 @@
             height: auto;
             display: block;
             border-radius: 12px;
-            animation: glow-red-arc 3s ease-in-out infinite alternate;
         }
 
-        @keyframes glow-red-arc {
-            0% { filter: drop-shadow(0 0 10px rgba(255, 59, 48, 0.4)); }
-            100% { filter: drop-shadow(0 0 30px rgba(255, 59, 48, 0.9)); }
+        .arc-shine-overlay {
+            position: absolute;
+            bottom: 0;
+            left: -50%;
+            width: 40%;
+            height: 35%; /* Covers bottom section where arc typically is */
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transform: skewX(-20deg);
+            animation: sweep-shine 6s infinite;
+            pointer-events: none;
+            mix-blend-mode: color-dodge; /* Makes red glow intensely when white passes over */
+            z-index: 10;
+        }
+
+        @keyframes sweep-shine {
+            0% { left: -50%; }
+            20% { left: 150%; }
+            100% { left: 150%; } /* Pauses before sweeping again */
         }
 
         /* Grid for Doctors */
@@ -140,7 +155,7 @@
             grid-template-columns: repeat(6, 1fr);
             gap: 15px;
             max-width: 1200px;
-            margin: 0 auto 60px;
+            margin: 0 auto 30px;
             text-align: center;
         }
 
@@ -376,8 +391,8 @@
         </div>
 
         <div class="doctors-image-container">
-            <!-- Applying animation class to the red arc/image -->
             <img src="medicos-2.png" alt="Corpo Docente" class="img-arc-glow">
+            <div class="arc-shine-overlay"></div>
         </div>
 
         <div class="doctors-grid">
