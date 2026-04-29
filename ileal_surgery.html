@@ -102,7 +102,9 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
-            margin: 0 auto 30px;
+            margin: 0 auto -15% auto; /* Force overlap with transparent image top */
+            position: relative;
+            z-index: 10;
             font-weight: 300;
         }
 
@@ -110,9 +112,9 @@
         .doctors-image-container {
             position: relative;
             max-width: 1200px;
-            margin: -15% auto -10% auto; /* Negative margins to compensate for image internal spacing */
+            margin: 0 auto;
             border-radius: 12px;
-            overflow: hidden;
+            z-index: 1;
         }
 
         .hero-image {
@@ -128,7 +130,9 @@
             grid-template-columns: repeat(6, 1fr);
             gap: 15px;
             max-width: 1200px;
-            margin: 15px auto 40px;
+            margin: -12% auto 40px auto; /* Force overlap with transparent image bottom */
+            position: relative;
+            z-index: 10;
             text-align: center;
         }
 
