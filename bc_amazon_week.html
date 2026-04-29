@@ -525,6 +525,14 @@
     </section>
 
 
+    <!-- Modal de Currículo -->
+    <div class="modal" id="speaker-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSpeakerModal()">&times;</span>
+            <h2 id="modal-speaker-name" style="margin-bottom: 20px; color: var(--amazon-gold);"></h2>
+            <div id="modal-speaker-bio" style="font-size: 0.95rem; line-height: 1.8; opacity: 0.9;"></div>
+        </div>
+    </div>
 
     <footer>
         <a href="home.html" class="logo">
@@ -613,6 +621,7 @@
                     const speaker = findSpeaker(name);
                     const card = document.createElement('div');
                     card.className = 'speaker-card';
+                    card.setAttribute('onclick', `openSpeakerModal("${encodeURIComponent(name)}")`);
                     
                     if (!speaker) {
                         console.warn('Palestrante não encontrado:', name);
@@ -662,6 +671,31 @@
 
             // Inicialização
             initSpeakers();
+
+            // Funções do Modal
+            function openSpeakerModal(encodedName) {
+                const name = decodeURIComponent(encodedName);
+                const speaker = findSpeaker(name);
+                if (!speaker) return;
+                
+                const miniCurr = speaker["Mini currículo"] || speaker["Mini currculo"] || "Currículo em atualização.";
+                
+                document.getElementById('modal-speaker-name').innerText = speaker.Nome;
+                document.getElementById('modal-speaker-bio').innerHTML = miniCurr.replace(/\n/g, '<br>');
+                
+                document.getElementById('speaker-modal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSpeakerModal() {
+                document.getElementById('speaker-modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            window.addEventListener('click', function(e) {
+                const modal = document.getElementById('speaker-modal');
+                if (e.target === modal) closeSpeakerModal();
+            });
 
             // Google Translate
             function googleTranslateElementInit() {
