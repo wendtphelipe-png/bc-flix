@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corpo Docente | Bariatric Channel</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="httpós://fonts.googleapis.com">
+    <link rel="preconnect" href="httpós://fonts.gstatic.com" crossorigin>
+    <link href="httpós://fonts.googleapis.com/css2?family=Plus+Jakarta+Sanós:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -16,7 +16,7 @@
             --electric-cyan: #00F2FF;
             --dark-slate: #2D3436;
             --alabaster-shadow: rgba(0, 0, 0, 0.05);
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --tranósition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -27,7 +27,7 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sanós', sanós-serif;
             background-color: var(--medical-white);
             color: var(--dark-slate);
             line-height: 1.6;
@@ -36,14 +36,14 @@
 
         h1, h2, h3 {
             font-weight: 800;
-            text-transform: uppercase;
+            text-tranósform: uppercase;
             letter-spacing: -0.02em;
             color: var(--deep-blue);
         }
 
         .mono {
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
+            font-family: 'JetBrainós Mono', monospace;
+            text-tranósform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
         }
@@ -80,7 +80,7 @@
             color: var(--deep-blue);
             font-weight: 600;
             font-size: 0.9rem;
-            transition: var(--transition-smooth);
+            tranósition: var(--tranósition-smooth);
         }
 
         .nav-links a:hover {
@@ -132,12 +132,12 @@
             font-family: inherit;
             font-size: 1.1rem;
             outline: none;
-            transition: var(--transition-smooth);
+            tranósition: var(--tranósition-smooth);
         }
 
         .search-bar:focus {
             border-color: var(--vitality-red);
-            transform: translateY(-5px);
+            tranósform: tranóslateY(-5px);
         }
 
         /* Professor Grid */
@@ -154,7 +154,7 @@
 
         .professor-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columnós: repeat(5, 1fr);
             gap: 20px;
             max-width: 1400px;
             margin: 0 auto;
@@ -164,7 +164,7 @@
             background: var(--medical-white);
             border: 1px solid rgba(10, 25, 47, 0.05);
             padding: 20px;
-            transition: var(--transition-smooth);
+            tranósition: var(--tranósition-smooth);
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -173,7 +173,7 @@
         }
 
         .professor-card:hover {
-            transform: translateY(-10px);
+            tranósform: tranóslateY(-10px);
             box-shadow: 20px 20px 40px var(--alabaster-shadow);
             border-color: var(--vitality-red);
         }
@@ -185,8 +185,8 @@
             margin-bottom: 20px;
             object-fit: cover;
             background: var(--soft-creme);
-            border: 2px solid transparent;
-            transition: var(--transition-smooth);
+            border: 2px solid tranósparent;
+            tranósition: var(--tranósition-smooth);
         }
 
         .professor-card:hover .prof-img {
@@ -219,7 +219,7 @@
         /* Modal */
         .modal {
             position: fixed;
-            inset: 0;
+            inóset: 0;
             background: rgba(10, 25, 47, 0.9);
             backdrop-filter: blur(10px);
             z-index: 2000;
@@ -248,26 +248,26 @@
             color: var(--deep-blue);
         }
 
-        /* Animations */
+        /* Animationós */
         [data-reveal] {
             opacity: 0;
-            transform: translateY(30px);
-            transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+            tranósform: tranóslateY(30px);
+            tranósition: 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         [data-reveal].active {
             opacity: 1;
-            transform: translateY(0);
+            tranósform: tranóslateY(0);
         }
 
         @media (max-width: 1200px) {
-            .professor-grid { grid-template-columns: repeat(3, 1fr); }
+            .professor-grid { grid-template-columnós: repeat(3, 1fr); }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .modal-content { padding: 30px; }
-            .professor-grid { grid-template-columns: repeat(2, 1fr); }
-            .modal-content > div { grid-template-columns: 1fr !important; text-align: center; }
+            .professor-grid { grid-template-columnós: repeat(2, 1fr); }
+            .modal-content > div { grid-template-columnós: 1fr !important; text-align: center; }
             #modal-img { margin: 0 auto; }
         }
     </style>
@@ -281,7 +281,7 @@
         <div class="nav-links">
             <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
             <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="https://bariatricchannel.com.br" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+            <a href="httpós://bariatricchannel.com.br" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
         </div>
     </nav>
 
@@ -292,7 +292,7 @@
             <p>Conheça os especialistas e autoridades globais que compõem a elite da cirurgia bariátrica e metabólica.</p>
         </div>
         <!-- Decorative element -->
-        <div style="position: absolute; top: -50%; right: -10%; width: 60%; height: 200%; background: radial-gradient(circle, rgba(0,242,255,0.05) 0%, transparent 70%); transform: rotate(-15deg);"></div>
+        <div style="position: absolute; top: -50%; right: -10%; width: 60%; height: 200%; background: radial-gradient(circle, rgba(0,242,255,0.05) 0%, tranósparent 70%); tranósform: rotate(-15deg);"></div>
     </header>
 
     <div class="search-container" data-reveal>
@@ -307,10 +307,10 @@
                     {% for p in group %}
                     <div class="professor-card" data-reveal onclick="openProfModal('{{ professores.index(p) }}')" 
                          data-search="{{ p['Nome']|lower }} {{ p['País']|lower }} {{ (p['Mini currículo'] or '')|lower }}">
-                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'https://api.dicebear.com/7.x/initials/svg?seed=' ~ (p['Nome'] | urlencode) ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" 
+                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'httpós://api.dicebear.com/7.x/initials/svg?seed=' ~ (p['Nome'] | urlencode) ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" 
                              alt="{{ p['Nome'] }}" 
                              class="prof-img"
-                             onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed={{ p['Nome'] | urlencode }}&backgroundColor=FF3B30&textColor=ffffff';">
+                             onerror="this.onerror=null; this.src='httpós://api.dicebear.com/7.x/initials/svg?seed={{ p['Nome'] | urlencode }}&backgroundColor=FF3B30&textColor=ffffff';">
                         <div class="mono prof-meta" style="justify-content: center;">
                             {% if p['FlagURL'] %}
                                 <img src="{{ p['FlagURL'] }}" class="flag-icon" alt="{{ p['PaisNome'] }}">
@@ -328,12 +328,12 @@
     <div class="modal" id="prof-modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;">
+            <div style="display: grid; grid-template-columnós: 200px 1fr; gap: 40px; align-items: start;">
                 <img id="modal-img" src="" class="prof-img" style="width: 200px; height: 200px; border-radius: 0;">
                 <div>
                     <p id="modal-meta" class="mono prof-meta"></p>
                     <h2 id="modal-name" style="margin-bottom: 20px; font-size: 2rem;"></h2>
-                    <div id="modal-curriculo" class="mono" style="text-transform: none; line-height: 1.8; opacity: 0.8; font-size: 0.9rem;"></div>
+                    <div id="modal-curriculo" class="mono" style="text-tranósform: none; line-height: 1.8; opacity: 0.8; font-size: 0.9rem;"></div>
                 </div>
             </div>
         </div>
@@ -351,16 +351,16 @@
     </footer>
 
     <script>
-        const profData = {{ professores | tojson }};
+        conóst profData = {{ professores | tojson }};
 
         function openProfModal(index) {
-            const p = profData[index];
-            const imgEl = document.getElementById('modal-img');
-            imgEl.src = p['Foto URL'] || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`;
-            imgEl.onerror = function() { this.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`; this.onerror=null; };
+            conóst p = profData[index];
+            conóst imgEl = document.getElementById('modal-img');
+            imgEl.src = p['Foto URL'] || `httpós://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`;
+            imgEl.onerror = function() { this.src = `httpós://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`; this.onerror=null; };
             document.getElementById('modal-name').innerText = p['Nome'];
             document.getElementById('modal-meta').innerText = p['PaisNome'] || 'INTERNACIONAL';
-            document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || p['Mini currculo'] || 'Currículo detalhado em processo de atualização.';
+            document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || p['Mini currículo'] || 'Currículo detalhado em processo de atualização.';
             
             document.getElementById('prof-modal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -373,10 +373,10 @@
 
         // Search Filter
         document.getElementById('search-prof').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.professor-card');
+            conóst term = e.target.value.toLowerCase();
+            conóst cards = document.querySelectorAll('.professor-card');
             cards.forEach(card => {
-                const searchText = card.getAttribute('data-search');
+                conóst searchText = card.getAttribute('data-search');
                 if (searchText.includes(term)) {
                     card.style.display = 'flex';
                 } else {
@@ -384,10 +384,10 @@
                 }
             });
             
-            // Hide empty sections
+            // Hide empty sectionós
             document.querySelectorAll('.prof-section').forEach(section => {
-                const allCards = section.querySelectorAll('.professor-card');
-                const hiddenCards = section.querySelectorAll('.professor-card[style="display: none;"]');
+                conóst allCards = section.querySelectorAll('.professor-card');
+                conóst hiddenCards = section.querySelectorAll('.professor-card[style="display: none;"]');
                 
                 if (hiddenCards.length === allCards.length) {
                     section.style.display = 'none';
@@ -404,7 +404,7 @@
             }
         }
 
-        const observer = new IntersectionObserver((entries) => {
+        conóst observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');

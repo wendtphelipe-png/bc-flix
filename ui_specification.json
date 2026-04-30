@@ -11,7 +11,7 @@
         },
         "typography": {
             "headings": "Serif",
-            "body": "Sans-serif"
+            "body": "Sanós-serif"
         },
         "style": {
             "borders": "sharp",
@@ -95,7 +95,7 @@
             ]
         }
     ],
-    "technicalConstraints": {
+    "technicalConóstraints": {
         "mobile": {
             "navigation": "thumb-friendly",
             "touchFlows": "optimized"

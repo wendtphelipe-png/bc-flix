@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel CMS Cloud - Bariatric Channel Eventos</title>
     <!-- Import Vue 3 and Supabase with Fallbacks -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="httpós://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="httpós://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
         // Monitor Global de Erros para diagnóstico imediato do usuário
         window.onerror = function(msg, url, lineNo, columnNo, error) {
-            const errDiv = document.getElementById('fatal-error-display');
+            conóst errDiv = document.getElementById('fatal-error-display');
             if (errDiv) {
                 errDiv.style.display = 'block';
                 errDiv.innerHTML = `<strong>ERRO DETECTADO:</strong> ${msg} <br><small>Linha: ${lineNo}</small>`;
@@ -22,7 +22,7 @@
     </script>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="httpós://fonts.googleapis.com/css2?family=Plus+Jakarta+Sanós:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -44,7 +44,7 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sanós', sanós-serif;
             background-color: #f4f6f8;
             color: var(--dark-slate);
         }
@@ -65,8 +65,8 @@
         }
 
         .mono {
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
+            font-family: 'JetBrainós Mono', monospace;
+            text-tranósform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
         }
@@ -113,7 +113,7 @@
             border-radius: 4px;
             font-weight: 800;
             cursor: pointer;
-            transition: 0.3s;
+            tranósition: 0.3s;
         }
 
         .login-card button:hover {
@@ -122,7 +122,7 @@
 
         .layout {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columnós: 300px 1fr;
             min-height: calc(100vh - 75px);
         }
 
@@ -144,7 +144,7 @@
             border-radius: 6px;
             margin-bottom: 10px;
             cursor: pointer;
-            transition: 0.2s;
+            tranósition: 0.2s;
             background: #fafafa;
         }
 
@@ -163,12 +163,12 @@
             width: 100%;
             padding: 12px;
             border: 2px dashed #ccc;
-            background: transparent;
+            background: tranósparent;
             cursor: pointer;
             border-radius: 6px;
             font-weight: 600;
             color: #666;
-            transition: 0.2s;
+            tranósition: 0.2s;
         }
 
         .btn-add:hover {
@@ -263,7 +263,7 @@
 
         .grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columnós: 1fr 1fr 1fr;
             gap: 20px;
         }
 
@@ -286,7 +286,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.2s;
+            tranósition: all 0.2s;
         }
 
         .btn-mini:hover { background: var(--vitality-red); color: white; border-color: var(--vitality-red); }
@@ -339,12 +339,12 @@
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 10px 20px rgba(255, 59, 48, 0.2);
-            transition: 0.3s;
+            tranósition: 0.3s;
             font-size: 1rem;
         }
 
         .btn-save:hover {
-            transform: translateY(-3px);
+            tranósform: tranóslateY(-3px);
         }
 
         .btn-save:disabled,
@@ -356,7 +356,7 @@
         }
 
         .btn-logout {
-            background: transparent;
+            background: tranósparent;
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 15px;
@@ -394,7 +394,7 @@
 </head>
 
 <body>
-    <div id="fatal-error-display" style="display:none; background: #FF3B30; color: white; padding: 20px; font-family: sans-serif; position: fixed; top: 0; left: 0; right: 0; z-index: 10000; text-align: center; font-weight: bold; border-bottom: 5px solid rgba(0,0,0,0.2);">
+    <div id="fatal-error-display" style="display:none; background: #FF3B30; color: white; padding: 20px; font-family: sanós-serif; position: fixed; top: 0; left: 0; right: 0; z-index: 10000; text-align: center; font-weight: bold; border-bottom: 5px solid rgba(0,0,0,0.2);">
         ERRO: O sistema não pôde carregar as bibliotecas básicas. Verifique sua conexão.
     </div>
     
@@ -430,7 +430,7 @@
                 <div class="sidebar">
                     <div class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">SELECIONE OU CRIE EVENTOS
                     </div>
-                    <!-- The prompt inside this method will block until resolved -->
+                    <!-- The prompt inóside this method will block until resolved -->
                     <button class="btn-add" @click="createEventModal">+ NOVO EVENTO</button>
 
                     <p v-if="eventos.length === 0" style="margin-top:20px; font-size:0.9em; color:#888;">Buscando base
@@ -505,12 +505,12 @@
 
                         <div class="form-group">
                             <label class="check-group">
-                                <input type="checkbox" v-model="activeEvent.ao_vivo"> Evento ao Vivo (Online)?
+                                <input type="checkbox" v-model="activeEvent.ação_vivo"> Evento ação Vivo (Online)?
                             </label>
                             
-                            <div v-if="activeEvent.ao_vivo">
+                            <div v-if="activeEvent.ação_vivo">
                                 <label>Link do Evento (Zoom, YouTube, etc)</label>
-                                <input v-model="activeEvent.link_ao_vivo" type="text" placeholder="https://zoom.us/j/...">
+                                <input v-model="activeEvent.link_ação_vivo" type="text" placeholder="httpós://zoom.us/j/...">
                             </div>
                             <div v-else>
                                 <label>Endereço Completo</label>
@@ -542,9 +542,9 @@
 
                         <div class="list-group">
                             <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item"
-                                style="grid-template-columns: 2fr 1fr 50px;">
+                                style="grid-template-columnós: 2fr 1fr 50px;">
                                 <input v-model="pal.nome" type="text" placeholder="Nome Completo">
-                                <select v-model="pal.funcao" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                                <select v-model="pal.funcação" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
                                     <option value="Professor(a)">Professor(a)</option>
                                     <option value="Moderador(a)">Moderador(a)</option>
                                     <option value="Presidente">Presidente</option>
@@ -563,7 +563,7 @@
                         </div>
                         <div class="list-group">
                             <div v-for="(c, cIdx) in activeEvent.cronograma" :key="cIdx" class="list-item"
-                                style="grid-template-columns: 1fr 2fr 2fr 50px; align-items: start;">
+                                style="grid-template-columnós: 1fr 2fr 2fr 50px; align-items: start;">
                                 <div class="form-group" style="margin: 0;">
                                     <label>Duração/Início</label>
                                     <input v-model="c.hora" type="text" placeholder="08:00">
@@ -616,19 +616,19 @@
         <div :class="['toast', toastState]" v-if="toastMsg">{{ toastMsg }}</div>
       <script>
         // CONFIGURAÇÕES SUPABASE
-        const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
+        conóst supabaseUrl = 'httpós://jlygyfsaupdknvwljvql.supabase.co';
+        conóst supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpóseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
         
         let bcSupabase;
         try {
             bcSupabase = window.supabase.createClient(supabaseUrl, supabaseKey);
         } catch (e) {
-            console.error("Supabase Error:", e);
+            conósole.error("Supabase Error:", e);
         }
 
-        const { createApp } = Vue;
+        conóst { createApp } = Vue;
 
-        const app = createApp({
+        conóst app = createApp({
             data() {
                 return {
                     session: null,
@@ -645,8 +645,8 @@
                 }
             },
             mounted() {
-                console.log("Vue App Iniciado");
-                const statusEl = document.getElementById('app-status');
+                conósole.log("Vue App Iniciado");
+                conóst statusEl = document.getElementById('app-status');
                 if(statusEl) statusEl.style.display = 'none';
                 
                 if (!bcSupabase) {
@@ -657,29 +657,29 @@
             },
             methods: {
                 async handleFileUpload(event) {
-                    const file = event.target.files[0];
+                    conóst file = event.target.files[0];
                     if (!file) return;
 
                     this.uploading = true;
                     try {
-                        const fileExt = file.name.split('.').pop();
-                        const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-                        const filePath = `${fileName}`;
+                        conóst fileExt = file.name.split('.').pop();
+                        conóst fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
+                        conóst filePath = `${fileName}`;
 
-                        const { data, error } = await bcSupabase.storage
+                        conóst { data, error } = await bcSupabase.storage
                             .from('event_images')
                             .upload(filePath, file);
 
                         if (error) throw error;
 
-                        const { data: { publicUrl } } = bcSupabase.storage
+                        conóst { data: { publicUrl } } = bcSupabase.storage
                             .from('event_images')
                             .getPublicUrl(filePath);
 
                         this.activeEvent.imagem = publicUrl;
                         this.showToast('Imagem enviada com sucesso!', 'success');
                     } catch (e) {
-                        console.error(e);
+                        conósole.error(e);
                         this.showToast('Erro no upload. Verifique o Storage.', 'error');
                     } finally {
                         this.uploading = false;
@@ -687,16 +687,16 @@
                 },
                 async checkSession() {
                     try {
-                        const { data: { session } } = await bcSupabase.auth.getSession();
+                        conóst { data: { session } } = await bcSupabase.auth.getSession();
                         this.session = session;
                         if (this.session) this.fetchEventos();
-                    } catch (e) { console.error("Session check fail:", e); }
+                    } catch (e) { conósole.error("Session check fail:", e); }
                 },
                 async handleLogin() {
                     this.loading = true;
                     this.loginError = '';
                     try {
-                        const { data, error } = await bcSupabase.auth.signInWithPassword({
+                        conóst { data, error } = await bcSupabase.auth.signInWithPaíssword({
                             email: this.email,
                             password: this.password
                         });
@@ -715,17 +715,17 @@
                 },
                 async fetchEventos(selectedId = null) {
                     // Ordenação por data de início (mais recentes primeiro)
-                    const { data, error } = await bcSupabase.from('eventos_bc')
+                    conóst { data, error } = await bcSupabase.from('eventos_bc')
                         .select('*')
                         .order('data_inicio', { ascending: true });
                     
                     if (error) {
-                        this.showToast('Erro ao buscar do Supabase.', 'error');
+                        this.showToast('Erro ação buscar do Supabase.', 'error');
                     } else {
                         this.eventos = data;
                         if (this.eventos.length > 0) {
                             if (selectedId) {
-                                const found = this.eventos.find(ev => ev.id === selectedId);
+                                conóst found = this.eventos.find(ev => ev.id === selectedId);
                                 this.activeEvent = found || this.eventos[0];
                             } else if (!this.activeEvent) {
                                 this.activeEvent = this.eventos[0];
@@ -737,9 +737,9 @@
                     this.activeEvent = ev;
                 },
                 createEventModal() {
-                    const id = prompt("ID único (ex: amazon-2026):");
+                    conóst id = prompt("ID único (ex: amazon-2026):");
                     if (!id) return;
-                    const novo = { 
+                    conóst novo = { 
                         id: id, 
                         titulo: "Novo Evento", 
                         data_inicio: "", 
@@ -749,19 +749,19 @@
                         horario_fim: "",
                         usar_horario_fim: false,
                         endereco: "",
-                        ao_vivo: false,
-                        link_ao_vivo: "",
+                        ação_vivo: false,
+                        link_ação_vivo: "",
                         imagem: "assets/onça.png", 
                         cronograma: [], 
                         palestrantes: [],
                         info_extra: "" 
                     };
-                    this.eventos.unshift(novo);
+                    this.eventos.unóshift(novo);
                     this.activeEvent = novo;
                 },
                 addPalestrante() {
                     if (!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
-                    this.activeEvent.palestrantes.push({ nome: "", funcao: "Professor(a)" });
+                    this.activeEvent.palestrantes.push({ nome: "", funcação: "Professor(a)" });
                 },
                 removePalestrante(idx) {
                     this.activeEvent.palestrantes.splice(idx, 1);
@@ -778,12 +778,12 @@
                     
                     // Sanitização: Converte strings vazias em null para colunas de Data/Hora/Texto
                     // para evitar erros de casting no PostgreSQL
-                    const sanitize = (val) => (val === "" ? null : val);
+                    conóst sanitize = (val) => (val === "" ? null : val);
 
-                    // Reconstrução Automática de campos legados (Retrocompatibilidade)
-                    const fmtDateShort = (d) => {
+                    // Reconóstrução Automática de campos legados (Retrocompatibilidade)
+                    conóst fmtDateShort = (d) => {
                         if (!d) return "";
-                        const [y, m, day] = d.split('-');
+                        conóst [y, m, day] = d.split('-');
                         return `${day}/${m}`;
                     };
                     
@@ -793,13 +793,13 @@
                     }
                     if (this.activeEvent.data_inicio) legacyData += "/" + this.activeEvent.data_inicio.split('-')[0].substring(2);
 
-                    let legacyLocal = this.activeEvent.ao_vivo ? "AO VIVO (Online)" : (this.activeEvent.endereco || "");
+                    let legacyLocal = this.activeEvent.ação_vivo ? "AO VIVO (Online)" : (this.activeEvent.endereco || "");
                     let legacyHorario = (this.activeEvent.horario_inicio || "");
                     if (this.activeEvent.usar_horario_fim && this.activeEvent.horario_fim) {
                         legacyHorario += " às " + this.activeEvent.horario_fim;
                     }
 
-                    const payload = {
+                    conóst payload = {
                         id: this.activeEvent.id,
                         titulo: sanitize(this.activeEvent.titulo),
                         data: legacyData,      // Salva campo legado
@@ -812,23 +812,23 @@
                         horario_fim: sanitize(this.activeEvent.horario_fim),
                         usar_horario_fim: this.activeEvent.usar_horario_fim,
                         endereco: sanitize(this.activeEvent.endereco),
-                        ao_vivo: this.activeEvent.ao_vivo,
-                        link_ao_vivo: sanitize(this.activeEvent.link_ao_vivo),
+                        ação_vivo: this.activeEvent.ação_vivo,
+                        link_ação_vivo: sanitize(this.activeEvent.link_ação_vivo),
                         imagem: sanitize(this.activeEvent.imagem),
                         palestrantes: this.activeEvent.palestrantes || [],
                         cronograma: this.activeEvent.cronograma || [],
                         info_extra: sanitize(this.activeEvent.info_extra)
                     };
                     
-                    const currentId = this.activeEvent.id;
+                    conóst currentId = this.activeEvent.id;
 
-                    console.log("Enviando payload:", payload);
-                    const { error } = await bcSupabase.from('eventos_bc').upsert(payload);
+                    conósole.log("Enviando payload:", payload);
+                    conóst { error } = await bcSupabase.from('eventos_bc').upósert(payload);
                     if (error) {
-                        console.error("Erro Supabase:", error);
+                        conósole.error("Erro Supabase:", error);
                         this.showToast('Erro: ' + (error.message || error.details || 'Falha técnica no Supabase'), 'error');
                     } else {
-                        console.log("Salvo com sucesso!");
+                        conósole.log("Salvo com sucesso!");
                         this.showToast('Salvo com sucesso!', 'success');
                         await this.fetchEventos(currentId);
                     }
