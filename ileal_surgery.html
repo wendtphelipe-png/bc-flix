@@ -264,9 +264,125 @@
             font-family: inherit;
         }
 
-        .lead-form-container input:focus, .lead-form-container select:focus {
+        .lead-form-container input:focus {
             border-color: var(--vitality-red) !important;
             background: white !important;
+        }
+
+        /* Gold Shimmer Title */
+        .gold-shimmer-title {
+            background: #D4AF37;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .gold-shimmer-title::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer-effect 3s infinite;
+        }
+
+        @keyframes shimmer-effect {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Custom Searchable Dropdown */
+        .searchable-dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown-trigger {
+            width: 100%;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            color: var(--deep-blue);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-trigger::after {
+            content: '▼';
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-search {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-search input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: var(--vitality-red);
+        }
+
+        .dropdown-item.hidden {
+            display: none;
         }
 
         /* Footer */
@@ -331,33 +447,42 @@
             </div>
 
             <div id="form-inscricao" class="lead-form-container">
-                <h3>Cadastro Prioritário</h3>
-                <p>Garanta acesso à pré-inscrição e receba a programação completa do curso.</p>
+                <div class="gold-shimmer-title">Pré-Inscrição Liberada</div>
+                <p>Garanta acesso prioritário e receba a programação completa do curso.</p>
                 
                 <div id="form-wrapper">
                     <form id="ileal-form" onsubmit="handleFormSubmit(event)" style="display: grid; gap: 15px;">
                         <div>
                             <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
-                            <input type="text" required placeholder="Digite seu nome completo">
+                            <input type="text" id="form-nome" required placeholder="Digite seu nome completo">
                         </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                             <div>
                                 <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
-                                <input type="email" required placeholder="seu@email.com">
+                                <input type="email" id="form-email" required placeholder="seu@email.com">
                             </div>
                             <div>
                                 <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
-                                <input type="tel" required placeholder="(00) 00000-0000">
+                                <input type="tel" id="form-tel" required placeholder="(00) 00000-0000">
                             </div>
                         </div>
                         <div>
                             <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
-                            <select id="country-select" required>
-                                <option value="" disabled selected>Selecione seu país</option>
-                            </select>
+                            <div class="searchable-dropdown" id="country-dropdown">
+                                <div class="dropdown-trigger" id="dropdown-selected">Selecione seu país</div>
+                                <div class="dropdown-content" id="dropdown-list">
+                                    <div class="dropdown-search">
+                                        <input type="text" id="search-input" placeholder="Pesquisar país..." autocomplete="off">
+                                    </div>
+                                    <div id="options-container">
+                                        <!-- Countries will be populated here -->
+                                    </div>
+                                </div>
+                                <input type="hidden" id="country-hidden" required>
+                            </div>
                         </div>
                         <button type="submit" class="btn-ileal-submit" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
-                            CONFIRMAR PRÉ-INSCRIÇÃO
+                            CONFIRMAR MINHA INSCRIÇÃO
                         </button>
                     </form>
                 </div>
@@ -412,21 +537,73 @@
         </div>
 
         <script>
-            // Populate countries
+            // Populate countries and handle custom dropdown
             const countries = [
                 "Afeganistão","África do Sul","Albânia","Alemanha","Andorra","Angola","Antígua e Barbuda","Arábia Saudita","Argélia","Argentina","Armênia","Austrália","Áustria","Azerbaijão","Bahamas","Bangladesh","Barbados","Bahrein","Bélgica","Belize","Benim","Bielorrússia","Bolívia","Bósnia e Herzegovina","Botsuana","Brasil","Brunei","Bulgária","Burkina Faso","Burundi","Butão","Cabo Verde","Camarões","Camboja","Canadá","Catar","Cazaquistão","Chade","Chile","China","Chipre","Colômbia","Comores","Coreia do Norte","Coreia do Sul","Costa do Marfim","Costa Rica","Croácia","Cuba","Dinamarca","Djibouti","Dominica","Egito","El Salvador","Emirados Árabes Unidos","Equador","Eritreia","Eslováquia","Eslovênia","Espanha","Estados Unidos","Estônia","Etiópia","Fiji","Filipinas","Finlândia","França","Gabão","Gâmbia","Gana","Geórgia","Granada","Grécia","Guatemala","Guiana","Guiné","Guiné Equatorial","Guiné-Bissau","Haiti","Honduras","Hungria","Iêmen","Ilhas Marshall","Ilhas Salomão","Índia","Indonésia","Irã","Iraque","Irlanda","Islândia","Israel","Itália","Jamaica","Japão","Jordânia","Kiribati","Kuwait","Laos","Lesoto","Letônia","Líbano","Libéria","Líbia","Liechtenstein","Lituânia","Luxemburgo","Macedônia do Norte","Madagascar","Malásia","Malaui","Maldivas","Mali","Malta","Marrocos","Maurício","Mauritânia","México","Micronésia","Moçambique","Moldávia","Mônaco","Mongólia","Montenegro","Mianmar","Namíbia","Nauru","Nepal","Nicarágua","Níger","Nigéria","Noruega","Nova Zelândia","Omã","Países Baixos","Palau","Panamá","Papua Nova Guiné","Paquistão","Paraguai","Peru","Polônia","Portugal","Quênia","Quirguistão","Reino Unido","República Centro-Africana","República Tcheca","República Democrática do Congo","República do Congo","República Dominicana","Romênia","Ruanda","Rússia","Samoa","San Marino","Santa Lúcia","São Cristóvão e Neves","São Tomé e Príncipe","São Vicente e Granadinas","Seicheles","Senegal","Serra Leoa","Sérvia","Singapura","Síria","Somália","Sri Lanka","Suazilândia","Sudão","Sudão do Sul","Suécia","Suíça","Suriname","Tajiquistão","Tailândia","Tanzânia","Timor-Leste","Togo","Tonga","Trinidad e Tobago","Tunísia","Turcomenistão","Turquia","Tuvalu","Ucrânia","Uganda","Uruguai","Uzbequistão","Vanuatu","Vaticano","Venezuela","Vietnã","Zâmbia","Zimbábue"
             ];
-            const select = document.getElementById('country-select');
+            
+            const dropdownTrigger = document.getElementById('dropdown-selected');
+            const dropdownContent = document.getElementById('dropdown-list');
+            const searchInput = document.getElementById('search-input');
+            const optionsContainer = document.getElementById('options-container');
+            const countryHidden = document.getElementById('country-hidden');
+
+            // Populate options
             countries.forEach(country => {
-                const option = document.createElement('option');
-                option.value = country;
-                option.textContent = country;
-                select.appendChild(option);
+                const div = document.createElement('div');
+                div.className = 'dropdown-item';
+                div.textContent = country;
+                div.onclick = () => selectCountry(country);
+                optionsContainer.appendChild(div);
             });
+
+            function selectCountry(country) {
+                dropdownTrigger.textContent = country;
+                countryHidden.value = country;
+                dropdownContent.classList.remove('show');
+                searchInput.value = '';
+                filterOptions('');
+            }
+
+            dropdownTrigger.onclick = (e) => {
+                e.stopPropagation();
+                dropdownContent.classList.toggle('show');
+                if (dropdownContent.classList.contains('show')) searchInput.focus();
+            };
+
+            searchInput.onclick = (e) => e.stopPropagation();
+
+            searchInput.oninput = (e) => {
+                filterOptions(e.target.value);
+            };
+
+            function filterOptions(query) {
+                const normalizedQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const items = optionsContainer.getElementsByClassName('dropdown-item');
+                for (let item of items) {
+                    const text = item.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    if (text.includes(normalizedQuery)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                }
+            }
+
+            document.onclick = () => {
+                dropdownContent.classList.remove('show');
+            };
 
             // Handle form submission
             function handleFormSubmit(e) {
                 e.preventDefault();
+                
+                // Validate country
+                if (!countryHidden.value) {
+                    alert('Por favor, selecione seu país.');
+                    return;
+                }
+
                 document.getElementById('form-wrapper').style.display = 'none';
                 document.getElementById('countdown-wrapper').style.display = 'block';
                 
