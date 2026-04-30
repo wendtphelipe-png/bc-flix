@@ -196,125 +196,77 @@
             background: #c29d2b;
         }
 
-        /* Content Sections */
-        .content-section {
-            padding: 100px 5%;
-            background: var(--soft-creme);
-        }
-
-        .premium-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--dark-slate);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .info-grid {
+        /* Hero Layout Container */
+        .hero-layout-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 40px;
-            margin-bottom: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+            text-align: left;
         }
 
-        .info-card {
-            background: var(--medical-white);
+        .doctors-image-container {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Form Styling */
+        .lead-form-container {
+            background: white !important;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px var(--alabaster-shadow);
-            border-left: 4px solid var(--vitality-red);
-        }
-
-        .info-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-card ul {
-            list-style: none;
-        }
-
-        .info-card ul li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 12px;
-            color: var(--dark-slate);
-        }
-
-        .info-card ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--vitality-red);
-            font-weight: bold;
-        }
-
-        .highlight-box {
-            background: var(--deep-blue);
-            color: var(--medical-white);
-            padding: 50px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-box h3 {
-            color: var(--medical-white);
-            margin-bottom: 15px;
-        }
-
-        .faculty-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .faculty-item {
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
             text-align: left;
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 10;
         }
 
-        .faculty-item h4 {
-            color: var(--medical-white);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+        .lead-form-container h3 {
+            color: var(--deep-blue) !important;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            text-align: center;
         }
 
-        .faculty-item span {
-            color: var(--vitality-red);
-            font-size: 0.9rem;
-            font-weight: bold;
+        .lead-form-container p {
+            color: var(--dark-slate) !important;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            opacity: 0.8;
         }
 
-        .faculty-item p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85rem;
-            margin-top: 5px;
+        .lead-form-container label {
+            color: var(--deep-blue) !important;
+            font-weight: 800;
+        }
+
+        .lead-form-container input, .lead-form-container select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd !important;
+            background: #f9f9f9 !important;
+            color: var(--deep-blue) !important;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .lead-form-container input:focus, .lead-form-container select:focus {
+            border-color: var(--vitality-red) !important;
+            background: white !important;
         }
 
         /* Footer */
@@ -326,16 +278,20 @@
         }
 
         @media (max-width: 1024px) {
+            .hero-layout-wrapper { grid-template-columns: 1fr; gap: 30px; }
+            .hero-ileal h1 { font-size: 2.5rem; }
             .doctors-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified for now, in a real scenario we'd use hamburger */
+            .nav-links { display: none; }
+            .hero-ileal { padding-top: 120px; }
             .doctors-grid { display: none; }
             .info-grid { grid-template-columns: 1fr; }
             .faculty-list { grid-template-columns: 1fr; }
             .hero-ileal h1 { font-size: 2rem; padding: 10px 15px; }
             .btn-whatsapp { padding: 15px 25px; font-size: 0.9rem; }
+            .lead-form-container { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -369,8 +325,51 @@
             Abordagem Laparoscópica e Robótica
         </div>
 
-        <div class="doctors-image-container">
-            <img src="medicos-3.png" alt="Corpo Docente" class="hero-image">
+           <div class="hero-layout-wrapper">
+            <div class="doctors-image-container">
+                <img src="medicos-3.png" alt="Corpo Docente" class="hero-image">
+            </div>
+
+            <div id="form-inscricao" class="lead-form-container">
+                <h3>Cadastro Prioritário</h3>
+                <p>Garanta acesso à pré-inscrição e receba a programação completa do curso.</p>
+                
+                <div id="form-wrapper">
+                    <form id="ileal-form" onsubmit="handleFormSubmit(event)" style="display: grid; gap: 15px;">
+                        <div>
+                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
+                            <input type="text" required placeholder="Digite seu nome completo">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
+                                <input type="email" required placeholder="seu@email.com">
+                            </div>
+                            <div>
+                                <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
+                                <input type="tel" required placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
+                            <select id="country-select" required>
+                                <option value="" disabled selected>Selecione seu país</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-ileal-submit" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
+                            CONFIRMAR PRÉ-INSCRIÇÃO
+                        </button>
+                    </form>
+                </div>
+
+                <div id="countdown-wrapper" style="display: none; text-align: center; padding: 20px 0;">
+                    <div class="mono" style="font-weight: 800; color: var(--vitality-red); font-size: 1rem; border: 1px solid var(--vitality-red); padding: 30px; border-radius: 4px; background: rgba(255, 59, 48, 0.05);">
+                        PRÉ-INSCRIÇÃO REALIZADA!<br><br>
+                        Redirecionando em...<br>
+                        <span id="redirect-counter" style="font-size: 4rem; color: var(--deep-blue); display: block; margin-top: 15px; line-height: 1;">5</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="doctors-grid">
@@ -409,42 +408,6 @@
                 <div class="doctor-name">Diogo Kfouri</div>
                 <div class="doctor-role">Cirurgião</div>
                 <div class="doctor-desc">Diretor Institucional<br>Bariatric Channel</div>
-              <div id="form-inscricao" class="lead-form-container" style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 600px; margin: 60px auto 20px auto; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; z-index: 10;">
-            <h3 style="color: var(--medical-white); margin-bottom: 10px; font-size: 1.5rem; text-align: center;">Cadastre-se para ter acesso à pré-inscrição</h3>
-            <p style="color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 30px; font-size: 0.95rem;">E para receber a programação e mais informações sobre este curso.</p>
-            
-            <div id="form-wrapper">
-                <form id="ileal-form" onsubmit="handleFormSubmit(event)" style="display: grid; gap: 15px;">
-                    <div>
-                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
-                        <input type="text" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
-                    </div>
-                    <div>
-                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
-                        <input type="email" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
-                    </div>
-                    <div>
-                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
-                        <input type="tel" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
-                    </div>
-                    <div>
-                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
-                        <select id="country-select" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
-                            <option value="" disabled selected>Selecione seu país</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-ileal-submit" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
-                        CONFIRMAR PRÉ-INSCRIÇÃO
-                    </button>
-                </form>
-            </div>
-
-            <div id="countdown-wrapper" style="display: none; text-align: center; padding: 20px 0;">
-                <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 1rem; border: 1px solid var(--electric-cyan); padding: 30px; border-radius: 4px; background: rgba(0, 242, 255, 0.05);">
-                    PRÉ-INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>
-                    Você será redirecionado em <br>
-                    <span id="redirect-counter" style="font-size: 4rem; color: var(--medical-white); display: block; margin-top: 15px; line-height: 1;">5</span>
-                </div>
             </div>
         </div>
 
