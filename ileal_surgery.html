@@ -594,46 +594,54 @@
             
             <div id="form-wrapper">
                 <!-- MailerLite Form Integration -->
-                <form id="ileal-form" class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/186198390320662451/subscribe" data-code="" method="post" style="display: grid; gap: 15px;">
-                    <div>
-                        <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
-                        <input type="text" name="fields[name]" id="form-nome" required placeholder="Digite seu nome completo">
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div id="mlb2-40654361" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40654361">
+                    <form id="ileal-form" class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/186198390320662451/subscribe" data-code="" method="post" style="display: grid; gap: 15px;">
                         <div>
-                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
-                            <input type="email" name="fields[email]" id="form-email" required placeholder="seu@email.com">
+                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
+                            <input type="text" name="fields[name]" id="form-nome" class="form-control" required placeholder="Digite seu nome completo">
                         </div>
-                        <div>
-                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
-                            <input type="tel" name="fields[phone]" id="form-tel" required placeholder="(00) 00000-0000">
-                        </div>
-                    </div>
-                    <div>
-                        <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
-                        <div class="searchable-dropdown" id="country-dropdown">
-                            <div class="dropdown-trigger" id="dropdown-selected">Selecione seu país</div>
-                            <div class="dropdown-content" id="dropdown-list">
-                                <div class="dropdown-search">
-                                    <input type="text" id="search-input" placeholder="Pesquisar país..." autocomplete="off">
-                                </div>
-                                <div id="options-container" style="max-height: 200px; overflow-y: auto;">
-                                    <!-- Countries will be populated here -->
-                                </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
+                                <input type="email" name="fields[email]" id="form-email" class="form-control" required placeholder="seu@email.com">
                             </div>
-                            <!-- MailerLite Country Field -->
-                            <input type="hidden" name="fields[country]" id="country-hidden" required>
+                            <div>
+                                <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
+                                <input type="tel" name="fields[phone]" id="form-tel" class="form-control" required placeholder="(00) 00000-0000">
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- MailerLite Hidden Fields -->
-                    <input type="hidden" name="ml-submit" value="1">
-                    <input type="hidden" name="anticsrf" value="true">
+                        <div>
+                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
+                            <div class="searchable-dropdown" id="country-dropdown">
+                                <div class="dropdown-trigger" id="dropdown-selected">Selecione seu país</div>
+                                <div class="dropdown-content" id="dropdown-list">
+                                    <div class="dropdown-search">
+                                        <input type="text" id="search-input" placeholder="Pesquisar país..." autocomplete="off">
+                                    </div>
+                                    <div id="options-container" style="max-height: 200px; overflow-y: auto;">
+                                        <!-- Countries will be populated here -->
+                                    </div>
+                                </div>
+                                <!-- MailerLite Country Field -->
+                                <input type="hidden" name="fields[country]" id="country-hidden" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <!-- MailerLite Hidden Fields -->
+                        <input type="hidden" name="ml-submit" value="1">
+                        <input type="hidden" name="anticsrf" value="true">
 
-                    <button type="submit" class="btn-ileal-submit" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
-                        CONFIRMAR MINHA INSCRIÇÃO
-                    </button>
-                </form>
+                        <div class="ml-form-embedSubmit">
+                            <button type="submit" class="btn-ileal-submit primary" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
+                                CONFIRMAR MINHA INSCRIÇÃO
+                            </button>
+                            <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                <div class="ml-form-embedSubmitLoad"></div>
+                                <span class="sr-only">Loading...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div id="countdown-wrapper" style="display: none; text-align: center; padding: 20px 0;">
