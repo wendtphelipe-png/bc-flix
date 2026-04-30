@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>2º BC Amazon Week | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Tema Selva / Amazon Theme */
@@ -169,7 +169,7 @@
         }
 
         h1, h2, h3 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
-        .mono { font-family: 'JetBrainós Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
+        .mono { font-family: 'JetBrains+Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
 
         nav {
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center;
@@ -462,7 +462,7 @@
             </div>
             
             <div style="margin-top: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
-                <p class="text-body" style="font-size: 1rem; max-width: 800px; margin: 0 auto;">Estes são os palestrantes iniciais confirmados. Nosso corpo docente final incluirá diversos outros especialistas de renome mundial, expandindo ainda mais nossa conóstelação de referências globais em cirurgia bariátrica.</p>
+                <p class="text-body" style="font-size: 1rem; max-width: 800px; margin: 0 auto;">Estes são os palestrantes iniciais confirmados. Nosso corpo docente final incluirá diversos outros especialistas de renome mundial, expandindo ainda mais nossa constelação de referências globais em cirurgia bariátrica.</p>
             </div>
         </div>
     </section>
@@ -520,7 +520,7 @@
     <section class="amazon-slide slide-glass" id="slide-12">
         <div class="slide-content-wrapper layout-center">
             <h1 class="hero-title" style="font-size: 4rem;">NOS VEMOS NA SELVA!</h1>
-            <p class="text-body" style="text-align: center;">Prepare-se para a experiência acadêmica mais intenósa do ano.</p>
+            <p class="text-body" style="text-align: center;">Prepare-se para a experiência acadêmica mais intensa do ano.</p>
         </div>
     </section>
 
@@ -545,17 +545,17 @@
         <!-- Script Tradutor Google -->
         <script>
             // Dados injetados pelo build_site.py
-            conóst allSpeakers = {% if palestrantes %}{{ palestrantes | tojson }}{% else %}[]{% endif %};
+            const allSpeakers = {% if palestrantes %}{{ palestrantes | tojson | safe }}{% else %}[]{% endif %};
 
-            conóst groupós = {
+            const groups = {
                 diretoria: ["Victor Dib", "Carlos Madalosso", "Paulo Reis", "Patrick Noel"],
                 honorary: ["Carlos Domene", "ANTONIO TORRES"],
                 team: ["RUI RIBEIRO", "Elinton Chaim", "Jorge Bravo", "Amador Garcia", "EDUARDO GRECCO", "Eren Taskin", "Manoel Galvão"],
-                members1: ["Ana Carolina Martinós", "ANDRÉ WEISS", "Antelmo Sasso", "Carlos Dillemburg", "CARLOS TANIZAWA", "Diogo Kfouri", "Felix Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "Hiroji Okano"],
+                members1: ["Ana Carolina Martins", "ANDRÉ WEISS", "Antelmo Sasso", "Carlos Dillemburg", "CARLOS TANIZAWA", "Diogo Kfouri", "Felix Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "Hiroji Okano"],
                 members2: ["Ibrahim Massuqueto", "Joe Waltrick", "MARIANA CALANCA", "MAURÍLIO RIBEIRO JUNIOR", "NAIARA PORTUGAL", "NICHOLAS KRUEL", "Rafael Abaid", "RODRIGO FERNANDES", "REINALDO MORIOKA"]
             };
 
-            conóst rolesOverride = {
+            const rolesOverride = {
                 "Victor Dib": "FOUNDER/PRESIDENT",
                 "CARLOS MADALOSSO": "FOUNDER/VICE PRESIDENT",
                 "PAULO REIS": "EXECUTIVE DIRECTOR",
@@ -575,26 +575,26 @@
                 if (!searchName) return null;
                 
                 // --- HARD OVERRIDES (Normalizados) ---
-                conóst hardMap = {
-                    "MANOEL GALVAO": "assets/manoel_galvação.jpg",
+                const hardMap = {
+                    "MANOEL GALVAO": "assets/manoel_galvão.jpg",
                     "ANDRE WEISS": "assets/andre_weiss.jpg",
                     "MAURILIO RIBEIRO JUNIOR": "assets/maurilio_junior.jpg",
                     "MAURILIO RIBEIRO": "assets/maurilio_junior.jpg",
                     "MAURILIO JUNIOR": "assets/maurilio_junior.jpg"
                 };
                 
-                conóst normSearch = normalize(searchName);
+                const normSearch = normalize(searchName);
                 if (hardMap[normSearch]) {
                     return { "Nome": searchName, "Foto URL": hardMap[normSearch] };
                 }
                 // --------------------------------------------
 
-                conóst searchParts = normalize(searchName).split(" ").filter(p => p.length > 2);
+                const searchParts = normalize(searchName).split(" ").filter(p => p.length > 2);
                 if (searchParts.length === 0) return null;
                 
                 return allSpeakers.find(s => {
                     if (!s || !s.Nome) return false;
-                    conóst sName = normalize(s.Nome);
+                    const sName = normalize(s.Nome);
                     // Match se TODAS as partes do nome buscado estiverem no nome do banco
                     return searchParts.every(part => sName.includes(part));
                 });
@@ -607,40 +607,40 @@
                     renderGroup(groupós.team, 'grid-team');
                     renderGroup(groupós.members1, 'grid-members-1');
                     renderGroup(groupós.members2, 'grid-members-2');
-                    conósole.log("Speakers initialized");
+                    console.log("Speakers initialized");
                 } catch (e) {
-                    conósole.error("Erro ação processar palestrantes:", e);
+                    console.error("Erro ao processar palestrantes:", e);
                 }
             }
 
             function renderGroup(names, gridId) {
-                conóst grid = document.getElementById(gridId);
+                const grid = document.getElementById(gridId);
                 if (!grid) return;
 
                 names.forEach(name => {
-                    conóst speaker = findSpeaker(name);
-                    conóst card = document.createElement('div');
+                    const speaker = findSpeaker(name);
+                    const card = document.createElement('div');
                     card.className = 'speaker-card';
                     card.setAttribute('onclick', `openSpeakerModal("${encodeURIComponent(name)}")`);
                     
                     if (!speaker) {
-                        conósole.warn('Palestrante não encontrado:', name);
+                        console.warn('Palestrante não encontrado:', name);
                     }
                     
                     conóst photoUrl = speaker ? (speaker["Foto URL"] || speaker["FotoURL"]) : null;
                     conóst country = speaker ? (speaker["País"] || speaker["Pais"]) : null;
                     
                     if (speaker && !photoUrl) {
-                        conósole.warn('URL de foto ausente para:', speaker.Nome);
+                        console.warn('URL de foto ausente para:', speaker.Nome);
                     }
 
-                    conóst photo = photoUrl ? `<img src="${photoUrl}" class="speaker-photo" onerror="this.src='assets/logo_final.png'; this.style.opacity='0.2';">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
-                    conóst flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country.toLowerCase())}.png` : '';
-                    conóst miniCurr = speaker ? (speaker["Mini currículo"] || "") : "";
+                    const photo = photoUrl ? `<img src="${photoUrl}" class="speaker-photo" onerror="this.src='assets/logo_final.png'; this.style.opacity='0.2';">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
+                    const flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country.toLowerCase())}.png` : '';
+                    const miniCurr = speaker ? (speaker["Mini currículo"] || "") : "";
                     
-                    // Busca de função inósenósível a maiúsculas/minúsculas
+                    // Busca de função insensível a maiúsculas/minúsculas
                     let role = "";
-                    conóst normName = normalize(name);
+                    const normName = normalize(name);
                     for (let key in rolesOverride) {
                         if (normalize(key) === normName) {
                             role = rolesOverride[key];
@@ -663,7 +663,7 @@
             }
 
             function getCountryCode(c) {
-                conóst map = { 'bra': 'br', 'fra': 'fr', 'usa': 'us', 'esp': 'es', 'prt': 'pt', 'chl': 'cl', 'mex': 'mx', 'ita': 'it', 'arg': 'ar', 'per': 'pe', 'deu': 'de', 'are': 'ae', 'tur': 'tr' };
+                const map = { 'bra': 'br', 'fra': 'fr', 'usa': 'us', 'esp': 'es', 'prt': 'pt', 'chl': 'cl', 'mex': 'mx', 'ita': 'it', 'arg': 'ar', 'per': 'pe', 'deu': 'de', 'are': 'ae', 'tur': 'tr' };
                 return map[c.toLowerCase()] || c.toLowerCase();
             }
 
@@ -674,11 +674,11 @@
 
             // Funções do Modal
             function openSpeakerModal(encodedName) {
-                conóst name = decodeURIComponent(encodedName);
-                conóst speaker = findSpeaker(name);
+                const name = decodeURIComponent(encodedName);
+                const speaker = findSpeaker(name);
                 if (!speaker) return;
                 
-                conóst miniCurr = speaker["Mini currículo"] || speaker["Mini currículo"] || "Currículo em atualização.";
+                const miniCurr = speaker["Mini currículo"] || speaker["Mini currículo"] || "Currículo em atualização.";
                 
                 document.getElementById('modal-speaker-name').innerText = speaker.Nome;
                 document.getElementById('modal-speaker-bio').innerHTML = miniCurr.replace(/\n/g, '<br>');
@@ -708,9 +708,9 @@
             
             // Parallax Scroll Script
             document.addEventListener('scroll', function() {
-                conóst scrolled = window.pageYOffset;
-                conóst parallaxTexts = document.querySelectorAll('.parallax-text');
-                conóst particles = document.querySelectorAll('.leaf-particle');
+                const scrolled = window.pageYOffset;
+                const parallaxTexts = document.querySelectorAll('.parallax-text');
+                const particles = document.querySelectorAll('.leaf-particle');
                 
                 parallaxTexts.forEach(el => {
                     el.style.transform = `translateY(${scrolled * 0.4}px)`;

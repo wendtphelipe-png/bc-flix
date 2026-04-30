@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -248,7 +248,7 @@
             color: var(--deep-blue);
         }
 
-        /* Animationós */
+        /* Animations */
         [data-reveal] {
             opacity: 0;
             transform: translateY(30px);
@@ -351,7 +351,7 @@
     </footer>
 
     <script>
-        const profData = {{ professores | tojson }};
+        const profData = {{ professores | tojson | safe }};
 
         function openProfModal(index) {
             const p = profData[index];
