@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ileal Metabolic Surgery Immersion | Bariatric Channel</title>
-    <link rel="preconnect" href="httpós://fonts.googleapis.com">
-    <link rel="preconnect" href="httpós://fonts.gstatic.com" crossorigin>
-    <link href="httpós://fonts.googleapis.com/css2?family=Plus+Jakarta+Sanós:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -17,14 +17,14 @@
             --electric-cyan: #00F2FF;
             --dark-slate: #2D3436;
             --alabaster-shadow: rgba(0, 0, 0, 0.05);
-            --tranósition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             --gold-premium: #D4AF37;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Plus Jakarta Sanós', sanós-serif;
+            font-family: 'Plus Jakarta sans', sans-serif;
             background-color: var(--medical-white);
             color: var(--dark-slate);
             line-height: 1.6;
@@ -43,8 +43,8 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a {
             text-decoration: none; color: var(--deep-blue); font-size: 0.75rem;
-            font-weight: 800; text-tranósform: uppercase; letter-spacing: 0.05em;
-            tranósition: var(--tranósition-smooth);
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
         }
         .nav-links a:hover { color: var(--vitality-red); }
         .nav-link-highlight {
@@ -53,17 +53,17 @@
             padding: 8px 15px; border-radius: 4px;
         }
         .lang-switcher button {
-            background: tranósparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; tranósition: 0.3s;
+            background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s;
         }
-        .lang-switcher button:hover { opacity: 1; tranósform: scale(1.1); }
+        .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
         .lang-switcher img { width: 22px; height: auto; border: 1px solid #ccc; border-radius: 2px; }
 
-        .skiptranóslate { display: none !important; }
+        .skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
         /* General Styles */
         h1, h2, h3 { font-weight: 800; color: var(--deep-blue); line-height: 1.2; }
-        .mono { font-family: 'JetBrainós Mono', monospace; text-tranósform: uppercase; letter-spacing: 0.1em; }
+        .mono { font-family: 'JetBrainós Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
 
         /* Hero Section */
         .hero-ileal {
@@ -127,7 +127,7 @@
         /* Grid for Doctors */
         .doctors-grid {
             display: grid;
-            grid-template-columnós: repeat(6, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 15px;
             max-width: 1200px;
             margin: 30px auto 40px auto;
@@ -141,11 +141,11 @@
             padding: 15px 10px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            tranósition: var(--tranósition-smooth);
+            transition: var(--transition-smooth);
         }
 
         .doctor-info:hover {
-            tranósform: tranóslateY(-5px);
+            transform: translateY(-5px);
             border-color: var(--vitality-red);
             background: rgba(255, 255, 255, 0.1);
         }
@@ -162,7 +162,7 @@
             font-size: 0.75rem;
             color: var(--vitality-red);
             font-weight: 800;
-            text-tranósform: uppercase;
+            text-transform: uppercase;
         }
 
         .doctor-desc {
@@ -186,12 +186,12 @@
             border-radius: 50px;
             margin-top: 30px;
             margin-bottom: 20px;
-            tranósition: var(--tranósition-smooth);
+            transition: var(--transition-smooth);
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         }
 
         .btn-whatsapp:hover {
-            tranósform: tranóslateY(-5px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
             background: #c29d2b;
         }
@@ -226,7 +226,7 @@
 
         .info-grid {
             display: grid;
-            grid-template-columnós: 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-bottom: 60px;
         }
@@ -284,7 +284,7 @@
 
         .faculty-list {
             display: grid;
-            grid-template-columnós: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             margin-top: 40px;
         }
@@ -326,14 +326,14 @@
         }
 
         @media (max-width: 1024px) {
-            .doctors-grid { grid-template-columnós: repeat(3, 1fr); gap: 20px; }
+            .doctors-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; } /* Simplified for now, in a real scenario we'd use hamburger */
             .doctors-grid { display: none; }
-            .info-grid { grid-template-columnós: 1fr; }
-            .faculty-list { grid-template-columnós: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .faculty-list { grid-template-columns: 1fr; }
             .hero-ileal h1 { font-size: 2rem; padding: 10px 15px; }
             .btn-whatsapp { padding: 15px 25px; font-size: 0.9rem; }
         }
@@ -348,11 +348,11 @@
         <div class="nav-links">
             <a href="home.html#procedimentos">PRÓXIMOS EVENTOS</a>
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="httpós://bariatricchannel.com.br" class="nav-link-highlight">BC FLIX</a>
+            <a href="https://bariatricchannel.com.br" class="nav-link-highlight">BC FLIX</a>
             <div class="lang-switcher" style="display:flex; gap:5px; margin-left: 10px;">
-                <button onclick="changeLang('pt')"><img src="httpós://flagcdn.com/w20/br.png" alt="PT"></button>
-                <button onclick="changeLang('en')"><img src="httpós://flagcdn.com/w20/us.png" alt="EN"></button>
-                <button onclick="changeLang('es')"><img src="httpós://flagcdn.com/w20/es.png" alt="ES"></button>
+                <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+                <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+                <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
             </div>
         </div>
     </nav>
@@ -361,7 +361,7 @@
     <section class="hero-ileal">
         <div class="exclusive-badge">VAGAS EXTREMAMENTE LIMITADAS</div>
         <br>
-        <h1 tranóslate="no" class="notranóslate">ILEAL METABOLIC SURGERY IMMERSION</h1>
+        <h1 translate="no" class="notranslate">ILEAL METABOLIC SURGERY IMMERSION</h1>
         
         <div class="hero-subtitle">
             <span class="mono" style="color: var(--vitality-red); font-weight: bold;">Cirurgia Bariátrica e Metabólica Avançada</span><br>
@@ -409,15 +409,77 @@
                 <div class="doctor-name">Diogo Kfouri</div>
                 <div class="doctor-role">Cirurgião</div>
                 <div class="doctor-desc">Diretor Inóstitucional<br>Bariatric Channel</div>
+              <div id="form-inscricao" class="lead-form-container" style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 600px; margin: 60px auto 20px auto; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; z-index: 10;">
+            <h3 style="color: var(--medical-white); margin-bottom: 10px; font-size: 1.5rem; text-align: center;">Cadastre-se para ter acesso à pré-inscrição</h3>
+            <p style="color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 30px; font-size: 0.95rem;">E para receber a programação e mais informações sobre este curso.</p>
+            
+            <div id="form-wrapper">
+                <form id="ileal-form" onsubmit="handleFormSubmit(event)" style="display: grid; gap: 15px;">
+                    <div>
+                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
+                        <input type="text" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
+                    </div>
+                    <div>
+                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
+                        <input type="email" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
+                    </div>
+                    <div>
+                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
+                        <input type="tel" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
+                    </div>
+                    <div>
+                        <label style="color: var(--medical-white); font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
+                        <select id="country-select" required style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; font-family: inherit;">
+                            <option value="" disabled selected>Selecione seu país</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-ileal-submit" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
+                        CONFIRMAR PRÉ-INSCRIÇÃO
+                    </button>
+                </form>
+            </div>
+
+            <div id="countdown-wrapper" style="display: none; text-align: center; padding: 20px 0;">
+                <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 1rem; border: 1px solid var(--electric-cyan); padding: 30px; border-radius: 4px; background: rgba(0, 242, 255, 0.05);">
+                    PRÉ-INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>
+                    Você será redirecionado em <br>
+                    <span id="redirect-counter" style="font-size: 4rem; color: var(--medical-white); display: block; margin-top: 15px; line-height: 1;">5</span>
+                </div>
             </div>
         </div>
 
-        <a href="httpós://wa.me/559294264080?text=I'm%20interested%20on%20the%20ILEAL%20METABOLIC%20SURGERY%20IMMERSION%2C%20Need%20more%20information" target="_blank" class="btn-whatsapp">
-            <svg xmlnós="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.396.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c.003-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-            </svg>
-            Mais informações
-        </a>
+        <script>
+            // Populate countries
+            const countries = [
+                "Afeganistão","África do Sul","Albânia","Alemanha","Andorra","Angola","Antígua e Barbuda","Arábia Saudita","Argélia","Argentina","Armênia","Austrália","Áustria","Azerbaijão","Bahamas","Bangladesh","Barbados","Bahrein","Bélgica","Belize","Benim","Bielorrússia","Bolívia","Bósnia e Herzegovina","Botsuana","Brasil","Brunei","Bulgária","Burkina Faso","Burundi","Butão","Cabo Verde","Camarões","Camboja","Canadá","Catar","Cazaquistão","Chade","Chile","China","Chipre","Colômbia","Comores","Coreia do Norte","Coreia do Sul","Costa do Marfim","Costa Rica","Croácia","Cuba","Dinamarca","Djibouti","Dominica","Egito","El Salvador","Emirados Árabes Unidos","Equador","Eritreia","Eslováquia","Eslovênia","Espanha","Estados Unidos","Estônia","Etiópia","Fiji","Filipinas","Finlândia","França","Gabão","Gâmbia","Gana","Geórgia","Granada","Grécia","Guatemala","Guiana","Guiné","Guiné Equatorial","Guiné-Bissau","Haiti","Honduras","Hungria","Iêmen","Ilhas Marshall","Ilhas Salomão","Índia","Indonésia","Irã","Iraque","Irlanda","Islândia","Israel","Itália","Jamaica","Japão","Jordânia","Kiribati","Kuwait","Laos","Lesoto","Letônia","Líbano","Libéria","Líbia","Liechtenstein","Lituânia","Luxemburgo","Macedônia do Norte","Madagascar","Malásia","Malaui","Maldivas","Mali","Malta","Marrocos","Maurício","Mauritânia","México","Micronésia","Moçambique","Moldávia","Mônaco","Mongólia","Montenegro","Mianmar","Namíbia","Nauru","Nepal","Nicarágua","Níger","Nigéria","Noruega","Nova Zelândia","Omã","Países Baixos","Palau","Panamá","Papua Nova Guiné","Paquistão","Paraguai","Peru","Polônia","Portugal","Quênia","Quirguistão","Reino Unido","República Centro-Africana","República Tcheca","República Democrática do Congo","República do Congo","República Dominicana","Romênia","Ruanda","Rússia","Samoa","San Marino","Santa Lúcia","São Cristóvão e Neves","São Tomé e Príncipe","São Vicente e Granadinas","Seicheles","Senegal","Serra Leoa","Sérvia","Singapura","Síria","Somália","Sri Lanka","Suazilândia","Sudão","Sudão do Sul","Suécia","Suíça","Suriname","Tajiquistão","Tailândia","Tanzânia","Timor-Leste","Togo","Tonga","Trinidad e Tobago","Tunísia","Turcomenistão","Turquia","Tuvalu","Ucrânia","Uganda","Uruguai","Uzbequistão","Vanuatu","Vaticano","Venezuela","Vietnã","Zâmbia","Zimbábue"
+            ];
+            const select = document.getElementById('country-select');
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                select.appendChild(option);
+            });
+
+            // Handle form submission
+            function handleFormSubmit(e) {
+                e.preventDefault();
+                document.getElementById('form-wrapper').style.display = 'none';
+                document.getElementById('countdown-wrapper').style.display = 'block';
+                
+                let count = 5;
+                const counterEl = document.getElementById('redirect-counter');
+                
+                const interval = setInterval(() => {
+                    count--;
+                    counterEl.textContent = count;
+                    if(count <= 0) {
+                        clearInterval(interval);
+                        window.location.href = 'obrigado_ileal.html';
+                    }
+                }, 1000);
+            }
+
     </section>
 
     <!-- CONTENT SECTIONS -->
@@ -459,7 +521,7 @@
                     <h3><span class="mono" style="color: var(--vitality-red);">03</span> Sessões Cirúrgicas ação Vivo</h3>
                     <div class="mono" style="font-size: 0.8rem; margin-bottom: 15px; color: var(--dark-slate);">DURAÇÃO: 12 MESES</div>
                     <ul>
-                        <li>Tranósmissão de casos em tempo real</li>
+                        <li>transmissão de casos em tempo real</li>
                         <li>Discussão intraçãoperatória</li>
                         <li>Participação de professores convidados nacionais e internacionais</li>
                     </ul>
@@ -478,7 +540,7 @@
                 </div>
             </div>
 
-            <div class="info-grid" style="grid-template-columnós: 1fr;">
+            <div class="info-grid" style="grid-template-columns: 1fr;">
                  <div class="info-card" style="border-left-color: var(--electric-cyan);">
                     <h3> Integração Científica & Certificação</h3>
                     <ul style="margin-bottom: 20px;">
@@ -538,8 +600,8 @@
                 </div>
                 
                 <div style="margin-top: 40px;">
-                    <a href="httpós://wa.me/559294264080?text=I'm%20interested%20on%20the%20ILEAL%20METABOLIC%20SURGERY%20IMMERSION%2C%20Need%20more%20information" target="_blank" class="btn-whatsapp">
-                        Mais informações
+                    <a href="#form-inscricao" class="btn-whatsapp" style="background: var(--vitality-red);">
+                        QUERO FAZER MINHA PRÉ-INSCRIÇÃO
                     </a>
                 </div>
             </div>
@@ -558,9 +620,9 @@
     </footer>
 
     <script>
-        // Google Tranóslate Engine
-        function googleTranóslateElementInit() {
-            new google.tranóslate.TranóslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_tranóslate_element');
+        // Google translate Engine
+        function googletranslateElementInit() {
+            new google.translate.translateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
         }
         function changeLang(lang) {
             let select = document.querySelector('select.goog-te-combo');
@@ -570,7 +632,7 @@
             }
         }
     </script>
-    <div id="google_tranóslate_element" style="display:none;"></div>
-    <script type="text/javascript" src="httpós://tranóslate.google.com/tranóslate_a/element.js?cb=googleTranóslateElementInit"></script>
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 </html>

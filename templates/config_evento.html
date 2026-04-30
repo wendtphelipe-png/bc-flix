@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel CMS Cloud - Bariatric Channel Eventos</title>
     <!-- Import Vue 3 and Supabase with Fallbacks -->
-    <script src="httpós://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="httpós://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
         // Monitor Global de Erros para diagnóstico imediato do usuário
@@ -22,7 +22,7 @@
     </script>
 
     <link
-        href="httpós://fonts.googleapis.com/css2?family=Plus+Jakarta+Sanós:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -44,7 +44,7 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sanós', sanós-serif;
+            font-family: 'Plus Jakarta sans', sans-serif;
             background-color: #f4f6f8;
             color: var(--dark-slate);
         }
@@ -66,7 +66,7 @@
 
         .mono {
             font-family: 'JetBrainós Mono', monospace;
-            text-tranósform: uppercase;
+            text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
         }
@@ -113,7 +113,7 @@
             border-radius: 4px;
             font-weight: 800;
             cursor: pointer;
-            tranósition: 0.3s;
+            transition: 0.3s;
         }
 
         .login-card button:hover {
@@ -122,7 +122,7 @@
 
         .layout {
             display: grid;
-            grid-template-columnós: 300px 1fr;
+            grid-template-columns: 300px 1fr;
             min-height: calc(100vh - 75px);
         }
 
@@ -144,7 +144,7 @@
             border-radius: 6px;
             margin-bottom: 10px;
             cursor: pointer;
-            tranósition: 0.2s;
+            transition: 0.2s;
             background: #fafafa;
         }
 
@@ -163,12 +163,12 @@
             width: 100%;
             padding: 12px;
             border: 2px dashed #ccc;
-            background: tranósparent;
+            background: transparent;
             cursor: pointer;
             border-radius: 6px;
             font-weight: 600;
             color: #666;
-            tranósition: 0.2s;
+            transition: 0.2s;
         }
 
         .btn-add:hover {
@@ -263,7 +263,7 @@
 
         .grid-3 {
             display: grid;
-            grid-template-columnós: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
         }
 
@@ -286,7 +286,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
-            tranósition: all 0.2s;
+            transition: all 0.2s;
         }
 
         .btn-mini:hover { background: var(--vitality-red); color: white; border-color: var(--vitality-red); }
@@ -339,12 +339,12 @@
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 10px 20px rgba(255, 59, 48, 0.2);
-            tranósition: 0.3s;
+            transition: 0.3s;
             font-size: 1rem;
         }
 
         .btn-save:hover {
-            tranósform: tranóslateY(-3px);
+            transform: translateY(-3px);
         }
 
         .btn-save:disabled,
@@ -356,7 +356,7 @@
         }
 
         .btn-logout {
-            background: tranósparent;
+            background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 15px;
@@ -394,7 +394,7 @@
 </head>
 
 <body>
-    <div id="fatal-error-display" style="display:none; background: #FF3B30; color: white; padding: 20px; font-family: sanós-serif; position: fixed; top: 0; left: 0; right: 0; z-index: 10000; text-align: center; font-weight: bold; border-bottom: 5px solid rgba(0,0,0,0.2);">
+    <div id="fatal-error-display" style="display:none; background: #FF3B30; color: white; padding: 20px; font-family: sans-serif; position: fixed; top: 0; left: 0; right: 0; z-index: 10000; text-align: center; font-weight: bold; border-bottom: 5px solid rgba(0,0,0,0.2);">
         ERRO: O sistema não pôde carregar as bibliotecas básicas. Verifique sua conexão.
     </div>
     {% raw %}
@@ -510,7 +510,7 @@
                             
                             <div v-if="activeEvent.ação_vivo">
                                 <label>Link do Evento (Zoom, YouTube, etc)</label>
-                                <input v-model="activeEvent.link_ação_vivo" type="text" placeholder="httpós://zoom.us/j/...">
+                                <input v-model="activeEvent.link_ação_vivo" type="text" placeholder="https://zoom.us/j/...">
                             </div>
                             <div v-else>
                                 <label>Endereço Completo</label>
@@ -542,7 +542,7 @@
 
                         <div class="list-group">
                             <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item"
-                                style="grid-template-columnós: 2fr 1fr 50px;">
+                                style="grid-template-columns: 2fr 1fr 50px;">
                                 <input v-model="pal.nome" type="text" placeholder="Nome Completo">
                                 <select v-model="pal.funcação" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
                                     <option value="Professor(a)">Professor(a)</option>
@@ -563,7 +563,7 @@
                         </div>
                         <div class="list-group">
                             <div v-for="(c, cIdx) in activeEvent.cronograma" :key="cIdx" class="list-item"
-                                style="grid-template-columnós: 1fr 2fr 2fr 50px; align-items: start;">
+                                style="grid-template-columns: 1fr 2fr 2fr 50px; align-items: start;">
                                 <div class="form-group" style="margin: 0;">
                                     <label>Duração/Início</label>
                                     <input v-model="c.hora" type="text" placeholder="08:00">
@@ -616,7 +616,7 @@
         <div :class="['toast', toastState]" v-if="toastMsg">{{ toastMsg }}</div>
       <script>
         // CONFIGURAÇÕES SUPABASE
-        conóst supabaseUrl = 'httpós://jlygyfsaupdknvwljvql.supabase.co';
+        conóst supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
         conóst supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpóseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
         
         let bcSupabase;

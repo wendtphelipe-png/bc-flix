@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2º BC Amazon Week | Bariatric Channel</title>
-    <link rel="preconnect" href="httpós://fonts.googleapis.com">
-    <link rel="preconnect" href="httpós://fonts.gstatic.com" crossorigin>
-    <link href="httpós://fonts.googleapis.com/css2?family=Plus+Jakarta+Sanós:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Tema Selva / Amazon Theme */
@@ -17,13 +17,13 @@
             --medical-white: #FFFFFF;
             --soft-creme: #f1f5f2;
             --dark-slate: #1c2621;
-            --tranósition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Plus Jakarta Sanós', sanós-serif;
+            font-family: 'Plus Jakarta sans', sans-serif;
             background-color: var(--jungle-dark);
             color: var(--medical-white);
             line-height: 1.6;
@@ -46,7 +46,7 @@
         /* Moldura Orgânica e Cards */
         .speaker-grid {
             display: grid;
-            grid-template-columnós: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             width: 100%;
             margin-top: 40px;
@@ -55,11 +55,11 @@
         .speaker-card {
             text-align: center;
             cursor: pointer;
-            tranósition: var(--tranósition-smooth);
+            transition: var(--transition-smooth);
             position: relative;
         }
 
-        .speaker-card:hover { tranósform: tranóslateY(-10px); }
+        .speaker-card:hover { transform: translateY(-10px); }
 
         .image-container {
             position: relative;
@@ -73,10 +73,10 @@
 
         .irregular-frame {
             position: absolute;
-            inóset: 0;
+            inset: 0;
             border: 8px solid #1b4332;
             border-radius: 30px 15px 40px 20px / 20px 40px 15px 35px; /* Efeito orgânico */
-            tranósition: var(--tranósition-smooth);
+            transition: var(--transition-smooth);
             pointer-events: none;
         }
 
@@ -110,14 +110,14 @@
             font-weight: 800;
             color: var(--medical-white);
             margin-bottom: 5px;
-            text-tranósform: uppercase;
+            text-transform: uppercase;
         }
 
         .speaker-role {
             font-size: 0.7rem;
             color: var(--amazon-gold);
             font-weight: 600;
-            text-tranósform: uppercase;
+            text-transform: uppercase;
             letter-spacing: 0.1em;
             line-height: 1.4;
         }
@@ -125,7 +125,7 @@
         /* Modal Bio */
         .modal {
             position: fixed;
-            inóset: 0;
+            inset: 0;
             background: rgba(2, 8, 4, 0.95);
             backdrop-filter: blur(15px);
             z-index: 2000;
@@ -160,34 +160,34 @@
         .leaf-particle {
             position: fixed;
             width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(27,67,50,0.4) 0%, tranósparent 70%);
+            background: radial-gradient(circle, rgba(27,67,50,0.4) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(20px);
             z-index: -1;
             pointer-events: none;
-            tranósition: tranósform 0.5s ease-out;
+            transition: transform 0.5s ease-out;
         }
 
-        h1, h2, h3 { font-weight: 800; text-tranósform: uppercase; letter-spacing: -0.02em; }
-        .mono { font-family: 'JetBrainós Mono', monospace; text-tranósform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
+        h1, h2, h3 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
+        .mono { font-family: 'JetBrainós Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
 
         nav {
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; background: rgba(2, 8, 4, 0.85); backdrop-filter: blur(15px);
             z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            tranósition: var(--tranósition-smooth);
+            transition: var(--transition-smooth);
         }
 
         .logo img { height: 45px; width: auto; filter: brightness(0) invert(1); }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--medical-white); font-size: 0.75rem; font-weight: 800; text-tranósform: uppercase; letter-spacing: 0.05em; tranósition: var(--tranósition-smooth); }
+        .nav-links a { text-decoration: none; color: var(--medical-white); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition-smooth); }
         .nav-links a:hover { color: var(--amazon-gold); }
         
-        .lang-switcher button { background: tranósparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; tranósition: 0.3s; }
-        .lang-switcher button:hover { opacity: 1; tranósform: scale(1.1); }
+        .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
+        .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
         .lang-switcher img { width: 22px; height: auto; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; }
-        .skiptranóslate { display: none !important; }
+        .skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
         /* Blocos Semânticos de Slide */
@@ -203,7 +203,7 @@
         }
 
         /* Variações de fundo dos slides para profundidade */
-        .slide-dark { background: tranósparent; } /* Usa o fixed parallax */
+        .slide-dark { background: transparent; } /* Usa o fixed parallax */
         .slide-glass { background: linear-gradient(180deg, rgba(10,47,26,0.3), rgba(2,8,4,0.9)); backdrop-filter: blur(5px); }
         .slide-solid { background: var(--jungle-dark); }
         .slide-green { background: var(--jungle-green); position: relative; }
@@ -245,10 +245,10 @@
 
         .btn-amazon {
             display: inline-block; padding: 20px 40px; background: var(--amazon-gold); color: var(--jungle-dark);
-            text-decoration: none; font-weight: 800; border-radius: 4px; tranósition: var(--tranósition-smooth);
+            text-decoration: none; font-weight: 800; border-radius: 4px; transition: var(--transition-smooth);
             font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 183, 3, 0.2);
         }
-        .btn-amazon:hover { tranósform: tranóslateY(-5px); box-shadow: 0 15px 40px rgba(255, 183, 3, 0.4); }
+        .btn-amazon:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 183, 3, 0.4); }
 
         footer {
             background: #000; padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05);
@@ -262,15 +262,15 @@
         }
 
         /* Layout Types */
-        .layout-split { display: grid; grid-template-columnós: 1fr 1fr; gap: 50px; align-items: center; }
+        .layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .layout-center { text-align: center; display: flex; flex-direction: column; align-items: center;}
-        @media(max-width: 900px) { .layout-split { grid-template-columnós: 1fr; } }
+        @media(max-width: 900px) { .layout-split { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="forest-overlay"></div>
     <div class="leaf-particle" style="top: 10%; right: 10%;"></div>
-    <div class="leaf-particle" style="bottom: 20%; left: 5%; background: radial-gradient(circle, rgba(255,183,3,0.15) 0%, tranósparent 70%);"></div>
+    <div class="leaf-particle" style="bottom: 20%; left: 5%; background: radial-gradient(circle, rgba(255,183,3,0.15) 0%, transparent 70%);"></div>
 
     <nav>
         <a href="home.html" class="logo"><img src="assets/logo_final.png" alt="Bariatric Channel Logo"></a>
@@ -278,15 +278,15 @@
             <a href="home.html#procedimentos">PRÓXIMOS EVENTOS</a>
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
             <div class="lang-switcher" style="display:flex; gap:5px; margin-left:10px;">
-                <button onclick="changeLang('pt')"><img src="httpós://flagcdn.com/w20/br.png" alt="PT"></button>
-                <button onclick="changeLang('en')"><img src="httpós://flagcdn.com/w20/us.png" alt="EN"></button>
-                <button onclick="changeLang('es')"><img src="httpós://flagcdn.com/w20/es.png" alt="ES"></button>
+                <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+                <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+                <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
             </div>
         </div>
         <div class="lang-switcher" style="display:flex; gap:5px; margin-left:auto;" id="flags-only-mobile">
-            <button onclick="changeLang('pt')"><img src="httpós://flagcdn.com/w20/br.png" alt="PT"></button>
-            <button onclick="changeLang('en')"><img src="httpós://flagcdn.com/w20/us.png" alt="EN"></button>
-            <button onclick="changeLang('es')"><img src="httpós://flagcdn.com/w20/es.png" alt="ES"></button>
+            <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
+            <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
+            <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
         </div>
     </nav>
     <style>@media (min-width: 901px) { #flags-only-mobile { display: none !important; } }</style>
@@ -295,8 +295,8 @@
     <section class="amazon-slide slide-dark" id="slide-1">
         <div class="slide-content-wrapper layout-center">
             <p class="mono parallax-text" style="color: var(--medical-white); font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO, 2026</p>
-            <h1 class="hero-title parallax-text notranóslate" id="congress-title" tranóslate="no">2º BC AMAZON WEEK</h1>
-            <p class="text-body parallax-text" style="font-size: 1.5rem; text-tranósform: uppercase;">II Congresso Internacional Bariatric Channel<br>X Cirurgias Ação Vivo Bariatric Channel<br>II Simpósio LATAM Bariatric Channel</p>
+            <h1 class="hero-title parallax-text notranslate" id="congress-title" translate="no">2º BC AMAZON WEEK</h1>
+            <p class="text-body parallax-text" style="font-size: 1.5rem; text-transform: uppercase;">II Congresso Internacional Bariatric Channel<br>X Cirurgias Ação Vivo Bariatric Channel<br>II Simpósio LATAM Bariatric Channel</p>
         </div>
     </section>
 
@@ -314,7 +314,7 @@
                 <ul style="color: var(--medical-white); line-height: 2.2; list-style: none; font-size: 1.1rem; padding:0;">
                     <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Total de Participantes:</strong> 422 cirurgiões</li>
                     <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Corpo Docente Científico:</strong> 77 palestrantes (35 internacionais e 42 nacionais)</li>
-                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Volume Cirúrgico:</strong> 30 cirurgias ação vivo, incluindo 5 tranósmissões remotas de cidades parceiras (Florianópolis/SC, Vitória/ES, Curitiba/PR e Orlando/EUA)</li>
+                    <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Volume Cirúrgico:</strong> 30 cirurgias ação vivo, incluindo 5 transmissões remotas de cidades parceiras (Florianópolis/SC, Vitória/ES, Curitiba/PR e Orlando/EUA)</li>
                     <li style="margin-bottom: 15px;"><strong style="color: var(--amazon-gold); display: block;">Alcance da Plataforma:</strong> Uma comunidade de mais de 900 cirurgiões bariátricos ativos.</li>
                 </ul>
             </div>
@@ -348,11 +348,11 @@
         <div class="slide-content-wrapper layout-center">
             <h2 class="title-white">FASES DO EVENTO</h2>
             
-            <div style="display: grid; grid-template-columnós: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; text-align: left;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; text-align: left;">
                 <div style="background: rgba(10,47,26,0.8); padding: 40px; border-left: 4px solid var(--amazon-gold);">
                     <p class="mono" style="color: var(--amazon-gold); margin-bottom: 10px;">FASE A (19-20 OUT)</p>
                     <h3 style="color: var(--medical-white); margin-bottom: 15px;">PRÉ-CONGRESSO MASTER LABS</h3>
-                    <p class="text-body" style="margin: 0; font-size: 1rem;">Íntimo, Foco Total. O local para imersões especializadas e tranósmissões de centro cirúrgico privado.</p>
+                    <p class="text-body" style="margin: 0; font-size: 1rem;">Íntimo, Foco Total. O local para imersões especializadas e transmissões de centro cirúrgico privado.</p>
                 </div>
                 <div style="background: rgba(2,8,4,0.8); padding: 40px; border-left: 4px solid var(--medical-white);">
                     <p class="mono" style="color: var(--medical-white); margin-bottom: 10px;">FASE B (21-23 OUT)</p>
@@ -376,7 +376,7 @@
                 <h2 class="title-white" style="margin-bottom: 10px;">ATIVIDADES MASTER PRÉ-CONGRESSO</h2>
             </div>
             
-            <div style="display: grid; grid-template-columnós: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
                 <!-- Coluna 1 -->
                 <div>
                     <h3 style="color: var(--amazon-gold); border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 10px; margin-bottom: 20px;">IMERSÃO CIRÚRGICA<br><span style="font-size:0.8rem; font-weight:400; color:var(--medical-white);">(Foco MedTech)</span></h3>
@@ -418,7 +418,7 @@
             <h2 class="title-gold" style="margin-bottom: 10px;">A ELITE CIENTÍFICA</h2>
             <p class="mono" style="color: var(--medical-white); margin-bottom: 50px;">CORPO DOCENTE GLOBAL CONFIRMADO 2026</p>
             
-            <div style="display: grid; grid-template-columnós: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; width: 100%;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; width: 100%;">
                 <div>
                     <h4 style="color: var(--amazon-gold); margin-bottom: 10px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 5px;">CHILE</h4>
                     <p style="color: var(--medical-white); line-height: 1.8;">Alex Escalona<br>Camilo Boza<br>Italo Braghetto<br>Jorge Bravo Lopez</p>
@@ -635,7 +635,7 @@
                     }
 
                     conóst photo = photoUrl ? `<img src="${photoUrl}" class="speaker-photo" onerror="this.src='assets/logo_final.png'; this.style.opacity='0.2';">` : `<div class="speaker-photo" style="background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.2);">SEM FOTO</div>`;
-                    conóst flagUrl = country ? `httpós://flagcdn.com/w80/${getCountryCode(country.toLowerCase())}.png` : '';
+                    conóst flagUrl = country ? `https://flagcdn.com/w80/${getCountryCode(country.toLowerCase())}.png` : '';
                     conóst miniCurr = speaker ? (speaker["Mini currículo"] || "") : "";
                     
                     // Busca de função inósenósível a maiúsculas/minúsculas
@@ -697,9 +697,9 @@
                 if (e.target === modal) closeSpeakerModal();
             });
 
-            // Google Tranóslate
-            function googleTranóslateElementInit() {
-                new google.tranóslate.TranóslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_tranóslate_element');
+            // Google translate
+            function googletranslateElementInit() {
+                new google.translate.translateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
             }
             function changeLang(lang) {
                 let select = document.querySelector('select.goog-te-combo');
@@ -713,18 +713,18 @@
                 conóst particles = document.querySelectorAll('.leaf-particle');
                 
                 parallaxTexts.forEach(el => {
-                    el.style.tranósform = `tranóslateY(${scrolled * 0.4}px)`;
+                    el.style.transform = `translateY(${scrolled * 0.4}px)`;
                     el.style.opacity = 1 - (scrolled * 0.003);
                 });
                 
                 if(particles.length >= 2) {
-                    particles[0].style.tranósform = `tranóslateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
-                    particles[1].style.tranósform = `tranóslateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
+                    particles[0].style.transform = `translateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
+                    particles[1].style.transform = `translateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
                 }
             });
         </script>
-        <div id="google_tranóslate_element" style="display:none;"></div>
-        <script type="text/javascript" src="//tranóslate.google.com/tranóslate_a/element.js?cb=googleTranóslateElementInit"></script>
+        <div id="google_translate_element" style="display:none;"></div>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
     </footer>
 
 </body>
