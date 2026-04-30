@@ -8,3 +8,8 @@ dist/
 build/
 *.pyc
 __pycache__/
+
+# Arquivos Pesados e Multimidia
+*.mp4
+*.stl
+*.xlsx

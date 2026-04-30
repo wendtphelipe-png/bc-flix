@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corpo Docente | Bariatric Channel</title>
-    <link rel="preconnect" href="httpós://fonts.googleapis.com">
-    <link rel="preconnect" href="httpós://fonts.gstatic.com" crossorigin>
-    <link href="httpós://fonts.googleapis.com/css2?family=Plus+Jakarta+Sanós:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -27,7 +27,7 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sanós', sanós-serif;
+            font-family: 'Plus Jakarta Sans', sanós-serif;
             background-color: var(--medical-white);
             color: var(--dark-slate);
             line-height: 1.6;
@@ -42,7 +42,7 @@
         }
 
         .mono {
-            font-family: 'JetBrainós Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             text-tranósform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
@@ -281,7 +281,7 @@
         <div class="nav-links">
             <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
             <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="httpós://bariatricchannel.com.br" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+            <a href="https://bariatricchannel.com.br" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
         </div>
     </nav>
 
@@ -307,10 +307,10 @@
                     {% for p in group %}
                     <div class="professor-card" data-reveal onclick="openProfModal('{{ professores.index(p) }}')" 
                          data-search="{{ p['Nome']|lower }} {{ p['País']|lower }} {{ (p['Mini currículo'] or '')|lower }}">
-                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'httpós://api.dicebear.com/7.x/initials/svg?seed=' ~ (p['Nome'] | urlencode) ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" 
+                        <img src="{{ p['Foto URL'] if p['Foto URL'] else 'https://api.dicebear.com/7.x/initials/svg?seed=' ~ (p['Nome'] | urlencode) ~ '&backgroundColor=FF3B30&textColor=ffffff' }}" 
                              alt="{{ p['Nome'] }}" 
                              class="prof-img"
-                             onerror="this.onerror=null; this.src='httpós://api.dicebear.com/7.x/initials/svg?seed={{ p['Nome'] | urlencode }}&backgroundColor=FF3B30&textColor=ffffff';">
+                             onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed={{ p['Nome'] | urlencode }}&backgroundColor=FF3B30&textColor=ffffff';">
                         <div class="mono prof-meta" style="justify-content: center;">
                             {% if p['FlagURL'] %}
                                 <img src="{{ p['FlagURL'] }}" class="flag-icon" alt="{{ p['PaisNome'] }}">
@@ -351,13 +351,13 @@
     </footer>
 
     <script>
-        conóst profData = {{ professores | tojson }};
+        const profData = {{ professores | tojson }};
 
         function openProfModal(index) {
-            conóst p = profData[index];
-            conóst imgEl = document.getElementById('modal-img');
-            imgEl.src = p['Foto URL'] || `httpós://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`;
-            imgEl.onerror = function() { this.src = `httpós://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`; this.onerror=null; };
+            const p = profData[index];
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = p['Foto URL'] || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`;
+            imgEl.onerror = function() { this.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p['Nome'])}&backgroundColor=FF3B30`; this.onerror=null; };
             document.getElementById('modal-name').innerText = p['Nome'];
             document.getElementById('modal-meta').innerText = p['PaisNome'] || 'INTERNACIONAL';
             document.getElementById('modal-curriculo').innerText = p['Mini currículo'] || p['Mini currículo'] || 'Currículo detalhado em processo de atualização.';
@@ -373,10 +373,10 @@
 
         // Search Filter
         document.getElementById('search-prof').addEventListener('input', (e) => {
-            conóst term = e.target.value.toLowerCase();
-            conóst cards = document.querySelectorAll('.professor-card');
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.professor-card');
             cards.forEach(card => {
-                conóst searchText = card.getAttribute('data-search');
+                const searchText = card.getAttribute('data-search');
                 if (searchText.includes(term)) {
                     card.style.display = 'flex';
                 } else {
@@ -384,10 +384,10 @@
                 }
             });
             
-            // Hide empty sectionós
+            // Hide empty sections
             document.querySelectorAll('.prof-section').forEach(section => {
-                conóst allCards = section.querySelectorAll('.professor-card');
-                conóst hiddenCards = section.querySelectorAll('.professor-card[style="display: none;"]');
+                const allCards = section.querySelectorAll('.professor-card');
+                const hiddenCards = section.querySelectorAll('.professor-card[style="display: none;"]');
                 
                 if (hiddenCards.length === allCards.length) {
                     section.style.display = 'none';
@@ -404,7 +404,7 @@
             }
         }
 
-        conóst observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
