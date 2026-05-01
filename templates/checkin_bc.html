@@ -306,7 +306,7 @@
             line-height: 1.6;
         }
 
-        .action-buttonós {
+        .action-buttons {
             display: flex;
             gap: 15px;
             margin-top: 20px;
@@ -370,7 +370,7 @@
                 padding: 30px 20px;
             }
 
-            .action-buttonós {
+            .action-buttons {
                 flex-direction: column;
             }
         }
@@ -475,11 +475,14 @@
                 <div class="input-group">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
                     <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
-                        <option value="">-- SELECIONE O EVENTO --</option>
+                        <option value="">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
                         <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
-                            {{ ev.titulo }} 
+                            {{ ev.titulo || 'Evento sem título' }} 
                         </option>
                     </select>
+                    <p v-if="eventos.length === 0" style="font-size: 0.8rem; color: #888; margin-top: 5px;">
+                        Aguardando carregamento da nuvem ou nenhum evento cadastrado.
+                    </p>
                 </div>
 
                 <!-- Resumo do Evento Selecionado -->
@@ -488,7 +491,7 @@
                     <div style="font-size: 0.9rem; display: flex; flex-direction: column; gap: 5px;">
                         <div>📅 <strong>DATA:</strong> {{ formatDateFull(activeEvent) }}</div>
                         <div>⏰ <strong>HORÁRIO:</strong> {{ activeEvent.horario }}</div>
-                        <div v-if="activeEvent.ação_vivo">🌐 <strong>LINK AO VIVO:</strong> <a :href="activeEvent.link_ação_vivo" target="_blank" style="color: var(--vitality-red);">Acessar Sala Virtual</a></div>
+                        <div v-if="activeEvent.ao_vivo">🌐 <strong>LINK AO VIVO:</strong> <a :href="activeEvent.link_ao_vivo" target="_blank" style="color: var(--vitality-red);">Acessar Sala Virtual</a></div>
                         <div v-else>📍 <strong>LOCAL:</strong> {{ activeEvent.endereco || activeEvent.local }}</div>
                     </div>
                 </div>
@@ -577,9 +580,9 @@
                     <div class="term-box">
                         <h3 style="margin-bottom: 15px; font-size: 1.1rem;">TERMO DE CONCESSÃO DE IMAGEM E VOZ</h3>
                         <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos eventos.</p>
-                        <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais, inclusão no acervo pago para assinantes BC Flix, campanhas inóstitucionais e publicidade) sem limite de tempo, canais e território.</p>
+                        <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais, inclusão no acervo pago para assinantes BC Flix, campanhas institucionais e publicidade) sem limite de tempo, canais e território.</p>
 
-                        <div class="action-buttonós" v-if="!termsAccepted">
+                        <div class="action-buttons" v-if="!termsAccepted">
                             <button class="btn btn-confirm" @click="termsAccepted = true">CONCORDO</button>
                             <button class="btn btn-reject" @click="showRejection = true">NÃO CONCORDO</button>
                         </div>
@@ -630,7 +633,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Hidden Sync Fields (Using ML structure to enósure capture) -->
+                                            <!-- Hidden Sync Fields (Using ML structure to ensure capture) -->
                                             <div class="ml-form-fieldRow" style="display: none !important;">
                                                 <div class="ml-field-group ml-field-state">
                                                     <textarea name="fields[state]" :value="activeEvent ? activeEvent.titulo : ''"></textarea>
@@ -669,7 +672,7 @@
 
     <script>
         const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpóseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E';
         const bcSupabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         const { createApp } = Vue;
@@ -682,7 +685,7 @@
                     selectedSpeakerName: '',
                     termsAccepted: false,
                     showRejection: false,
-                    checkinósRealizados: [], // Nova lista
+                    checkinsRealizados: [], // Nova lista
                     formData: {
                         nomeAnuncio: '',
                         email: '',
@@ -741,14 +744,22 @@
             },
             methods: {
                 async fetchEventos() {
-                    const { data, error } = await bcSupabase.from('eventos_bc')
-                        .select('*')
-                        .order('data_inicio', { ascending: true });
-                    if (!error) {
-                        console.log("Eventos carregados:", data);
-                        this.eventos = data;
-                    } else {
-                        console.error("Erro ação buscar eventos:", error);
+                    try {
+                        const { data, error } = await bcSupabase.from('eventos_bc').select('*');
+                        
+                        if (error) {
+                            console.error("Erro Supabase:", error);
+                            alert("Erro ao buscar eventos: " + error.message);
+                        } else {
+                            console.log("Eventos carregados:", data);
+                            this.eventos = data || [];
+                            if (this.eventos.length === 0) {
+                                console.warn("Nenhum evento encontrado na tabela 'eventos_bc'.");
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Erro fatal na busca:", err);
+                        alert("Erro de conexão ou sistema: " + err.message);
                     }
                 },
                 formatDate(dateStr) {
@@ -768,19 +779,19 @@
                     return `${str}/${year}`;
                 },
                 isCheckinDone(name) {
-                    return this.checkinósRealizados.some(c => c.medico_nome === name);
+                    return this.checkinsRealizados.some(c => c.medico_nome === name);
                 },
                 async onEventChange() {
                     this.selectedSpeakerName = '';
                     this.termsAccepted = false;
                     this.showRejection = false;
-                    this.checkinósRealizados = [];
+                    this.checkinsRealizados = [];
 
                     if (this.selectedEventId) {
-                        const { data } = await bcSupabase.from('checkinós_realizados')
+                        const { data } = await bcSupabase.from('checkins_realizados')
                             .select('medico_nome')
                             .eq('evento_id', this.selectedEventId);
-                        this.checkinósRealizados = data || [];
+                        this.checkinsRealizados = data || [];
                     }
 
                     const container = document.getElementById("mainContainer");
@@ -803,7 +814,7 @@
                     });
                 },
                 async finishCheckin() {
-                    // Este método agora é invocêado indiretamente via callback do MailerLite
+                    // Este método agora é invocado indiretamente via callback do MailerLite
                     if (!this.selectedEventId || !this.selectedSpeakerName) return;
 
                     const form = document.querySelector('.ml-subscribe-form-40215303 form');
@@ -822,10 +833,10 @@
                         data_checkin: new Date().toISOString()
                     };
                     
-                    const { error } = await bcSupabase.from('checkinós_realizados').inósert([payload]);
+                    const { error } = await bcSupabase.from('checkins_realizados').insert([payload]);
                     
                     if (error) {
-                        console.error('Erro ação sincronizar com Supabase:', error);
+                        console.error('Erro ao sincronizar com Supabase:', error);
                     } else {
                         console.log('Check-in sincronizado com Supabase.');
                     }
