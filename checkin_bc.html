@@ -475,11 +475,14 @@
                 <div class="input-group">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
                     <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
-                        <option value="">-- SELECIONE O EVENTO --</option>
+                        <option value="">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
                         <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
-                            {{ ev.titulo }} 
+                            {{ ev.titulo || 'Evento sem título' }} 
                         </option>
                     </select>
+                    <p v-if="eventos.length === 0" style="font-size: 0.8rem; color: #888; margin-top: 5px;">
+                        Aguardando carregamento da nuvem ou nenhum evento cadastrado.
+                    </p>
                 </div>
 
                 <!-- Resumo do Evento Selecionado -->
@@ -741,14 +744,22 @@
             },
             methods: {
                 async fetchEventos() {
-                    const { data, error } = await bcSupabase.from('eventos_bc')
-                        .select('*')
-                        .order('data_inicio', { ascending: true });
-                    if (!error) {
-                        console.log("Eventos carregados:", data);
-                        this.eventos = data;
-                    } else {
-                        console.error("Erro ao buscar eventos:", error);
+                    try {
+                        const { data, error } = await bcSupabase.from('eventos_bc').select('*');
+                        
+                        if (error) {
+                            console.error("Erro Supabase:", error);
+                            alert("Erro ao buscar eventos: " + error.message);
+                        } else {
+                            console.log("Eventos carregados:", data);
+                            this.eventos = data || [];
+                            if (this.eventos.length === 0) {
+                                console.warn("Nenhum evento encontrado na tabela 'eventos_bc'.");
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Erro fatal na busca:", err);
+                        alert("Erro de conexão ou sistema: " + err.message);
                     }
                 },
                 formatDate(dateStr) {
