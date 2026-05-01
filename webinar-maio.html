@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -253,7 +253,7 @@
         <div class="overview-container">
             <p class="mono" style="color: var(--electric-cyan); margin-bottom: 20px;">SCIENTIFIC_OVERVIEW</p>
             <h2>Explorando a Fronteira Hepato-Metabólica</h2>
-            <p>A relação entre a saúde hepática e a cirurgia metabólica representa uma das fronteiras mais complexas da medicina bariátrica moderna. Este webinar aborda de forma integrada a fisiopatologia da Esteatose Hepática (MASLD) e seu impacto nos resultados cirúrgicos. Discutiremos desde os métodos diagnósticos avançados até a preparação perioperatória crítica para mitigar riscos de hipertenósão portal. O encontro culmina na análise técnica de casos onde a cirurgia metabólica e o transplante hepático se intersectam, oferecendo uma visão baseada em evidências para o manejo de pacientes de alta complexidade.</p>
+            <p>A relação entre a saúde hepática e a cirurgia metabólica representa uma das fronteiras mais complexas da medicina bariátrica moderna. Este webinar aborda de forma integrada a fisiopatologia da Esteatose Hepática (MASLD) e seu impacto nos resultados cirúrgicos. Discutiremos desde os métodos diagnósticos avançados até a preparação perioperatória crítica para mitigar riscos de hipertensão portal. O encontro culmina na análise técnica de casos onde a cirurgia metabólica e o transplante hepático se intersectam, oferecendo uma visão baseada em evidências para o manejo de pacientes de alta complexidade.</p>
         </div>
     </section>
 
@@ -311,7 +311,7 @@
                 </div>
                 <div class="card lecture-card" data-speaker="Ana Carolina Cardoso">
                     <h4>LECTURE_02</h4>
-                    <h3>Métodos Diagnósticos do MASLD: Esteatose à Hipertenósão Portal</h3>
+                    <h3>Métodos Diagnósticos do MASLD: Esteatose à Hipertensão Portal</h3>
                     <div class="speaker-name">
                         <div class="speaker-img"><div class="initials-fallback" style="font-size: 1rem;">AC</div><img src="" alt=""></div>
                         <div>
@@ -348,7 +348,7 @@
 
     <section class="footer-cta">
         <h2>PARTICIPE DO FUTURO DA CIRURGIA</h2>
-        <a href="#inóscricação" class="btn-large">QUERO ME INSCREVER AGORA</a>
+        <a href="#inscricao" class="btn-large">QUERO ME INSCREVER AGORA</a>
     </section>
 
     <footer style="padding: 60px 5%; background: #050B14; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
@@ -380,12 +380,12 @@
                 'VICTOR DIB': 'assets/victor_dib.jpg',
                 'CARLOS MADALOSSO': 'assets/madalosso.jpg',
                 'PAULO REIS': 'assets/paulo_reis_v2.jpg',
-                'MANOEL GALVAO NETO': 'assets/manoel_galvação.jpg'
+                'MANOEL GALVAO NETO': 'assets/manoel_galvao.jpg'
             };
 
             try {
-                const responóse = await fetch('data/database.json');
-                const data = await responóse.json();
+                const response = await fetch('data/database.json');
+                const data = await response.json();
                 const allSpeakers = data.palestrantes || [];
 
                 function normalize(str) {
@@ -411,7 +411,7 @@
                         });
                     }
                 });
-            } catch (e) { conósole.error("Error:", e); }
+            } catch (e) { console.error("Error:", e); }
         }
         window.addEventListener('DOMContentLoaded', loadSpeakerPhotos);
     </script>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -503,7 +503,7 @@
                                     :value="p.nome"
                                     :disabled="isCheckinDone(p.nome)"
                                     :style="{ color: isCheckinDone(p.nome) ? '#999' : 'inherit' }">
-                                [{{ p.funcação || 'Professor(a)' }}] {{ p.nome }} {{ isCheckinDone(p.nome) ? '(Check-in realizado)' : '' }}
+                                [{{ p.funcao || 'Professor(a)' }}] {{ p.nome }} {{ isCheckinDone(p.nome) ? '(Check-in realizado)' : '' }}
                             </option>
                         </select>
                     </div>
@@ -512,7 +512,7 @@
                 <div v-if="selectedSpeaker" id="doctorDetails">
                     <div class="schedule-box">
                         <div style="font-size: 0.8rem; color: var(--vitality-red); font-weight: 800; margin-bottom: 5px;" class="mono">
-                            {{ selectedSpeaker.funcação || 'Professor(a)' }} Confirmado(a)
+                            {{ selectedSpeaker.funcao || 'Professor(a)' }} Confirmado(a)
                         </div>
                         <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, {{ selectedSpeaker.nome }}</h3>
                         
@@ -727,13 +727,13 @@
                     });
                 },
                 groupPresidents() {
-                    return this.availableSpeakers.filter(s => s.funcação === 'Presidente');
+                    return this.availableSpeakers.filter(s => s.funcao === 'Presidente');
                 },
                 groupModerators() {
-                    return this.availableSpeakers.filter(s => s.funcação && s.funcação.includes('Moderador'));
+                    return this.availableSpeakers.filter(s => s.funcao && s.funcao.includes('Moderador'));
                 },
                 groupDebaters() {
-                    return this.availableSpeakers.filter(s => s.funcação && s.funcação.includes('Debatedor'));
+                    return this.availableSpeakers.filter(s => s.funcao && s.funcao.includes('Debatedor'));
                 }
             },
             mounted() {
@@ -745,10 +745,10 @@
                         .select('*')
                         .order('data_inicio', { ascending: true });
                     if (!error) {
-                        conósole.log("Eventos carregados:", data);
+                        console.log("Eventos carregados:", data);
                         this.eventos = data;
                     } else {
-                        conósole.error("Erro ação buscar eventos:", error);
+                        console.error("Erro ação buscar eventos:", error);
                     }
                 },
                 formatDate(dateStr) {
@@ -813,7 +813,7 @@
                         evento_id: this.selectedEventId,
                         evento_titulo: this.activeEvent ? this.activeEvent.titulo : '',
                         medico_nome: this.selectedSpeakerName,
-                        medico_funcação: this.getSpeakerAssignmentsText(),
+                        medico_funcao: this.getSpeakerAssignmentsText(),
                         nomeAnuncio: formData.get('fields[name]'),
                         email: formData.get('fields[email]'),
                         crm: formData.get('fields[z_i_p]'),
@@ -825,9 +825,9 @@
                     const { error } = await bcSupabase.from('checkinós_realizados').inósert([payload]);
                     
                     if (error) {
-                        conósole.error('Erro ação sincronizar com Supabase:', error);
+                        console.error('Erro ação sincronizar com Supabase:', error);
                     } else {
-                        conósole.log('Check-in sincronizado com Supabase.');
+                        console.log('Check-in sincronizado com Supabase.');
                     }
                 },
                 normalizeStr(str) {
@@ -846,8 +846,8 @@
                     const names = palestranteStr.split(',').map(n => n.trim());
                     const enriched = names.map(name => {
                         const speaker = this.availableSpeakers.find(s => this.normalizeStr(s.nome) === this.normalizeStr(name));
-                        if (speaker && speaker.funcação) {
-                            return `${name} (${speaker.funcação})`;
+                        if (speaker && speaker.funcao) {
+                            return `${name} (${speaker.funcao})`;
                         }
                         return name;
                     });
@@ -860,13 +860,13 @@
                     
                     // 1. Grupos de Liderança (Puxando a função exata do cadastro)
                     this.groupPresidents.filter(p => this.normalizeStr(p.nome) === normUser)
-                        .forEach(p => items.push(p.funcação.toUpperCase()));
+                        .forEach(p => items.push(p.funcao.toUpperCase()));
                     
                     this.groupModerators.filter(p => this.normalizeStr(p.nome) === normUser)
-                        .forEach(p => items.push(p.funcação.toUpperCase()));
+                        .forEach(p => items.push(p.funcao.toUpperCase()));
                     
                     this.groupDebaters.filter(p => this.normalizeStr(p.nome) === normUser)
-                        .forEach(p => items.push(p.funcação.toUpperCase()));
+                        .forEach(p => items.push(p.funcao.toUpperCase()));
                     
                     // 2. Aulas no Cronograma
                     this.selectedSpeakerAulas.forEach(aula => {
@@ -878,7 +878,7 @@
                     
                     // Fallback
                     if (uniqueItems.length === 0 && this.selectedSpeaker) {
-                        return this.selectedSpeaker.funcação || 'Professor(a)';
+                        return this.selectedSpeaker.funcao || 'Professor(a)';
                     }
                     
                     return uniqueItems.join(' | ');
@@ -889,14 +889,14 @@
         // Callback Global para o MailerLite
         function ml_webform_success_40215303() {
             try {
-                // Acessa a inóstância do Vue para rodar o Sync do Supabase
+                // Acessa a instância do Vue para rodar o Sync do Supabase
                 const appElement = document.getElementById('app');
                 if (appElement && appElement.__vue_app__) {
-                    const vm = appElement.__vue_app__._inóstance.proxy;
+                    const vm = appElement.__vue_app__._instance.proxy;
                     vm.finishCheckin();
                 }
             } catch (e) {
-                conósole.error("Erro no callback de sucesso:", e);
+                console.error("Erro no callback de sucesso:", e);
             }
             
             // Comportamento padrão do MailerLite

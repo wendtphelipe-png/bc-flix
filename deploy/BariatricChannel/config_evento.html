@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -544,7 +544,7 @@
                             <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item"
                                 style="grid-template-columns: 2fr 1fr 50px;">
                                 <input v-model="pal.nome" type="text" placeholder="Nome Completo">
-                                <select v-model="pal.funcação" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                                <select v-model="pal.funcao" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
                                     <option value="Professor(a)">Professor(a)</option>
                                     <option value="Moderador(a)">Moderador(a)</option>
                                     <option value="Presidente">Presidente</option>
@@ -623,7 +623,7 @@
         try {
             bcSupabase = window.supabase.createClient(supabaseUrl, supabaseKey);
         } catch (e) {
-            conósole.error("Supabase Error:", e);
+            console.error("Supabase Error:", e);
         }
 
         const { createApp } = Vue;
@@ -645,7 +645,7 @@
                 }
             },
             mounted() {
-                conósole.log("Vue App Iniciado");
+                console.log("Vue App Iniciado");
                 const statusEl = document.getElementById('app-status');
                 if(statusEl) statusEl.style.display = 'none';
                 
@@ -679,7 +679,7 @@
                         this.activeEvent.imagem = publicUrl;
                         this.showToast('Imagem enviada com sucesso!', 'success');
                     } catch (e) {
-                        conósole.error(e);
+                        console.error(e);
                         this.showToast('Erro no upload. Verifique o Storage.', 'error');
                     } finally {
                         this.uploading = false;
@@ -690,7 +690,7 @@
                         const { data: { session } } = await bcSupabase.auth.getSession();
                         this.session = session;
                         if (this.session) this.fetchEventos();
-                    } catch (e) { conósole.error("Session check fail:", e); }
+                    } catch (e) { console.error("Session check fail:", e); }
                 },
                 async handleLogin() {
                     this.loading = true;
@@ -761,7 +761,7 @@
                 },
                 addPalestrante() {
                     if (!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
-                    this.activeEvent.palestrantes.push({ nome: "", funcação: "Professor(a)" });
+                    this.activeEvent.palestrantes.push({ nome: "", funcao: "Professor(a)" });
                 },
                 removePalestrante(idx) {
                     this.activeEvent.palestrantes.splice(idx, 1);
@@ -822,13 +822,13 @@
                     
                     const currentId = this.activeEvent.id;
 
-                    conósole.log("Enviando payload:", payload);
+                    console.log("Enviando payload:", payload);
                     const { error } = await bcSupabase.from('eventos_bc').upósert(payload);
                     if (error) {
-                        conósole.error("Erro Supabase:", error);
+                        console.error("Erro Supabase:", error);
                         this.showToast('Erro: ' + (error.message || error.details || 'Falha técnica no Supabase'), 'error');
                     } else {
-                        conósole.log("Salvo com sucesso!");
+                        console.log("Salvo com sucesso!");
                         this.showToast('Salvo com sucesso!', 'success');
                         await this.fetchEventos(currentId);
                     }

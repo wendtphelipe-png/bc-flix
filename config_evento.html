@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -430,7 +430,7 @@
                 <div class="sidebar">
                     <div class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">SELECIONE OU CRIE EVENTOS
                     </div>
-                    <!-- The prompt inóside this method will block until resolved -->
+                    <!-- The prompt inside this method will block until resolved -->
                     <button class="btn-add" @click="createEventModal">+ NOVO EVENTO</button>
 
                     <p v-if="eventos.length === 0" style="margin-top:20px; font-size:0.9em; color:#888;">Buscando base
@@ -505,12 +505,12 @@
 
                         <div class="form-group">
                             <label class="check-group">
-                                <input type="checkbox" v-model="activeEvent.ação_vivo"> Evento ação Vivo (Online)?
+                                <input type="checkbox" v-model="activeEvent.ao_vivo"> Evento ao Vivo (Online)?
                             </label>
                             
-                            <div v-if="activeEvent.ação_vivo">
+                            <div v-if="activeEvent.ao_vivo">
                                 <label>Link do Evento (Zoom, YouTube, etc)</label>
-                                <input v-model="activeEvent.link_ação_vivo" type="text" placeholder="https://zoom.us/j/...">
+                                <input v-model="activeEvent.link_ao_vivo" type="text" placeholder="https://zoom.us/j/...">
                             </div>
                             <div v-else>
                                 <label>Endereço Completo</label>
@@ -544,7 +544,7 @@
                             <div v-for="(pal, pIdx) in activeEvent.palestrantes" :key="pIdx" class="list-item"
                                 style="grid-template-columns: 2fr 1fr 50px;">
                                 <input v-model="pal.nome" type="text" placeholder="Nome Completo">
-                                <select v-model="pal.funcação" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                                <select v-model="pal.funcao" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
                                     <option value="Professor(a)">Professor(a)</option>
                                     <option value="Moderador(a)">Moderador(a)</option>
                                     <option value="Presidente">Presidente</option>
@@ -617,13 +617,13 @@
       <script>
         // CONFIGURAÇÕES SUPABASE
         const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpóseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
         
         let bcSupabase;
         try {
             bcSupabase = window.supabase.createClient(supabaseUrl, supabaseKey);
         } catch (e) {
-            conósole.error("Supabase Error:", e);
+            console.error("Supabase Error:", e);
         }
 
         const { createApp } = Vue;
@@ -645,7 +645,7 @@
                 }
             },
             mounted() {
-                conósole.log("Vue App Iniciado");
+                console.log("Vue App Iniciado");
                 const statusEl = document.getElementById('app-status');
                 if(statusEl) statusEl.style.display = 'none';
                 
@@ -679,7 +679,7 @@
                         this.activeEvent.imagem = publicUrl;
                         this.showToast('Imagem enviada com sucesso!', 'success');
                     } catch (e) {
-                        conósole.error(e);
+                        console.error(e);
                         this.showToast('Erro no upload. Verifique o Storage.', 'error');
                     } finally {
                         this.uploading = false;
@@ -690,13 +690,13 @@
                         const { data: { session } } = await bcSupabase.auth.getSession();
                         this.session = session;
                         if (this.session) this.fetchEventos();
-                    } catch (e) { conósole.error("Session check fail:", e); }
+                    } catch (e) { console.error("Session check fail:", e); }
                 },
                 async handleLogin() {
                     this.loading = true;
                     this.loginError = '';
                     try {
-                        const { data, error } = await bcSupabase.auth.signInWithPaíssword({
+                        const { data, error } = await bcSupabase.auth.signInWithPassword({
                             email: this.email,
                             password: this.password
                         });
@@ -749,19 +749,19 @@
                         horario_fim: "",
                         usar_horario_fim: false,
                         endereco: "",
-                        ação_vivo: false,
-                        link_ação_vivo: "",
+                        ao_vivo: false,
+                        link_ao_vivo: "",
                         imagem: "assets/onça.png", 
                         cronograma: [], 
                         palestrantes: [],
                         info_extra: "" 
                     };
-                    this.eventos.unóshift(novo);
+                    this.eventos.unshift(novo);
                     this.activeEvent = novo;
                 },
                 addPalestrante() {
                     if (!this.activeEvent.palestrantes) this.activeEvent.palestrantes = [];
-                    this.activeEvent.palestrantes.push({ nome: "", funcação: "Professor(a)" });
+                    this.activeEvent.palestrantes.push({ nome: "", funcao: "Professor(a)" });
                 },
                 removePalestrante(idx) {
                     this.activeEvent.palestrantes.splice(idx, 1);
@@ -793,7 +793,7 @@
                     }
                     if (this.activeEvent.data_inicio) legacyData += "/" + this.activeEvent.data_inicio.split('-')[0].substring(2);
 
-                    let legacyLocal = this.activeEvent.ação_vivo ? "AO VIVO (Online)" : (this.activeEvent.endereco || "");
+                    let legacyLocal = this.activeEvent.ao_vivo ? "AO VIVO (Online)" : (this.activeEvent.endereco || "");
                     let legacyHorario = (this.activeEvent.horario_inicio || "");
                     if (this.activeEvent.usar_horario_fim && this.activeEvent.horario_fim) {
                         legacyHorario += " às " + this.activeEvent.horario_fim;
@@ -812,8 +812,8 @@
                         horario_fim: sanitize(this.activeEvent.horario_fim),
                         usar_horario_fim: this.activeEvent.usar_horario_fim,
                         endereco: sanitize(this.activeEvent.endereco),
-                        ação_vivo: this.activeEvent.ação_vivo,
-                        link_ação_vivo: sanitize(this.activeEvent.link_ação_vivo),
+                        ao_vivo: this.activeEvent.ao_vivo,
+                        link_ao_vivo: sanitize(this.activeEvent.link_ao_vivo),
                         imagem: sanitize(this.activeEvent.imagem),
                         palestrantes: this.activeEvent.palestrantes || [],
                         cronograma: this.activeEvent.cronograma || [],
@@ -822,13 +822,13 @@
                     
                     const currentId = this.activeEvent.id;
 
-                    conósole.log("Enviando payload:", payload);
-                    const { error } = await bcSupabase.from('eventos_bc').upósert(payload);
+                    console.log("Enviando payload:", payload);
+                    const { error } = await bcSupabase.from('eventos_bc').upsert(payload);
                     if (error) {
-                        conósole.error("Erro Supabase:", error);
+                        console.error("Erro Supabase:", error);
                         this.showToast('Erro: ' + (error.message || error.details || 'Falha técnica no Supabase'), 'error');
                     } else {
-                        conósole.log("Salvo com sucesso!");
+                        console.log("Salvo com sucesso!");
                         this.showToast('Salvo com sucesso!', 'success');
                         await this.fetchEventos(currentId);
                     }
