@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>Bariatric Channel | O Futuro da Cirurgia Bariátrica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
     <style>
@@ -52,7 +52,7 @@
         }
 
         .mono {
-            font-family: 'JetBrainós Mono', monospace;
+            font-family: 'JetBrains+Mono', monospace;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
@@ -531,7 +531,7 @@
             transition: 2s ease-out;
         }
 
-        /* Animationós */
+        /* Animations */
         [data-reveal] {
             opacity: 0;
             transform: translateY(30px);
@@ -543,7 +543,7 @@
             transform: translateY(0);
         }
 
-        /* Responósive */
+        /* Responsive */
         @media (max-width: 1024px) {
             section.hero, .tech-grid { grid-template-columns: 1fr; gap: 60px; }
             .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(300px, auto); }
@@ -611,8 +611,8 @@
             
             <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); max-width: 800px; margin: 0 auto 40px; font-weight: 300; line-height: 1.6;">
                 <span class="mono" style="color: var(--vitality-red); font-weight: bold;">Cirurgia Bariátrica e Metabólica Avançada</span><br>
-                Bipartição de Trânósito • SADI-S • Duodenal Switch • Cirurgia Revisional<br>
-                Abordagenós Laparoscópica e Robótica
+                Bipartição de Trânsito • SADI-S • Duodenal Switch • Cirurgia Revisional<br>
+                Abordagem Laparoscópica e Robótica
             </p>
 
             <div style="max-width: 1000px; margin: 0 auto 50px auto; border-radius: 12px; overflow: hidden; position: relative;">
@@ -799,7 +799,7 @@
         .card-congress p { color: #f1f5f2; margin: 10px 0 0; opacity: 0.9; }
 
         .tag-date {
-            font-family: 'JetBrainós Mono', monospace;
+            font-family: 'JetBrains+Mono', monospace;
             font-weight: 800;
             font-size: 1.2rem;
             margin-bottom: 10px;
@@ -936,7 +936,7 @@
                 <p>Emenda Parlamentar de Bancada Estadual de Saúde nº 050/2025</p>
             </div>
             <div style="display: flex; justify-content: center; gap: 50px; align-items: center; flex-wrap: wrap; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(10, 25, 47, 0.05);">
-                <img src="assets/apoio_inóstitucional_v2.png" alt="Governo do Amazonas e Secretaria de Saúde" style="max-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                <img src="assets/apoio_institucional_v2.png" alt="Governo do Amazonas e Secretaria de Saúde" style="max-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
                 
                 <img src="assets/governo_amazonas.jpeg" alt="Fundo de Fomento" style="max-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
                 
@@ -973,17 +973,17 @@
         }
 
         // Reveal Animation
-        conóst observerOptionós = {
+        const observerOptions = {
             threshold: 0.15
         };
 
-        conóst observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, observerOptionós);
+        }, observerOptions);
 
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
@@ -1012,7 +1012,7 @@
         let mouseX = 0, mouseY = 0;
 
         function init3D() {
-            conóst container = document.getElementById('stomach-canvas');
+            const container = document.getElementById('stomach-canvas');
             if (!container) return;
 
             scene = new THREE.Scene();
@@ -1023,20 +1023,20 @@
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
-            conóst loader = new THREE.STLLoader();
+            const loader = new THREE.STLLoader();
             loader.load('assets/realistic_stomach.stl', function (geometry) {
                 geometry.computeBoundingBox();
-                conóst center = new THREE.Vector3();
+                const center = new THREE.Vector3();
                 geometry.boundingBox.getCenter(center);
                 geometry.translate(-center.x, -center.y, -center.z);
                 
-                conóst size = new THREE.Vector3();
+                const size = new THREE.Vector3();
                 geometry.boundingBox.getSize(size);
-                conóst maxDim = Math.max(size.x, size.y, size.z);
-                conóst scale = (3.5 * 1.3) / maxDim; // Increased size by 30%
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = (3.5 * 1.3) / maxDim; // Increased size by 30%
                 geometry.scale(scale, scale, scale);
 
-                conóst material = new THREE.PointsMaterial({
+                const material = new THREE.PointsMaterial({
                     color: 0xFF3B30, // Vitality Red
                     size: 0.015,
                     transparent: true,
@@ -1047,7 +1047,7 @@
                 particles = new THREE.Points(geometry, material);
                 scene.add(particles);
             }, undefined, function (error) {
-                conósole.error('Error loading STL:', error);
+                console.error('Error loading STL:', error);
             });
 
             window.addEventListener('resize', onWindowResize, false);
@@ -1062,7 +1062,7 @@
         }
 
         function onWindowResize() {
-            conóst container = document.getElementById('stomach-canvas');
+            const container = document.getElementById('stomach-canvas');
             if (container && camera && renderer) {
                 camera.aspect = container.clientWidth / container.clientHeight;
                 camera.updateProjectionMatrix();
@@ -1074,8 +1074,8 @@
             requestAnimationFrame(animate3D);
             
             if (particles) {
-                conóst time = Date.now() * 0.0012;
-                conóst pulse = 1 + Math.sin(time) * 0.025;
+                const time = Date.now() * 0.0012;
+                const pulse = 1 + Math.sin(time) * 0.025;
                 particles.scale.set(pulse, pulse, pulse);
                 
                 particles.rotation.y += (mouseX - particles.rotation.y) * 0.05;

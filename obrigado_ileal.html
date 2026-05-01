@@ -151,10 +151,12 @@
 </head>
 <body>
 
-    <nav>
-        <a href="home.html" class="logo">
-            <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
-        </a>
+    <nav style="justify-content: center;">
+        <div class="lang-switcher" style="display:flex; gap:15px;">
+            <button onclick="changeLang('pt')" title="Português"><img src="https://flagcdn.com/w20/br.png" alt="PT" style="width: 30px;"></button>
+            <button onclick="changeLang('en')" title="English"><img src="https://flagcdn.com/w20/us.png" alt="EN" style="width: 30px;"></button>
+            <button onclick="changeLang('es')" title="Español"><img src="https://flagcdn.com/w20/es.png" alt="ES" style="width: 30px;"></button>
+        </div>
     </nav>
 
     <section class="thank-you-section">
@@ -164,7 +166,7 @@
             </svg>
         </div>
         <h1>Cadastro Realizado!</h1>
-        <p class="subtitle">Sua participação na lista de pré-inscrição do <strong>ILEAL METABOLIC SURGERY IMMERSION</strong> está confirmada.</p>
+        <p class="subtitle">Sua participação na lista de pré-inscrição do <strong translate="no" class="notranslate">ILEAL METABOLIC SURGERY IMMERSION</strong> está confirmada.</p>
 
         <div class="action-card">
             <div class="mono" style="color: var(--vitality-red); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">PRÓXIMO PASSO OBRIGATÓRIO</div>
@@ -186,5 +188,20 @@
         </div>
     </footer>
 
+    <script>
+        // Google translate Engine
+        function googletranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLang(lang) {
+            let select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 </html>

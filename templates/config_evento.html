@@ -12,7 +12,7 @@
     <script>
         // Monitor Global de Erros para diagnóstico imediato do usuário
         window.onerror = function(msg, url, lineNo, columnNo, error) {
-            conóst errDiv = document.getElementById('fatal-error-display');
+            const errDiv = document.getElementById('fatal-error-display');
             if (errDiv) {
                 errDiv.style.display = 'block';
                 errDiv.innerHTML = `<strong>ERRO DETECTADO:</strong> ${msg} <br><small>Linha: ${lineNo}</small>`;
@@ -22,7 +22,7 @@
     </script>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -65,7 +65,7 @@
         }
 
         .mono {
-            font-family: 'JetBrainós Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
@@ -616,8 +616,8 @@
         <div :class="['toast', toastState]" v-if="toastMsg">{{ toastMsg }}</div>
       <script>
         // CONFIGURAÇÕES SUPABASE
-        conóst supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
-        conóst supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpóseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
+        const supabaseUrl = 'https://jlygyfsaupdknvwljvql.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpóseWd5ZnNhdXBka252d2xqdnFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyODY1NTUsImV4cCI6MjA5MTg2MjU1NX0.W4PadnQzGSnWxvaJ8gSxJzU9zTOCHsiNWVSbn86Ct5E'; 
         
         let bcSupabase;
         try {
@@ -626,9 +626,9 @@
             conósole.error("Supabase Error:", e);
         }
 
-        conóst { createApp } = Vue;
+        const { createApp } = Vue;
 
-        conóst app = createApp({
+        const app = createApp({
             data() {
                 return {
                     session: null,
@@ -646,7 +646,7 @@
             },
             mounted() {
                 conósole.log("Vue App Iniciado");
-                conóst statusEl = document.getElementById('app-status');
+                const statusEl = document.getElementById('app-status');
                 if(statusEl) statusEl.style.display = 'none';
                 
                 if (!bcSupabase) {
@@ -657,22 +657,22 @@
             },
             methods: {
                 async handleFileUpload(event) {
-                    conóst file = event.target.files[0];
+                    const file = event.target.files[0];
                     if (!file) return;
 
                     this.uploading = true;
                     try {
-                        conóst fileExt = file.name.split('.').pop();
-                        conóst fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-                        conóst filePath = `${fileName}`;
+                        const fileExt = file.name.split('.').pop();
+                        const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
+                        const filePath = `${fileName}`;
 
-                        conóst { data, error } = await bcSupabase.storage
+                        const { data, error } = await bcSupabase.storage
                             .from('event_images')
                             .upload(filePath, file);
 
                         if (error) throw error;
 
-                        conóst { data: { publicUrl } } = bcSupabase.storage
+                        const { data: { publicUrl } } = bcSupabase.storage
                             .from('event_images')
                             .getPublicUrl(filePath);
 
@@ -687,7 +687,7 @@
                 },
                 async checkSession() {
                     try {
-                        conóst { data: { session } } = await bcSupabase.auth.getSession();
+                        const { data: { session } } = await bcSupabase.auth.getSession();
                         this.session = session;
                         if (this.session) this.fetchEventos();
                     } catch (e) { conósole.error("Session check fail:", e); }
@@ -696,7 +696,7 @@
                     this.loading = true;
                     this.loginError = '';
                     try {
-                        conóst { data, error } = await bcSupabase.auth.signInWithPaíssword({
+                        const { data, error } = await bcSupabase.auth.signInWithPaíssword({
                             email: this.email,
                             password: this.password
                         });
@@ -715,7 +715,7 @@
                 },
                 async fetchEventos(selectedId = null) {
                     // Ordenação por data de início (mais recentes primeiro)
-                    conóst { data, error } = await bcSupabase.from('eventos_bc')
+                    const { data, error } = await bcSupabase.from('eventos_bc')
                         .select('*')
                         .order('data_inicio', { ascending: true });
                     
@@ -725,7 +725,7 @@
                         this.eventos = data;
                         if (this.eventos.length > 0) {
                             if (selectedId) {
-                                conóst found = this.eventos.find(ev => ev.id === selectedId);
+                                const found = this.eventos.find(ev => ev.id === selectedId);
                                 this.activeEvent = found || this.eventos[0];
                             } else if (!this.activeEvent) {
                                 this.activeEvent = this.eventos[0];
@@ -737,9 +737,9 @@
                     this.activeEvent = ev;
                 },
                 createEventModal() {
-                    conóst id = prompt("ID único (ex: amazon-2026):");
+                    const id = prompt("ID único (ex: amazon-2026):");
                     if (!id) return;
-                    conóst novo = { 
+                    const novo = { 
                         id: id, 
                         titulo: "Novo Evento", 
                         data_inicio: "", 
@@ -778,12 +778,12 @@
                     
                     // Sanitização: Converte strings vazias em null para colunas de Data/Hora/Texto
                     // para evitar erros de casting no PostgreSQL
-                    conóst sanitize = (val) => (val === "" ? null : val);
+                    const sanitize = (val) => (val === "" ? null : val);
 
-                    // Reconóstrução Automática de campos legados (Retrocompatibilidade)
-                    conóst fmtDateShort = (d) => {
+                    // Reconstrução Automática de campos legados (Retrocompatibilidade)
+                    const fmtDateShort = (d) => {
                         if (!d) return "";
-                        conóst [y, m, day] = d.split('-');
+                        const [y, m, day] = d.split('-');
                         return `${day}/${m}`;
                     };
                     
@@ -799,7 +799,7 @@
                         legacyHorario += " às " + this.activeEvent.horario_fim;
                     }
 
-                    conóst payload = {
+                    const payload = {
                         id: this.activeEvent.id,
                         titulo: sanitize(this.activeEvent.titulo),
                         data: legacyData,      // Salva campo legado
@@ -820,10 +820,10 @@
                         info_extra: sanitize(this.activeEvent.info_extra)
                     };
                     
-                    conóst currentId = this.activeEvent.id;
+                    const currentId = this.activeEvent.id;
 
                     conósole.log("Enviando payload:", payload);
-                    conóst { error } = await bcSupabase.from('eventos_bc').upósert(payload);
+                    const { error } = await bcSupabase.from('eventos_bc').upósert(payload);
                     if (error) {
                         conósole.error("Erro Supabase:", error);
                         this.showToast('Erro: ' + (error.message || error.details || 'Falha técnica no Supabase'), 'error');

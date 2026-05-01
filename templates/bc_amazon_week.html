@@ -627,8 +627,8 @@
                         console.warn('Palestrante não encontrado:', name);
                     }
                     
-                    conóst photoUrl = speaker ? (speaker["Foto URL"] || speaker["FotoURL"]) : null;
-                    conóst country = speaker ? (speaker["País"] || speaker["Pais"]) : null;
+                    const photoUrl = speaker ? (speaker["Foto URL"] || speaker["FotoURL"]) : null;
+                    const country = speaker ? (speaker["País"] || speaker["Pais"]) : null;
                     
                     if (speaker && !photoUrl) {
                         console.warn('URL de foto ausente para:', speaker.Nome);
@@ -693,7 +693,7 @@
             }
 
             window.addEventListener('click', function(e) {
-                conóst modal = document.getElementById('speaker-modal');
+                const modal = document.getElementById('speaker-modal');
                 if (e.target === modal) closeSpeakerModal();
             });
 

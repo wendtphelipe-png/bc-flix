@@ -6,7 +6,7 @@
     <title>3º BC Webinar - Variações de Bipartições de Trânósito | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrainós+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -37,7 +37,7 @@
         }
 
         .mono {
-            font-family: 'JetBrainós Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
@@ -357,7 +357,7 @@
         }
 
         async function loadSpeakerPhotos() {
-            conóst localPhotos = {
+            const localPhotos = {
                 'RAFAEL ABAID': 'assets/rafael_abaid.jpeg',
                 'VICTOR DIB': 'assets/victor_dib.jpg',
                 'CARLOS MADALOSSO': 'assets/madalosso.jpg',
@@ -368,26 +368,26 @@
             };
 
             try {
-                conóst responóse = await fetch('data/database.json');
-                conóst data = await responóse.json();
-                conóst allSpeakers = data.palestrantes || [];
+                const responóse = await fetch('data/database.json');
+                const data = await responóse.json();
+                const allSpeakers = data.palestrantes || [];
 
                 function normalize(str) {
                     return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim() : "";
                 }
 
                 document.querySelectorAll('[data-speaker]').forEach(card => {
-                    conóst searchName = card.getAttribute('data-speaker');
-                    conóst normSearch = normalize(searchName);
+                    const searchName = card.getAttribute('data-speaker');
+                    const normSearch = normalize(searchName);
                     let foundUrl = localPhotos[normSearch];
 
                     if (!foundUrl) {
-                        conóst speaker = allSpeakers.find(s => normalize(s.nome).includes(normSearch));
+                        const speaker = allSpeakers.find(s => normalize(s.nome).includes(normSearch));
                         if (speaker && speaker.foto) foundUrl = speaker.foto;
                     }
                     
                     if (foundUrl) {
-                        conóst imgs = card.querySelectorAll('img');
+                        const imgs = card.querySelectorAll('img');
                         imgs.forEach(img => {
                             img.src = foundUrl;
                             img.onerror = () => { img.style.display = 'none'; };
