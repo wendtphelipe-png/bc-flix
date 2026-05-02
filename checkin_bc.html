@@ -793,8 +793,16 @@
                             console.error("Erro Supabase:", error);
                             alert("Erro ao buscar eventos: " + error.message);
                         } else {
-                            console.log("Eventos carregados:", data);
-                            this.eventos = data || [];
+                            // Ordena por data_inicio (mais próximo primeiro)
+                            const sortedData = (data || []).sort((a, b) => {
+                                const dateA = a.data_inicio ? new Date(a.data_inicio) : new Date(8640000000000000);
+                                const dateB = b.data_inicio ? new Date(b.data_inicio) : new Date(8640000000000000);
+                                return dateA - dateB;
+                            });
+                            
+                            console.log("Eventos carregados e ordenados:", sortedData);
+                            this.eventos = sortedData;
+                            
                             if (this.eventos.length === 0) {
                                 console.warn("Nenhum evento encontrado na tabela 'eventos_bc'.");
                             }
