@@ -562,7 +562,7 @@
                                     {{ aula.hora }}
                                     <span v-if="isUserSpeaker(aula.palestrante)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
-                                <div class="schedule-event notranslate" translate="no" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
+                                <div class="schedule-event" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
                                     {{ aula.titulo }}
                                 </div>
                                 <div class="other-colleagues">
@@ -929,7 +929,7 @@
 
     <script>
         function googletranslateElementInit() {
-            new google.translate.translateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');
+            new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');
         }
         function changeLang(lang) {
             let select = document.querySelector('select.goog-te-combo');
@@ -938,7 +938,7 @@
     </script>
     <div id="google_translate_element" style="display:none;"></div>
     <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+        src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 
 </html>

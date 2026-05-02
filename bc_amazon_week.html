@@ -699,7 +699,7 @@
 
             // Google translate
             function googletranslateElementInit() {
-                new google.translate.translateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+                new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
             }
             function changeLang(lang) {
                 let select = document.querySelector('select.goog-te-combo');
@@ -724,7 +724,7 @@
             });
         </script>
         <div id="google_translate_element" style="display:none;"></div>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
     </footer>
 
 </body>
