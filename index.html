@@ -718,8 +718,8 @@
 
     <section class="masterclass-section" id="masterclass">
         <div class="video-container" data-reveal>
-            <video autoplay muted loop playsinline style="mask-image: linear-gradient(to right, black, transparent); -webkit-mask-image: linear-gradient(to right, black, transparent);">
-                <source src="assets/bc_video.mp4" type="video/mp4">
+            <video id="masterclass-video" autoplay muted loop playsinline src="assets/bc_video.mp4" type="video/mp4" 
+                   style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); mask-image: linear-gradient(to right, black, transparent); -webkit-mask-image: linear-gradient(to right, black, transparent);">
             </video>
         </div>
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
@@ -1144,12 +1144,20 @@
     <script>
         // Força o autoplay dos vídeos que podem ter sido bloqueados pelo navegador
         document.addEventListener('DOMContentLoaded', function() {
-            const videos = document.querySelectorAll('video[autoplay]');
-            videos.forEach(v => {
-                v.play().catch(error => {
-                    console.log("Autoplay preventivo: ", error);
-                });
-            });
+            const video = document.getElementById('masterclass-video');
+            if (video) {
+                // Tenta dar play várias vezes caso o navegador bloqueie inicialmente
+                const playVideo = () => {
+                    video.play().then(() => {
+                        console.log("Video Masterclass iniciado com sucesso.");
+                    }).catch(err => {
+                        console.warn("Aguardando interação para play:", err);
+                        // Tenta novamente ao primeiro clique na página
+                        window.addEventListener('click', () => video.play(), { once: true });
+                    });
+                };
+                playVideo();
+            }
         });
     </script>
 </body>

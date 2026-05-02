@@ -793,16 +793,16 @@
                             console.error("Erro Supabase:", error);
                             alert("Erro ao buscar eventos: " + error.message);
                         } else {
-                            // Ordena por data_inicio (mais próximo primeiro)
+                            // Ordenação definitiva por string ISO (YYYY-MM-DD)
                             const sortedData = (data || []).sort((a, b) => {
-                                // Se não tiver data, vai para o fim
-                                if (!a.data_inicio) return 1;
-                                if (!b.data_inicio) return -1;
-                                // Comparação de string YYYY-MM-DD funciona bem para ordem cronológica
-                                return a.data_inicio.localeCompare(b.data_inicio);
+                                const valA = String(a.data_inicio || '9999-12-31');
+                                const valB = String(b.data_inicio || '9999-12-31');
+                                // Log para depuração no console do navegador
+                                console.log(`Comparando: ${a.titulo} (${valA}) vs ${b.titulo} (${valB})`);
+                                return valA.localeCompare(valB);
                             });
                             
-                            console.log("Eventos carregados e ordenados:", sortedData);
+                            console.log("Ordem final do dropdown:", sortedData.map(e => `${e.titulo}: ${e.data_inicio}`));
                             this.eventos = sortedData;
                             
                             if (this.eventos.length === 0) {
