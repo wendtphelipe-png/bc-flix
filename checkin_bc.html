@@ -509,15 +509,15 @@
             <div class="checkin-card">
                 <h1 style="display: flex; justify-content: space-between; align-items: center;">
                     CHECK-IN CORPO DOCENTE
-                    <span style="font-size: 0.6rem; color: #ccc; font-weight: 400;">v1.5.1-DEBUG</span>
+                    <span style="font-size: 0.6rem; color: #ccc; font-weight: 400;">v1.5.2-SORT-PROTECT</span>
                 </h1>
                 <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
 
-                <div class="input-group">
+                <div class="input-group notranslate" translate="no">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
                     <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
                         <option value="" class="translate">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
-                        <option v-for="evento in eventos" :key="evento.id" :value="evento.id">
+                        <option v-for="evento in eventos" :key="evento.id" :value="evento.id" class="notranslate" translate="no">
                             {{ evento.titulo }} ({{ formatDate(evento.data_inicio) }})
                         </option>
                     </select>
