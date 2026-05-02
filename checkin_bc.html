@@ -517,8 +517,8 @@
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
                     <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
                         <option value="" class="translate">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
-                        <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
-                            {{ ev.titulo || 'Evento sem título' }} 
+                        <option v-for="evento in eventos" :key="evento.id" :value="evento.id">
+                            {{ evento.titulo }} ({{ formatDate(evento.data_inicio) }})
                         </option>
                     </select>
                     <p v-if="eventos.length === 0" style="font-size: 0.8rem; color: #888; margin-top: 5px;">
@@ -793,13 +793,28 @@
                             console.error("Erro Supabase:", error);
                             alert("Erro ao buscar eventos: " + error.message);
                         } else {
-                            // Ordenação definitiva por string ISO (YYYY-MM-DD)
+                            // Função robusta para converter qualquer formato de data para objeto Date
+                            const parseDate = (d) => {
+                                if (!d) return new Date(9999, 11, 31);
+                                try {
+                                    if (d.includes('-')) { // YYYY-MM-DD
+                                        const p = d.split('-');
+                                        return new Date(p[0], p[1] - 1, p[2]);
+                                    }
+                                    if (d.includes('/')) { // DD/MM/YYYY
+                                        const p = d.split('/');
+                                        return new Date(p[2], p[1] - 1, p[0]);
+                                    }
+                                    return new Date(d);
+                                } catch(e) {
+                                    return new Date(9999, 11, 31);
+                                }
+                            };
+
                             const sortedData = (data || []).sort((a, b) => {
-                                const valA = String(a.data_inicio || '9999-12-31');
-                                const valB = String(b.data_inicio || '9999-12-31');
-                                // Log para depuração no console do navegador
-                                console.log(`Comparando: ${a.titulo} (${valA}) vs ${b.titulo} (${valB})`);
-                                return valA.localeCompare(valB);
+                                const dateA = parseDate(a.data_inicio);
+                                const dateB = parseDate(b.data_inicio);
+                                return dateA - dateB;
                             });
                             
                             console.log("Ordem final do dropdown:", sortedData.map(e => `${e.titulo}: ${e.data_inicio}`));
