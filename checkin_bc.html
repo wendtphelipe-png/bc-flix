@@ -515,8 +515,8 @@
 
                 <div class="input-group">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
-                    <select v-model="selectedEventId" @change="onEventChange">
-                        <option value="">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
+                    <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
+                        <option value="" class="translate">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
                         <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
                             {{ ev.titulo || 'Evento sem título' }} 
                         </option>
@@ -529,6 +529,7 @@
                 <!-- Resumo do Evento Selecionado -->
                 <div v-if="activeEvent" class="schedule-box" style="margin-top: -10px; border-left: 4px solid var(--vitality-red);">
                     <div style="font-weight: 800; color: var(--deep-blue); margin-bottom: 5px;">DETALHES DO EVENTO:</div>
+                    <div class="notranslate" translate="no" style="font-weight: 800; font-size: 1.1rem; color: var(--vitality-red); margin-bottom: 15px;">{{ activeEvent.titulo }}</div>
                     <div style="font-size: 0.9rem; display: flex; flex-direction: column; gap: 5px;">
                         <div>📅 <strong>DATA:</strong> {{ formatDateFull(activeEvent) }}</div>
                         <div>⏰ <strong>HORÁRIO:</strong> {{ activeEvent.horario }}</div>
@@ -540,8 +541,8 @@
                 <div v-if="selectedEventId" id="speakerStep">
                     <div class="input-group">
                         <label class="mono step-label">2. SELECIONE SEU NOME</label>
-                        <select v-model="selectedSpeakerName" @change="onSpeakerChange">
-                            <option value="">-- BUSQUE E SELECIONE SEU NOME --</option>
+                        <select v-model="selectedSpeakerName" @change="onSpeakerChange" class="notranslate" translate="no">
+                            <option value="" class="translate">-- BUSQUE E SELECIONE SEU NOME --</option>
                             <option v-for="p in availableSpeakers" 
                                     :key="p.nome" 
                                     :value="p.nome"
@@ -558,7 +559,7 @@
                         <div style="font-size: 0.8rem; color: var(--vitality-red); font-weight: 800; margin-bottom: 5px;" class="mono">
                             {{ selectedSpeaker.funcao || 'Professor(a)' }} Confirmado(a)
                         </div>
-                        <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, {{ selectedSpeaker.nome }}</h3>
+                        <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, <span class="notranslate" translate="no">{{ selectedSpeaker.nome }}</span></h3>
                         
                         <h3 class="schedule-title">PROGRAMAÇÃO DO EVENTO E SUAS ATRIBUIÇÕES:</h3>
                         <div id="scheduleListContainer" style="max-height: 500px; overflow-y: auto; padding-right: 15px;">
@@ -567,7 +568,7 @@
                             <div v-if="groupPresidents.length > 0">
                                 <div class="role-group-header">PRESIDENTE</div>
                                 <div v-for="p in groupPresidents" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
-                                    <span style="font-weight: 600;">{{ p.nome }}</span>
+                                    <span style="font-weight: 600;" class="notranslate" translate="no">{{ p.nome }}</span>
                                     <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
                             </div>
@@ -575,7 +576,7 @@
                             <div v-if="groupModerators.length > 0">
                                 <div class="role-group-header">MODERADOR(A)</div>
                                 <div v-for="p in groupModerators" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
-                                    <span style="font-weight: 600;">{{ p.nome }}</span>
+                                    <span style="font-weight: 600;" class="notranslate" translate="no">{{ p.nome }}</span>
                                     <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
                             </div>
@@ -583,7 +584,7 @@
                             <div v-if="groupDebaters.length > 0">
                                 <div class="role-group-header">DEBATEDOR(A)</div>
                                 <div v-for="(p, dIdx) in groupDebaters" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
-                                    <span style="font-weight: 600;">{{ p.nome }}</span>
+                                    <span style="font-weight: 600;" class="notranslate" translate="no">{{ p.nome }}</span>
                                     <span v-if="normalizeStr(p.nome) === normalizeStr(selectedSpeakerName)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
                             </div>
@@ -600,12 +601,12 @@
                                     {{ aula.hora }}
                                     <span v-if="isUserSpeaker(aula.palestrante)" class="user-badge">SUA ATRIBUIÇÃO</span>
                                 </div>
-                                <div class="schedule-event" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
+                                <div class="schedule-event notranslate" translate="no" :style="{ color: isUserSpeaker(aula.palestrante) ? 'white' : 'var(--dark-slate)' }">
                                     {{ aula.titulo }}
                                 </div>
                                 <div class="other-colleagues">
                                     <span style="opacity: 0.8;">🎤 Participantes:</span>
-                                    <span style="font-weight: 600;">
+                                    <span style="font-weight: 600;" class="notranslate" translate="no">
                                         {{ formatParticipantsWithRoles(aula.palestrante) }}
                                     </span>
                                 </div>
