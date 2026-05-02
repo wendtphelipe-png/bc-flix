@@ -14,12 +14,11 @@
             new google.translate.TranslateElement({
                 pageLanguage: 'pt',
                 includedLanguages: 'pt,en,es',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
         }
 
-        function changeLang(lang) {
+                function changeLang(lang, retries = 0) {
             const cookieValue = '/pt/' + lang;
             document.cookie = "googtrans=" + cookieValue + "; path=/";
             document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + location.hostname;
@@ -29,8 +28,10 @@
             if (select) {
                 select.value = lang;
                 select.dispatchEvent(new Event('change'));
+            } else if (retries < 6) {
+                setTimeout(() => changeLang(lang, retries + 1), 500);
             } else {
-                setTimeout(() => changeLang(lang), 500);
+                location.reload();
             }
         }
     </script>
@@ -1001,7 +1002,7 @@
     <script>
         // Google translate Engine
         function googletranslateElementInit() {
-            new google.translate.translateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
         }
         function changeLang(lang) {
             let select = document.querySelector('select.goog-te-combo');
@@ -1142,3 +1143,4 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 </html>
+
