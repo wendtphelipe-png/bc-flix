@@ -7,6 +7,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Google Translate Logic (Relocated to Head) -->
+    <script>
+        function googletranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'pt,en,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function changeLang(lang) {
+            const cookieValue = '/pt/' + lang;
+            document.cookie = "googtrans=" + cookieValue + "; path=/";
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + location.hostname;
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=." + location.hostname.replace(/^www\./, '');
+
+            const select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else {
+                setTimeout(() => changeLang(lang), 500);
+            }
+        }
+    </script>
     <style>
         :root {
             /* Tema Selva / Amazon Theme */
@@ -187,8 +214,20 @@
         .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
         .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
         .lang-switcher img { width: 22px; height: auto; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; }
-        .skiptranslate { display: none !important; }
-        body { top: 0px !important; }
+        .skiptranslate {
+            display: none !important;
+        }
+
+        #google_translate_element {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            visibility: hidden;
+        }
+
+        body {
+            top: 0px !important;
+        }
 
         /* Blocos Semânticos de Slide */
         .amazon-slide {
@@ -692,20 +731,11 @@
                 document.body.style.overflow = 'auto';
             }
 
-            window.addEventListener('click', function(e) {
+                        window.addEventListener('click', function(e) {
                 const modal = document.getElementById('speaker-modal');
                 if (e.target === modal) closeSpeakerModal();
             });
 
-            // Google translate
-            function googletranslateElementInit() {
-                new google.translate.translateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
-            }
-            function changeLang(lang) {
-                let select = document.querySelector('select.goog-te-combo');
-                if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
-            }
-            
             // Parallax Scroll Script
             document.addEventListener('scroll', function() {
                 const scrolled = window.pageYOffset;
@@ -713,19 +743,20 @@
                 const particles = document.querySelectorAll('.leaf-particle');
                 
                 parallaxTexts.forEach(el => {
-                    el.style.transform = `translateY(${scrolled * 0.4}px)`;
+                    el.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
                     el.style.opacity = 1 - (scrolled * 0.003);
                 });
                 
                 if(particles.length >= 2) {
-                    particles[0].style.transform = `translateY(-${scrolled * 0.6}px) rotate(${scrolled * 0.1}deg)`;
-                    particles[1].style.transform = `translateY(-${scrolled * 0.3}px) rotate(-${scrolled * 0.05}deg)`;
+                    particles[0].style.transform = 'translateY(-' + (scrolled * 0.6) + 'px) rotate(' + (scrolled * 0.1) + 'deg)';
+                    particles[1].style.transform = 'translateY(-' + (scrolled * 0.3) + 'px) rotate(-' + (scrolled * 0.05) + 'deg)';
                 }
             });
         </script>
-        <div id="google_translate_element" style="display:none;"></div>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+        <div id="google_translate_element"></div>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
     </footer>
 
 </body>
 </html>
+

@@ -505,7 +505,7 @@
 
                         <div class="form-group">
                             <label class="check-group">
-                                <input type="checkbox" v-model="activeEvent.ao_vivo"> Evento ao Vivo (Online)?
+                                <input type="checkbox" v-model="activeEvent.ao_vivo"> Evento Ao Vivo (Online)?
                             </label>
                             
                             <div v-if="activeEvent.ao_vivo">
@@ -720,7 +720,7 @@
                         .order('data_inicio', { ascending: true });
                     
                     if (error) {
-                        this.showToast('Erro ação buscar do Supabase.', 'error');
+                        this.showToast('Erro ao buscar do Supabase.', 'error');
                     } else {
                         this.eventos = data;
                         if (this.eventos.length > 0) {
