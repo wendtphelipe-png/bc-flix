@@ -795,9 +795,11 @@
                         } else {
                             // Ordena por data_inicio (mais próximo primeiro)
                             const sortedData = (data || []).sort((a, b) => {
-                                const dateA = a.data_inicio ? new Date(a.data_inicio) : new Date(8640000000000000);
-                                const dateB = b.data_inicio ? new Date(b.data_inicio) : new Date(8640000000000000);
-                                return dateA - dateB;
+                                // Se não tiver data, vai para o fim
+                                if (!a.data_inicio) return 1;
+                                if (!b.data_inicio) return -1;
+                                // Comparação de string YYYY-MM-DD funciona bem para ordem cronológica
+                                return a.data_inicio.localeCompare(b.data_inicio);
                             });
                             
                             console.log("Eventos carregados e ordenados:", sortedData);
