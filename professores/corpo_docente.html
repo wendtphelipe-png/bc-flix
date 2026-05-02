@@ -5723,10 +5723,12 @@ possui formaÃƒÂ§ÃƒÂ£o em acupuntura, rpg, pilates e kinesio taping.">
             new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
         }
         function changeLang(lang) {
-            let select = document.querySelector('select.goog-te-combo');
+            const select = document.querySelector('select.goog-te-combo');
             if (select) {
                 select.value = lang;
                 select.dispatchEvent(new Event('change'));
+            } else {
+                setTimeout(() => changeLang(lang), 300);
             }
         }
     </script>

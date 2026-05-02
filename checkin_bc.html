@@ -477,7 +477,7 @@
 
                 <div class="input-group">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
-                    <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
+                    <select v-model="selectedEventId" @change="onEventChange">
                         <option value="">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
                         <option v-for="ev in eventos" :key="ev.id" :value="ev.id">
                             {{ ev.titulo || 'Evento sem título' }} 
@@ -932,13 +932,18 @@
             new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');
         }
         function changeLang(lang) {
-            let select = document.querySelector('select.goog-te-combo');
-            if (select) { select.value = lang; select.dispatchEvent(new Event('change')); }
+            const select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else {
+                // Se o widget ainda n├úo carregou, tenta novamente em breve
+                setTimeout(() => changeLang(lang), 300);
+            }
         }
     </script>
     <div id="google_translate_element" style="display:none;"></div>
-    <script type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 
 </html>
