@@ -701,9 +701,20 @@
             function googletranslateElementInit() {
                 new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
             }
-            function changeLang(lang) {
-                let select = document.querySelector('select.goog-te-combo');
-                if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
+                            function changeLang(lang) {
+            const cookieValue = '/pt/' + lang;
+            document.cookie = 'googtrans=' + cookieValue + '; path=/';
+            document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=' + location.hostname;
+            document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=.' + location.hostname.replace(/^www\./, '');
+
+            const select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else {
+                setTimeout(() => changeLang(lang), 500);
+            }
+        }
             }
             
             // Parallax Scroll Script
@@ -729,3 +740,4 @@
 
 </body>
 </html>
+

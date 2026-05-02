@@ -10,6 +10,33 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
+    
+    <!-- Google Translate Logic (Relocated to Head for Early Availability) -->
+    <script>
+        function googletranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'pt,en,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function changeLang(lang) {
+            const cookieValue = '/pt/' + lang;
+            document.cookie = "googtrans=" + cookieValue + "; path=/";
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + location.hostname;
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=." + location.hostname.replace(/^www\./, '');
+
+            const select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else {
+                setTimeout(() => changeLang(lang), 500);
+            }
+        }
+    </script>
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -36,6 +63,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding-top: 80px;
         }
 
         h1,
@@ -63,7 +91,9 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(10, 25, 47, 0.05);
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
             z-index: 1000;
         }
 
@@ -115,6 +145,13 @@
 
         .skiptranslate {
             display: none !important;
+        }
+
+        #google_translate_element {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            visibility: hidden;
         }
 
         body {
@@ -927,22 +964,7 @@
         fetch("https://assets.mailerlite.com/jsonp/2110375/forms/185362284482135844/takel")
     </script>
 
-    <script>
-        function googletranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');
-        }
-        function changeLang(lang) {
-            const select = document.querySelector('select.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-            } else {
-                // Se o widget ainda n├úo carregou, tenta novamente em breve
-                setTimeout(() => changeLang(lang), 300);
-            }
-        }
-    </script>
-    <div id="google_translate_element" style="display:none;"></div>
+    <div id="google_translate_element"></div>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 

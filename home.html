@@ -964,13 +964,18 @@
         function googletranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
         }
-        function changeLang(lang) {
+                                function changeLang(lang) {
+            const cookieValue = '/pt/' + lang;
+            document.cookie = 'googtrans=' + cookieValue + '; path=/';
+            document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=' + location.hostname;
+            document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=.' + location.hostname.replace(/^www\./, '');
+
             const select = document.querySelector('select.goog-te-combo');
             if (select) {
                 select.value = lang;
                 select.dispatchEvent(new Event('change'));
             } else {
-                setTimeout(() => changeLang(lang), 300);
+                setTimeout(() => changeLang(lang), 500);
             }
         }
 
@@ -1105,3 +1110,4 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 </html>
+
