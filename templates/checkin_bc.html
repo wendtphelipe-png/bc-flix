@@ -514,7 +514,7 @@
                 </h1>
                 <p style="margin-bottom: 40px; color: var(--dark-slate);">Confirmação oficial em eventos globais do ecossistema Bariatric Channel.</p>
 
-                <div class="input-group notranslate" translate="no">
+                <div class="input-group">
                     <label class="mono step-label">1. CONFIRME O EVENTO</label>
                     <select v-model="selectedEventId" @change="onEventChange" class="notranslate" translate="no">
                         <option value="" class="translate">-- SELECIONE O EVENTO ({{ eventos.length }} encontrados) --</option>
@@ -528,18 +528,18 @@
                 </div>
 
                 <!-- Resumo do Evento Selecionado -->
-                <div v-if="activeEvent" class="schedule-box" style="margin-top: -10px; border-left: 4px solid var(--vitality-red);">
+                <div v-show="activeEvent" class="schedule-box" style="margin-top: -10px; border-left: 4px solid var(--vitality-red);">
                     <div style="font-weight: 800; color: var(--deep-blue); margin-bottom: 5px;">DETALHES DO EVENTO:</div>
-                    <div class="notranslate" translate="no" style="font-weight: 800; font-size: 1.1rem; color: var(--vitality-red); margin-bottom: 15px;">{{ activeEvent.titulo }}</div>
+                    <div class="notranslate" translate="no" style="font-weight: 800; font-size: 1.1rem; color: var(--vitality-red); margin-bottom: 15px;">{{ activeEvent?.titulo }}</div>
                     <div style="font-size: 0.9rem; display: flex; flex-direction: column; gap: 5px;">
                         <div>📅 <strong>DATA:</strong> {{ formatDateFull(activeEvent) }}</div>
-                        <div>⏰ <strong>HORÁRIO:</strong> {{ activeEvent.horario }}</div>
-                        <div v-if="activeEvent.ao_vivo">🌐 <strong>LINK AO VIVO:</strong> <a :href="activeEvent.link_ao_vivo" target="_blank" style="color: var(--vitality-red);">Acessar Sala Virtual</a></div>
-                        <div v-else>📍 <strong>LOCAL:</strong> {{ activeEvent.endereco || activeEvent.local }}</div>
+                        <div>⏰ <strong>HORÁRIO:</strong> {{ activeEvent?.horario }}</div>
+                        <div v-if="activeEvent?.ao_vivo">🌐 <strong>LINK AO VIVO:</strong> <a :href="activeEvent?.link_ao_vivo" target="_blank" style="color: var(--vitality-red);">Acessar Sala Virtual</a></div>
+                        <div v-else>📍 <strong>LOCAL:</strong> {{ activeEvent?.endereco || activeEvent?.local }}</div>
                     </div>
                 </div>
 
-                <div v-if="selectedEventId" id="speakerStep">
+                <div v-show="selectedEventId" id="speakerStep">
                     <div class="input-group">
                         <label class="mono step-label">2. SELECIONE SEU NOME</label>
                         <select v-model="selectedSpeakerName" @change="onSpeakerChange" class="notranslate" translate="no">
@@ -555,18 +555,18 @@
                     </div>
                 </div>
 
-                <div v-if="selectedSpeaker" id="doctorDetails">
+                <div v-show="selectedSpeaker" id="doctorDetails">
                     <div class="schedule-box">
                         <div style="font-size: 0.8rem; color: var(--vitality-red); font-weight: 800; margin-bottom: 5px;" class="mono">
-                            {{ selectedSpeaker.funcao || 'Professor(a)' }} Confirmado(a)
+                            {{ selectedSpeaker?.funcao || 'Professor(a)' }} Confirmado(a)
                         </div>
-                        <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, <span class="notranslate" translate="no">{{ selectedSpeaker.nome }}</span></h3>
+                        <h3 class="schedule-title" style="margin-bottom: 20px;">Olá, <span class="notranslate" translate="no">{{ selectedSpeaker?.nome }}</span></h3>
                         
                         <h3 class="schedule-title">PROGRAMAÇÃO DO EVENTO E SUAS ATRIBUIÇÕES:</h3>
                         <div id="scheduleListContainer" style="max-height: 500px; overflow-y: auto; padding-right: 15px;">
                             
                             <!-- SEÇÃO: MESA DIRETORA E COMISSÃO -->
-                            <div v-if="groupPresidents.length > 0">
+                            <div v-show="groupPresidents.length > 0">
                                 <div class="role-group-header">PRESIDENTE</div>
                                 <div v-for="p in groupPresidents" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
                                     <span style="font-weight: 600;" class="notranslate" translate="no">{{ p.nome }}</span>
@@ -574,7 +574,7 @@
                                 </div>
                             </div>
 
-                            <div v-if="groupModerators.length > 0">
+                            <div v-show="groupModerators.length > 0">
                                 <div class="role-group-header">MODERADOR(A)</div>
                                 <div v-for="p in groupModerators" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
                                     <span style="font-weight: 600;" class="notranslate" translate="no">{{ p.nome }}</span>
@@ -582,7 +582,7 @@
                                 </div>
                             </div>
 
-                            <div v-if="groupDebaters.length > 0">
+                            <div v-show="groupDebaters.length > 0">
                                 <div class="role-group-header">DEBATEDOR(A)</div>
                                 <div v-for="(p, dIdx) in groupDebaters" :key="p.nome" class="role-entry" :class="{ 'highlighted-session': normalizeStr(p.nome) === normalizeStr(selectedSpeakerName) }">
                                     <span style="font-weight: 600;" class="notranslate" translate="no">{{ p.nome }}</span>
@@ -593,7 +593,7 @@
                             <!-- SEÇÃO: CRONOGRAMA TÉCNICO -->
                             <div class="role-group-header" style="margin-top: 40px; color: var(--deep-blue); border-bottom: 2px solid var(--deep-blue);">CRONOGRAMA DE AULAS / PROFESSORES</div>
                             
-                            <div v-for="(aula, aIdx) in activeEvent.cronograma" 
+                            <div v-for="(aula, aIdx) in activeEvent?.cronograma" 
                                  :key="aIdx" 
                                  class="schedule-item"
                                  :class="{ 'highlighted-session': isUserSpeaker(aula.palestrante) }">
@@ -615,9 +615,9 @@
                         </div>
                     </div>
 
-                    <div v-if="activeEvent.info_extra" class="term-box" style="background: rgba(0, 242, 255, 0.05); border-left: 4px solid var(--electric-cyan); margin-bottom: 20px;">
+                    <div v-show="activeEvent?.info_extra" class="term-box" style="background: rgba(0, 242, 255, 0.05); border-left: 4px solid var(--electric-cyan); margin-bottom: 20px;">
                         <h3 style="margin-bottom: 10px; font-size: 1rem; color: var(--deep-blue);">📌 NOTAS DE DISCUSSÃO / EXTRAS:</h3>
-                        <p style="white-space: pre-wrap; font-size: 0.9rem; color: var(--dark-slate); line-height: 1.5;">{{ activeEvent.info_extra }}</p>
+                        <p style="white-space: pre-wrap; font-size: 0.9rem; color: var(--dark-slate); line-height: 1.5;">{{ activeEvent?.info_extra }}</p>
                     </div>
 
                     <div class="term-box">
@@ -625,11 +625,11 @@
                         <p style="margin-bottom: 15px;">Declaro que concordo e autorizo a título gratuito, em caráter definitivo e irretratável, o <strong>Bariatric Channel / BC Flix</strong>, a utilizar minha imagem, nome, voz, palestras e procedimentos cirúrgicos que serão captados nos referidos eventos.</p>
                         <p>A autorização abrange o uso do material em qualquer formato aplicável (divulgação, redes sociais, inclusão no acervo pago para assinantes BC Flix, campanhas institucionais e publicidade) sem limite de tempo, canais e território.</p>
 
-                        <div class="action-buttons" v-if="!termsAccepted">
+                        <div class="action-buttons" v-show="!termsAccepted">
                             <button class="btn btn-confirm" @click="termsAccepted = true">CONCORDO</button>
                             <button class="btn btn-reject" @click="showRejection = true">NÃO CONCORDO</button>
                         </div>
-                        <div v-if="showRejection" id="rejectionMsg" style="display: block;">
+                        <div v-show="showRejection" id="rejectionMsg" style="display: block;">
                             Para prosseguir com sua participação, precisamos da sua concordância contratual com os termos de imagem. Em caso de dúvidas, por favor, contate a comissão organizadora.
                         </div>
                     </div>
@@ -825,6 +825,7 @@
                             if (this.eventos.length === 0) {
                                 console.warn("Nenhum evento encontrado na tabela 'eventos_bc'.");
                             }
+                            this.refreshTranslation();
                         }
                     } catch (err) {
                         console.error("Erro fatal na busca:", err);
@@ -869,6 +870,7 @@
                     } else {
                         container.style.background = `linear-gradient(135deg, rgba(10,25,47,0.03) 0%, rgba(0,242,255,0.02) 100%)`;
                     }
+                    this.refreshTranslation();
                 },
                 onSpeakerChange() {
                     this.termsAccepted = false;
@@ -881,6 +883,7 @@
                             highlighted.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }
                     });
+                    this.refreshTranslation();
                 },
                 async finishCheckin() {
                     // Este método agora é invocado indiretamente via callback do MailerLite
@@ -962,6 +965,20 @@
                     }
                     
                     return uniqueItems.join(' | ');
+                },
+                refreshTranslation() {
+                    this.$nextTick(() => {
+                        const select = document.querySelector('select.goog-te-combo');
+                        if (select && select.value && select.value !== 'pt') {
+                            console.log("Nudging Google Translate for new content...");
+                            select.dispatchEvent(new Event('change'));
+                        }
+                    });
+                },
+                getCookieValue(name) {
+                    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+                    if (match) return match[2];
+                    return null;
                 }
             }
         }).mount('#app');
