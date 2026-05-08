@@ -173,6 +173,13 @@ if os.path.exists(os.path.join(TEMPLATES_DIR, 'config_evento.html')):
     with open(os.path.join(DEPLOY_DIR, 'config_evento.html'), 'w', encoding='utf-8') as f:
         f.write(output_config)
 
+print("Gerando bcflix.html...")
+if os.path.exists(os.path.join(TEMPLATES_DIR, 'bcflix.html')):
+    bcflix_template = env.get_template('bcflix.html')
+    output_bcflix = bcflix_template.render()
+    with open(os.path.join(DEPLOY_DIR, 'bcflix.html'), 'w', encoding='utf-8') as f:
+        f.write(output_bcflix)
+
 
 
 # -------
@@ -226,7 +233,7 @@ LEGACY_DEPLOY = os.path.join(BASE_DIR, 'deploy', 'BariatricChannel')
 if os.path.exists(LEGACY_DEPLOY):
     print("\nSincronizando com pasta de deploy legada...")
     # Copia os arquivos principais gerados para a pasta legada
-    files_to_sync = ['index.html', 'home.html', 'bc_amazon_week.html', 'checkin_bc.html', 'config_evento.html']
+    files_to_sync = ['index.html', 'home.html', 'bc_amazon_week.html', 'checkin_bc.html', 'config_evento.html', 'bcflix.html']
     for f in files_to_sync:
         src = os.path.join(DEPLOY_DIR, f)
         if os.path.exists(src):
