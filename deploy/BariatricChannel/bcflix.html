@@ -42,6 +42,7 @@
             --deep-blue: #0A192F;
             --vitality-red: #FF3B30;
             --gold-accent: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
             --electric-cyan: #00F2FF;
             --soft-white: #F8F9FA;
             --dark-slate: #2D3436;
@@ -154,7 +155,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
-            filter: brightness(0.3) contrast(1.1);
+            filter: brightness(0.2) contrast(1.1);
         }
 
         .hero-overlay {
@@ -167,16 +168,24 @@
         .hero-content {
             position: relative;
             z-index: 3;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             line-height: 1.1;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+            color: #fff;
+        }
+
+        .hero h1 .brand-highlight {
+            display: block;
+            font-size: clamp(4rem, 12vw, 8rem);
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-top: 10px;
+            text-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
 
         .hero p {
@@ -190,10 +199,10 @@
 
         .badge-urgency {
             display: inline-block;
-            background: rgba(255, 59, 48, 0.1);
-            border: 1px solid var(--vitality-red);
-            color: var(--vitality-red);
-            padding: 10px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 10px 25px;
             border-radius: 50px;
             margin-bottom: 30px;
             font-weight: 700;
@@ -202,31 +211,31 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.4); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
-        .btn-cta {
-            background: var(--vitality-red);
-            color: white;
-            padding: 20px 40px;
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: var(--medical-black);
+            padding: 20px 45px;
             border-radius: 4px;
             text-decoration: none;
-            font-weight: 800;
+            font-weight: 900;
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             display: inline-block;
             transition: var(--transition-smooth);
             border: none;
-            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         }
 
-        .btn-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 59, 48, 0.5);
-            background: #ff4d43;
+        .btn-gold:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
+            filter: brightness(1.1);
         }
 
         .hero-footer {
@@ -248,8 +257,8 @@
         }
 
         .metric-item h3 {
-            font-size: 3rem;
-            color: var(--electric-cyan);
+            font-size: 3.5rem;
+            color: var(--gold-accent);
             margin-bottom: 10px;
         }
 
@@ -260,7 +269,7 @@
             letter-spacing: 0.1em;
         }
 
-        /* Netflix Categories */
+        /* Netflix Categories - Icon Version */
         .section-dark {
             padding: 100px 5%;
         }
@@ -279,65 +288,60 @@
         .section-title .line {
             flex-grow: 1;
             height: 1px;
-            background: linear-gradient(to right, var(--electric-cyan), transparent);
+            background: linear-gradient(to right, var(--gold-accent), transparent);
         }
 
         .category-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 30px;
         }
 
         .category-card {
-            background: #111;
-            border-radius: 8px;
-            overflow: hidden;
+            background: linear-gradient(145deg, #0d1a2d 0%, #050a14 100%);
+            border-radius: 12px;
+            padding: 40px 30px;
             transition: var(--transition-smooth);
             position: relative;
-            aspect-ratio: 16/9;
+            text-align: left;
+            border: 1px solid rgba(212, 175, 55, 0.1);
             display: flex;
-            align-items: flex-end;
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
         }
 
         .category-card:hover {
-            transform: scale(1.05);
-            z-index: 10;
-            border-color: var(--electric-cyan);
-            box-shadow: 0 10px 40px rgba(0, 242, 255, 0.2);
+            transform: translateY(-10px);
+            border-color: var(--gold-accent);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
-        .category-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .category-card .content {
-            position: relative;
-            z-index: 2;
+        .category-card .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: var(--gold-accent);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .category-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
             color: var(--soft-white);
+            font-weight: 700;
         }
 
         .category-card p {
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             color: rgba(255,255,255,0.6);
-            opacity: 0;
-            transform: translateY(10px);
-            transition: 0.4s;
-        }
-
-        .category-card:hover p {
-            opacity: 1;
-            transform: translateY(0);
+            line-height: 1.5;
         }
 
         /* Benefits */
@@ -359,11 +363,12 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
             display: block;
+            color: var(--gold-accent);
         }
 
         .benefit-item h4 {
             margin-bottom: 10px;
-            color: var(--electric-cyan);
+            color: var(--soft-white);
         }
 
         .benefit-item p {
@@ -380,10 +385,11 @@
         }
 
         .guarantee-box {
-            border: 2px solid rgba(0, 242, 255, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.1);
             padding: 60px;
             background: linear-gradient(135deg, rgba(10, 25, 47, 0.5) 0%, rgba(5, 10, 20, 0.5) 100%);
             position: relative;
+            border-radius: 16px;
         }
 
         .guarantee h2 {
@@ -401,11 +407,12 @@
 
         .guarantee-badge {
             font-weight: 800;
-            color: var(--electric-cyan);
-            border: 1px solid var(--electric-cyan);
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
             padding: 10px 20px;
             display: inline-block;
             margin-bottom: 20px;
+            border-radius: 4px;
         }
 
         /* Offer Section */
@@ -462,27 +469,6 @@
             opacity: 0.8;
         }
 
-        .btn-gold {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-            color: var(--medical-black);
-            padding: 25px 50px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            display: block;
-            margin-top: 40px;
-            transition: var(--transition-smooth);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-gold:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
-            filter: brightness(1.1);
-        }
-
         /* FAQ */
         .faq {
             padding: 100px 5%;
@@ -498,7 +484,7 @@
 
         .faq-q {
             font-weight: 800;
-            color: var(--electric-cyan);
+            color: var(--gold-accent);
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
@@ -535,7 +521,8 @@
             .metrics { grid-template-columns: 1fr; }
             .category-grid { grid-template-columns: 1fr; }
             .benefits { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero h1 .brand-highlight { font-size: 4rem; }
             .offer-card { padding: 40px 20px; }
             .new-price { font-size: 3rem; }
         }
@@ -557,7 +544,7 @@
                 <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>
                 <button onclick="changeLang('es')"><img src="https://flagcdn.com/w20/es.png" alt="ES"></button>
             </div>
-            <a href="#offer" class="btn-cta" style="padding: 10px 20px; font-size: 0.8rem;">ASSINAR AGORA</a>
+            <a href="https://checkout.thebank.com.br/7456690361871732736" class="btn-gold" style="padding: 10px 20px; font-size: 0.8rem;">ASSINAR AGORA</a>
         </div>
     </nav>
 
@@ -568,9 +555,12 @@
         <div class="hero-overlay"></div>
         <div class="hero-content" data-reveal>
             <div class="badge-urgency">🏷️ CONDIÇÃO DE LANÇAMENTO: R$ 349/mês por apenas R$ 249/mês</div>
-            <h1 class="notranslate" translate="no">O Próximo Nível da Cirurgia Bariátrica, On-Demand.</h1>
+            <h1>
+                O Próximo Nível da Cirurgia Bariátrica, On-Demand:
+                <span class="brand-highlight notranslate" translate="no">BC FLIX</span>
+            </h1>
             <p>Tenha o acervo dos maiores congressos, transmissões ao vivo e webinars mundiais na palma da sua mão.</p>
-            <a href="#offer" class="btn-cta">QUERO SER MEMBRO FUNDADOR</a>
+            <a href="https://checkout.thebank.com.br/7456690361871732736" class="btn-gold">QUERO SER MEMBRO FUNDADOR</a>
             <div class="hero-footer">Oferta válida até 15 de maio às 23:59.</div>
         </div>
     </section>
@@ -597,25 +587,29 @@
         </div>
         
         <div class="category-grid">
-            <div class="category-card" style="background-image: url('assets/amazon_jungle_bg.png'); background-size: cover;" data-reveal>
+            <div class="category-card" data-reveal>
+                <div class="icon-wrapper">🎓</div>
                 <div class="content">
                     <h4>Congressos & Eventos</h4>
                     <p>Assista à íntegra dos maiores congressos presenciais com foco em BTI, SADI-S e Robótica.</p>
                 </div>
             </div>
-            <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800'); background-size: cover;" data-reveal>
+            <div class="category-card" data-reveal>
+                <div class="icon-wrapper">🎥</div>
                 <div class="content">
                     <h4>Live Surgeries</h4>
                     <p>Revise cada movimento técnico das cirurgias ao vivo transmitidas pelo Bariatric Channel.</p>
                 </div>
             </div>
-            <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800'); background-size: cover;" data-reveal>
+            <div class="category-card" data-reveal>
+                <div class="icon-wrapper">💻</div>
                 <div class="content">
                     <h4>Masterclasses & Webinars</h4>
                     <p>O debate científico de elite, organizado por temas e especialidades para consulta rápida.</p>
                 </div>
             </div>
-            <div class="category-card" style="background-image: url('assets/bc_week.jpeg'); background-size: cover;" data-reveal>
+            <div class="category-card" data-reveal>
+                <div class="icon-wrapper">🔄</div>
                 <div class="content">
                     <h4>Atualização Mensal</h4>
                     <p>Novos conteúdos inseridos todos os meses para garantir que sua técnica nunca fique obsoleta.</p>
@@ -664,7 +658,7 @@
                 <div class="new-price">R$ 249<span>/mês</span></div>
                 <div class="price-note">Valor garantido pelos primeiros 12 meses de assinatura.</div>
             </div>
-            <a href="#" class="btn-gold">GARANTIR MINHA VAGA COM DESCONTO</a>
+            <a href="https://checkout.thebank.com.br/7456690361871732736" class="btn-gold">GARANTIR MINHA VAGA COM DESCONTO</a>
             <div style="margin-top: 20px; font-size: 0.8rem; opacity: 0.5;">Métodos de Pagamento: Cartão de Crédito e Recorrência Mensal.</div>
         </div>
     </section>
