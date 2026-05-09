@@ -673,23 +673,44 @@
         </div>
     </section>
 
-    <!-- BANNER BC FLIX -->
-    <section class="bcflix-banner" style="background: #050A14; padding: 60px 5%; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); position: relative; overflow: hidden;">
-        <div data-reveal style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
-            <div style="flex: 1; min-width: 300px;">
-                <img src="assets/logobcflix-removebg-preview.png" alt="BC FLIX" class="notranslate" translate="no" style="height: 60px; margin-bottom: 20px;">
-                <h2 style="color: #FFFFFF; font-size: 2rem; margin-bottom: 15px;" class="notranslate" translate="no">O PRÓXIMO NÍVEL DA CIRURGIA BARIÁTRICA</h2>
-                <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1.6;">Tenha acesso ao maior acervo técnico de cirurgia bariátrica e metabólica do mundo. Congressos, cirurgias ao vivo e masterclasses exclusivas, tudo em um só lugar.</p>
+    <!-- BANNER BC FLIX: REDESIGN PREMIUM -->
+    <section class="bcflix-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 100px 5%; border-top: 4px solid #D4AF37; position: relative; overflow: hidden;">
+        <!-- Subtle Background Glow -->
+        <div style="position: absolute; top: -50%; left: -10px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
+        
+        <div data-reveal style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 60px;">
+            <div style="flex: 1.2; min-width: 350px;">
+                <img src="assets/logobcflix-removebg-preview.png" alt="BC FLIX" class="notranslate" translate="no" style="height: 150px; width: auto; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 25px; line-height: 1.2; font-weight: 800;" class="notranslate" translate="no">A MAIOR PLATAFORMA DE ENSINO CIRÚRGICO DO MUNDO</h2>
+                
+                <ul style="list-style: none; color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 40px; display: grid; gap: 15px;">
+                    <li style="display: flex; align-items: center; gap: 15px;">
+                        <span style="color: #D4AF37; font-size: 1.5rem;">✓</span> Mais de 50 horas de conteúdo em alta definição
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 15px;">
+                        <span style="color: #D4AF37; font-size: 1.5rem;">✓</span> Professores de referência mundial de mais de 10 países
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 15px;">
+                        <span style="color: #D4AF37; font-size: 1.5rem;">✓</span> Aulas com legendas em diversos idiomas
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 15px;">
+                        <span style="color: #D4AF37; font-size: 1.5rem;">✓</span> Acesso exclusivo a cirurgias ao vivo e comentadas
+                    </li>
+                </ul>
             </div>
-            <div style="text-align: right;">
-                <a href="bcflix.html" class="btn-gold" style="background: #D4AF37; color: #050A14; padding: 20px 40px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);">CONHECER O BC FLIX</a>
+            
+            <div style="flex: 0.8; text-align: center; background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(10px);">
+                <p class="mono" style="color: #D4AF37; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">MEMBRO EXPERIÊNCIA</p>
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.7;">Torne-se assinante agora e transforme sua carreira médica.</p>
+                <a href="bcflix.html" class="btn-gold-large" style="background: #D4AF37; color: #0f172a; padding: 25px 60px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">QUERO SER ASSINANTE</a>
             </div>
         </div>
         <style>
-            .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); background: #f1c40f; }
-            @media (max-width: 768px) {
+            .btn-gold-large:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 50px rgba(212, 175, 55, 0.6); background: #f1c40f; }
+            @media (max-width: 900px) {
                 .bcflix-banner { text-align: center; }
-                .bcflix-banner div { text-align: center !important; }
+                .bcflix-banner div { text-align: center !important; justify-content: center !important; }
+                .bcflix-banner ul { text-align: left; max-width: 500px; margin: 0 auto 40px; }
             }
         </style>
     </section>
