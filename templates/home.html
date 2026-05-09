@@ -759,14 +759,18 @@
     </section>
 
     <section class="masterclass-section" id="masterclass">
-        <div class="video-container" data-reveal style="position: relative;">
-            <video id="masterclass-video" autoplay muted loop playsinline 
-                   style="width: 100%; height: auto; display: block; filter: grayscale(100%) brightness(0.8);">
-                <source src="assets/bc_video.mp4" type="video/mp4">
-            </video>
-            <!-- Overlay Mask -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(10, 25, 47, 0.4), transparent); pointer-events: none;"></div>
+        <!-- Rebuilt Video Section from scratch for maximum compatibility -->
+        <div class="video-outer-wrap" style="position: relative; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.2); border-radius: 12px; overflow: hidden; background: #000;">
+            <div style="position: relative; width: 100%; padding-top: 56.25%; /* 16:9 Aspect Ratio */">
+                <video autoplay muted loop playsinline 
+                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7);">
+                    <source src="assets/bc_video.mp4" type="video/mp4">
+                </video>
+                <!-- Black & White Premium Mask Overlay -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 25, 47, 0.4) 0%, transparent 100%); pointer-events: none;"></div>
+            </div>
         </div>
+        
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
             <p class="mono" style="color: var(--vitality-red);">DETALHES DO EVENTO</p>
             <h2>TECNOLOGIA QUE ROMPE BARREIRAS</h2>
