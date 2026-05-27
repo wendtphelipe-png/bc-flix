@@ -35,8 +35,6 @@
             }
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -488,8 +486,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 5% 60px;
+            padding: 80px 5%;
             position: relative;
+            margin: 120px 5% 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
         .amazon-hero-section h1 {
             color: #ffb703;
@@ -619,7 +621,6 @@
             <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
         </a>
         <div class="nav-links">
-            <a href="#procedimentos">PRÓXIMOS EVENTOS</a>
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
             <a href="bcflix.html" class="nav-link-highlight">BC FLIX</a>
             <div class="lang-switcher" style="display:flex; gap:5px; margin-left: 10px;">
@@ -637,44 +638,13 @@
             <h1 translate="no" class="notranslate">2&ordm; BC AMAZON WEEK</h1>
             <p class="subtitle">A Confluência da Alta Cirurgia no Coração da Amazônia. Tecnologia e Natureza em Sintonia.</p>
             <div style="margin-top: 50px;">
-                <a href="bc_amazon_week.html" class="btn-amazon">SABER MAIS SOBRE O EVENTO</a>
+                <a href="https://www.bcamazonweek.com.br/" class="btn-amazon" target="_blank">SABER MAIS SOBRE O EVENTO</a>
             </div>
-        </div>
-    </section>
-
-    <!-- NOVO HERO: CURSO ILEAL IMMERSION -->
-    <section class="ileal-banner-section" style="background: radial-gradient(circle at 50% 0%, var(--deep-blue) 0%, #050d17 100%); padding: 80px 5%; text-align: center; color: var(--medical-white); position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.05);">
-        <div data-reveal>
-            <div class="mono" style="display: inline-block; background: rgba(212, 175, 55, 0.1); color: #D4AF37; border: 1px solid #D4AF37; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.2em; margin-bottom: 25px;">LANÇAMENTO EXCLUSIVO</div>
-            <br>
-            <h1 translate="no" class="notranslate" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--medical-white); margin-bottom: 25px; display: inline-block; background-color: var(--vitality-red); padding: 10px 20px; border-radius: 4px; box-shadow: 0 15px 35px rgba(255, 59, 48, 0.4);">ILEAL METABOLIC SURGERY IMMERSION</h1>
-            
-            <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); max-width: 800px; margin: 0 auto 40px; font-weight: 300; line-height: 1.6;">
-                <span class="mono" style="color: var(--vitality-red); font-weight: bold;">Cirurgia Bariátrica e Metabólica Avançada</span><br>
-                Bipartição de Trânsito • SADI-S • Duodenal Switch • Cirurgia Revisional<br>
-                Abordagem Laparoscópica e Robótica
-            </p>
-
-            <div style="max-width: 1000px; margin: 0 auto 50px auto; border-radius: 12px; overflow: hidden; position: relative;">
-                <img src="medicos-3.png" alt="Corpo Docente Ileal" style="width: 100%; height: auto; display: block; border-radius: 12px;">
-            </div>
-
-            <style>
-                .btn-ileal-banner {
-                    display: inline-flex; align-items: center; justify-content: center; padding: 20px 50px; background: #D4AF37; color: var(--medical-white) !important; text-decoration: none; font-weight: 800; font-size: 1.1rem; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-                }
-                .btn-ileal-banner:hover {
-                    transform: translateY(-5px); background-color: #c29d2b; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); color: var(--medical-white) !important;
-                }
-            </style>
-            <a href="ileal_surgery.html" class="btn-ileal-banner">
-                SAIBA MAIS
-            </a>
         </div>
     </section>
 
     <!-- BANNER BC FLIX: REDESIGN PREMIUM -->
-    <section class="bcflix-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 100px 5%; border-top: 4px solid #D4AF37; position: relative; overflow: hidden;">
+    <section class="bcflix-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 80px 5%; border-top: 4px solid #D4AF37; position: relative; overflow: hidden; margin: 40px 5%; border-radius: 16px; box-shadow: 0 20px 40px rgba(10, 25, 47, 0.15); border: 1px solid rgba(212, 175, 55, 0.2);">
         <!-- Subtle Background Glow -->
         <div style="position: absolute; top: -50%; left: -10px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
         
@@ -715,241 +685,33 @@
         </style>
     </section>
 
-    <!-- DIVISÃO E CONTINUAÇÃO: MASTERCLASS -->
-    <div style="width: 100%; height: 10px; background: var(--vitality-red);"></div>
-
-    <section class="hero">
-        <div id="stomach-canvas"></div>
-        <div class="hero-content" data-reveal>
-            <h2 class="mono hero-date" style="color: var(--vitality-red); font-size: 1.8rem; letter-spacing: -0.02em; font-weight: 800; margin-bottom: 10px; background: rgba(255, 59, 48, 0.05); display: inline-block; padding: 10px 20px; border-radius: 4px; border: 1px solid rgba(255,59,48,0.2);">09 DE MAIO * A PARTIR DAS 7:00H BRT</h2>
-            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">MASTERCLASS BARIÁTRICA</h1>
-            <p>O maior evento de cirurgia bariátrica e metabólica ação vivo do Brasil. Uma imersão completa combinando transmissões em tempo real e discussões técnicas de alto impacto.</p>
-            <div style="display: flex; gap: 15px;">
-                <a href="#masterclass" class="btn-primary">CONHECER O EVENTO</a>
-                <a href="#gestação" class="btn-primary" style="background: var(--deep-blue);">OS CIRURGIÕES</a>
-            </div>
-        </div>
-
-        <div id="mlb2-39949181" class="bmi-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-39949181" data-reveal style="transition-delay: 0.2s;">
-            <p class="mono">100% Online e 100% Gratuito</p>
-            <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA</h3>
-            <div class="row-success" style="display: none; margin-top: 25px;">
-                <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 0.8rem; text-align: center; border: 1px solid var(--electric-cyan); padding: 20px; border-radius: 4px;">
-                    INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>Você será redirecionado em <span id="redirect-counter">5</span> segundos...
-                </div>
-            </div>
-            <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/184814682394068288/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
-                <div class="input-group">
-                    <label class="mono">Nome Completo</label>
-                    <input type="text" id="name" name="fields[name]" placeholder="DIGITE SEU NOME" required>
-                </div>
-                <div class="input-group">
-                    <label class="mono">E-mail Profissional</label>
-                    <input type="email" id="email" name="fields[email]" placeholder="EMAIL@EXEMPLO.COM" required>
-                </div>
-                <div class="input-group">
-                    <label class="mono">Telefone ou Whatsapp</label>
-                    <input type="tel" id="whatsapp" name="fields[phone]" placeholder="+00 (00) 00000-0000" required>
-                </div>
-                <input type="hidden" name="ml-submit" value="1">
-                <input type="hidden" name="anticsrf" value="true">
-                <button type="submit" class="btn-primary primary" style="padding: 15px; margin-top: 10px; width: 100%; border: none;">PARTICIPAR DA MASTERCLASS AGORA</button>
-            </form>
-        </div>
-    </section>
-
-    <section class="masterclass-section" id="masterclass">
-        <!-- Rebuilt Video Section from scratch for maximum compatibility -->
-        <div class="video-outer-wrap" style="position: relative; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.2); border-radius: 12px; overflow: hidden; background: #000;">
-            <div style="position: relative; width: 100%; padding-top: 56.25%; /* 16:9 Aspect Ratio */">
-                <video autoplay muted loop playsinline 
-                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7);">
-                    <source src="assets/bc_video.mp4" type="video/mp4">
-                </video>
-                <!-- Black & White Premium Mask Overlay -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 25, 47, 0.4) 0%, transparent 100%); pointer-events: none;"></div>
-            </div>
-        </div>
-        
-        <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
-            <p class="mono" style="color: var(--vitality-red);">DETALHES DO EVENTO</p>
-            <h2>TECNOLOGIA QUE ROMPE BARREIRAS</h2>
-            <p style="margin-bottom: 25px; line-height: 1.8;">No dia 09 de maio, às 7:00 BRT, a tecnologia rompe as barreiras geográficas para unir o Brasil em uma jornada técnica sem precedentes. Percorreremos o país — de Manaus com o Dr. Victor Dib, passando por Goiânia com o Dr. Paulo Reis, até Passo Fundo com o Dr. Madalosso — contando ainda com a presença de convidados especialistas de renome para aprofundar cada debate.
-            <br><br>
-            Milhares de quilômetros de distância se dissolvem através de uma transmissão em alta-definição, entregando precisão cirúrgica diretamente na palma da sua mão. Sente-se na primeira fileira da inovação: nesta experiência, Você não apenas assiste a procedimentos complexos; Você absorve a estratégia clínica e o raciocínio técnico por trás de cada movimento dos grandes mestres.</p>
+    <!-- NOVO HERO: CURSO ILEAL IMMERSION -->
+    <section class="ileal-banner-section" style="background: radial-gradient(circle at 50% 0%, var(--deep-blue) 0%, #050d17 100%); padding: 80px 5%; text-align: center; color: var(--medical-white); position: relative; overflow: hidden; margin: 40px 5% 80px; border-radius: 16px; box-shadow: 0 20px 40px rgba(10, 25, 47, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <div data-reveal>
+            <div class="mono" style="display: inline-block; background: rgba(212, 175, 55, 0.1); color: #D4AF37; border: 1px solid #D4AF37; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.2em; margin-bottom: 25px;">LANÇAMENTO EXCLUSIVO</div>
+            <br>
+            <h1 translate="no" class="notranslate" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--medical-white); margin-bottom: 25px; display: inline-block; background-color: var(--vitality-red); padding: 10px 20px; border-radius: 4px; box-shadow: 0 15px 35px rgba(255, 59, 48, 0.4);">ILEAL METABOLIC SURGERY IMMERSION</h1>
             
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">A JORNADA INCLUI:</p>
-            <ul class="mono" style="list-style: none; margin-bottom: 30px; opacity: 0.8; font-size: 0.85rem;">
-                <li style="margin-bottom: 10px;">> Visão Além do Campo Cirúrgico</li>
-                <li style="margin-bottom: 10px;">> Intercâmbio de Idéias</li>
-                <li style="margin-bottom: 10px;">> Tecnologia de Streaming</li>
-                <li style="margin-bottom: 10px;">> Valor de Masterclass 100% gratuito</li>
-                <li style="margin-bottom: 10px;">> Networking Digital</li>
-            </ul>
-            <a href="#" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
-        </div>
-    </section>
+            <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); max-width: 800px; margin: 0 auto 40px; font-weight: 300; line-height: 1.6;">
+                <span class="mono" style="color: var(--vitality-red); font-weight: bold;">Cirurgia Bariátrica e Metabólica Avançada</span><br>
+                Bipartição de Trânsito • SADI-S • Duodenal Switch • Cirurgia Revisional<br>
+                Abordagem Laparoscópica e Robótica
+            </p>
 
-    <style>
-        .calendar-section {
-            padding: 120px 5%;
-            background: var(--soft-creme);
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto;
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        .card-masterclass {
-            grid-column: span 2;
-            background: var(--deep-blue);
-            color: white;
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-left: 8px solid var(--vitality-red);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-        }
-
-        .card-masterclass::before {
-            content: 'DESTAQUE';
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--vitality-red);
-            color: white;
-            padding: 5px 40px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            transform: rotate(45deg);
-        }
-
-        .card-webinars-col {
-            grid-column: span 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .card-webinar {
-            background: var(--medical-white);
-            border: 1px solid rgba(10, 25, 47, 0.1);
-            padding: 25px;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-right: 4px solid var(--electric-cyan);
-            height: 100%;
-        }
-
-        .card-webinar:hover {
-            transform: translateX(-10px);
-            border-right-color: var(--vitality-red);
-            box-shadow: 0 10px 30px var(--alabaster-shadow);
-        }
-
-        .card-congress {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
-            padding: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #ffb703;
-            text-decoration: none;
-            border: 2px solid #ffb703;
-            margin-top: 20px;
-            position: relative;
-        }
-
-        .card-congress::after {
-            content: 'O GRANDE EVENTO';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ffb703;
-            color: #041009;
-            padding: 5px 20px;
-            font-weight: 800;
-            font-size: 0.8rem;
-        }
-
-        .card-congress h2 { color: #ffb703; font-size: 3rem; margin: 0; }
-        .card-congress p { color: #f1f5f2; margin: 10px 0 0; opacity: 0.9; }
-
-        .tag-date {
-            font-family: 'JetBrains+Mono', monospace;
-            font-weight: 800;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .webinar-title {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--deep-blue);
-            line-height: 1.2;
-        }
-
-        @media (max-width: 1024px) {
-            .calendar-grid { grid-template-columns: 1fr; }
-            .card-masterclass, .card-webinars-col, .card-congress { grid-column: span 1; }
-            .card-congress { flex-direction: column; text-align: center; gap: 30px; }
-            .card-congress h2 { font-size: 2rem; }
-        }
-    </style>
-
-    <section class="calendar-section" id="procedimentos">
-        <div data-reveal style="text-align: center;">
-            <p class="mono" style="color: var(--vitality-red);">AGENDA OFICIAL</p>
-            <h2 style="font-size: 2.5rem; margin-top: 10px;">PRÓXIMOS EVENTOS</h2>
-        </div>
-
-        <div class="calendar-grid">
-            <!-- Masterclass (Destaque Esquerda/Centro) -->
-            <a href="#masterclass" class="card-masterclass" data-reveal>
-                <span class="tag-date" style="color: var(--vitality-red);">09 DE MAIO</span>
-                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">MASTERCLASS BARIÁTRICA</h2>
-                <p style="opacity: 0.8; font-size: 1.1rem; max-width: 500px;">3 Cirurgias estratégicas, 3 Cidades, 1 transmissão de Impacto. O evento definitivo para o cirurgião moderno.</p>
-                <div class="mono" style="margin-top: 30px; font-weight: 800;">100% ONLINE & GRATUITO</div>
-            </a>
-
-            <!-- Webinars (Coluna Direita) -->
-            <div class="card-webinars-col" data-reveal style="transition-delay: 0.1s;">
-                <h3 class="mono" style="color: var(--electric-cyan); font-size: 1.2rem; margin-bottom: 15px; font-weight: 800; border-bottom: 2px solid var(--electric-cyan); padding-bottom: 5px; display: inline-block; letter-spacing: 0.2em;">WEBINARS MENSAIS</h3>
-                <a href="webinar-maio.html" class="card-webinar">
-                    <span class="tag-date" style="color: var(--electric-cyan);">19 MAIO</span>
-                    <h3 class="webinar-title notranslate" translate="no">FÍGADO E CIRURGIA METABÓLICA</h3>
-                </a>
-                <a href="webinar-junho.html" class="card-webinar">
-                    <span class="tag-date" style="color: var(--electric-cyan);">09 JUNHO</span>
-                    <h3 class="webinar-title notranslate" translate="no">BIPARTIÇÃO DE TRÂNSITO INTESTINAL</h3>
-                </a>
-                <a href="webinar-julho.html" class="card-webinar">
-                    <span class="tag-date" style="color: var(--electric-cyan);">14 JULHO</span>
-                    <h3 class="webinar-title notranslate" translate="no">VARIAÇÕES DE BIPARTIÇÕES DE TRÂNSITO</h3>
-                </a>
+            <div style="max-width: 1000px; margin: 0 auto 50px auto; border-radius: 12px; overflow: hidden; position: relative;">
+                <img src="medicos-3.png" alt="Corpo Docente Ileal" style="width: 100%; height: auto; display: block; border-radius: 12px;">
             </div>
 
-            <!-- Congresso (Destaque Total Inferior) -->
-            <a href="bc_amazon_week.html" class="card-congress" data-reveal style="transition-delay: 0.2s;">
-                <div>
-                    <span class="tag-date">19 A 23 DE OUTUBRO, 2026</span>
-                    <h2 class="notranslate" translate="no">2&ordm; BC AMAZON WEEK</h2>
-                    <p>Inovação, Alta Tecnologia e Excelência Técnica no Coração da Amazônia.</p>
-                </div>
-                <div class="btn-amazon">CONHECER O CONGRESSO</div>
+            <style>
+                .btn-ileal-banner {
+                    display: inline-flex; align-items: center; justify-content: center; padding: 20px 50px; background: #D4AF37; color: var(--medical-white) !important; text-decoration: none; font-weight: 800; font-size: 1.1rem; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+                }
+                .btn-ileal-banner:hover {
+                    transform: translateY(-5px); background-color: #c29d2b; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); color: var(--medical-white) !important;
+                }
+            </style>
+            <a href="ileal_surgery.html" class="btn-ileal-banner">
+                SAIBA MAIS
             </a>
         </div>
     </section>
@@ -1075,139 +837,9 @@
         }, observerOptions);
 
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
-
-        // MailerLite Success Callback
-        function ml_webform_success_39949181() {
-            var $ = ml_jQuery || jQuery;
-            $('.ml-subscribe-form-39949181 .row-success').show();
-            $('.ml-subscribe-form-39949181 .row-form').hide();
-            
-            var countdown = 5;
-            var counterElement = document.getElementById('redirect-counter');
-            var redirectInterval = setInterval(function() {
-                countdown--;
-                if(counterElement) {
-                    counterElement.innerText = countdown;
-                }
-                if(countdown <= 0) {
-                    clearInterval(redirectInterval);
-                    window.location.href = "masterclass.html";
-                }
-            }, 1000);
-        }
-
-        // 3D Stomach Particle Animation
-        let scene, camera, renderer, particles;
-        let mouseX = 0, mouseY = 0;
-
-        function init3D() {
-            const container = document.getElementById('stomach-canvas');
-            if (!container) return;
-
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.z = 5;
-
-            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-
-            const loader = new THREE.STLLoader();
-            loader.load('assets/realistic_stomach.stl', function (geometry) {
-                geometry.computeBoundingBox();
-                const center = new THREE.Vector3();
-                geometry.boundingBox.getCenter(center);
-                geometry.translate(-center.x, -center.y, -center.z);
-                
-                const size = new THREE.Vector3();
-                geometry.boundingBox.getSize(size);
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = (3.5 * 1.3) / maxDim; // Increased size by 30%
-                geometry.scale(scale, scale, scale);
-
-                const material = new THREE.PointsMaterial({
-                    color: 0xFF3B30, // Vitality Red
-                    size: 0.015,
-                    transparent: true,
-                    opacity: 0.2, // Set to 20% as requested
-                    blending: THREE.NormalBlending 
-                });
-
-                particles = new THREE.Points(geometry, material);
-                scene.add(particles);
-            }, undefined, function (error) {
-                console.error('Error loading STL:', error);
-            });
-
-            window.addEventListener('resize', onWindowResize, false);
-            document.addEventListener('mousemove', onMouseMove, false);
-
-            animate3D();
-        }
-
-        function onMouseMove(event) {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.0008;
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.0008;
-        }
-
-        function onWindowResize() {
-            const container = document.getElementById('stomach-canvas');
-            if (container && camera && renderer) {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            }
-        }
-
-        function animate3D() {
-            requestAnimationFrame(animate3D);
-            
-            if (particles) {
-                const time = Date.now() * 0.0012;
-                const pulse = 1 + Math.sin(time) * 0.025;
-                particles.scale.set(pulse, pulse, pulse);
-                
-                particles.rotation.y += (mouseX - particles.rotation.y) * 0.05;
-                particles.rotation.x += (mouseY - particles.rotation.x) * 0.05;
-                
-                particles.rotation.z += 0.0003;
-            }
-
-            renderer.render(scene, camera);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            init3D();
-        });
     </script>
 
-    <style>
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); color: var(--electric-cyan); }
-            100% { transform: scale(1); }
-        }
-    </style>    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
     <div id="google_translate_element"></div>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
-    <script>
-        // Força o autoplay dos vídeos que podem ter sido bloqueados pelo navegador
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('masterclass-video');
-            if (video) {
-                // Tenta dar play várias vezes caso o navegador bloqueie inicialmente
-                const playVideo = () => {
-                    video.play().then(() => {
-                        console.log("Video Masterclass iniciado com sucesso.");
-                    }).catch(err => {
-                        console.warn("Aguardando interação para play:", err);
-                        // Tenta novamente ao primeiro clique na página
-                        window.addEventListener('click', () => video.play(), { once: true });
-                    });
-                };
-                playVideo();
-            }
-        });
-    </script>
 </body>
 </html>
