@@ -27,30 +27,13 @@ jobs:
         run: |
           python scripts/build_site.py
 
-      - name: 🚀 FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 🚀 SFTP Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: ./
-          exclude: |
-            **/.git/**
-            **/.github/**
-            deploy/**
-            scripts/**
-            templates/**
-            data/**
-            README.md
-            package.json
-            vercel.json
-            build_site.py
-            deploy_trigger.txt
-            /*.py
-            /*.mp4
-            /*.jpg
-            /*.png
-            /*.xlsx
-            /*.stl
-            /*.webp
+          port: 65002
+          local_path: './*'
+          remote_path: 'domains/bariatricchannel.com/public_html'
+          rsyncArgs: '--exclude=.git/ --exclude=.github/ --exclude=deploy/ --exclude=scripts/ --exclude=templates/ --exclude=data/ --exclude=README.md --exclude=package.json --exclude=vercel.json --exclude=build_site.py --exclude=deploy_trigger.txt --exclude=*.py --exclude=*.mp4 --exclude=*.jpg --exclude=*.png --exclude=*.xlsx --exclude=*.stl --exclude=*.webp'
