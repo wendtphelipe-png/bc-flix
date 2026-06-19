@@ -574,13 +574,13 @@
         }
 
         /* Animations */
-        .js-enabled [data-reveal] {
+        [data-reveal] {
             opacity: 0;
             transform: translateY(30px);
             transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .js-enabled [data-reveal].active {
+        [data-reveal].active {
             opacity: 1;
             transform: translateY(0);
         }
@@ -662,7 +662,7 @@
                     </li>
                     <li style="display: flex; align-items: center; gap: 15px;">
                         <span style="color: #D4AF37; font-size: 1.5rem;">✓</span> Aulas com legendas em diversos idiomas
-                    </li>
+                     </li>
                     <li style="display: flex; align-items: center; gap: 15px;">
                         <span style="color: #D4AF37; font-size: 1.5rem;">✓</span> Acesso exclusivo a cirurgias ao vivo e comentadas
                     </li>
@@ -811,8 +811,6 @@
     </footer>
 
     <script>
-        document.body.classList.add('js-enabled');
-
         // Google translate Engine
         function googletranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
@@ -830,30 +828,15 @@
             threshold: 0.15
         };
 
-        try {
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                        }
-                    });
-                }, observerOptions);
-
-                document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
-            } else {
-                document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('active'));
-            }
-        } catch (e) {
-            document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('active'));
-        }
-
-        // Safety fallback timer to prevent hidden content bugs in preview panels
-        setTimeout(() => {
-            document.querySelectorAll('[data-reveal]').forEach(el => {
-                el.classList.add('active');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
-        }, 1000);
+        }, observerOptions);
+
+        document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     </script>
 
     <div id="google_translate_element"></div>
