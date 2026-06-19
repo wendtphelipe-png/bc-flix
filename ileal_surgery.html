@@ -213,175 +213,6 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        /* Form Styling */
-        .lead-form-container {
-            background: white !important;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-            text-align: left;
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-            margin: 60px auto;
-        }
-
-        .lead-form-container h3 {
-            color: var(--deep-blue) !important;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .lead-form-container p {
-            color: var(--dark-slate) !important;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
-
-        .lead-form-container label {
-            color: var(--deep-blue) !important;
-            font-weight: 800;
-        }
-
-        .lead-form-container input, .lead-form-container select {
-            width: 100%;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #ddd !important;
-            background: #f9f9f9 !important;
-            color: var(--deep-blue) !important;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .lead-form-container input:focus {
-            border-color: var(--vitality-red) !important;
-            background: white !important;
-        }
-
-        /* Gold Shimmer Title */
-        .gold-shimmer-title {
-            background: #D4AF37;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            letter-spacing: 1px;
-        }
-
-        .gold-shimmer-title::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.4) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            animation: shimmer-effect 3s infinite;
-        }
-
-        @keyframes shimmer-effect {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Custom Searchable Dropdown */
-        .searchable-dropdown {
-            position: relative;
-            width: 100%;
-        }
-
-        .dropdown-trigger {
-            width: 100%;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            background: #f9f9f9;
-            color: var(--deep-blue);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.95rem;
-        }
-
-        .dropdown-trigger::after {
-            content: '▼';
-            font-size: 0.7rem;
-            opacity: 0.5;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid #ddd;
-            border-top: none;
-            border-radius: 0 0 4px 4px;
-            z-index: 100;
-            max-height: 300px;
-            overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .dropdown-content.show {
-            display: block;
-        }
-
-        .dropdown-search {
-            position: sticky;
-            top: 0;
-            background: white;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .dropdown-search input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: var(--deep-blue);
-            background: white;
-        }
-
-        .dropdown-item {
-            padding: 12px 15px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.2s;
-            color: var(--deep-blue);
-            background: white;
-        }
-
-        .dropdown-item:hover {
-            background: #f5f5f5;
-            color: var(--vitality-red);
-        }
-
-        .dropdown-item.hidden {
-            display: none;
-        }
-
         /* Content Sections */
         .content-section {
             padding: 100px 5%;
@@ -511,7 +342,264 @@
             .faculty-list { grid-template-columns: 1fr; }
             .hero-ileal h1 { font-size: 2rem; padding: 10px 15px; }
             .btn-whatsapp { padding: 15px 25px; font-size: 0.9rem; }
-            .lead-form-container { padding: 30px 20px; }
+        }
+
+        /* Enrollment Cards Section */
+        .enrollment-section {
+            padding: 80px 5%;
+            background-color: var(--soft-creme);
+            text-align: center;
+        }
+        .enrollment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
+        }
+        .enrollment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(10, 25, 47, 0.05);
+            border: 1px solid rgba(10, 25, 47, 0.05);
+            border-top: 5px solid var(--gold-premium);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            height: 100%;
+        }
+        .enrollment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(10, 25, 47, 0.1);
+        }
+        .enrollment-card.featured {
+            border-top-color: var(--vitality-red);
+            position: relative;
+        }
+        .enrollment-card.featured::after {
+            content: 'RECOMENDADO';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--vitality-red);
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            border-radius: 50px;
+            letter-spacing: 0.1em;
+        }
+        .enrollment-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--deep-blue);
+            line-height: 1.3;
+        }
+        .enrollment-card p.desc {
+            font-size: 0.95rem;
+            color: var(--dark-slate);
+            margin-bottom: 25px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        .enrollment-card .details-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .enrollment-card .details-list li {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--dark-slate);
+        }
+        .enrollment-card .details-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--vitality-red);
+            font-weight: 800;
+        }
+        .price-box {
+            margin-top: auto;
+            margin-bottom: 30px;
+        }
+        .price-old {
+            text-decoration: line-through;
+            color: rgba(10, 25, 47, 0.4);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .price-new {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--deep-blue);
+            line-height: 1;
+        }
+        .price-notice {
+            font-size: 0.75rem;
+            color: rgba(10, 25, 47, 0.5);
+            display: block;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .btn-enroll {
+            display: block;
+            width: 100%;
+            padding: 15px 25px;
+            background: var(--gold-premium);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+        .btn-enroll:hover {
+            background: #c29d2b;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            color: white;
+        }
+        .enrollment-card.featured .btn-enroll {
+            background: var(--vitality-red);
+            box-shadow: 0 4px 15px rgba(255, 59, 48, 0.2);
+        }
+        .enrollment-card.featured .btn-enroll:hover {
+            background: #d62a20;
+            box-shadow: 0 6px 20px rgba(255, 59, 48, 0.3);
+            color: white;
+        }
+
+        /* Schedule Section (Interactive Programação) */
+        .schedule-section {
+            padding: 100px 5%;
+            background-color: var(--medical-white);
+            text-align: center;
+        }
+        .schedule-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .tabs-header {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: #f0f4f8;
+            border: 1px solid rgba(10, 25, 47, 0.05);
+            color: var(--deep-blue);
+            padding: 15px 30px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: var(--transition-smooth);
+            font-family: inherit;
+        }
+        .tab-btn:hover {
+            background: rgba(10, 25, 47, 0.05);
+            color: var(--vitality-red);
+        }
+        .tab-btn.active {
+            background: var(--deep-blue);
+            color: white;
+            border-color: var(--deep-blue);
+            box-shadow: 0 10px 20px rgba(10, 25, 47, 0.15);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            text-align: left;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .schedule-day {
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(10, 25, 47, 0.05);
+            padding-bottom: 25px;
+        }
+        .schedule-day-title {
+            font-size: 1.3rem;
+            color: var(--vitality-red);
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid var(--vitality-red);
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 20px;
+            padding: 15px 20px;
+            background: #fcfcf9;
+            border-radius: 6px;
+            border-left: 3px solid var(--deep-blue);
+            transition: var(--transition-smooth);
+        }
+        .timeline-item:hover {
+            background: #f6f8fa;
+            transform: translateX(5px);
+        }
+        .timeline-time {
+            font-weight: 800;
+            color: var(--deep-blue);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+        .timeline-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .timeline-title {
+            font-weight: 800;
+            color: var(--deep-blue);
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .timeline-subtitle {
+            font-size: 0.85rem;
+            color: var(--vitality-red);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--dark-slate);
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .enrollment-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
         }
     </style>
 </head>
@@ -524,9 +612,8 @@
             <button onclick="changeLang('es')" title="Español"><img src="https://flagcdn.com/w20/es.png" alt="ES" style="width: 30px;"></button>
         </div>
     </nav>
-
     <!-- HERO SECTION -->
-    <section class="hero-ileal">
+    <section class="hero-ileal" style="padding-bottom: 60px;">
         <div class="exclusive-badge">VAGAS EXTREMAMENTE LIMITADAS</div>
         <br>
         <h1 translate="no" class="notranslate">ILEAL METABOLIC SURGERY IMMERSION</h1>
@@ -537,14 +624,8 @@
             Abordagem Laparoscópica e Robótica
         </div>
 
-        <div style="margin-bottom: 40px; padding: 20px; background: rgba(255, 59, 48, 0.1); border: 1px solid var(--vitality-red); border-radius: 8px; display: inline-block; max-width: 600px;">
-            <p style="color: var(--medical-white); font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">
-                ⚠️ Mais informações e solicitação de inscrição estarão disponíveis imediatamente após o seu cadastro abaixo.
-            </p>
-        </div>
-
         <div class="doctors-image-container">
-            <img src="medicos-3.png" alt="Corpo Docente" class="hero-image">
+            <img src="ILEAL JUNTOS.png" alt="Corpo Docente" class="hero-image">
         </div>
 
         <div class="doctors-grid">
@@ -586,67 +667,374 @@
             </div>
         </div>
 
-        <div id="form-inscricao" class="lead-form-container">
-            <div class="gold-shimmer-title">Pré-Inscrição Liberada</div>
-            <p>Garanta acesso prioritário e receba a programação completa do curso.</p>
-            
-            <div id="form-wrapper">
-                <!-- MailerLite Form Integration -->
-                <div id="mlb2-40654361" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40654361">
-                    <form id="ileal-form" class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/186198390320662451/subscribe" data-code="" method="post" style="display: grid; gap: 15px;">
-                        <div>
-                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">NOME COMPLETO</label>
-                            <input type="text" name="fields[name]" id="form-nome" class="form-control" required placeholder="Digite seu nome completo">
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">E-MAIL</label>
-                                <input type="email" name="fields[email]" id="form-email" class="form-control" required placeholder="seu@email.com">
-                            </div>
-                            <div>
-                                <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">TELEFONE</label>
-                                <input type="tel" name="fields[phone]" id="form-tel" class="form-control" required placeholder="(00) 00000-0000">
-                            </div>
-                        </div>
-                        <div>
-                            <label style="font-size: 0.85rem; margin-bottom: 5px; display: block;" class="mono">PAÍS</label>
-                            <div class="searchable-dropdown" id="country-dropdown">
-                                <div class="dropdown-trigger" id="dropdown-selected">Selecione seu país</div>
-                                <div class="dropdown-content" id="dropdown-list">
-                                    <div class="dropdown-search">
-                                        <input type="text" id="search-input" placeholder="Pesquisar país..." autocomplete="off">
-                                    </div>
-                                    <div id="options-container" style="max-height: 200px; overflow-y: auto;">
-                                        <!-- Countries will be populated here -->
-                                    </div>
-                                </div>
-                                <!-- MailerLite Country Field -->
-                                <input type="hidden" name="fields[country]" id="country-hidden" class="form-control" required>
-                            </div>
-                        </div>
-                        
-                        <!-- MailerLite Hidden Fields -->
-                        <input type="hidden" name="ml-submit" value="1">
-                        <input type="hidden" name="anticsrf" value="true">
+        <div style="margin-top: 45px;">
+            <a href="#inscricao" class="btn-enroll" style="display: inline-block; width: auto; padding: 20px 50px; border-radius: 50px; background: var(--vitality-red); box-shadow: 0 10px 30px rgba(255, 59, 48, 0.4); font-size: 1.1rem;">
+                GARANTIR MINHA VAGA
+            </a>
+        </div>
+    </section>
 
-                        <div class="ml-form-embedSubmit">
-                            <button type="submit" class="btn-ileal-submit primary" style="width: 100%; padding: 20px; background: var(--vitality-red); color: white; border: none; border-radius: 4px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,59,48,0.3);">
-                                CONFIRMAR MINHA INSCRIÇÃO
-                            </button>
-                            <button disabled="disabled" style="display: none;" type="button" class="loading">
-                                <div class="ml-form-embedSubmitLoad"></div>
-                                <span class="sr-only">Loading...</span>
-                            </button>
+    <!-- ENROLLMENT SECTION (OPÇÕES DE INSCRIÇÃO) -->
+    <section class="enrollment-section" id="inscricao">
+        <div class="premium-container">
+            <div class="section-header" style="margin-bottom: 50px;">
+                <p class="mono" style="color: var(--vitality-red);">INSCRIÇÕES LIBERADAS</p>
+                <h2 style="margin-top: 10px; font-size: 2.2rem;">Escolha a sua Modalidade</h2>
+                <p>Inscreva-se hoje com desconto especial e garanta a sua participação.</p>
+            </div>
+
+            <div class="enrollment-grid">
+                <!-- Opção 1 -->
+                <div class="enrollment-card">
+                    <div>
+                        <h3>Opção 1<br><span style="font-size: 1.1rem; color: var(--gold-premium);">Curso Online</span></h3>
+                        <p class="desc">Treinamento teórico completo com 3 módulos ao vivo.</p>
+                        <ul class="details-list">
+                            <li>Encontros online ao vivo</li>
+                            <li><strong>Módulo 1:</strong> 21 e 22 de Agosto</li>
+                            <li><strong>Módulo 2:</strong> 25 e 26 de Setembro</li>
+                            <li><strong>Módulo 3:</strong> 27 e 28 de Novembro</li>
+                            <li>Interatividade direta com os professores</li>
+                        </ul>
+                    </div>
+                    <div class="price-box">
+                        <span class="price-old">U$ 2.600,00</span>
+                        <span class="price-new" style="color: var(--gold-premium);">U$ 1.990,00</span>
+                        <span class="price-notice">* A depender da cotação do dia</span>
+                    </div>
+                    <a href="https://chk.eduzz.com/39VKV3NDWR" target="_blank" class="btn-enroll">Quero me inscrever</a>
+                </div>
+
+                <!-- Opção 2 -->
+                <div class="enrollment-card featured">
+                    <div>
+                        <h3>Opção 2<br><span style="font-size: 1.1rem; color: var(--vitality-red);">Curso Prático</span></h3>
+                        <p class="desc">Pré-congresso presencial de Cirurgia Ileal no 2º BC AMAZON WEEK.</p>
+                        <ul class="details-list">
+                            <li>Experiência prática no local</li>
+                            <li><strong>Data:</strong> 19 e 20 de Outubro</li>
+                            <li>Local: Manaus / AM</li>
+                            <li>Treinamento prático imersivo</li>
+                            <li>Vagas extremamente limitadas</li>
+                        </ul>
+                    </div>
+                    <div class="price-box">
+                        <span class="price-old">U$ 3.800,00</span>
+                        <span class="price-new" style="color: var(--vitality-red);">U$ 2.990,00</span>
+                        <span class="price-notice">* A depender da cotação do dia</span>
+                    </div>
+                    <a href="https://chk.eduzz.com/Z0B1EYJJ9A" target="_blank" class="btn-enroll">Quero me inscrever</a>
+                </div>
+
+                <!-- Opção 3 -->
+                <div class="enrollment-card">
+                    <div>
+                        <h3>Opção 3<br><span style="font-size: 1.1rem; color: var(--gold-premium);">Online + Prático</span></h3>
+                        <p class="desc">Acesso total e imersão completa na teoria e na prática.</p>
+                        <ul class="details-list">
+                            <li>Módulos 1, 2 e 3 Online ao vivo</li>
+                            <li>Pré-congresso presencial (19 e 20/Out)</li>
+                            <li>Acesso a todas as gravações</li>
+                            <li>Networking exclusivo</li>
+                            <li>Certificação completa</li>
+                        </ul>
+                    </div>
+                    <div class="price-box">
+                        <span class="price-old">U$ 6.400,00</span>
+                        <span class="price-new" style="color: var(--gold-premium);">U$ 4.990,00</span>
+                        <span class="price-notice">* A depender da cotação do dia</span>
+                    </div>
+                    <a href="https://chk.eduzz.com/Z0B1EYRR9A" target="_blank" class="btn-enroll">Quero me inscrever</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE SECTION (PROGRAMAÇÃO INTERATIVA) -->
+    <section class="schedule-section" id="programacao">
+        <div class="schedule-container">
+            <div class="section-header" style="margin-bottom: 50px;">
+                <p class="mono" style="color: var(--vitality-red);">CONTEÚDO E CRONOGRAMA</p>
+                <h2 style="margin-top: 10px; font-size: 2.2rem;">Programação Científica</h2>
+                <p>Selecione cada um dos módulos abaixo para conferir as datas, horários e temas das atividades.</p>
+            </div>
+
+            <!-- Tabs Header -->
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openModule(this, 'modulo1')">MÓDULO 1</button>
+                <button class="tab-btn" onclick="openModule(this, 'modulo2')">MÓDULO 2</button>
+                <button class="tab-btn" onclick="openModule(this, 'modulo3')">MÓDULO 3</button>
+            </div>
+
+            <!-- TAB: MÓDULO 1 -->
+            <div id="modulo1" class="tab-content active">
+                <div class="schedule-day">
+                    <div class="schedule-day-title">Módulo 1 — 21 de Agosto de 2026</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Abertura</div>
+                                <div class="timeline-subtitle">Dr. Victor Dib</div>
+                            </div>
                         </div>
-                    </form>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgias ileais (quando e por que indicar)</div>
+                                <div class="timeline-desc">Discussão sobre critérios de seleção de pacientes e indicações operatórias.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Revisionais de cirurgias ileais</div>
+                                <div class="timeline-desc">Técnicas e considerações para reoperações e correções de cirurgias anteriores.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgia ileal x diabetes</div>
+                                <div class="timeline-desc">Os mecanismos de melhora e remissão do Diabetes Tipo 2 pelas cirurgias de interposição ileal.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--vitality-red);">
+                            <div class="timeline-time">14:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Discussão / Painel de Debatedores</div>
+                                <div class="timeline-subtitle">Debatedores Convidados</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Efeito metabólico das cirurgias ileais</div>
+                                <div class="timeline-desc">Análise profunda da resposta hormonal, incretinas e efeitos sistêmicos.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">OAGB (One Anastomosis Gastric Bypass)</div>
+                                <div class="timeline-desc">Mecanismos e resultados técnicos comparativos.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">SADI-S</div>
+                                <div class="timeline-desc">Aspectos técnicos, curva de aprendizado e resultados metabólicos.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--vitality-red);">
+                            <div class="timeline-time">16:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Discussão / Painel de Debatedores</div>
+                                <div class="timeline-subtitle">Debatedores Convidados</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="schedule-day-title">Módulo 1 — 22 de Agosto de 2026 (Cirurgias ao Vivo)</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Apresentação de Casos Clínicos</div>
+                                <div class="timeline-desc">Detalhamento dos exames e histórico médico dos pacientes selecionados para as cirurgias.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--electric-cyan);">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgia 1 • Cirurgia 2 • Cirurgia 3</div>
+                                <div class="timeline-desc">Transmissão em tempo real das cirurgias demonstrativas diretamente do bloco cirúrgico.</div>
+                                <div class="timeline-subtitle" style="color: var(--electric-cyan); margin-top: 5px;">Debatedores: Full Members</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="countdown-wrapper" style="display: none; text-align: center; padding: 20px 0;">
-                <div class="mono" style="font-weight: 800; color: var(--vitality-red); font-size: 1rem; border: 1px solid var(--vitality-red); padding: 30px; border-radius: 4px; background: rgba(255, 59, 48, 0.05);">
-                    PRÉ-INSCRIÇÃO REALIZADA!<br><br>
-                    Redirecionando em...<br>
-                    <span id="redirect-counter" style="font-size: 4rem; color: var(--deep-blue); display: block; margin-top: 15px; line-height: 1;">5</span>
+            <!-- TAB: MÓDULO 2 -->
+            <div id="modulo2" class="tab-content">
+                <div class="schedule-day">
+                    <div class="schedule-day-title">Módulo 2 — 25 de Setembro de 2026</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">BTG-FDE - Bipartição gástrica com exclusão funcional duodenal</div>
+                                <div class="timeline-desc">Indicações e particularidades desta nova abordagem metabólica.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">BTD - Bipartição duodenal</div>
+                                <div class="timeline-desc">Passos cirúrgicos essenciais e resultados clínicos.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">BTI - Bipartição intestinal</div>
+                                <div class="timeline-desc">Bases anatômicas e técnicas da bipartição de trânsito intestinal.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--vitality-red);">
+                            <div class="timeline-time">13:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Discussão / Painel de Debatedores</div>
+                                <div class="timeline-subtitle">Debatedores Convidados</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">OATB (One Anastomosis Transit Bipartition)</div>
+                                <div class="timeline-desc">Estratégia cirúrgica e técnica passo a passo.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Anastomoses magnéticas</div>
+                                <div class="timeline-desc">O futuro dos acoplamentos anastomóticos sem grampos.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">DS (Duodenal Switch) x SADI-S</div>
+                                <div class="timeline-desc">Análise comparativa das técnicas, eficácia e taxas de desnutrição/complicações.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgias ileais e refluxo</div>
+                                <div class="timeline-desc">Discussão técnica sobre o manejo de refluxo pós-bipartição.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--vitality-red);">
+                            <div class="timeline-time">16:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Discussão / Painel de Debatedores</div>
+                                <div class="timeline-subtitle">Debatedores Convidados</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-day">
+                    <div class="schedule-day-title">Módulo 2 — 26 de Setembro de 2026 (Cirurgias ao Vivo)</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Apresentação de Casos Clínicos</div>
+                                <div class="timeline-desc">Discussão pré-operatória com foco no planejamento tático individual de cada paciente.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--electric-cyan);">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgia 1 • Cirurgia 2 • Cirurgia 3</div>
+                                <div class="timeline-desc">Procedimentos cirúrgicos complexos ao vivo, comentados por especialistas.</div>
+                                <div class="timeline-subtitle" style="color: var(--electric-cyan); margin-top: 5px;">Debatedores: Full Members</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: MÓDULO 3 -->
+            <div id="modulo3" class="tab-content">
+                <div class="schedule-day">
+                    <div class="schedule-day-title">Módulo 3 — 27 de Novembro de 2026</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Revisionais de bypass</div>
+                                <div class="timeline-desc">Revisões cirúrgicas complexas em bypass gástrico com falha de perda de peso ou refluxo severo.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Revisionais de sleeve</div>
+                                <div class="timeline-desc">Conversões de gastrectomia vertical (Sleeve) para SADI-S ou BTI.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgias ileais por robótica</div>
+                                <div class="timeline-desc">Vantagens e técnicas de suturas robóticas nas anastomoses complexas.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--vitality-red);">
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Discussão / Painel de Debatedores</div>
+                                <div class="timeline-subtitle">Debatedores Convidados</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Endoscopia e cirurgia ileal</div>
+                                <div class="timeline-desc">Manejo endoscópico de complicações (fístulas, estenoses e dilatações).</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Complicações em cirurgia ileal</div>
+                                <div class="timeline-desc">Revisão clínica e radiológica de obstruções, hérnias internas e deficiências nutricionais.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgias ileais x medicações</div>
+                                <div class="timeline-desc">Farmacologia pós-cirúrgica e interação de terapias metabólicas adjuvantes.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--vitality-red);">
+                            <div class="timeline-time">16:30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Discussão / Painel de Debatedores</div>
+                                <div class="timeline-subtitle">Debatedores Convidados</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-day">
+                    <div class="schedule-day-title">Módulo 3 — 28 de Novembro de 2026 (Cirurgias ao Vivo)</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Apresentação de Casos Clínicos</div>
+                                <div class="timeline-desc">Revisão e detalhamento de casos complexos selecionados para as transmissões cirúrgicas.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="border-left-color: var(--electric-cyan);">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Cirurgia 1 • Cirurgia 2 • Cirurgia 3</div>
+                                <div class="timeline-desc">Cirurgias metabólicas avançadas transmitidas ao vivo e em alta definição.</div>
+                                <div class="timeline-subtitle" style="color: var(--electric-cyan); margin-top: 5px;">Debatedores: Full Members</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -770,8 +1158,8 @@
                 </div>
                 
                 <div style="margin-top: 40px;">
-                    <a href="#form-inscricao" class="btn-whatsapp" style="background: var(--vitality-red);">
-                        QUERO FAZER MINHA PRÉ-INSCRIÇÃO
+                    <a href="#inscricao" class="btn-whatsapp" style="background: var(--vitality-red);">
+                        QUERO ME INSCREVER
                     </a>
                 </div>
             </div>
@@ -787,96 +1175,19 @@
     </footer>
 
     <script>
-        // Populate countries and handle custom dropdown
-        const countries = [
-            "Afeganistão","África do Sul","Albânia","Alemanha","Andorra","Angola","Antígua e Barbuda","Arábia Saudita","Argélia","Argentina","Armênia","Austrália","Áustria","Azerbaijão","Bahamas","Bangladesh","Barbados","Bahrein","Bélgica","Belize","Benim","Bielorrússia","Bolívia","Bósnia e Herzegovina","Botsuana","Brasil","Brunei","Bulgária","Burkina Faso","Burundi","Butão","Cabo Verde","Camarões","Camboja","Canadá","Catar","Cazaquistão","Chade","Chile","China","Chipre","Colômbia","Comores","Coreia do Norte","Coreia do Sul","Costa do Marfim","Costa Rica","Croácia","Cuba","Dinamarca","Djibouti","Dominica","Egito","El Salvador","Emirados Árabes Unidos","Equador","Eritreia","Eslováquia","Eslovênia","Espanha","Estados Unidos","Estônia","Etiópia","Fiji","Filipinas","Finlândia","França","Gabão","Gâmbia","Gana","Geórgia","Granada","Grécia","Guatemala","Guiana","Guiné","Guiné Equatorial","Guiné-Bissau","Haiti","Honduras","Hungria","Iêmen","Ilhas Marshall","Ilhas Salomão","Índia","Indonésia","Irã","Iraque","Irlanda","Islândia","Israel","Itália","Jamaica","Japão","Jordânia","Kiribati","Kuwait","Laos","Lesoto","Letônia","Líbano","Libéria","Líbia","Liechtenstein","Lituânia","Luxemburgo","Macedônia do Norte","Madagascar","Malásia","Malaui","Maldivas","Mali","Malta","Marrocos","Maurício","Mauritânia","México","Micronésia","Moçambique","Moldávia","Mônaco","Mongólia","Montenegro","Mianmar","Namíbia","Nauru","Nepal","Nicarágua","Níger","Nigéria","Noruega","Nova Zelândia","Omã","Países Baixos","Palau","Panamá","Papua Nova Guiné","Paquistão","Paraguai","Peru","Polônia","Portugal","Quênia","Quirguistão","Reino Unido","República Centro-Africana","República Tcheca","República Democrática do Congo","República do Congo","República Dominicana","Romênia","Ruanda","Rússia","Samoa","San Marino","Santa Lúcia","São Cristóvão e Neves","São Tomé e Príncipe","São Vicente e Granadinas","Seicheles","Senegal","Serra Leoa","Sérvia","Singapura","Síria","Somália","Sri Lanka","Suazilândia","Sudão","Sudão do Sul","Suécia","Suíça","Suriname","Tajiquistão","Tailândia","Tanzânia","Timor-Leste","Togo","Tonga","Trinidad e Tobago","Tunísia","Turcomenistão","Turquia","Tuvalu","Ucrânia","Uganda","Uruguai","Uzbequistão","Vanuatu","Vaticano","Venezuela","Vietnã","Zâmbia","Zimbábue"
-        ];
-        
-        const dropdownTrigger = document.getElementById('dropdown-selected');
-        const dropdownContent = document.getElementById('dropdown-list');
-        const searchInput = document.getElementById('search-input');
-        const optionsContainer = document.getElementById('options-container');
-        const countryHidden = document.getElementById('country-hidden');
-
-        // Populate options
-        if (optionsContainer) {
-            countries.forEach(country => {
-                const div = document.createElement('div');
-                div.className = 'dropdown-item';
-                div.textContent = country;
-                div.onclick = () => selectCountry(country);
-                optionsContainer.appendChild(div);
-            });
-        }
-
-        function selectCountry(country) {
-            dropdownTrigger.textContent = country;
-            countryHidden.value = country;
-            dropdownContent.classList.remove('show');
-            searchInput.value = '';
-            filterOptions('');
-        }
-
-        if (dropdownTrigger) {
-            dropdownTrigger.onclick = (e) => {
-                e.stopPropagation();
-                dropdownContent.classList.toggle('show');
-                if (dropdownContent.classList.contains('show')) searchInput.focus();
-            };
-        }
-
-        if (searchInput) {
-            searchInput.onclick = (e) => e.stopPropagation();
-            searchInput.oninput = (e) => {
-                filterOptions(e.target.value);
-            };
-        }
-
-        function filterOptions(query) {
-            const normalizedQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const items = optionsContainer.getElementsByClassName('dropdown-item');
-            for (let item of items) {
-                const text = item.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (text.includes(normalizedQuery)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
+        // Tab switching logic for Schedule Section
+        function openModule(btn, moduleName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
             }
-        }
-
-        document.onclick = () => {
-            if (dropdownContent) dropdownContent.classList.remove('show');
-        };
-
-        // MailerLite Success Callback
-        function ml_webform_success_40654361() {
-            document.getElementById('form-wrapper').style.display = 'none';
-            document.getElementById('countdown-wrapper').style.display = 'block';
-            
-            let count = 5;
-            const counterEl = document.getElementById('redirect-counter');
-            
-            const interval = setInterval(() => {
-                count--;
-                counterEl.textContent = count;
-                if(count <= 0) {
-                    clearInterval(interval);
-                    window.location.href = 'obrigado_ileal.html';
-                }
-            }, 1000);
-        }
-
-        // Handle form submission (validation only, MailerLite script handles the rest)
-        const ilealForm = document.getElementById('ileal-form');
-        ilealForm.addEventListener('submit', function(e) {
-            if (!countryHidden.value) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                alert('Por favor, selecione seu país.');
-                return false;
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
             }
-        });
+            document.getElementById(moduleName).classList.add("active");
+            if (btn) btn.classList.add("active");
+        }
 
         // Google translate Engine
         function googletranslateElementInit() {
@@ -892,9 +1203,5 @@
     </script>
     <div id="google_translate_element" style="display:none;"></div>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
-    
-    <!-- MailerLite Scripts -->
-    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
-    <script>fetch("https://assets.mailerlite.com/jsonp/2110375/forms/186198390320662451/takel")</script>
 </body>
 </html>
