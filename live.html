@@ -116,37 +116,27 @@
         .masterclass-section {
             background-color: var(--soft-creme);
             padding: 100px 5%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .video-container video {
-            width: 100%;
-            height: auto;
             display: block;
-            filter: grayscale(100%);
+        }
+
+        .masterclass-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .masterclass-content h2 {
             font-size: 2.5rem;
             margin-bottom: 30px;
             line-height: 1.1;
+            text-align: center;
         }
 
         .masterclass-content p {
             font-size: 1.1rem;
             color: var(--dark-slate);
             margin-bottom: 40px;
+            text-align: left;
         }
 
         /* Gestão Section */
@@ -548,7 +538,7 @@
             </div>
         </div>
 
-        <div class="bmi-card ml-subscribe-form ml-subscribe-form-43783924" data-reveal style="transition-delay: 0.2s;">
+        <div id="mlb2-193080993658176858" class="bmi-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-193080993658176858" data-reveal style="transition-delay: 0.2s;">
             <p class="mono">100% Online e 100% Gratuito</p>
             <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA</h3>
             <div class="row-success" style="display: none; margin-top: 25px;">
@@ -577,27 +567,26 @@
     </section>
 
     <section class="masterclass-section" id="masterclass">
-        <div class="video-container" data-reveal>
-            <video autoplay muted loop playsinline style="mask-image: linear-gradient(to right, black, transparent); -webkit-mask-image: linear-gradient(to right, black, transparent);">
-                <source src="assets/bc_video.mp4" type="video/mp4">
-            </video>
-        </div>
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
-            <p class="mono" style="color: var(--vitality-red);">DETALHES DO EVENTO</p>
+            <p class="mono" style="color: var(--vitality-red); text-align: center;">DETALHES DO EVENTO</p>
             <h2>TECNOLOGIA QUE ROMPE BARREIRAS</h2>
             <p style="margin-bottom: 25px; line-height: 1.8;">No dia 01 de agosto, às 9h, a tecnologia rompe as barreiras geográficas para unir o Brasil em uma jornada técnica sem precedentes. Percorreremos o país — de Manaus com o Dr. Victor Dib, passando por Goiânia com o Dr. Paulo Reis, até Passo Fundo com o Dr. Madalosso — contando ainda com a presença de convidados especialistas de renome para aprofundar cada debate.
             <br><br>
             Milhares de quilômetros de distância se dissolvem através de uma transmissão em alta-definição, entregando precisão cirúrgica diretamente na palma da sua mão. Sente-se na primeira fileira da inovação: nesta experiência, você não apenas assiste a procedimentos complexos; você absorve a estratégia clínica e o raciocínio técnico por trás de cada movimento dos grandes mestres.</p>
             
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px;">A JORNADA INCLUI:</p>
-            <ul class="mono" style="list-style: none; margin-bottom: 30px; opacity: 0.8; font-size: 0.85rem;">
-                <li style="margin-bottom: 10px;">> Visão Além do Campo Cirúrgico</li>
-                <li style="margin-bottom: 10px;">> Intercâmbio de Ideias</li>
-                <li style="margin-bottom: 10px;">> Tecnologia de Streaming</li>
-                <li style="margin-bottom: 10px;">> Valor de Masterclass 100% gratuito</li>
-                <li style="margin-bottom: 10px;">> Networking Digital</li>
-            </ul>
-            <a href="#" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px; text-align: center;">A JORNADA INCLUI:</p>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <ul class="mono" style="list-style: none; opacity: 0.8; font-size: 0.85rem; text-align: left; display: inline-block;">
+                    <li style="margin-bottom: 10px;">> Visão Além do Campo Cirúrgico</li>
+                    <li style="margin-bottom: 10px;">> Intercâmbio de Ideias</li>
+                    <li style="margin-bottom: 10px;">> Tecnologia de Streaming</li>
+                    <li style="margin-bottom: 10px;">> Valor de Masterclass 100% gratuito</li>
+                    <li style="margin-bottom: 10px;">> Networking Digital</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <a href="#mlb2-193080993658176858" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
+            </div>
         </div>
     </section>
 
@@ -681,25 +670,7 @@
 
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-        // MailerLite Success Callback
-        function ml_webform_success_43783924() {
-            var $ = ml_jQuery || jQuery;
-            $('.ml-subscribe-form-43783924 .row-success').show();
-            $('.ml-subscribe-form-43783924 .row-form').hide();
-            
-            var countdown = 5;
-            var counterElement = document.getElementById('redirect-counter');
-            var redirectInterval = setInterval(function() {
-                countdown--;
-                if(counterElement) {
-                    counterElement.innerText = countdown;
-                }
-                if(countdown <= 0) {
-                    clearInterval(redirectInterval);
-                    window.location.href = "masterclass.html";
-                }
-            }, 1000);
-        }
+        // Success callback functions removed - form submit is handled directly via AJAX below
 
         // 3D Stomach Particle Animation
         let scene, camera, renderer, particles;
@@ -781,8 +752,53 @@
             renderer.render(scene, camera);
         }
 
+        // DOMContentLoaded initialization and Custom Form Intercept
         document.addEventListener('DOMContentLoaded', () => {
             init3D();
+            
+            const form = document.querySelector('.ml-block-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Avoid reloading or opening in new window
+                    
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerText = "ENVIANDO...";
+                    }
+                    
+                    const formData = new URLSearchParams(new FormData(form));
+                    
+                    // Send to MailerLite endpoint in the background
+                    fetch(form.action, {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        mode: "no-cors"
+                    }).catch(err => console.error("MailerLite integration error:", err));
+                    
+                    // Display success screen and start countdown immediately
+                    const successRows = document.querySelectorAll('.row-success');
+                    const formRows = document.querySelectorAll('.row-form');
+                    successRows.forEach(el => el.style.display = 'block');
+                    formRows.forEach(el => el.style.display = 'none');
+                    
+                    let countdown = 5;
+                    const counterElement = document.getElementById('redirect-counter');
+                    const redirectInterval = setInterval(() => {
+                        countdown--;
+                        if (counterElement) {
+                            counterElement.innerText = countdown;
+                        }
+                        if (countdown <= 0) {
+                            clearInterval(redirectInterval);
+                            window.location.href = "masterclass.html";
+                        }
+                    }, 1000);
+                });
+            }
         });
     </script>
 
@@ -792,10 +808,7 @@
             50% { transform: scale(1.05); color: var(--electric-cyan); }
             100% { transform: scale(1); }
         }
-    </style>    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
-    <script>
-        fetch("https://assets.mailerlite.com/jsonp/2110375/forms/193080993658176858/takel")
-    </script>
+    </style>
     <div id="google_translate_element" style="display:none;"></div>
     <script>
         function googletranslateElementInit() {
