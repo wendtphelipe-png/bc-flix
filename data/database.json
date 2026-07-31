@@ -34,7 +34,7 @@
         },
         {
           "nome": "Carlos Madalosso",
-          "foto": "https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg"
+          "foto": "/assets/madalosso.png"
         },
         {
           "nome": "Diogo Kfouri",
@@ -72,7 +72,7 @@
         },
         {
           "nome": "Carlos Madalosso",
-          "foto": "https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg"
+          "foto": "/assets/madalosso.png"
         },
         {
           "nome": "Daiane Weber",
@@ -380,7 +380,7 @@
       "nome": "Dr. Carlos Madalosso",
       "especialidade": "Vice-Presidente BCLS",
       "mini_curriculo": "Cirurgião de elite, responsável técnico e peça chave na organização do maior evento de cirurgia bariátrica do Sul. CRM-RS 17670.",
-      "foto": "https://api.dicebear.com/7.x/avataaars/svg?seed=madalosso"
+      "foto": "/assets/madalosso.png"
     },
     {
       "id": "paulo-reis",
