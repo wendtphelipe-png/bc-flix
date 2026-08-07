@@ -12,13 +12,14 @@
     <style>
         :root {
             --medical-white: #FFFFFF;
-            --soft-creme: #F4F6FB;
+            --soft-creme: #F8FAFC;
             --deep-blue: #090D16;
-            --vitality-purple: #7C3AED;
-            --vitality-red: #7C3AED;
+            --vitality-emerald: #10B981;
+            --vitality-purple: #10B981;
+            --vitality-red: #10B981;
             --electric-cyan: #06B6D4;
             --dark-slate: #1E293B;
-            --alabaster-shadow: rgba(124, 58, 237, 0.06);
+            --alabaster-shadow: rgba(16, 185, 129, 0.06);
             --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -113,11 +114,13 @@
         .lang-switcher img { width: 22px; height: auto; border-radius: 2px; }
         .skiptranslate { display: none !important; }
 
-        /* Masterclass Section */
+        /* Masterclass Section (Dark Theme) */
         .masterclass-section {
-            background-color: var(--soft-creme);
+            background-color: #090D16;
             padding: 100px 5%;
             display: block;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .masterclass-content {
@@ -131,20 +134,22 @@
             margin-bottom: 30px;
             line-height: 1.1;
             text-align: center;
+            color: #FFFFFF !important;
         }
 
         .masterclass-content p {
             font-size: 1.1rem;
-            color: var(--dark-slate);
+            color: #CBD5E1;
             margin-bottom: 40px;
             text-align: left;
         }
 
-        /* Gestão Section */
+        /* Gestão Section (Light Off-White Theme) */
         .gestao-section {
-            background: var(--medical-white);
+            background: #F8FAFC;
             padding: 100px 5%;
             text-align: center;
+            border-bottom: 1px solid #E2E8F0;
         }
 
         .gestao-grid {
@@ -155,9 +160,12 @@
         }
 
         .surgeon-card {
-            background: var(--medical-white);
+            background: #FFFFFF;
             padding: 0;
-            border: 1px solid rgba(10, 25, 47, 0.05);
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             transition: var(--transition-smooth);
             text-align: left;
             display: flex;
@@ -178,7 +186,7 @@
             left: -10px;
             width: calc(100% + 20px);
             height: calc(100% + 20px);
-            border: 2px solid var(--vitality-red);
+            border: 2px solid var(--vitality-emerald);
             clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
             z-index: -1;
             transition: var(--transition-smooth);
@@ -186,7 +194,7 @@
 
         .surgeon-card:hover .surgeon-img-frame {
             transform: scale(1.1) rotate(5deg);
-            background: rgba(124, 58, 237, 0.08);
+            background: rgba(16, 185, 129, 0.08);
         }
 
         .surgeon-img-container img {
@@ -252,7 +260,7 @@
         }
 
         .bento-item:hover::before {
-            background: linear-gradient(to top, rgba(124, 58, 237, 0.75), rgba(9, 13, 22, 0.3));
+            background: linear-gradient(to top, rgba(16, 185, 129, 0.75), rgba(9, 13, 22, 0.3));
         }
 
         .bento-item:hover {
@@ -291,7 +299,7 @@
         .btn-primary {
             display: inline-block;
             padding: 20px 40px;
-            background: linear-gradient(135deg, var(--vitality-purple), #6D28D9);
+            background: linear-gradient(135deg, var(--vitality-emerald), #059669);
             color: white;
             text-decoration: none;
             font-weight: 800;
@@ -305,7 +313,7 @@
 
         .btn-primary:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.35);
         }
 
         /* 3D Background */
@@ -531,7 +539,7 @@
     <section class="hero">
         <div id="stomach-canvas"></div>
         <div class="hero-content" data-reveal>
-            <p class="mono" style="color: var(--vitality-purple); margin-bottom: 10px;">05 DE SETEMBRO * A PARTIR DAS 9H BRT</p>
+            <p class="mono" style="color: var(--vitality-emerald); margin-bottom: 10px;">05 DE SETEMBRO * A PARTIR DAS 9H BRT</p>
             <h1>MASTERCLASS BARIÁTRICA - PARTE III</h1>
             <p>O maior evento de cirurgia bariátrica e metabólica ao vivo do Brasil. Chegamos à terceira edição com novos casos práticos ao vivo, cirurgias complexas e debates de altíssimo nível.</p>
             <div style="display: flex; gap: 15px;">
@@ -540,15 +548,15 @@
             </div>
         </div>
 
-        <div id="mlb2-193080993658176858" class="bmi-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-193080993658176858" data-reveal style="transition-delay: 0.2s;">
-            <p class="mono">100% Online e 100% Gratuito</p>
+        <div id="mlb2-44582036" class="bmi-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-44582036" data-reveal style="transition-delay: 0.2s;">
+            <p class="mono" style="color: var(--vitality-emerald); font-weight: 700;">100% ONLINE E 100% GRATUITO</p>
             <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA III</h3>
             <div class="row-success" style="display: none; margin-top: 25px;">
-                <div class="mono" style="font-weight: 800; color: var(--electric-cyan); font-size: 0.8rem; text-align: center; border: 1px solid var(--electric-cyan); padding: 20px; border-radius: 4px;">
+                <div class="mono" style="font-weight: 800; color: var(--vitality-emerald); font-size: 0.85rem; text-align: center; border: 1px solid var(--vitality-emerald); padding: 20px; border-radius: 6px; background: rgba(16, 185, 129, 0.05);">
                     INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>Você será redirecionado em <span id="redirect-counter">5</span> segundos...
                 </div>
             </div>
-            <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/193080993658176858/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
+            <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/195104593567287191/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
                 <div class="input-group">
                     <label class="mono">Nome Completo</label>
                     <input type="text" id="name" name="fields[name]" placeholder="DIGITE SEU NOME" required autocomplete="given-name">
@@ -570,13 +578,13 @@
 
     <section class="masterclass-section" id="masterclass">
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
-            <p class="mono" style="color: var(--vitality-purple); text-align: center;">DETALHES DO EVENTO</p>
+            <p class="mono" style="color: var(--vitality-emerald); text-align: center;">DETALHES DO EVENTO</p>
             <h2>TECNOLOGIA QUE ROMPE BARREIRAS</h2>
             <p style="margin-bottom: 25px; line-height: 1.8;">No dia 05 de setembro, a partir das 9h BRT, a tecnologia rompe as barreiras geográficas para unir o Brasil em uma jornada técnica sem precedentes na Masterclass Parte III. Percorreremos o país — de Manaus com o Dr. Victor Dib, passando por Goiânia com o Dr. Paulo Reis, até Passo Fundo com o Dr. Madalosso — contando ainda com a presença de convidados especialistas de renome para aprofundar cada debate.
             <br><br>
             Milhares de quilômetros de distância se dissolvem através de uma transmissão em alta-definição, entregando precisão cirúrgica diretamente na palma da sua mão. Sente-se na primeira fileira da inovação: nesta experiência, você não apenas assiste a procedimentos complexos; você absorve a estratégia clínica e o raciocínio técnico por trás de cada movimento dos grandes mestres.</p>
             
-            <p class="mono" style="color: var(--vitality-purple); margin-bottom: 15px; text-align: center;">A JORNADA INCLUI:</p>
+            <p class="mono" style="color: var(--vitality-emerald); margin-bottom: 15px; text-align: center;">A JORNADA INCLUI:</p>
             <div style="text-align: center; margin-bottom: 30px;">
                 <ul class="mono" style="list-style: none; opacity: 0.8; font-size: 0.85rem; text-align: left; display: inline-block;">
                     <li style="margin-bottom: 10px;">> Visão Além do Campo Cirúrgico</li>
@@ -713,7 +721,7 @@
                 geometry.scale(scale, scale, scale);
 
                 const material = new THREE.PointsMaterial({
-                    color: 0x7C3AED, // Royal Violet Accent
+                    color: 0x10B981, // Vibrant Emerald Green Accent
                     size: 0.015,
                     transparent: true,
                     opacity: 0.25, // Set to 25% opacity
@@ -825,7 +833,7 @@
         function googletranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
         }
-                                function changeLang(lang) {
+        function changeLang(lang) {
             const cookieValue = '/pt/' + lang;
             document.cookie = 'googtrans=' + cookieValue + '; path=/';
             document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=' + location.hostname;
@@ -840,7 +848,10 @@
             }
         }
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/2110375/forms/195104593567287191/takel")
+    </script>
 </body>
 </html>
 
