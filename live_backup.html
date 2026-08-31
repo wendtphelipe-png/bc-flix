@@ -563,7 +563,7 @@
             </div>
         </div>
 
-        <div id="sib-form-container" class="bmi-card" data-reveal style="transition-delay: 0.2s;">
+        <div id="mlb2-44582036" class="bmi-card ml-form-embedContainer ml-subscribe-form ml-subscribe-form-44582036" data-reveal style="transition-delay: 0.2s;">
             <p class="mono" style="color: var(--vitality-emerald); font-weight: 700;">100% ONLINE E 100% GRATUITO</p>
             <h3 style="margin-top: 10px;">MASTERCLASS BARIÁTRICA III</h3>
             <div class="row-success" style="display: none; margin-top: 25px;">
@@ -571,43 +571,22 @@
                     INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>Você será redirecionado em <span id="redirect-counter">5</span> segundos...
                 </div>
             </div>
-            <form id="sib-form" class="row-form bmi-grid" action="https://53e6307d.sibforms.com/serve/MUIFAE748AdQTHWBklYuWYs6ExOacDdc5tCfeLM_O8mr19aleTG7S9I9BLLt0clGE7HCX98CmICIfZAfXYNZk9cJ_Od2c7c_lgNYRzSBD5CL_I-LYDPKWzWKfvcEN53-iWJyJ5A3bBFv4Xo27rOOLDkZMydjcUHrKCmqR9kuNDV3iSEWw-UYS0rROgYaB7tTuSG1U0RvZtxfckIpCQ==" method="post" data-type="subscription" style="margin: 0;">
+            <form class="ml-block-form row-form bmi-grid" action="https://assets.mailerlite.com/jsonp/2110375/forms/195104593567287191/subscribe" data-code="" method="post" target="_blank" style="margin: 0;">
                 <div class="input-group">
-                    <label class="mono" for="NOME">Nome Completo</label>
-                    <input type="text" id="NOME" name="NOME" placeholder="DIGITE SEU NOME" required autocomplete="given-name">
+                    <label class="mono">Nome Completo</label>
+                    <input type="text" id="name" name="fields[name]" placeholder="DIGITE SEU NOME" required autocomplete="given-name">
                 </div>
                 <div class="input-group">
-                    <label class="mono" for="EMAIL">E-mail Profissional</label>
-                    <input type="email" id="EMAIL" name="EMAIL" placeholder="EMAIL@EXEMPLO.COM" required autocomplete="email">
+                    <label class="mono">E-mail Profissional</label>
+                    <input type="email" id="email" name="fields[email]" placeholder="EMAIL@EXEMPLO.COM" required autocomplete="email">
                 </div>
                 <div class="input-group">
-                    <label class="mono" for="LANDLINE_NUMBER">WhatsApp / Telefone</label>
-                    <div style="display: flex; gap: 8px;">
-                        <select name="LANDLINE_NUMBER__COUNTRY_CODE" class="mono" style="padding: 15px 10px; border: 1px solid #E0E0E0; background: #F9F9F9; outline: none; font-family: inherit; width: 110px;">
-                            <option value="+55" selected>+55 BR</option>
-                            <option value="+1">+1 US/CA</option>
-                            <option value="+351">+351 PT</option>
-                            <option value="+34">+34 ES</option>
-                            <option value="+54">+54 AR</option>
-                            <option value="+56">+56 CL</option>
-                            <option value="+57">+57 CO</option>
-                            <option value="+52">+52 MX</option>
-                            <option value="+598">+598 UY</option>
-                            <option value="+595">+595 PY</option>
-                            <option value="+591">+591 BO</option>
-                            <option value="+51">+51 PE</option>
-                            <option value="+593">+593 EC</option>
-                            <option value="+33">+33 FR</option>
-                            <option value="+49">+49 DE</option>
-                            <option value="+39">+39 IT</option>
-                            <option value="+44">+44 UK</option>
-                        </select>
-                        <input type="tel" id="LANDLINE_NUMBER" name="LANDLINE_NUMBER" placeholder="(00) 00000-0000" required style="flex: 1;">
-                    </div>
+                    <label class="mono">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="fields[phone]" placeholder="(00) 00000-0000" required>
                 </div>
-                <input type="text" name="email_address_check" value="" class="input--hidden" style="display: none;">
-                <input type="hidden" name="locale" value="pt">
-                <button type="submit" class="btn-primary primary" style="padding: 15px; margin-top: 10px; width: 100%; border: none; cursor: pointer;">SOLICITAR INSCRIÇÃO</button>
+                <input type="hidden" name="ml-submit" value="1">
+                <input type="hidden" name="anticsrf" value="true">
+                <button type="submit" class="btn-primary primary" style="padding: 15px; margin-top: 10px; width: 100%; border: none;">SOLICITAR INSCRIÇÃO</button>
             </form>
         </div>
     </section>
@@ -631,7 +610,7 @@
                 </ul>
             </div>
             <div style="text-align: center;">
-                <a href="#sib-form-container" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
+                <a href="#mlb2-193080993658176858" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
             </div>
         </div>
     </section>
@@ -811,7 +790,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             init3D();
             
-            const form = document.getElementById('sib-form') || document.querySelector('form');
+            const form = document.querySelector('.ml-block-form');
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault(); // Avoid reloading or opening in new window
@@ -824,7 +803,7 @@
                     
                     const formData = new URLSearchParams(new FormData(form));
                     
-                    // Send to Brevo endpoint in the background
+                    // Send to MailerLite endpoint in the background
                     fetch(form.action, {
                         method: "POST",
                         body: formData,
@@ -832,7 +811,7 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
                         mode: "no-cors"
-                    }).catch(err => console.error("Brevo integration error:", err));
+                    }).catch(err => console.error("MailerLite integration error:", err));
                     
                     // Display success screen and start countdown immediately
                     const successRows = document.querySelectorAll('.row-success');
@@ -892,6 +871,10 @@
         }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/2110375/forms/195104593567287191/takel")
+    </script>
 </body>
 </html>
 
