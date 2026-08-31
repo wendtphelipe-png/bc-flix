@@ -572,6 +572,7 @@
                 </div>
             </div>
             <form id="sib-form" class="row-form bmi-grid" action="https://53e6307d.sibforms.com/serve/MUIFAE748AdQTHWBklYuWYs6ExOacDdc5tCfeLM_O8mr19aleTG7S9I9BLLt0clGE7HCX98CmICIfZAfXYNZk9cJ_Od2c7c_lgNYRzSBD5CL_I-LYDPKWzWKfvcEN53-iWJyJ5A3bBFv4Xo27rOOLDkZMydjcUHrKCmqR9kuNDV3iSEWw-UYS0rROgYaB7tTuSG1U0RvZtxfckIpCQ==" method="post" data-type="subscription" style="margin: 0;">
+                <div id="sib-error-msg" class="mono" style="display: none; color: #EF4444; background: rgba(239, 68, 68, 0.08); border: 1px solid #EF4444; padding: 12px; border-radius: 4px; font-size: 0.8rem; text-align: center;"></div>
                 <div class="input-group">
                     <label class="mono" for="NOME">Nome Completo</label>
                     <input type="text" id="NOME" name="NOME" placeholder="DIGITE SEU NOME" required autocomplete="given-name">
@@ -813,45 +814,104 @@
             
             const form = document.getElementById('sib-form') || document.querySelector('form');
             if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Avoid reloading or opening in new window
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault(); // Avoid reloading
                     
                     const submitBtn = form.querySelector('button[type="submit"]');
+                    const errorBox = document.getElementById('sib-error-msg');
+                    if (errorBox) {
+                        errorBox.style.display = 'none';
+                        errorBox.innerText = '';
+                    }
+                    
                     if (submitBtn) {
                         submitBtn.disabled = true;
                         submitBtn.innerText = "ENVIANDO...";
                     }
-                    
-                    const formData = new URLSearchParams(new FormData(form));
-                    
-                    // Send to Brevo endpoint in the background
-                    fetch(form.action, {
-                        method: "POST",
-                        body: formData,
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        mode: "no-cors"
-                    }).catch(err => console.error("Brevo integration error:", err));
-                    
-                    // Display success screen and start countdown immediately
-                    const successRows = document.querySelectorAll('.row-success');
-                    const formRows = document.querySelectorAll('.row-form');
-                    successRows.forEach(el => el.style.display = 'block');
-                    formRows.forEach(el => el.style.display = 'none');
-                    
-                    let countdown = 5;
-                    const counterElement = document.getElementById('redirect-counter');
-                    const redirectInterval = setInterval(() => {
-                        countdown--;
-                        if (counterElement) {
-                            counterElement.innerText = countdown;
+
+                    try {
+                        const phoneInput = form.querySelector('input[name="LANDLINE_NUMBER"]');
+                        const countrySelect = form.querySelector('select[name="LANDLINE_NUMBER__COUNTRY_CODE"]');
+                        
+                        // Sanitize phone number (strip non-digits and leading redundant country code)
+                        if (phoneInput) {
+                            let rawPhone = phoneInput.value.trim();
+                            let cleanPhone = rawPhone.replace(/\D/g, '');
+                            const countryCode = countrySelect ? countrySelect.value : '+55';
+                            const countryDigits = countryCode.replace(/\D/g, '');
+                            
+                            if (countryDigits && cleanPhone.startsWith(countryDigits) && cleanPhone.length > 11) {
+                                cleanPhone = cleanPhone.substring(countryDigits.length);
+                            }
+                            phoneInput.value = cleanPhone;
                         }
-                        if (countdown <= 0) {
-                            clearInterval(redirectInterval);
-                            window.location.href = "masterclass.html";
+
+                        const formData = new URLSearchParams(new FormData(form));
+                        
+                        // Send to Brevo endpoint and validate response
+                        const response = await fetch(form.action, {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        });
+
+                        let data = {};
+                        try {
+                            data = await response.json();
+                        } catch (err) {
+                            data = { success: response.ok };
                         }
-                    }, 1000);
+
+                        if (data.success || response.ok) {
+                            // Display success screen and start countdown immediately
+                            const successRows = document.querySelectorAll('.row-success');
+                            const formRows = document.querySelectorAll('.row-form');
+                            successRows.forEach(el => el.style.display = 'block');
+                            formRows.forEach(el => el.style.display = 'none');
+                            
+                            let countdown = 5;
+                            const counterElement = document.getElementById('redirect-counter');
+                            const redirectInterval = setInterval(() => {
+                                countdown--;
+                                if (counterElement) {
+                                    counterElement.innerText = countdown;
+                                }
+                                if (countdown <= 0) {
+                                    clearInterval(redirectInterval);
+                                    window.location.href = "masterclass.html";
+                                }
+                            }, 1000);
+                        } else {
+                            // Handle Brevo rejection / validation errors
+                            let errorText = "Não foi possível concluir a assinatura. Verifique os dados fornecidos e tente novamente.";
+                            if (data.errors) {
+                                const errorKeys = Object.keys(data.errors);
+                                if (errorKeys.length > 0) {
+                                    errorText = data.errors[errorKeys[0]];
+                                }
+                            } else if (data.message) {
+                                errorText = data.message;
+                            }
+
+                            if (errorBox) {
+                                errorBox.innerText = errorText;
+                                errorBox.style.display = 'block';
+                            } else {
+                                alert(errorText);
+                            }
+
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.innerText = "SOLICITAR INSCRIÇÃO";
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Brevo submit error:", err);
+                        // Fallback in case of strict client blocking
+                        form.submit();
+                    }
                 });
             }
         });
