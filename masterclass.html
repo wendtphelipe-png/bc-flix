@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masterclass Bariátrica Ação Vivo | Bariatric Channel</title>
+    <title>Masterclass IV - Cirurgias Metabólicas | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script>
         function googletranslateElementInit() {
@@ -20,6 +20,8 @@
         function changeLang(lang, retries = 0) {
             const cookieValue = '/pt/' + lang;
             document.cookie = "googtrans=" + cookieValue + "; path=/";
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + location.hostname;
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=." + location.hostname.replace(/^www\./, '');
             const select = document.querySelector('select.goog-te-combo');
             if (select) {
                 select.value = lang;
@@ -36,7 +38,8 @@
             --medical-white: #FFFFFF;
             --soft-creme: #F8FAFC;
             --deep-blue: #090D16;
-            --vitality-red: #10B981;
+            --vitality-red: #7C3AED;
+            --vitality-dark-red: #5B21B6;
             --electric-cyan: #06B6D4;
             --dark-slate: #1E293B;
             --alabaster-shadow: rgba(0, 0, 0, 0.05);
@@ -44,9 +47,9 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta sans', sans-serif; background-color: var(--soft-creme); color: var(--dark-slate); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--soft-creme); color: var(--dark-slate); line-height: 1.6; overflow-x: hidden; top: 0px !important; }
         h1, h2, h3 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; color: var(--deep-blue); }
-        .mono { font-family: 'JetBrains+Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
+        .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
 
         nav {
             position: fixed; top: 0; width: 100%; height: 80px;
@@ -64,6 +67,9 @@
         .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
         .lang-switcher img { width: 22px; height: auto; border: 1px solid #ccc; border-radius: 2px; }
 
+        .skiptranslate { display: none !important; }
+        #google_translate_element { position: absolute; top: -9999px; left: -9999px; visibility: hidden; }
+
         .hero {
             padding: 180px 5% 100px;
             background: var(--deep-blue);
@@ -71,24 +77,27 @@
             text-align: center;
         }
         .hero h1 { color: var(--medical-white); font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 25px; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.8; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.85; }
 
         .btn-primary {
-            display: inline-block; padding: 25px 50px; background: var(--vitality-red); color: white;
-            text-decoration: none; font-weight: 800; font-size: 1.2rem; border-radius: 4px;
-            transition: var(--transition-smooth); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+            display: inline-block; padding: 22px 45px; background: linear-gradient(135deg, var(--vitality-red), var(--vitality-dark-red)); color: white;
+            text-decoration: none; font-weight: 800; font-size: 1.1rem; border-radius: 4px;
+            transition: var(--transition-smooth); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.4);
         }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(16, 185, 129, 0.6); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(124, 58, 237, 0.6); }
 
         .details-section { padding: 100px 5%; background: var(--medical-white); }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
-        .card { background: var(--soft-creme); padding: 40px; border: 1px solid rgba(10, 25, 47, 0.05); transition: var(--transition-smooth); }
-        .card:hover { transform: translateY(-10px); border-color: var(--vitality-red); }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-top: 60px; }
+        .card { background: var(--soft-creme); padding: 30px; border: 1px solid rgba(10, 25, 47, 0.05); transition: var(--transition-smooth); border-radius: 6px; }
+        .card:hover { transform: translateY(-8px); border-color: var(--vitality-red); box-shadow: 0 15px 30px rgba(124, 58, 237, 0.08); }
         
         footer { background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05); text-align: center;}
         
-        @media (max-width: 900px) {
-            .grid-3 { grid-template-columns: 1fr; }
+        @media (max-width: 1024px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .grid-4 { grid-template-columns: 1fr; }
             .nav-links { display: none; }
         }
     </style>
@@ -110,38 +119,44 @@
     </nav>
 
     <section class="hero">
-        <div data-reveal>
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 20px;">INSCRIÇÃO CONFIRMADA • BEM-VINDO(A)</p>
-            <h1 class="notranslate" translate="no">OBRIGADO POR SE INSCREVER NA MASTERCLASS III</h1>
-            <p>Sua vaga está garantida para a maior imersão técnica em cirurgia bariátrica. O evento será realizado em <strong>05 de setembro</strong>, a partir das <strong>9h BRT</strong> (horário de Brasília).</p>
+        <div>
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 20px; font-weight: 700;">INSCRIÇÃO CONFIRMADA • BEM-VINDO(A)</p>
+            <h1 class="notranslate" translate="no">OBRIGADO POR SE INSCREVER NA MASTERCLASS IV</h1>
+            <p>Sua vaga está garantida para a <strong>Masterclass IV - Cirurgias Metabólicas</strong>. O evento será transmitido ao vivo em <strong>26 de setembro</strong>, a partir das <strong>08h00 BRT</strong> (horário de Brasília).</p>
+            <p style="font-size: 1rem; opacity: 0.75; margin-top: -20px;">4 Cidades • 4 Referências • Cirurgias Metabólicas ao Vivo • Transmissão para + de 50 Países</p>
             
-            <div style="margin-top: 40px; opacity: 0.6; font-size: 0.9rem;">
-                Dica: Verifique seu e-mail para receber os lembretes oficiais.
+            <div style="margin-top: 40px; opacity: 0.7; font-size: 0.9rem;" class="mono">
+                Dica: Verifique seu e-mail e WhatsApp para receber o link exclusivo de transmissão.
             </div>
         </div>
     </section>
 
     <section class="details-section">
         <div style="text-align: center; margin-bottom: 60px;">
-            <p class="mono" style="color: var(--vitality-red);">A EXPEDIÇÃO CIRÚRGICA</p>
-            <h2>PROGRAMAÇÃO E CIRURGIÕES</h2>
+            <p class="mono" style="color: var(--vitality-red);">4 CIDADES • 4 REFERÊNCIAS</p>
+            <h2>CIRURGIÕES CONFIRMADOS</h2>
         </div>
 
-        <div class="grid-3">
+        <div class="grid-4">
             <div class="card">
                 <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">MANAUS / AM</p>
                 <h3>DR. VICTOR DIB</h3>
-                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Presidente • Cirurgião - PhD</p>
-            </div>
-            <div class="card">
-                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">GOIÂNIA / GO</p>
-                <h3>DR. PAULO REIS</h3>
-                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Diretor Executivo • Cirurgião</p>
+                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Presidente do BC • Cirurgião - PhD</p>
             </div>
             <div class="card">
                 <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">PASSO FUNDO / RS</p>
                 <h3>DR. CARLOS MADALOSSO</h3>
-                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Vice-Presidente • Cirurgião - PhD</p>
+                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Vice-Presidente do BC • Cirurgião - PhD</p>
+            </div>
+            <div class="card">
+                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">CURITIBA / PR</p>
+                <h3>DR. DIOGO KFOURI</h3>
+                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Cirurgião do Aparelho Digestivo e Bariátrica</p>
+            </div>
+            <div class="card">
+                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">PORTO ALEGRE / RS</p>
+                <h3>DR. CARLOS DILLENBURG</h3>
+                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Cirurgião Bariátrico e Metabólico</p>
             </div>
         </div>
     </section>
