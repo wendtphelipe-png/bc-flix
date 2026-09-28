@@ -476,40 +476,6 @@
             text-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Sombra pesada p destacar em qqr imagem */
         }
 
-        /* Amazon Hero Integration */
-        .amazon-hero-section {
-            background: linear-gradient(to right, rgba(4,16,9,0.9), rgba(10,47,26,0.8)), url('assets/onça low.jpg');
-            background-size: cover;
-            background-position: center;
-            min-height: 55vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 5%;
-            position: relative;
-            margin: 120px 5% 40px;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            overflow: hidden;
-        }
-        .amazon-hero-section h1 {
-            color: #ffb703;
-            font-size: clamp(3rem, 7vw, 6rem);
-            line-height: 1;
-            margin-bottom: 20px;
-            text-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-        .amazon-hero-section p.subtitle {
-            font-size: 1.5rem; font-weight: 300; color: #f1f5f2;
-            max-width: 800px; margin: 0 auto 40px; opacity: 0.9;
-        }
-        .btn-amazon {
-            display: inline-block; padding: 20px 40px; background: #ffb703; color: #041009;
-            text-decoration: none; font-weight: 800; border-radius: 4px; transition: var(--transition-smooth);
-            font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 183, 3, 0.2);
-        }
-        .btn-amazon:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 183, 3, 0.4); }
 
         /* Technology Section (Dark) */
         .tech-section {
@@ -598,7 +564,7 @@
             .nav-links { display: flex; width: 100%; justify-content: center; gap: 15px; margin-top: 10px; margin-bottom: 5px;}
             .nav-links a { font-size: 0.65rem; }
             
-            section.hero, .amazon-hero-section { padding-top: 120px; min-height: auto;}
+            section.hero { padding-top: 120px; min-height: auto;}
             section.hero h1 { font-size: 2.2rem; }
             .hero-date { font-size: 1.2rem !important; }
             
@@ -631,16 +597,48 @@
         </div>
     </nav>
 
-    <!-- NOVO HERO: AMAZON WEEK -->
-    <section class="amazon-hero-section">
-        <div data-reveal>
-            <p class="mono" style="color: #f1f5f2; font-size: 1rem; margin-bottom: 25px; letter-spacing: 0.3em; opacity: 0.8;">19 A 23 DE OUTUBRO DE 2026</p>
-            <h1 translate="no" class="notranslate">2&ordm; BC AMAZON WEEK</h1>
-            <p class="subtitle">A Confluência da Alta Cirurgia no Coração da Amazônia. Tecnologia e Natureza em Sintonia.</p>
-            <div style="margin-top: 50px;">
-                <a href="https://www.bcamazonweek.com.br/" class="btn-amazon" target="_blank">SABER MAIS SOBRE O EVENTO</a>
+    <!-- BANNER: MASTERCLASS IV - CIRURGIAS METABÓLICAS (EM DESTAQUE) -->
+    <section class="masterclass-banner-section" style="background: linear-gradient(135deg, var(--deep-blue) 0%, #150d2a 100%); padding: 80px 5%; position: relative; overflow: hidden; margin: 120px 5% 40px; border-radius: 16px; box-shadow: 0 20px 50px rgba(124, 58, 237, 0.2); border: 1px solid rgba(124, 58, 237, 0.35);">
+        <!-- Subtle Violet Glow -->
+        <div style="position: absolute; top: -50%; right: -10px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(124, 58, 237, 0.22) 0%, transparent 70%); pointer-events: none;"></div>
+        
+        <div data-reveal style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 60px;">
+            <div style="flex: 1.2; min-width: 350px;">
+                <p class="mono" style="color: #A78BFA; margin-bottom: 20px; font-weight: 800; letter-spacing: 2px;">26 DE SETEMBRO • A PARTIR DAS 08H00 (BRT)</p>
+                <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 25px; line-height: 1.1; font-weight: 800;">MASTERCLASS IV<br><span style="color: #A78BFA;">CIRURGIAS METABÓLICAS</span></h2>
+                <p style="color: rgba(255,255,255,0.85); font-size: 1.15rem; margin-bottom: 30px; line-height: 1.6; max-width: 800px;">
+                    O maior evento de cirurgia bariátrica e metabólica ao vivo do Brasil chega à sua <strong>quarta edição</strong>: 4 Cidades, 4 Referências e Cirurgias Metabólicas ao Vivo com transmissão simultânea para mais de 50 países.
+                </p>
+                <ul style="list-style: none; color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 40px; display: grid; gap: 12px; text-align: left;">
+                    <li style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #8B5CF6; font-weight: bold;">➢</span> Cirurgias metabólicas ao vivo simultâneas
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #8B5CF6; font-weight: bold;">➢</span> Discussão e intercâmbio cirúrgico em tempo real
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #8B5CF6; font-weight: bold;">➢</span> Transmissão internacional para + de 50 países
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #8B5CF6; font-weight: bold;">➢</span> Evento 100% online e 100% gratuito
+                    </li>
+                </ul>
+            </div>
+            
+            <div style="flex: 0.8; text-align: center; background: rgba(255,255,255,0.02); padding: 40px; border-radius: 20px; border: 1px solid rgba(124, 58, 237, 0.3); backdrop-filter: blur(10px);">
+                <p class="mono" style="color: #A78BFA; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">VAGAS GRATUITAS</p>
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.7;">Garanta sua participação na transmissão ao vivo da Masterclass IV.</p>
+                <a href="live.html" class="btn-primary-large" style="background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white; padding: 22px 50px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1px;">QUERO PARTICIPAR</a>
             </div>
         </div>
+        <style>
+            .btn-primary-large:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 50px rgba(124, 58, 237, 0.6); background: #6D28D9; }
+            @media (max-width: 900px) {
+                .masterclass-banner-section { text-align: center; margin: 100px 4% 30px !important; }
+                .masterclass-banner-section div { text-align: center !important; justify-content: center !important; }
+                .masterclass-banner-section ul { text-align: left; max-width: 500px; margin: 0 auto 40px; }
+            }
+        </style>
     </section>
 
     <!-- BANNER BC FLIX: REDESIGN PREMIUM -->
@@ -683,74 +681,6 @@
                 .bcflix-banner ul { text-align: left; max-width: 500px; margin: 0 auto 40px; }
             }
         </style>
-    </section>
-
-    <!-- BANNER: MASTERCLASS BARIÁTRICA - PARTE II -->
-    <section class="masterclass-banner-section" style="background: linear-gradient(135deg, var(--deep-blue) 0%, #112240 100%); padding: 80px 5%; position: relative; overflow: hidden; margin: 40px 5%; border-radius: 16px; box-shadow: 0 20px 40px rgba(10, 25, 47, 0.15); border: 1px solid rgba(255, 59, 48, 0.2);">
-        <!-- Subtle Red Glow -->
-        <div style="position: absolute; top: -50%; right: -10px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 59, 48, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
-        
-        <div data-reveal style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 60px;">
-            <div style="flex: 1.2; min-width: 350px;">
-                <p class="mono" style="color: var(--vitality-red); margin-bottom: 20px; font-weight: 800; letter-spacing: 2px;">01 DE AGOSTO * A PARTIR DAS 9H (BRT)</p>
-                <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 25px; line-height: 1.1; font-weight: 800;">MASTERCLASS BARIÁTRICA - PARTE II</h2>
-                <p style="color: rgba(255,255,255,0.85); font-size: 1.15rem; margin-bottom: 30px; line-height: 1.6; max-width: 800px;">
-                    O maior evento de cirurgia bariátrica e metabólica ao vivo do Brasil está de volta. <strong>Para você que perdeu a primeira edição</strong>, acompanhe este novo episódio com ainda mais casos práticos e conteúdos técnicos de alta qualidade.
-                </p>
-                <ul style="list-style: none; color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 40px; display: grid; gap: 12px; text-align: left;">
-                    <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: var(--vitality-red); font-weight: bold;">➢</span> Transmissão ao vivo de procedimentos complexos
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: var(--vitality-red); font-weight: bold;">➢</span> Discussão técnica interativa com cirurgiões renomados
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: var(--vitality-red); font-weight: bold;">➢</span> Evento 100% online e 100% gratuito
-                    </li>
-                </ul>
-            </div>
-            
-            <div style="flex: 0.8; text-align: center; background: rgba(255,255,255,0.02); padding: 40px; border-radius: 20px; border: 1px solid rgba(255, 59, 48, 0.15); backdrop-filter: blur(10px);">
-                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">VAGAS LIMITADAS</p>
-                <p style="color: white; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.7;">Garanta sua participação na transmissão ao vivo gratuitamente.</p>
-                <a href="live.html" class="btn-primary-large" style="background: var(--vitality-red); color: white; padding: 22px 50px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(255, 59, 48, 0.4); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1px;">QUERO PARTICIPAR</a>
-            </div>
-        </div>
-        <style>
-            .btn-primary-large:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 50px rgba(255, 59, 48, 0.6); background: #ff5247; }
-            @media (max-width: 900px) {
-                .masterclass-banner-section { text-align: center; }
-                .masterclass-banner-section div { text-align: center !important; justify-content: center !important; }
-                .masterclass-banner-section ul { text-align: left; max-width: 500px; margin: 0 auto 40px; }
-            }
-        </style>
-    </section>
-
-    <!-- NOVO HERO: CURSO ILEAL IMMERSION (SEM FOTO DOS MÉDICOS) -->
-    <section class="ileal-banner-section" style="background: radial-gradient(circle at 50% 0%, var(--deep-blue) 0%, #050d17 100%); padding: 80px 5%; text-align: center; color: var(--medical-white); position: relative; overflow: hidden; margin: 40px 5% 80px; border-radius: 16px; box-shadow: 0 20px 40px rgba(10, 25, 47, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
-        <div data-reveal>
-            <div class="mono" style="display: inline-block; background: rgba(212, 175, 55, 0.1); color: #D4AF37; border: 1px solid #D4AF37; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.2em; margin-bottom: 25px;">LANÇAMENTO EXCLUSIVO</div>
-            <br>
-            <h1 translate="no" class="notranslate" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--medical-white); margin-bottom: 25px; display: inline-block; background-color: var(--vitality-red); padding: 10px 20px; border-radius: 4px; box-shadow: 0 15px 35px rgba(255, 59, 48, 0.4);">ILEAL METABOLIC SURGERY IMMERSION</h1>
-            
-            <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); max-width: 800px; margin: 0 auto 40px; font-weight: 300; line-height: 1.6;">
-                <span class="mono" style="color: var(--vitality-red); font-weight: bold;">Cirurgia Bariátrica e Metabólica Avançada</span><br>
-                Bipartição de Trânsito • SADI-S • Duodenal Switch • Cirurgia Revisional<br>
-                Abordagem Laparoscópica e Robótica
-            </p>
-
-            <style>
-                .btn-ileal-banner {
-                    display: inline-flex; align-items: center; justify-content: center; padding: 20px 50px; background: #D4AF37; color: var(--medical-white) !important; text-decoration: none; font-weight: 800; font-size: 1.1rem; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-                }
-                .btn-ileal-banner:hover {
-                    transform: translateY(-5px); background-color: #c29d2b; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); color: var(--medical-white) !important;
-                }
-            </style>
-            <a href="ileal_surgery.html" class="btn-ileal-banner">
-                SAIBA MAIS
-            </a>
-        </div>
     </section>
 
     <section class="gestação-section" id="gestação">
@@ -848,18 +778,6 @@
     </footer>
 
     <script>
-        // Google translate Engine
-        function googletranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
-        }
-        function changeLang(lang) {
-            let select = document.querySelector('select.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-            }
-        }
-
         // Reveal Animation
         const observerOptions = {
             threshold: 0.15
