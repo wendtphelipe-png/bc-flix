@@ -109,7 +109,12 @@
             .grid-3 { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .grid-3 { grid-template-columns: 1fr; }
+            .hero { padding: 130px 5% 50px !important; }
+            .hero h1 { font-size: clamp(1.8rem, 7vw, 2.4rem) !important; margin-bottom: 18px; }
+            .hero p { font-size: 1rem !important; margin-bottom: 25px; }
+            .details-section { padding: 60px 5% !important; }
+            .grid-3 { grid-template-columns: 1fr; gap: 15px; margin-top: 30px; }
+            .card { padding: 22px 18px !important; }
             .nav-links { display: none; }
         }
     </style>
