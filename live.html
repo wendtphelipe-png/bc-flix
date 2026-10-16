@@ -3,25 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bariatric Channel | Masterclass IV - Cirurgias Metabólicas</title>
+    <title>Bariatric Channel | Live Surgery - 5 Cirurgias, Diferentes Abordagens</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    
+    <script>
+        function googletranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'pt,en,es',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function changeLang(lang, retries = 0) {
+            if (lang === 'pt') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + location.hostname.replace(/^www\./, '');
+                const select = document.querySelector('select.goog-te-combo');
+                if (select) {
+                    select.value = 'pt';
+                    select.dispatchEvent(new Event('change'));
+                }
+                location.reload();
+                return;
+            }
+            const cookieValue = '/pt/' + lang;
+            document.cookie = "googtrans=" + cookieValue + "; path=/";
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + location.hostname;
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=." + location.hostname.replace(/^www\./, '');
+
+            const select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else if (retries < 8) {
+                setTimeout(() => changeLang(lang, retries + 1), 350);
+            } else {
+                location.reload();
+            }
+        }
+    </script>
     <style>
         :root {
             --medical-white: #FFFFFF;
             --soft-creme: #F8FAFC;
             --deep-blue: #090D16;
-            --vitality-emerald: #7C3AED;
-            --vitality-purple: #8B5CF6;
-            --vitality-red: #7C3AED;
-            --vitality-accent: #8B5CF6;
-            --vitality-dark-red: #5B21B6;
+            --vitality-emerald: #DC2626;
+            --vitality-purple: #DC2626;
+            --vitality-red: #DC2626;
+            --vitality-accent: #EF4444;
+            --vitality-dark-red: #991B1B;
             --electric-cyan: #06B6D4;
             --dark-slate: #1E293B;
-            --alabaster-shadow: rgba(124, 58, 237, 0.08);
+            --alabaster-shadow: rgba(220, 38, 38, 0.08);
             --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -171,9 +210,12 @@
 
         .gestao-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
             margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .surgeon-card {
@@ -211,7 +253,7 @@
 
         .surgeon-card:hover .surgeon-img-frame {
             transform: scale(1.1) rotate(5deg);
-            background: rgba(124, 58, 237, 0.08);
+            background: rgba(220, 38, 38, 0.08);
         }
 
         .surgeon-img-container img {
@@ -277,7 +319,7 @@
         }
 
         .bento-item:hover::before {
-            background: linear-gradient(to top, rgba(124, 58, 237, 0.75), rgba(9, 13, 22, 0.3));
+            background: linear-gradient(to top, rgba(220, 38, 38, 0.75), rgba(9, 13, 22, 0.3));
         }
 
         .bento-item:hover {
@@ -330,7 +372,7 @@
 
         .btn-primary:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.35);
         }
 
         /* 3D Background */
@@ -558,57 +600,49 @@
     <section class="hero">
         <div id="stomach-canvas"></div>
         <div class="hero-content" data-reveal>
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px; font-weight: 700;">26 DE SETEMBRO • A PARTIR DAS 08H00 BRT</p>
-            <h1>MASTERCLASS IV<br><span style="color: var(--vitality-red); font-size: 0.85em;">CIRURGIAS METABÓLICAS</span></h1>
-            <p>4 CIDADES, 4 REFERÊNCIAS, CIRURGIAS AO VIVO. Transmissão simultânea de alta definição para mais de 50 países. Uma imersão técnica e clínica sem precedentes na cirurgia metabólica moderna.</p>
+            <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                <span class="mono" style="background: var(--vitality-red); color: white; padding: 4px 12px; border-radius: 4px; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.05em;">ON-LINE | 07.11</span>
+                <span class="mono" style="color: var(--vitality-red); font-weight: 800; letter-spacing: 0.05em;">A PARTIR DAS 08H00 BRT</span>
+            </div>
+            <h1 style="line-height: 0.95;"><span translate="no">LIVE SURGERY</span><br><span style="color: var(--vitality-red); font-size: 0.65em; display: block; margin-top: 8px;">5 CIRURGIAS AO VIVO</span></h1>
+            <p style="font-weight: 800; color: var(--deep-blue); font-size: 1.15rem; line-height: 1.35; margin-bottom: 12px; letter-spacing: -0.01em; text-transform: uppercase;">
+                5 CIRURGIAS, DIFERENTES ABORDAGENS, CONHECIMENTO NA PRÁTICA.
+            </p>
+            <p style="margin-bottom: 30px;">
+                Uma experiência de atualização técnica e aprofundamento científico em cirurgia bariátrica e metabólica. Transmissão simultânea com demonstrações cirúrgicas ao vivo e discussões técnicas em tempo real.
+            </p>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="#masterclass" class="btn-primary">CONHECER O EVENTO</a>
-                <a href="#gestao" class="btn-primary" style="background: var(--deep-blue);">OS CIRURGIÕES</a>
+                <a href="#programacao" class="btn-primary">VER PROGRAMAÇÃO</a>
+                <a href="#gestao" class="btn-primary" style="background: var(--deep-blue);">CORPO DOCENTE</a>
             </div>
         </div>
 
         <div id="sib-form-container" class="bmi-card" data-reveal style="transition-delay: 0.2s;">
-            <p class="mono" style="color: var(--vitality-red); font-weight: 700;">100% ONLINE E 100% GRATUITO</p>
-            <h3 style="margin-top: 10px;">MASTERCLASS IV</h3>
+            <p class="mono" style="color: var(--vitality-red); font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                <span style="display: inline-block; width: 8px; height: 8px; background: var(--vitality-red); border-radius: 50%;"></span>
+                INSCRIÇÕES ABERTAS!
+            </p>
+            <h3 style="margin-top: 10px;">LIVE SURGERY</h3>
+            <p class="mono" style="font-size: 0.75rem; color: var(--dark-slate); opacity: 0.8; margin-top: 4px; margin-bottom: 10px;">Garanta sua participação gratuita</p>
             <div class="row-success" style="display: none; margin-top: 25px;">
-                <div class="mono" style="font-weight: 800; color: var(--vitality-red); font-size: 0.85rem; text-align: center; border: 1px solid var(--vitality-red); padding: 20px; border-radius: 6px; background: rgba(124, 58, 237, 0.05);">
+                <div class="mono" style="font-weight: 800; color: var(--vitality-red); font-size: 0.85rem; text-align: center; border: 1px solid var(--vitality-red); padding: 20px; border-radius: 6px; background: rgba(220, 38, 38, 0.05);">
                     INSCRIÇÃO REALIZADA COM SUCESSO!<br><br>Você será redirecionado em <span id="redirect-counter">5</span> segundos...
                 </div>
             </div>
-            <form id="sib-form" class="row-form bmi-grid" action="https://53e6307d.sibforms.com/serve/MUIFAP9mDq8w8moPjCAOavRK0gc1l6CffxgM_nBI2y_joEeiJPm1ADf3Gu8yvzPiwpTwIsIXOnPWCKehYDWLEN4n94vJa2iJIMZTru-KVs5u2_sASutUyTMjA1cNoMY-KrR_IlL6a9LwTjgScKsViwejmizN3hjGUmRIi3Zpbjs-8cMfIwXAeQeR1x6wMwXzSEK_dIROx9YnI8ooqQ==" method="post" data-type="subscription" style="margin: 0;">
+            <form id="sib-form" class="row-form bmi-grid" action="https://53e6307d.sibforms.com/serve/MUIFAAXrBtjUXAKdEx9j03y0vheqegzovY73Lx33MnUUJa2-AGXY25AhNQAEYbJE_So4mh4HqYbOTH3GaIqrrKQe53Juv7RnO9ymTPGTbk1YYLOoklKeRGui60tzT0-oatw6FjkbVR1m3MD_I1Rf5vvkmDvs_VfQSaWIBR1NKFFp9mI99307DC5LvX5Uo_p7ChIx5lum4jnIBHWsMw==" method="post" data-type="subscription" style="margin: 0;">
                 <div id="sib-error-msg" class="mono" style="display: none; color: #EF4444; background: rgba(239, 68, 68, 0.08); border: 1px solid #EF4444; padding: 12px; border-radius: 4px; font-size: 0.8rem; text-align: center;"></div>
                 <div class="input-group">
                     <label class="mono" for="LINKEDIN">Nome Completo</label>
-                    <input type="text" id="LINKEDIN" name="LINKEDIN" placeholder="DIGITE SEU NOME" required autocomplete="name">
+                    <input type="text" id="LINKEDIN" name="LINKEDIN" placeholder="DIGITE SEU NOME" required autocomplete="name" maxlength="200">
+                </div>
+                <div class="input-group">
+                    <label class="mono" for="SMS">WhatsApp / Telefone com DDI</label>
+                    <input type="tel" id="SMS" name="SMS" placeholder="Ex: +55 (11) 99999-9999 ou seu DDI + número" required autocomplete="tel">
+                    <span class="mono" style="font-size: 0.68rem; color: #64748B; margin-top: 2px;">Digite o código do país (DDI) seguido do seu número (ex: +55 Brasil, +1 EUA, +351 Portugal, etc.)</span>
                 </div>
                 <div class="input-group">
                     <label class="mono" for="EMAIL">E-mail Profissional</label>
                     <input type="email" id="EMAIL" name="EMAIL" placeholder="EMAIL@EXEMPLO.COM" required autocomplete="email">
-                </div>
-                <div class="input-group">
-                    <label class="mono" for="SMS">WhatsApp / Telefone</label>
-                    <div style="display: flex; gap: 8px;">
-                        <select name="SMS__COUNTRY_CODE" class="mono" style="padding: 15px 10px; border: 1px solid #E0E0E0; background: #F9F9F9; outline: none; font-family: inherit; width: 110px;">
-                            <option value="+55" selected>+55 BR</option>
-                            <option value="+1">+1 US/CA</option>
-                            <option value="+351">+351 PT</option>
-                            <option value="+34">+34 ES</option>
-                            <option value="+54">+54 AR</option>
-                            <option value="+56">+56 CL</option>
-                            <option value="+57">+57 CO</option>
-                            <option value="+52">+52 MX</option>
-                            <option value="+598">+598 UY</option>
-                            <option value="+595">+595 PY</option>
-                            <option value="+591">+591 BO</option>
-                            <option value="+51">+51 PE</option>
-                            <option value="+593">+593 EC</option>
-                            <option value="+33">+33 FR</option>
-                            <option value="+49">+49 DE</option>
-                            <option value="+39">+39 IT</option>
-                            <option value="+44">+44 UK</option>
-                        </select>
-                        <input type="tel" id="SMS" name="SMS" placeholder="(00) 00000-0000" required style="flex: 1;">
-                    </div>
                 </div>
                 <input type="text" name="email_address_check" value="" class="input--hidden" style="display: none;">
                 <input type="hidden" name="locale" value="pt">
@@ -617,35 +651,66 @@
         </div>
     </section>
 
-    <section class="masterclass-section" id="masterclass">
+    <section class="masterclass-section" id="programacao">
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
-            <p class="mono" style="color: var(--vitality-red); text-align: center;">DETALHES DO EVENTO</p>
-            <h2>4 CIDADES • 4 REFERÊNCIAS • CIRURGIAS METABÓLICAS AO VIVO</h2>
-            <p style="margin-bottom: 25px; line-height: 1.8;">No dia 26 de setembro, a partir das 08h00 BRT, a tecnologia rompe as barreiras geográficas para unir o Brasil em uma jornada técnica sem precedentes na <strong>Masterclass IV - Cirurgias Metabólicas</strong>. Percorreremos o país conectando 4 centros de referência: Manaus com o Dr. Victor Dib, Passo Fundo com o Dr. Carlos Madalosso, Curitiba com o Dr. Diogo Kfouri e Porto Alegre com o Dr. Carlos Dillenburg.
-            <br><br>
-            Com transmissão ao vivo de alta definição para mais de 50 países, você acompanha procedimentos cirúrgicos metabólicos comentados em tempo real, absorvendo estratégias clínicas, nuances anatômicas e o raciocínio cirúrgico dos maiores especialistas.</p>
+            <p class="mono" style="color: var(--vitality-red); text-align: center; font-weight: 800; letter-spacing: 0.15em;">ON-LINE | 07.11</p>
+            <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 25px; line-height: 1.15;">5 CIRURGIAS, DIFERENTES ABORDAGENS, CONHECIMENTO NA PRÁTICA.</h2>
+            <p style="margin-bottom: 30px; line-height: 1.8; text-align: center; font-size: 1.15rem; color: #E2E8F0;">
+                Uma experiência de atualização técnica e aprofundamento científico em cirurgia bariátrica e metabólica. Transmitido ao vivo pelo Bariatric Channel, unindo técnica de vanguarda e debates clínicos em tempo real com renomados cirurgiões.
+            </p>
             
-            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px; text-align: center;">A JORNADA INCLUI:</p>
-            <div style="text-align: center; margin-bottom: 30px;">
-                <ul class="mono" style="list-style: none; opacity: 0.8; font-size: 0.85rem; text-align: left; display: inline-block;">
-                    <li style="margin-bottom: 10px;">> Cirurgias Metabólicas ao Vivo</li>
-                    <li style="margin-bottom: 10px;">> 4 Centros de Referência Cirúrgica Simultâneos</li>
-                    <li style="margin-bottom: 10px;">> Discussão Técnica e Intercâmbio em Tempo Real</li>
-                    <li style="margin-bottom: 10px;">> Transmissão Internacional para + de 50 Países</li>
+            <!-- Programação Schedule Card -->
+            <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 35px 30px; max-width: 580px; margin: 35px auto 45px; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <p class="mono" style="color: var(--vitality-red); font-size: 0.9rem; font-weight: 800; margin-bottom: 25px; text-align: center; letter-spacing: 0.15em;">PROGRAMAÇÃO:</p>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--vitality-red); border-radius: 6px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="mono" style="font-size: 1.3rem; font-weight: 800; color: var(--vitality-red);">08h</span>
+                            <span style="color: rgba(255,255,255,0.3); font-size: 1.2rem;">▪</span>
+                            <span style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; letter-spacing: 0.02em;">1 Cirurgia</span>
+                        </div>
+                        <span class="mono" style="font-size: 0.75rem; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px;">AO VIVO</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--vitality-red); border-radius: 6px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="mono" style="font-size: 1.3rem; font-weight: 800; color: var(--vitality-red);">09h</span>
+                            <span style="color: rgba(255,255,255,0.3); font-size: 1.2rem;">▪</span>
+                            <span style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; letter-spacing: 0.02em;">2 Cirurgia</span>
+                        </div>
+                        <span class="mono" style="font-size: 0.75rem; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px;">AO VIVO</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--vitality-red); border-radius: 6px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="mono" style="font-size: 1.3rem; font-weight: 800; color: var(--vitality-red);">11h</span>
+                            <span style="color: rgba(255,255,255,0.3); font-size: 1.2rem;">▪</span>
+                            <span style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; letter-spacing: 0.02em;">2 Cirurgia</span>
+                        </div>
+                        <span class="mono" style="font-size: 0.75rem; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px;">AO VIVO</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mono" style="color: var(--vitality-red); margin-bottom: 15px; text-align: center; font-weight: 700;">A JORNADA INCLUI:</p>
+            <div style="text-align: center; margin-bottom: 35px;">
+                <ul class="mono" style="list-style: none; opacity: 0.85; font-size: 0.85rem; text-align: left; display: inline-block;">
+                    <li style="margin-bottom: 10px;">> 5 Cirurgias Metabólicas e Bariátricas ao Vivo</li>
+                    <li style="margin-bottom: 10px;">> Diferentes Abordagens e Estratégias Cirúrgicas</li>
+                    <li style="margin-bottom: 10px;">> Discussão Técnica e Comentários em Tempo Real</li>
+                    <li style="margin-bottom: 10px;">> Transmissão Online de Alta Definição</li>
                     <li style="margin-bottom: 10px;">> Evento 100% Online e 100% Gratuito</li>
                 </ul>
             </div>
             <div style="text-align: center;">
-                <a href="#sib-form-container" class="btn-primary" style="background: var(--deep-blue);">GARANTIR MINHA VAGA</a>
+                <a href="#sib-form-container" class="btn-primary" style="background: var(--vitality-red);">INSCRIÇÕES ABERTAS • GARANTA SUA PARTICIPAÇÃO</a>
             </div>
         </div>
     </section>
 
     <section class="gestao-section" id="gestao">
         <div data-reveal style="max-width: 800px; margin: 0 auto 60px;">
-            <p class="mono" style="color: var(--vitality-red);">LIDERANÇA E REFERÊNCIAS</p>
-            <h2 style="font-size: 2.5rem; margin: 10px 0 30px;">OS CIRURGIÕES</h2>
-            <p style="font-size: 1.1rem; opacity: 0.8; line-height: 1.8;">Quatro grandes referências da cirurgia bariátrica e metabólica brasileira estarão à frente de cirurgias ao vivo, unindo experiência cirúrgica de vanguarda e transmissão de alta precisão técnica.</p>
+            <p class="mono" style="color: var(--vitality-red); font-weight: 800; letter-spacing: 0.1em;">LIDERANÇA E VISÃO</p>
+            <h2 style="font-size: 2.5rem; margin: 10px 0 20px;">CORPO DOCENTE</h2>
+            <p style="font-size: 1.1rem; opacity: 0.8; line-height: 1.8;">Grandes referências da cirurgia bariátrica e metabólica do Brasil à frente do Live Surgery e da educação cirúrgica de excelência do Bariatric Channel.</p>
         </div>
 
         <div class="gestao-grid">
@@ -658,8 +723,8 @@
                     </div>
                     <div style="text-align: center;">
                         <h3 style="margin-bottom: 5px;">DR. VICTOR DIB</h3>
-                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Presidente do BC</p>
-                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião • PhD</p>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Presidente</p>
+                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião - PhD</p>
                     </div>
                     <div class="surgeon-info mono" style="text-align: center;">MANAUS / AM</div>
                 </div>
@@ -674,42 +739,26 @@
                     </div>
                     <div style="text-align: center;">
                         <h3 style="margin-bottom: 5px;">DR. CARLOS MADALOSSO</h3>
-                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Vice-Presidente do BC</p>
-                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião • PhD</p>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Vice-Presidente</p>
+                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião - PhD</p>
                     </div>
                     <div class="surgeon-info mono" style="text-align: center;">PASSO FUNDO / RS</div>
                 </div>
             </div>
 
-            <!-- Dr. Diogo Kfouri -->
+            <!-- Dr. Paulo Reis -->
             <div class="surgeon-card" data-reveal style="transition-delay: 0.2s;">
                 <div class="surgeon-card-content">
                     <div class="surgeon-img-container" style="margin-bottom: 30px;">
                         <div class="surgeon-img-frame"></div>
-                        <img src="assets/diogo_kfouri.jpg" alt="Dr. Diogo Kfouri" style="object-position: 50% 15%;">
+                        <img src="assets/paulo_reis_v2.jpg" alt="Dr. Paulo Reis" style="object-position: 50% 20%;">
                     </div>
                     <div style="text-align: center;">
-                        <h3 style="margin-bottom: 5px;">DR. DIOGO KFOURI</h3>
-                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Cirurgião</p>
-                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Aparelho Digestivo e Bariátrica</p>
+                        <h3 style="margin-bottom: 5px;">DR. PAULO REIS</h3>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Diretor Executivo</p>
+                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião</p>
                     </div>
-                    <div class="surgeon-info mono" style="text-align: center;">CURITIBA / PR</div>
-                </div>
-            </div>
-
-            <!-- Dr. Carlos Dillenburg -->
-            <div class="surgeon-card" data-reveal style="transition-delay: 0.3s;">
-                <div class="surgeon-card-content">
-                    <div class="surgeon-img-container" style="margin-bottom: 30px;">
-                        <div class="surgeon-img-frame"></div>
-                        <img src="assets/carlos_dillenburg.jpg" alt="Dr. Carlos Dillenburg" style="object-position: 50% 10%;">
-                    </div>
-                    <div style="text-align: center;">
-                        <h3 style="margin-bottom: 5px;">DR. CARLOS DILLENBURG</h3>
-                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Cirurgião</p>
-                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgia Bariátrica e Metabólica</p>
-                    </div>
-                    <div class="surgeon-info mono" style="text-align: center;">PORTO ALEGRE / RS</div>
+                    <div class="surgeon-info mono" style="text-align: center;">GOIÂNIA / GO</div>
                 </div>
             </div>
         </div>
@@ -776,7 +825,7 @@
                 geometry.scale(scale, scale, scale);
 
                 const material = new THREE.PointsMaterial({
-                    color: 0x8B5CF6, // Vibrant Electric Violet Accent
+                    color: 0xDC2626, // Red Medical Accent
                     size: 0.015,
                     transparent: true,
                     opacity: 0.25, // Set to 25% opacity
@@ -848,18 +897,17 @@
                     }
 
                     try {
-                        const phoneInput = form.querySelector('input[name="SMS"]') || form.querySelector('input[name="LANDLINE_NUMBER"]');
-                        const countrySelect = form.querySelector('select[name="SMS__COUNTRY_CODE"]') || form.querySelector('select[name="LANDLINE_NUMBER__COUNTRY_CODE"]');
+                        const phoneInput = form.querySelector('input[name="SMS"]');
                         
-                        // Sanitize phone number (strip non-digits and leading redundant country code)
+                        // Sanitize phone number with manual DDI (strip non-digits, keep clean international format)
                         if (phoneInput) {
                             let rawPhone = phoneInput.value.trim();
+                            let hasPlus = rawPhone.startsWith('+');
                             let cleanPhone = rawPhone.replace(/\D/g, '');
-                            const countryCode = countrySelect ? countrySelect.value : '+55';
-                            const countryDigits = countryCode.replace(/\D/g, '');
                             
-                            if (countryDigits && cleanPhone.startsWith(countryDigits) && cleanPhone.length > 11) {
-                                cleanPhone = cleanPhone.substring(countryDigits.length);
+                            // Se o usuário digitou sem '+' e tem 10 ou 11 dígitos (padrão Brasil sem DDI), adiciona 55
+                            if (!hasPlus && (cleanPhone.length === 10 || cleanPhone.length === 11)) {
+                                cleanPhone = '55' + cleanPhone;
                             }
                             phoneInput.value = cleanPhone;
                         }
@@ -903,14 +951,18 @@
                             }, 1000);
                         } else {
                             // Handle Brevo rejection / validation errors
-                            let errorText = "Não foi possível concluir a assinatura. Verifique os dados fornecidos e tente novamente.";
+                            let errorText = "Não foi possível concluir a inscrição. Verifique os dados fornecidos e tente novamente.";
                             if (data.errors) {
                                 const errorKeys = Object.keys(data.errors);
                                 if (errorKeys.length > 0) {
                                     errorText = data.errors[errorKeys[0]];
                                 }
                             } else if (data.message) {
-                                errorText = data.message;
+                                if (data.message.indexOf("missing default field") !== -1) {
+                                    errorText = "Por favor, preencha todos os campos obrigatórios.";
+                                } else {
+                                    errorText = data.message;
+                                }
                             }
 
                             if (errorBox) {
@@ -943,32 +995,6 @@
         }
     </style>
     <div id="google_translate_element"></div>
-    <script>
-        function googletranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'pt',
-                includedLanguages: 'pt,en,es',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-
-        function changeLang(lang, retries = 0) {
-            const cookieValue = '/pt/' + lang;
-            document.cookie = "googtrans=" + cookieValue + "; path=/";
-            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + location.hostname;
-            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=." + location.hostname.replace(/^www\./, '');
-
-            const select = document.querySelector('select.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-            } else if (retries < 6) {
-                setTimeout(() => changeLang(lang, retries + 1), 500);
-            } else {
-                location.reload();
-            }
-        }
-    </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 </body>
 </html>
