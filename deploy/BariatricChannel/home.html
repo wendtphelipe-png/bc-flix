@@ -476,6 +476,61 @@
             text-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Sombra pesada p destacar em qqr imagem */
         }
 
+        /* Amazon Hero Integration */
+        .amazon-hero-section {
+            background: linear-gradient(to right, rgba(4,16,9,0.9), rgba(10,47,26,0.8)), url('assets/onça low.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 5%;
+            position: relative;
+            margin: 40px 5%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 183, 3, 0.25);
+            overflow: hidden;
+        }
+        .amazon-hero-section h2, .amazon-hero-section h1 {
+            color: #ffb703;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        .amazon-hero-section p.subtitle {
+            font-size: 1.35rem;
+            font-weight: 300;
+            color: #f1f5f2;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        .btn-amazon {
+            display: inline-block;
+            padding: 20px 45px;
+            background: #ffb703;
+            color: #041009;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 50px;
+            transition: var(--transition-smooth);
+            font-size: 1.05rem;
+            box-shadow: 0 10px 30px rgba(255, 183, 3, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-amazon:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(255, 183, 3, 0.5);
+            background: #fca311;
+        }
+
 
         /* Technology Section (Dark) */
         .tech-section {
@@ -568,6 +623,11 @@
             section.hero h1 { font-size: 2.2rem; }
             .hero-date { font-size: 1.2rem !important; }
             
+            .amazon-hero-section { padding: 60px 20px; margin: 30px 4% !important; min-height: auto; }
+            .amazon-hero-section h2, .amazon-hero-section h1 { font-size: 2.2rem !important; }
+            .amazon-hero-section p.subtitle { font-size: 1.1rem; }
+            .btn-amazon { padding: 16px 30px; font-size: 0.95rem; }
+            
             .bento-grid { grid-template-columns: 1fr; grid-auto-rows: minmax(280px, auto); gap: 10px; margin-top: 30px; }
             .bento-item.large, .bento-item.medium { grid-column: span 1 !important; grid-row: span 1 !important; }
             .bento-item { padding: 30px; min-height: 280px; }
@@ -639,6 +699,21 @@
                 .masterclass-banner-section ul { text-align: left; max-width: 500px; margin: 0 auto 30px; }
             }
         </style>
+    </section>
+
+    <!-- BANNER: BC AMAZON WEEK (CONGRESSO) -->
+    <section class="amazon-hero-section">
+        <!-- Subtle Ambient Glow -->
+        <div style="position: absolute; top: -50%; right: -10px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 183, 3, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
+        
+        <div data-reveal>
+            <p class="mono" style="color: #ffb703; font-size: 1.05rem; margin-bottom: 25px; letter-spacing: 0.25em; font-weight: 800;">8 A 12 DE MARÇO DE 2027</p>
+            <h2 translate="no" class="notranslate">2º BC AMAZON WEEK</h2>
+            <p class="subtitle">A Confluência da Alta Cirurgia no Coração da Amazônia. Tecnologia e Natureza em Sintonia.</p>
+            <div style="margin-top: 40px;">
+                <a href="https://www.bcamazonweek.com.br/" class="btn-amazon" target="_blank" rel="noopener noreferrer">ACESSAR PÁGINA OFICIAL</a>
+            </div>
+        </div>
     </section>
 
     <!-- BANNER BC FLIX: REDESIGN PREMIUM -->
