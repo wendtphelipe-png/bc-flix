@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ evento_titulo }} | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -34,7 +37,9 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.02em;
@@ -293,12 +298,21 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .schedule-item { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                display: none;
+            }
+
+            .schedule-item {
+                grid-template-columns: 1fr;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -308,8 +322,12 @@
         <div class="nav-links">
             <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
             <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
-            <a href="../bcflix.html" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer"
+                class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON
+                WEEK</a>
+            <a href="../bcflix.html"
+                style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC
+                FLIX</a>
         </div>
     </nav>
 
@@ -317,7 +335,7 @@
         <div class="event-header" data-reveal>
             <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Informações do Evento</p>
             <h1>{{ evento_titulo | default("Nome do Evento") }}</h1>
-            
+
             <div class="meta-grid">
                 <div class="meta-item">
                     <span class="mono">Data do Evento</span>
@@ -398,10 +416,13 @@
                     <h3>{{ loc.titulo }}</h3>
                     <p style="margin: 10px 0;">{{ loc.endereco }}</p>
                     <p class="mono">{{ loc.horario }}</p>
-                    
-                    <iframe src="https://maps.google.com/maps?q={{ loc.endereco | urlencode }}&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-                    
-                    <a href="{{ loc.link_maps }}" target="_blank" class="mono" style="color: var(--vitality-red); text-decoration: none; font-weight: 800;">ABRIR NO MAPS &rarr;</a>
+
+                    <iframe
+                        src="https://maps.google.com/maps?q={{ loc.endereco | urlencode }}&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+
+                    <a href="{{ loc.link_maps }}" target="_blank" class="mono"
+                        style="color: var(--vitality-red); text-decoration: none; font-weight: 800;">ABRIR NO MAPS
+                        &rarr;</a>
                 </div>
                 {% endfor %}
             </div>
@@ -416,7 +437,8 @@
     </main>
 
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
             <a href="../home.html" class="logo">
                 <img src="../assets/logo_final.png" alt="Logo" style="height: 30px;">
             </a>
@@ -438,4 +460,5 @@
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     </script>
 </body>
+
 </html>

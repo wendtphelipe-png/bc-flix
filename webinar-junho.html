@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2º BC Webinar - Bipartição de Trânsito Intestinal | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
             --soft-creme: #FDFDF5;
-            --deep-blue: #050B14; 
+            --deep-blue: #050B14;
             --card-bg: rgba(255, 255, 255, 0.03);
             --vitality-red: #FF3B30;
             --electric-cyan: #00F2FF;
@@ -19,7 +22,11 @@
             --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Plus Jakarta sans', sans-serif;
@@ -29,7 +36,9 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.02em;
@@ -59,18 +68,39 @@
             border-bottom: 1px solid rgba(0, 242, 255, 0.1);
         }
 
-        .logo img { height: 40px; width: auto; filter: brightness(0) invert(1); }
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
 
-        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
         .nav-links a {
-            text-decoration: none; color: white; font-size: 0.75rem; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition-smooth);
+            text-decoration: none;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
         }
-        .nav-links a:hover { color: var(--electric-cyan); }
+
+        .nav-links a:hover {
+            color: var(--electric-cyan);
+        }
+
         .nav-link-highlight {
-            color: var(--vitality-red) !important; border: 1px solid var(--vitality-red);
-            padding: 8px 15px; border-radius: 4px;
+            color: var(--vitality-red) !important;
+            border: 1px solid var(--vitality-red);
+            padding: 8px 15px;
+            border-radius: 4px;
         }
+
         .nav-amazon-card {
             display: inline-flex;
             align-items: center;
@@ -87,12 +117,14 @@
             box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
             transition: var(--transition-smooth);
         }
+
         .nav-amazon-card:hover {
             transform: translateY(-2px);
             border-color: #ffb703;
             box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
             color: #ffffff !important;
         }
+
         .nav-amazon-dot {
             width: 7px;
             height: 7px;
@@ -103,17 +135,36 @@
             flex-shrink: 0;
         }
 
-        .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
-        .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
-        .lang-switcher img { width: 22px; height: auto; border-radius: 2px; }
-        .skiptranslate { display: none !important; }
+        .lang-switcher button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .lang-switcher button:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .lang-switcher img {
+            width: 22px;
+            height: auto;
+            border-radius: 2px;
+        }
+
+        .skiptranslate {
+            display: none !important;
+        }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
             padding: 160px 5% 80px;
             background: radial-gradient(circle at top right, rgba(0, 242, 255, 0.05), transparent),
-                        radial-gradient(circle at bottom left, rgba(255, 59, 48, 0.05), transparent);
+                radial-gradient(circle at bottom left, rgba(255, 59, 48, 0.05), transparent);
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 60px;
@@ -121,93 +172,277 @@
         }
 
         .hero-content h2.edition {
-            color: var(--electric-cyan); font-size: 1.1rem; margin-bottom: 15px; display: inline-block;
-            background: rgba(0, 242, 255, 0.1); padding: 5px 15px; border: 1px solid rgba(0, 242, 255, 0.2); border-radius: 4px;
+            color: var(--electric-cyan);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(0, 242, 255, 0.1);
+            padding: 5px 15px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 4px;
         }
 
-        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.0; margin-bottom: 25px; color: #FFFFFF; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .hero-content .date-box { font-size: 1.5rem; font-weight: 800; color: var(--electric-cyan); margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
-        .hero-content .date-box::before { content: ''; width: 40px; height: 2px; background: var(--electric-cyan); }
-        .hero-content p { font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; color: rgba(255,255,255,0.7); }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.0;
+            margin-bottom: 25px;
+            color: #FFFFFF;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content .date-box {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--electric-cyan);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .hero-content .date-box::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--electric-cyan);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.7);
+        }
 
         /* Form Card - LIGHT BACKGROUND */
         .form-card {
             background: #FFFFFF;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             color: var(--deep-blue);
             position: relative;
         }
 
-        .form-card h3 { color: var(--deep-blue); margin-bottom: 10px; font-size: 1.4rem; }
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 800; font-size: 0.7rem; color: var(--deep-blue); opacity: 0.6; }
-        
+        .form-card h3 {
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            color: var(--deep-blue);
+            opacity: 0.6;
+        }
+
         input {
-            width: 100%; padding: 15px; border: 2px solid #F0F0F0; background: #F9F9F9;
-            color: var(--deep-blue); font-family: inherit; outline: none; transition: var(--transition-smooth);
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #F0F0F0;
+            background: #F9F9F9;
+            color: var(--deep-blue);
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition-smooth);
             border-radius: 12px;
         }
 
-        input:focus { border-color: var(--electric-cyan); background: #FFFFFF; }
-
-        .btn-submit {
-            width: 100%; padding: 18px; background: var(--deep-blue); color: white;
-            border: none; font-weight: 800; text-transform: uppercase; cursor: pointer;
-            transition: var(--transition-smooth); margin-top: 10px; border-radius: 12px;
+        input:focus {
+            border-color: var(--electric-cyan);
+            background: #FFFFFF;
         }
 
-        .btn-submit:hover { background: var(--vitality-red); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3); }
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--deep-blue);
+            color: white;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-top: 10px;
+            border-radius: 12px;
+        }
+
+        .btn-submit:hover {
+            background: var(--vitality-red);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3);
+        }
 
         /* Overview Section */
-        .overview-section { padding: 80px 5%; background: #050B14; border-bottom: 1px solid rgba(0,242,255,0.05); }
-        .overview-container { max-width: 900px; margin: 0 auto; text-align: left; border-left: 1px solid rgba(0,242,255,0.2); padding-left: 40px; }
-        .overview-section h2 { font-size: 2.2rem; margin-bottom: 25px; color: #FFFFFF; }
-        .overview-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.8; }
+        .overview-section {
+            padding: 80px 5%;
+            background: #050B14;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.05);
+        }
+
+        .overview-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+            border-left: 1px solid rgba(0, 242, 255, 0.2);
+            padding-left: 40px;
+        }
+
+        .overview-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #FFFFFF;
+        }
+
+        .overview-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
 
         /* Participants Section */
-        .participants-section { padding: 100px 5%; background: #08111D; }
-        .role-title { color: var(--electric-cyan); font-size: 1.2rem; margin-bottom: 40px; text-align: left; border-left: 4px solid var(--electric-cyan); padding-left: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .participants-section {
+            padding: 100px 5%;
+            background: #08111D;
+        }
+
+        .role-title {
+            color: var(--electric-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-align: left;
+            border-left: 4px solid var(--electric-cyan);
+            padding-left: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
         .card {
-            background: var(--card-bg); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition-smooth); display: flex; flex-direction: column; align-items: center; text-align: center;
+            background: var(--card-bg);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .card-img-container {
-            width: 120px; height: 120px; margin-bottom: 20px; border-radius: 50%; overflow: hidden;
-            border: 2px solid var(--electric-cyan); background: #0A192F; position: relative;
-            display: flex; align-items: center; justify-content: center;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--electric-cyan);
+            background: #0A192F;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .card-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: 0.5s; position: absolute; inset: 0; z-index: 2; }
-        .card-img-container img.loaded { opacity: 1; }
-        
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: 0.5s;
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+
+        .card-img-container img.loaded {
+            opacity: 1;
+        }
+
         .initials-fallback {
-            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, #0A192F 0%, #172A45 100%);
-            color: var(--electric-cyan); font-weight: 800; font-size: 2.5rem; z-index: 1;
+            color: var(--electric-cyan);
+            font-weight: 800;
+            font-size: 2.5rem;
+            z-index: 1;
         }
 
         .lecture-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(0,242,255,0.05) 100%);
-            border: 1px solid rgba(0, 242, 255, 0.2); padding: 40px; text-align: left;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 242, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 40px;
+            text-align: left;
         }
-        .lecture-card .speaker-name { display: flex; align-items: center; gap: 15px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .lecture-card .speaker-img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--electric-cyan); overflow: hidden; position: relative; }
 
-        .footer-cta { background: linear-gradient(to bottom, #08111D, #050B14); padding: 120px 5%; text-align: center; }
-        .btn-large { display: inline-block; padding: 20px 50px; background: var(--vitality-red); color: white; text-decoration: none; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; transition: var(--transition-smooth); border-radius: 12px; }
+        .lecture-card .speaker-name {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .lecture-card .speaker-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--electric-cyan);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .footer-cta {
+            background: linear-gradient(to bottom, #08111D, #050B14);
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .btn-large {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--vitality-red);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            border-radius: 12px;
+        }
 
         @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; padding-top: 120px; }
-            .hero-content { text-align: center; }
-            .hero-content .date-box { justify-content: center; }
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-content .date-box {
+                justify-content: center;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -217,7 +452,9 @@
         <div class="nav-links">
             <a href="home.html#procedimentos">PRÓXIMOS EVENTOS</a>
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer"
+                class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON
+                WEEK</a>
             <a href="https://bariatricchannel.com.br" class="nav-link-highlight">BC FLIX</a>
             <div class="lang-switcher">
                 <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
@@ -232,8 +469,10 @@
             <h2 class="edition mono notranslate" translate="no">2º BC Webinar</h2>
             <h1 class="notranslate" translate="no">BIPARTIÇÃO DE TRÂNSITO INTESTINAL</h1>
             <div class="date-box mono">09 DE JUNHO | 19:00 BRT</div>
-            <p>Um debate profundo sobre o racional cirúrgico, efeitos metabólicos e resultados de longo prazo da Bipartição de Trânsito Intestinal (BTI).</p>
-            <div class="mono" style="color: var(--electric-cyan); font-weight: 800; letter-spacing: 0.2em; background: rgba(0,242,255,0.05); padding: 15px; border-radius: 4px; border: 1px solid rgba(0,242,255,0.1); display: inline-block;">
+            <p>Um debate profundo sobre o racional cirúrgico, efeitos metabólicos e resultados de longo prazo da
+                Bipartição de Trânsito Intestinal (BTI).</p>
+            <div class="mono"
+                style="color: var(--electric-cyan); font-weight: 800; letter-spacing: 0.2em; background: rgba(0,242,255,0.05); padding: 15px; border-radius: 4px; border: 1px solid rgba(0,242,255,0.1); display: inline-block;">
                 TRANSMISSÃO AO VIVO • GRATUITO
             </div>
         </div>
@@ -242,29 +481,35 @@
             <div class="ml-form-embedWrapper embedForm">
                 <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
                     <h3 class="mono">FAÇA SUA INSCRIÇÃO</h3>
-                    <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 25px; font-weight: 600;">INSIRA SEUS DADOS PARA SE CADASTRAR</p>
-                    
-                    <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2110375/forms/185458920325645845/subscribe" data-code="" method="post" target="_blank">
+                    <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 25px; font-weight: 600;">INSIRA SEUS DADOS
+                        PARA SE CADASTRAR</p>
+
+                    <form class="ml-block-form"
+                        action="https://assets.mailerlite.com/jsonp/2110375/forms/185458920325645845/subscribe"
+                        data-code="" method="post" target="_blank">
                         <div class="ml-form-formContent">
                             <div class="input-group">
                                 <label class="mono">Nome</label>
-                                <input aria-label="name" aria-required="true" type="text" name="fields[name]" placeholder="Seu nome completo" required>
+                                <input aria-label="name" aria-required="true" type="text" name="fields[name]"
+                                    placeholder="Seu nome completo" required>
                             </div>
                             <div class="input-group">
                                 <label class="mono">E-mail</label>
-                                <input aria-label="email" aria-required="true" type="email" name="fields[email]" placeholder="seu@email.com" required>
+                                <input aria-label="email" aria-required="true" type="email" name="fields[email]"
+                                    placeholder="seu@email.com" required>
                             </div>
                             <div class="input-group">
                                 <label class="mono">Telefone ou Whatsapp</label>
-                                <input aria-label="phone" aria-required="true" type="text" name="fields[phone]" placeholder="+00 (00) 00000-0000" required>
+                                <input aria-label="phone" aria-required="true" type="text" name="fields[phone]"
+                                    placeholder="+00 (00) 00000-0000" required>
                             </div>
                         </div>
 
                         <input type="hidden" name="ml-submit" value="1">
                         <input type="hidden" name="anticsrf" value="true">
-                        
+
                         <button type="submit" class="btn-submit primary">CONFIRMAR INSCRIÇÃO</button>
-                        
+
                         <button disabled="disabled" style="display: none;" type="button" class="loading">
                             <span class="mono">PROCESSANDO...</span>
                         </button>
@@ -274,7 +519,8 @@
                 <div class="ml-form-successBody row-success" style="display: none; padding: 20px; text-align: center;">
                     <div class="ml-form-successContent">
                         <h4 class="mono" style="color: var(--deep-blue); margin-bottom: 10px;">SUCESSO!</h4>
-                        <p style="color: var(--deep-blue);">Você se cadastrou com sucesso. Em breve receberá as informações por e-mail.</p>
+                        <p style="color: var(--deep-blue);">Você se cadastrou com sucesso. Em breve receberá as
+                            informações por e-mail.</p>
                     </div>
                 </div>
             </div>
@@ -285,7 +531,13 @@
         <div class="overview-container">
             <p class="mono" style="color: var(--electric-cyan); margin-bottom: 20px;">SCIENTIFIC_OVERVIEW</p>
             <h2>BTI: Racional e Controle Metabólico</h2>
-            <p>A Bipartição de Trânsito Intestinal (BTI) consolidou-se como uma técnica de potente resposta metabólica, fundamentada no racional da exclusão duodenal funcional. Neste encontro, exploramos os mecanismos fisiológicos que sustentam a remissão de comorbidades e a manutenção da perda ponderal a longo prazo. O foco técnico recai sobre o manejo de resultados subótimos ou perda de peso excessiva, além de debater o papel da BTI em cenários desafiadores, como pacientes com Doença do Refluxo Gastroesofágico (DRGE) severa. Uma imersão científica focada na segurança do paciente e na previsibilidade dos resultados metabólicos.</p>
+            <p>A Bipartição de Trânsito Intestinal (BTI) consolidou-se como uma técnica de potente resposta metabólica,
+                fundamentada no racional da exclusão duodenal funcional. Neste encontro, exploramos os mecanismos
+                fisiológicos que sustentam a remissão de comorbidades e a manutenção da perda ponderal a longo prazo. O
+                foco técnico recai sobre o manejo de resultados subótimos ou perda de peso excessiva, além de debater o
+                papel da BTI em cenários desafiadores, como pacientes com Doença do Refluxo Gastroesofágico (DRGE)
+                severa. Uma imersão científica focada na segurança do paciente e na previsibilidade dos resultados
+                metabólicos.</p>
         </div>
     </section>
 
@@ -294,14 +546,20 @@
             <h3 class="role-title mono">Mesa Diretora • Executive Board</h3>
             <div class="grid">
                 <div class="card" data-speaker="Rafael Abaid">
-                    <div class="card-img-container"><div class="initials-fallback">RA</div><img src="" alt=""></div>
+                    <div class="card-img-container">
+                        <div class="initials-fallback">RA</div><img src="" alt="">
+                    </div>
                     <h4>Rafael Abaid</h4>
-                    <span class="mono" style="font-size: 0.65rem; color: var(--electric-cyan);">PRESIDENTE / CHAIR (BRA)</span>
+                    <span class="mono" style="font-size: 0.65rem; color: var(--electric-cyan);">PRESIDENTE / CHAIR
+                        (BRA)</span>
                 </div>
                 <div class="card" data-speaker="Almino Ramos">
-                    <div class="card-img-container"><div class="initials-fallback">AR</div><img src="" alt=""></div>
+                    <div class="card-img-container">
+                        <div class="initials-fallback">AR</div><img src="" alt="">
+                    </div>
                     <h4>Almino Ramos</h4>
-                    <span class="mono" style="font-size: 0.65rem; color: var(--electric-cyan);">MODERADOR / MODERATOR (BRA)</span>
+                    <span class="mono" style="font-size: 0.65rem; color: var(--electric-cyan);">MODERADOR / MODERATOR
+                        (BRA)</span>
                 </div>
             </div>
         </div>
@@ -310,17 +568,23 @@
             <h3 class="role-title mono">Debatedores • Debaters</h3>
             <div class="grid">
                 <div class="card" data-speaker="Carlos Vaz">
-                    <div class="card-img-container"><div class="initials-fallback">CV</div><img src="" alt=""></div>
+                    <div class="card-img-container">
+                        <div class="initials-fallback">CV</div><img src="" alt="">
+                    </div>
                     <h4>Carlos Vaz</h4>
                     <span class="mono" style="font-size: 0.65rem; opacity: 0.5;">PORTUGAL</span>
                 </div>
                 <div class="card" data-speaker="Mário Nora">
-                    <div class="card-img-container"><div class="initials-fallback">MN</div><img src="" alt=""></div>
+                    <div class="card-img-container">
+                        <div class="initials-fallback">MN</div><img src="" alt="">
+                    </div>
                     <h4>Mário Nora</h4>
                     <span class="mono" style="font-size: 0.65rem; opacity: 0.5;">PORTUGAL</span>
                 </div>
                 <div class="card" data-speaker="Rui Ribeiro">
-                    <div class="card-img-container"><div class="initials-fallback">RR</div><img src="" alt=""></div>
+                    <div class="card-img-container">
+                        <div class="initials-fallback">RR</div><img src="" alt="">
+                    </div>
                     <h4>Rui Ribeiro</h4>
                     <span class="mono" style="font-size: 0.65rem; opacity: 0.5;">PORTUGAL</span>
                 </div>
@@ -334,49 +598,73 @@
                     <h4>LECTURE_01</h4>
                     <h3 class="notranslate" translate="no">Racional Cirúrgico e Efeitos Metabólicos</h3>
                     <div class="speaker-name">
-                        <div class="speaker-img"><div class="initials-fallback" style="font-size: 1rem;">SS</div><img src="" alt=""></div>
-                        <div><p style="font-weight: 800;" class="notranslate" translate="no">Sérgio Santoro</p><p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">BRA</p></div>
+                        <div class="speaker-img">
+                            <div class="initials-fallback" style="font-size: 1rem;">SS</div><img src="" alt="">
+                        </div>
+                        <div>
+                            <p style="font-weight: 800;" class="notranslate" translate="no">Sérgio Santoro</p>
+                            <p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">BRA</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card lecture-card" data-speaker="Eren Taskin">
                     <h4>LECTURE_02</h4>
                     <h3 class="notranslate" translate="no">Perda de Peso e Controle de Comorbidades no Longo Prazo</h3>
                     <div class="speaker-name">
-                        <div class="speaker-img"><div class="initials-fallback" style="font-size: 1rem;">ET</div><img src="" alt=""></div>
-                        <div><p style="font-weight: 800;" class="notranslate" translate="no">Eren Taskin</p><p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">TUR</p></div>
+                        <div class="speaker-img">
+                            <div class="initials-fallback" style="font-size: 1rem;">ET</div><img src="" alt="">
+                        </div>
+                        <div>
+                            <p style="font-weight: 800;" class="notranslate" translate="no">Eren Taskin</p>
+                            <p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">TUR</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card lecture-card" data-speaker="Eudes Godoy">
                     <h4>LECTURE_03</h4>
                     <h3 class="notranslate" translate="no">Perda de Peso Excessiva ou Insuficiente: Falha Técnica?</h3>
                     <div class="speaker-name">
-                        <div class="speaker-img"><div class="initials-fallback" style="font-size: 1rem;">EG</div><img src="" alt=""></div>
-                        <div><p style="font-weight: 800;" class="notranslate" translate="no">Eudes Godoy</p><p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">BRA</p></div>
+                        <div class="speaker-img">
+                            <div class="initials-fallback" style="font-size: 1rem;">EG</div><img src="" alt="">
+                        </div>
+                        <div>
+                            <p style="font-weight: 800;" class="notranslate" translate="no">Eudes Godoy</p>
+                            <p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">BRA</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card lecture-card" data-speaker="Manuel Aceves">
                     <h4>LECTURE_04</h4>
                     <h3 class="notranslate" translate="no">BTI em Obesos Graves com DRGE Severa?</h3>
                     <div class="speaker-name">
-                        <div class="speaker-img"><div class="initials-fallback" style="font-size: 1rem;">MA</div><img src="" alt=""></div>
-                        <div><p style="font-weight: 800;" class="notranslate" translate="no">Manuel Aceves</p><p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">MEX</p></div>
+                        <div class="speaker-img">
+                            <div class="initials-fallback" style="font-size: 1rem;">MA</div><img src="" alt="">
+                        </div>
+                        <div>
+                            <p style="font-weight: 800;" class="notranslate" translate="no">Manuel Aceves</p>
+                            <p class="mono" style="font-size: 0.6rem; color: var(--electric-cyan);">MEX</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 60px 5%; background: #050B14; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
-        <img src="assets/logo_final.png" alt="Bariatric Channel Logo" style="height: 30px; filter: brightness(0) invert(1); opacity: 0.3; margin-bottom: 20px;">
-        <p class="mono" style="font-size: 0.6rem; opacity: 0.3;">&copy; 2026 BARIATRIC CHANNEL • TECNOLOGIA E CIÊNCIA</p>
+    <footer
+        style="padding: 60px 5%; background: #050B14; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+        <img src="assets/logo_final.png" alt="Bariatric Channel Logo"
+            style="height: 30px; filter: brightness(0) invert(1); opacity: 0.3; margin-bottom: 20px;">
+        <p class="mono" style="font-size: 0.6rem; opacity: 0.3;">&copy; 2026 BARIATRIC CHANNEL • TECNOLOGIA E CIÊNCIA
+        </p>
     </footer>
 
     <div id="google_translate_element" style="display:none;"></div>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googletranslateElementInit"></script>
 
     <script>
         function googletranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+            new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false }, 'google_translate_element');
         }
         function changeLang(lang) {
             let select = document.querySelector('select.goog-te-combo');
@@ -416,7 +704,7 @@
                         const speaker = allSpeakers.find(s => normalize(s.nome).includes(normSearch));
                         if (speaker && speaker.foto) foundUrl = speaker.foto;
                     }
-                    
+
                     if (foundUrl) {
                         const imgs = card.querySelectorAll('img');
                         imgs.forEach(img => {
@@ -430,6 +718,8 @@
         }
         window.addEventListener('DOMContentLoaded', loadSpeakerPhotos);
     </script>
-    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b"
+        type="text/javascript"></script>
 </body>
+
 </html>
