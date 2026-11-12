@@ -74,6 +74,37 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--deep-blue); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition-smooth); }
         .nav-links a:hover { color: var(--vitality-red); }
+        .nav-amazon-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
+            border: 1px solid rgba(255, 183, 3, 0.5);
+            color: #ffb703 !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            transition: var(--transition-smooth);
+        }
+        .nav-amazon-card:hover {
+            transform: translateY(-2px);
+            border-color: #ffb703;
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            color: #ffffff !important;
+        }
+        .nav-amazon-dot {
+            width: 7px;
+            height: 7px;
+            background: #ffb703;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffb703;
+            display: inline-block;
+            flex-shrink: 0;
+        }
 
         .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
         .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
@@ -126,6 +157,7 @@
         </a>
         <div class="nav-links">
             <a href="home.html">VOLTAR PARA INÍCIO</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
             <a href="bcflix.html">BC FLIX</a>
             <div class="lang-switcher">
                 <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
@@ -188,9 +220,9 @@
                 <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Vice-Presidente • Cirurgião - PhD</p>
             </div>
             <div class="card">
-                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px; font-weight: 700;">GOIÂNIA / GO</p>
-                <h3>DR. PAULO REIS</h3>
-                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Diretor Executivo • Cirurgião</p>
+                <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px; font-weight: 700;">FRANÇA</p>
+                <h3>DR. PATRICK NOEL</h3>
+                <p class="mono" style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">International Director • Cirurgião - MD</p>
             </div>
         </div>
     </section>

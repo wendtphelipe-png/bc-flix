@@ -87,6 +87,40 @@
             color: var(--vitality-red);
         }
 
+        .nav-amazon-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
+            border: 1px solid rgba(255, 183, 3, 0.5);
+            color: #ffb703 !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-amazon-card:hover {
+            transform: translateY(-2px);
+            border-color: #ffb703;
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            color: #ffffff !important;
+        }
+
+        .nav-amazon-dot {
+            width: 7px;
+            height: 7px;
+            background: #ffb703;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffb703;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
         /* Hero Detail */
         .event-hero {
             padding: 160px 5% 60px;
@@ -274,6 +308,7 @@
         <div class="nav-links">
             <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
             <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
             <a href="../bcflix.html" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
         </div>
     </nav>

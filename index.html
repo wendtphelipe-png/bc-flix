@@ -133,6 +133,40 @@
             border-radius: 4px;
         }
 
+        .nav-amazon-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
+            border: 1px solid rgba(255, 183, 3, 0.5);
+            color: #ffb703 !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-amazon-card:hover {
+            transform: translateY(-2px);
+            border-color: #ffb703;
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            color: #ffffff !important;
+        }
+
+        .nav-amazon-dot {
+            width: 7px;
+            height: 7px;
+            background: #ffb703;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffb703;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
         .lang-switcher button {
             background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s;
         }
@@ -648,6 +682,7 @@
         </a>
         <div class="nav-links">
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
             <a href="https://bcflix.com.br/" class="nav-link-highlight">BC FLIX</a>
             <div class="lang-switcher" style="display:flex; gap:5px; margin-left: 10px;">
                 <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
@@ -667,7 +702,7 @@
                 <p class="mono" style="color: #F87171; margin-bottom: 20px; font-weight: 800; letter-spacing: 2px;">07 DE NOVEMBRO • A PARTIR DAS 08H00 (BRT)</p>
                 <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 25px; line-height: 1.1; font-weight: 800;">LIVE SURGERY<br><span style="color: #EF4444;">5 CIRURGIAS AO VIVO</span></h2>
                 <p style="color: rgba(255,255,255,0.9); font-size: 1.15rem; margin-bottom: 30px; line-height: 1.6; max-width: 800px;">
-                    Cirurgias metabólicas e bariátricas transmitidas em tempo real com diferentes abordagens e estratégias cirúrgicas conduzidas pelo <strong>Dr. Victor Dib</strong>, <strong>Dr. Carlos Madalosso</strong> e <strong>Dr. Paulo Reis</strong>.
+                    Cirurgias metabólicas e bariátricas transmitidas em tempo real com diferentes abordagens e estratégias cirúrgicas conduzidas pelo <strong>Dr. Victor Dib</strong>, <strong>Dr. Carlos Madalosso</strong> e <strong>Dr. Patrick Noel</strong>.
                 </p>
                 <ul style="list-style: none; color: #FFFFFF; font-size: 1rem; margin-bottom: 40px; display: grid; gap: 12px; text-align: left;">
                     <li style="display: flex; align-items: center; gap: 12px;">
@@ -798,19 +833,19 @@
                 </div>
             </div>
 
-            <!-- Dr. Paulo Reis -->
+            <!-- Dr. Patrick Noel -->
             <div class="surgeon-card" data-reveal style="transition-delay: 0.2s;">
                 <div class="surgeon-card-content">
                     <div class="surgeon-img-container" style="margin-bottom: 30px;">
                         <div class="surgeon-img-frame"></div>
-                        <img src="assets/paulo_reis_v2.jpg" alt="Dr. Paulo Reis" style="object-position: 50% 20%;">
+                        <img src="assets/patrick_noel.jpg" alt="Dr. Patrick Noel" style="object-position: 50% 20%;">
                     </div>
                     <div style="text-align: center;">
-                        <h3 style="margin-bottom: 5px;">DR. PAULO REIS</h3>
-                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">Diretor Executivo</p>
-                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião</p>
+                        <h3 style="margin-bottom: 5px;">DR. PATRICK NOEL</h3>
+                        <p class="mono" style="color: var(--vitality-red); font-weight: 800; margin-bottom: 2px;">International Director</p>
+                        <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px;">Cirurgião - MD</p>
                     </div>
-                    <div class="surgeon-info mono" style="text-align: center;">GOIÂNIA / GO</div>
+                    <div class="surgeon-info mono" style="text-align: center;">FRANÇA</div>
                 </div>
             </div>
         </div>

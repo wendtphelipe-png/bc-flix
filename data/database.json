@@ -383,11 +383,11 @@
       "foto": "/assets/madalosso.png"
     },
     {
-      "id": "paulo-reis",
-      "nome": "Dr. Paulo Reis",
-      "especialidade": "Diretor Geral BCLS",
-      "mini_curriculo": "Diretor Geral do BC Live Surgery (Goiás). Referência no ensino de técnicas avançadas e robóticas.",
-      "foto": "https://api.dicebear.com/7.x/avataaars/svg?seed=pauloreis"
+      "id": "patrick-noel",
+      "nome": "Dr. Patrick Noel",
+      "especialidade": "International Director",
+      "mini_curriculo": "International Director do Bariatric Channel. Cirurgião bariátrico de referência internacional.",
+      "foto": "/assets/patrick_noel.jpg"
     },
     {
       "id": "victor-dib",

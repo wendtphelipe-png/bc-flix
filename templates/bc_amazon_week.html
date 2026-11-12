@@ -211,6 +211,37 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--medical-white); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition-smooth); }
         .nav-links a:hover { color: var(--amazon-gold); }
+        .nav-amazon-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
+            border: 1px solid rgba(255, 183, 3, 0.5);
+            color: #ffb703 !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            transition: var(--transition-smooth);
+        }
+        .nav-amazon-card:hover {
+            transform: translateY(-2px);
+            border-color: #ffb703;
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            color: #ffffff !important;
+        }
+        .nav-amazon-dot {
+            width: 7px;
+            height: 7px;
+            background: #ffb703;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffb703;
+            display: inline-block;
+            flex-shrink: 0;
+        }
         
         .lang-switcher button { background: transparent; border: none; cursor: pointer; padding: 5px; opacity: 0.7; transition: 0.3s; }
         .lang-switcher button:hover { opacity: 1; transform: scale(1.1); }
@@ -317,6 +348,7 @@
         <div class="nav-links">
             <a href="home.html#procedimentos">PRÓXIMOS EVENTOS</a>
             <a href="professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
             <a href="bcflix.html" style="color: var(--amazon-gold); border: 1px solid var(--amazon-gold); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
             <div class="lang-switcher" style="display:flex; gap:5px; margin-left:10px;">
                 <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
@@ -589,7 +621,7 @@
             const allSpeakers = {% if palestrantes %}{{ palestrantes | tojson | safe }}{% else %}[]{% endif %};
 
             const groups = {
-                diretoria: ["Victor Dib", "Carlos Madalosso", "Paulo Reis", "Patrick Noel"],
+                diretoria: ["Victor Dib", "Carlos Madalosso", "Patrick Noel"],
                 honorary: ["Carlos Domene", "ANTONIO TORRES"],
                 team: ["RUI RIBEIRO", "Elinton Chaim", "Jorge Bravo", "Amador Garcia", "EDUARDO GRECCO", "Eren Taskin", "Manoel Galvão"],
                 members1: ["Ana Carolina Martins", "ANDRÉ WEISS", "Antelmo Sasso", "Carlos Dillemburg", "CARLOS TANIZAWA", "Diogo Kfouri", "Felix Santos", "GIORGIO BARETTA", "GUILHERME GOYANO", "Hiroji Okano"],
@@ -599,7 +631,6 @@
             const rolesOverride = {
                 "Victor Dib": "FOUNDER/PRESIDENT",
                 "CARLOS MADALOSSO": "FOUNDER/VICE PRESIDENT",
-                "PAULO REIS": "EXECUTIVE DIRECTOR",
                 "Patrick Noel": "INTERNATIONAL DIRECTOR",
                 "Carlos Domene": "Honorary President",
                 "ANTONIO TORRES": "Honorary President"

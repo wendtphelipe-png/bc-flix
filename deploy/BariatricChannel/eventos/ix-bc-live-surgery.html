@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IX BC Live Surgery | Inóstituto Bariátrico Avançado</title>
+    <title>IX BC Live Surgery | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
         }
 
         .mono {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains+Mono', monospace;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
@@ -64,25 +64,15 @@
             border-bottom: 1px solid rgba(10, 25, 47, 0.05);
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--deep-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .logo-box {
-            width: 24px;
-            height: 24px;
-            background: var(--vitality-red);
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -95,6 +85,40 @@
 
         .nav-links a:hover {
             color: var(--vitality-red);
+        }
+
+        .nav-amazon-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
+            border: 1px solid rgba(255, 183, 3, 0.5);
+            color: #ffb703 !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-amazon-card:hover {
+            transform: translateY(-2px);
+            border-color: #ffb703;
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            color: #ffffff !important;
+        }
+
+        .nav-amazon-dot {
+            width: 7px;
+            height: 7px;
+            background: #ffb703;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffb703;
+            display: inline-block;
+            flex-shrink: 0;
         }
 
         /* Hero Detail */
@@ -256,7 +280,7 @@
             box-shadow: 0 15px 30px rgba(255, 59, 48, 0.3);
         }
 
-        /* Animationós */
+        /* Animations */
         [data-reveal] {
             opacity: 0;
             transform: translateY(30px);
@@ -278,15 +302,14 @@
 <body>
 
     <nav>
-        <a href="../index.html" class="logo">
-            <div class="logo-box"></div>
-            INSTITUTO BARIÁTRICO
+        <a href="../home.html" class="logo">
+            <img src="../assets/logo_final.png" alt="Bariatric Channel Logo">
         </a>
         <div class="nav-links">
-            <a href="../professores/index.html">CORPO DOCENTE</a>
-            <a href="../index.html#tecnologia">TECNOLOGIA</a>
-            <a href="../index.html#unidades">UNIDADES</a>
-            <a href="#" style="color: var(--vitality-red);">AGENDAR CONSULTA</a>
+            <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
+            <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
+            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
+            <a href="../bcflix.html" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
         </div>
     </nav>
 
@@ -313,11 +336,11 @@
     </header>
 
     <main class="content-section">
-        <div class="main-image" style="background-image: url('https://images.unósplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200');" data-reveal></div>
+        <div class="main-image" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200');" data-reveal></div>
 
         <section class="about" data-reveal>
             <h2 class="section-title">Sobre o Evento</h2>
-            <p style="font-size: 1.1rem; max-width: 800px; margin-bottom: 60px;">O maior evento de cirurgia bariátrica e metabólica ação vivo do Sul do Brasil. Uma imersão completa combinando teoria e prática em formato híbrido. Acompanhe cirurgias robóticas e laparoscópicas reais com explicações e aprofunde seus conhecimentos.</p>
+            <p style="font-size: 1.1rem; max-width: 800px; margin-bottom: 60px;"></p>
         </section>
 
         
@@ -481,7 +504,7 @@
                 <div class="schedule-item">
                     <span class="mono" style="color: var(--vitality-red); font-weight: 800;">Dia 27 08:00</span>
                     <div>
-                        <strong style="display: block; margin-bottom: 5px;">Cirurgias ação Vivo (Robótica e Laparoscopia)</strong>
+                        <strong style="display: block; margin-bottom: 5px;">Cirurgias ao Vivo (Robótica e Laparoscopia)</strong>
                         <span class="mono" style="opacity: 0.6;">Victor Dib, Carlos Madalosso, Paulo Reis e Convidados</span>
                     </div>
                 </div>
@@ -507,38 +530,9 @@
         
 
         
-        <section class="locationós" data-reveal>
-            <h2 class="section-title">Localização</h2>
-            <div class="location-grid">
-                
-                <div class="location-card">
-                    <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Dia 1 - 27/02</p>
-                    <h3>Hospital de Clínicas de Passo Fundo</h3>
-                    <p style="margin: 10px 0;">Rua Uruguai, 590, Centro - Passo Fundo, RS</p>
-                    <p class="mono">8h às 18h</p>
-                    
-                    <iframe src="https://mapós.google.com/mapós?q=Rua%20Uruguai%2C%20590%2C%20Centro%20-%20Passo%20Fundo%2C%20RS&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-                    
-                    <a href="https://www.google.com/mapós/place/R.+Uruguai,+590+-+Centro,+Passo+Fundo+-+RS,+99010-110/@-28.2563142,-52.4083686,17z/" target="_blank" class="mono" style="color: var(--vitality-red); text-decoration: none; font-weight: 800;">ABRIR NO MAPS &rarr;</a>
-                </div>
-                
-                <div class="location-card">
-                    <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Dia 2 - 28/02</p>
-                    <h3>Auditório Carlos Madalosso</h3>
-                    <p style="margin: 10px 0;">Rua Uruguai 1953, 9º andar - Passo Fundo, RS</p>
-                    <p class="mono">8h às 12h30</p>
-                    
-                    <iframe src="https://mapós.google.com/mapós?q=Rua%20Uruguai%201953%2C%209%C2%BA%20andar%20-%20Passo%20Fundo%2C%20RS&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-                    
-                    <a href="https://www.google.com/mapós/place/R.+Uruguai,+1953+-+9%C2%BA+andar+-+Centro,+Passo+Fundo+-+RS,+99010-111/@-28.2619889,-52.4185818,17z/" target="_blank" class="mono" style="color: var(--vitality-red); text-decoration: none; font-weight: 800;">ABRIR NO MAPS &rarr;</a>
-                </div>
-                
-            </div>
-        </section>
-        
 
         <div class="fixed-cta" data-reveal>
-            <p class="mono" style="margin-bottom: 15px;">Inóscrições Abertas</p>
+            <p class="mono" style="margin-bottom: 15px;">Inscrições Abertas</p>
             <h2 style="margin-bottom: 25px;">GARANTA SUA PARTICIPAÇÃO</h2>
             <a href="#" class="btn-primary">QUERO ME INSCREVER AGORA</a>
         </div>
@@ -546,12 +540,11 @@
 
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
-            <a href="../index.html" class="logo">
-                <div class="logo-box"></div>
-                INSTITUTO BARIÁTRICO
+            <a href="../home.html" class="logo">
+                <img src="../assets/logo_final.png" alt="Logo" style="height: 30px;">
             </a>
             <div class="mono" style="font-size: 0.7rem; opacity: 0.5;">
-                &copy; 2026 INSTITUTO BARIÁTRICO AVANÇADO. TODOS OS DIREITOS RESERVADOS.
+                &copy; 2026 BARIATRIC CHANNEL. TODOS OS DIREITOS RESERVADOS.
             </div>
         </div>
     </footer>
