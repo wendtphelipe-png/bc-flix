@@ -34,3 +34,14 @@
     # Ensure mp4 files are served with correct MIME type
     AddType video/mp4 .mp4
 </IfModule>
+
+# Paginas HTML: o navegador sempre confere se ha versao nova (agenda muda com frequencia).
+# Imagens continuam em cache por 7 dias.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    <FilesMatch "\.(png|jpe?g|webp|avif|gif|svg|mp4)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>

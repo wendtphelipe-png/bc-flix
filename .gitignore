@@ -13,3 +13,7 @@ __pycache__/
 *.mp4
 *.stl
 *.xlsx
+
+# Credenciais locais (Brevo etc.)
+.env
+.env.*
