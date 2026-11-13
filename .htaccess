@@ -2,6 +2,19 @@
     RewriteEngine On
     RewriteBase /
 
+    # --- Arquivos internos do projeto: nunca servir (404) ---
+    # Pastas de trabalho que o deploy envia junto
+    RewriteRule ^(scripts|deploy|templates|scratch|\.github|\.git|Design.sem.nome|Professores.faltantes)(/|$) - [R=404,L,NC]
+    # Dados: so o database.json e publico (usado pelas paginas de webinar)
+    RewriteCond %{REQUEST_URI} !^/data/database\.json$
+    RewriteRule ^data/ - [R=404,L]
+    # Documentos, planilhas, scripts e dumps (exceto robots.txt e data/database.json)
+    RewriteCond %{REQUEST_URI} !^/robots\.txt$
+    RewriteCond %{REQUEST_URI} !^/data/database\.json$
+    RewriteRule \.(md|json|txt|py|xlsx|stl|yml|yaml|gitignore)$ - [R=404,L,NC]
+    # Paginas de teste, backup e rascunhos de e-mail
+    RewriteRule ^(teste_antigravity|live_backup|email-1-lembrete|email-2-ao-vivo)(\.html)?$ - [R=404,L,NC]
+
     # Redirect root to home.html
     RewriteRule ^$ home.html [L]
 

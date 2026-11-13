@@ -724,8 +724,8 @@
             };
 
             try {
-                const responóse = await fetch('data/database.json');
-                const data = await responóse.json();
+                const response = await fetch('data/database.json');
+                const data = await response.json();
                 const allSpeakers = data.palestrantes || [];
 
                 function normalize(str) {
