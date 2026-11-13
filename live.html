@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bariatric Channel | Live Surgery - 5 Cirurgias, Diferentes Abordagens</title>
+    <title>Bariatric Channel | Live Surgery - 12 de Dezembro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -195,6 +195,19 @@
             box-shadow: 0 0 10px #ffb703;
             display: inline-block;
             flex-shrink: 0;
+        }
+
+        /* Card da Amazon Week no fluxo normal do menu (centralizado ele encostava nos links) */
+        @media screen {
+            .nav-amazon-card {
+                position: static;
+                transform: none;
+                width: auto;
+                min-width: 0;
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .nav-amazon-card:hover { transform: translateY(-2px); }
         }
 
         @media (max-width: 900px) {
@@ -750,17 +763,14 @@
         <div class="hero-content" data-reveal>
             <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
                 <span class="mono"
-                    style="background: var(--vitality-red); color: white; padding: 4px 12px; border-radius: 4px; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.05em;">ON-LINE
-                    | 07.11</span>
-                <span class="mono" style="color: var(--vitality-red); font-weight: 800; letter-spacing: 0.05em;">A
-                    PARTIR DAS 08H00 BRT</span>
+                    style="background: var(--vitality-red); color: white; padding: 4px 12px; border-radius: 4px; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.05em;">ON-LINE | 12.12</span>
+                <span class="mono" style="color: var(--vitality-red); font-weight: 800; letter-spacing: 0.05em;">HORÁRIOS EM BREVE</span>
             </div>
             <h1 style="line-height: 0.95;"><span translate="no">LIVE SURGERY</span><br><span
-                    style="color: var(--vitality-red); font-size: 0.65em; display: block; margin-top: 8px;">5 CIRURGIAS
-                    AO VIVO</span></h1>
+                    style="color: var(--vitality-red); font-size: 0.65em; display: block; margin-top: 8px;">CIRURGIAS AO VIVO</span></h1>
             <p
                 style="font-weight: 800; color: var(--deep-blue); font-size: 1.15rem; line-height: 1.35; margin-bottom: 12px; letter-spacing: -0.01em; text-transform: uppercase;">
-                5 CIRURGIAS, DIFERENTES ABORDAGENS, CONHECIMENTO NA PRÁTICA.
+                DIFERENTES ABORDAGENS, CONHECIMENTO NA PRÁTICA.
             </p>
             <p style="margin-bottom: 30px;">
                 Uma experiência de atualização técnica e aprofundamento científico em cirurgia bariátrica e metabólica.
@@ -777,12 +787,12 @@
                 style="color: var(--vitality-red); font-weight: 800; display: flex; align-items: center; gap: 8px;">
                 <span
                     style="display: inline-block; width: 8px; height: 8px; background: var(--vitality-red); border-radius: 50%;"></span>
-                INSCRIÇÕES ABERTAS!
+                INSCRIÇÕES EM BREVE
             </p>
             <h3 style="margin-top: 10px;">LIVE SURGERY</h3>
             <p class="mono"
-                style="font-size: 0.75rem; color: var(--dark-slate); opacity: 0.8; margin-top: 4px; margin-bottom: 10px;">
-                Garanta sua participação gratuita</p>
+                style="font-size: 0.75rem; color: var(--dark-slate); opacity: 0.8; margin-top: 4px; margin-bottom: 10px;">Programação, cirurgiões e horários serão divulgados aqui.</p>
+            <p style="margin-top: 20px; line-height: 1.6;">A próxima <strong>Live Surgery</strong> acontece em <strong>12 de dezembro</strong>. As inscrições abrem assim que a programação for confirmada.</p>
             <div class="row-success" style="display: none; margin-top: 25px;">
                 <div class="mono"
                     style="font-weight: 800; color: var(--vitality-red); font-size: 0.85rem; text-align: center; border: 1px solid var(--vitality-red); padding: 20px; border-radius: 6px; background: rgba(220, 38, 38, 0.05);">
@@ -792,7 +802,7 @@
             </div>
             <form id="sib-form" class="row-form bmi-grid"
                 action="https://53e6307d.sibforms.com/serve/MUIFAAXrBtjUXAKdEx9j03y0vheqegzovY73Lx33MnUUJa2-AGXY25AhNQAEYbJE_So4mh4HqYbOTH3GaIqrrKQe53Juv7RnO9ymTPGTbk1YYLOoklKeRGui60tzT0-oatw6FjkbVR1m3MD_I1Rf5vvkmDvs_VfQSaWIBR1NKFFp9mI99307DC5LvX5Uo_p7ChIx5lum4jnIBHWsMw=="
-                method="post" data-type="subscription" style="margin: 0;">
+                method="post" data-type="subscription" style="margin: 0; display: none;" hidden data-inscricoes="fechadas">
                 <div id="sib-error-msg" class="mono"
                     style="display: none; color: #EF4444; background: rgba(239, 68, 68, 0.08); border: 1px solid #EF4444; padding: 12px; border-radius: 4px; font-size: 0.8rem; text-align: center;">
                 </div>
@@ -815,7 +825,7 @@
                 </div>
                 <input type="text" name="email_address_check" value="" class="input--hidden" style="display: none;">
                 <input type="hidden" name="locale" value="pt">
-                <button type="submit" class="btn-primary primary"
+                <button type="submit" disabled class="btn-primary primary"
                     style="padding: 15px; margin-top: 10px; width: 100%; border: none; cursor: pointer;">SOLICITAR
                     INSCRIÇÃO</button>
             </form>
@@ -826,9 +836,8 @@
         <div class="masterclass-content" data-reveal style="transition-delay: 0.1s;">
             <p class="mono"
                 style="color: var(--vitality-red); text-align: center; font-weight: 800; letter-spacing: 0.15em;">
-                ON-LINE | 07.11</p>
-            <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 25px; line-height: 1.15;">5 CIRURGIAS,
-                DIFERENTES ABORDAGENS, CONHECIMENTO NA PRÁTICA.</h2>
+                ON-LINE | 12.12</p>
+            <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 25px; line-height: 1.15;">CIRURGIAS AO VIVO, DIFERENTES ABORDAGENS, CONHECIMENTO NA PRÁTICA.</h2>
             <p style="margin-bottom: 30px; line-height: 1.8; text-align: center; font-size: 1.15rem; color: #E2E8F0;">
                 Uma experiência de atualização técnica e aprofundamento científico em cirurgia bariátrica e metabólica.
                 Transmitido ao vivo pelo Bariatric Channel, unindo técnica de vanguarda e debates clínicos em tempo real
@@ -841,50 +850,8 @@
                 <p class="mono"
                     style="color: var(--vitality-red); font-size: 0.9rem; font-weight: 800; margin-bottom: 25px; text-align: center; letter-spacing: 0.15em;">
                     PROGRAMAÇÃO:</p>
-                <div style="display: flex; flex-direction: column; gap: 14px;">
-                    <div
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--vitality-red); border-radius: 6px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <span class="mono"
-                                style="font-size: 1.3rem; font-weight: 800; color: var(--vitality-red);">08h</span>
-                            <span style="color: rgba(255,255,255,0.3); font-size: 1.2rem;">▪</span>
-                            <span
-                                style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; letter-spacing: 0.02em;">1
-                                Cirurgia</span>
-                        </div>
-                        <span class="mono"
-                            style="font-size: 0.75rem; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px;">AO
-                            VIVO</span>
-                    </div>
-                    <div
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--vitality-red); border-radius: 6px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <span class="mono"
-                                style="font-size: 1.3rem; font-weight: 800; color: var(--vitality-red);">09h</span>
-                            <span style="color: rgba(255,255,255,0.3); font-size: 1.2rem;">▪</span>
-                            <span
-                                style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; letter-spacing: 0.02em;">2
-                                Cirurgia</span>
-                        </div>
-                        <span class="mono"
-                            style="font-size: 0.75rem; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px;">AO
-                            VIVO</span>
-                    </div>
-                    <div
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--vitality-red); border-radius: 6px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <span class="mono"
-                                style="font-size: 1.3rem; font-weight: 800; color: var(--vitality-red);">11h</span>
-                            <span style="color: rgba(255,255,255,0.3); font-size: 1.2rem;">▪</span>
-                            <span
-                                style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; letter-spacing: 0.02em;">2
-                                Cirurgia</span>
-                        </div>
-                        <span class="mono"
-                            style="font-size: 0.75rem; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px;">AO
-                            VIVO</span>
-                    </div>
-                </div>
+                <p style="text-align: center; color: #E2E8F0; font-size: 1.05rem; line-height: 1.6;">Programação em breve.<br><span class="mono" style="font-size: 0.8rem; color: #94A3B8;">Cirurgias e horários serão divulgados nesta página.</span></p>
+            </div>
             </div>
 
             <p class="mono"
@@ -894,8 +861,7 @@
                 <ul class="mono"
                     style="list-style: none; color: #FFFFFF !important; font-size: 0.95rem; text-align: left; display: inline-block; line-height: 1.8;">
                     <li style="margin-bottom: 12px; color: #FFFFFF !important;"><span
-                            style="color: var(--vitality-red); font-weight: 800; margin-right: 8px;">></span> 5
-                        Cirurgias Metabólicas e Bariátricas ao Vivo</li>
+                            style="color: var(--vitality-red); font-weight: 800; margin-right: 8px;">></span> Cirurgias Metabólicas e Bariátricas ao Vivo</li>
                     <li style="margin-bottom: 12px; color: #FFFFFF !important;"><span
                             style="color: var(--vitality-red); font-weight: 800; margin-right: 8px;">></span> Diferentes
                         Abordagens e Estratégias Cirúrgicas</li>
@@ -906,13 +872,11 @@
                             style="color: var(--vitality-red); font-weight: 800; margin-right: 8px;">></span>
                         Transmissão Online de Alta Definição</li>
                     <li style="margin-bottom: 12px; color: #FFFFFF !important;"><span
-                            style="color: var(--vitality-red); font-weight: 800; margin-right: 8px;">></span> Evento
-                        100% Online e 100% Gratuito</li>
+                            style="color: var(--vitality-red); font-weight: 800; margin-right: 8px;">></span> Evento 100% Online</li>
                 </ul>
             </div>
             <div style="text-align: center;">
-                <a href="#sib-form-container" class="btn-primary" style="background: var(--vitality-red);">INSCRIÇÕES
-                    ABERTAS • GARANTA SUA PARTICIPAÇÃO</a>
+                <span class="btn-primary" style="background: var(--deep-blue); cursor: default;">INSCRIÇÕES EM BREVE</span>
             </div>
         </div>
     </section>

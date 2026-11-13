@@ -167,6 +167,19 @@
             flex-shrink: 0;
         }
 
+        /* Card da Amazon Week no fluxo normal do menu (centralizado ele encostava nos links) */
+        @media screen {
+            .nav-amazon-card {
+                position: static;
+                transform: none;
+                width: auto;
+                min-width: 0;
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .nav-amazon-card:hover { transform: translateY(-2px); }
+        }
+
         @media (max-width: 900px) {
             .nav-links {
                 display: none;

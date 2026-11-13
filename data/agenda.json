@@ -8,6 +8,24 @@
   ],
   "lives": [
     {
+      "id": "live-surgery-2026-12-12",
+      "ativo": true,
+      "data": "2026-12-12",
+      "data_texto": "12 DE DEZEMBRO • HORÁRIOS EM BREVE",
+      "titulo": "LIVE SURGERY",
+      "titulo_destaque": "CIRURGIAS AO VIVO",
+      "descricao_html": "Cirurgias metabólicas e bariátricas transmitidas em tempo real, com diferentes abordagens e estratégias cirúrgicas. <strong>Programação e cirurgiões serão divulgados em breve.</strong>",
+      "itens": [
+        "Cirurgias Metabólicas e Bariátricas ao Vivo",
+        "Discussão técnica e comentários em tempo real",
+        "Evento 100% online"
+      ],
+      "box_rotulo": "INSCRIÇÕES EM BREVE",
+      "box_texto": "As inscrições abrem assim que a programação for confirmada.",
+      "cta_texto": "SAIBA MAIS",
+      "cta_link": "live.html"
+    },
+    {
       "id": "live-surgery-2026-11-07",
       "ativo": true,
       "data": "2026-11-07",

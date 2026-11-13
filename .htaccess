@@ -18,7 +18,13 @@
     RewriteCond %{REQUEST_URI} !^/data/database\.json$
     RewriteRule \.(md|json|txt|py|xlsx|stl|yml|yaml|gitignore)$ - [F,NC]
     # Paginas de teste, backup e rascunhos de e-mail
-    RewriteRule ^(teste_antigravity|live_backup|email-1-lembrete|email-2-ao-vivo)(\.html)?$ - [F,NC]
+    RewriteRule ^(teste_antigravity|live_backup|email-1-lembrete|email-2-ao-vivo|proposta)(\.html)?$ - [F,NC]
+
+    # Paginas desativadas: links antigos vao para o destino certo
+    # BC Amazon Week tem site oficial proprio
+    RewriteRule ^bc_amazon_week(\.html)?$ https://www.bcamazonweek.com.br/ [R=301,L,NC]
+    # Curso Ileal (pre-congresso) foi cancelado
+    RewriteRule ^(ileal_surgery|obrigado_ileal)(\.html)?$ / [R=301,L,NC]
 
     # Redirect root to home.html
     RewriteRule ^$ home.html [L]
