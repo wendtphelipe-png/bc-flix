@@ -176,6 +176,19 @@
             flex-shrink: 0;
         }
 
+        /* Telas médias: o card centralizado encostava nos links; volta ao fluxo normal */
+        @media (max-width: 1280px) {
+            .nav-amazon-card {
+                position: static;
+                transform: none;
+                width: auto;
+                min-width: 0;
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .nav-amazon-card:hover { transform: translateY(-2px); }
+        }
+
         @media (max-width: 900px) {
             .nav-amazon-card {
                 position: static;
@@ -673,6 +686,8 @@
         }
 
         /* Responsive */
+        body.sem-live section.amazon-hero-section { margin-top: 120px !important; }
+
         @media (max-width: 1024px) {
             section.hero, .tech-grid { grid-template-columns: 1fr; gap: 60px; }
             .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(300px, auto); }
@@ -711,7 +726,7 @@
         }
     </style>
 </head>
-<body>
+<body{% if not live %} class="sem-live"{% endif %}>
     <nav>
         <a href="home.html" class="logo">
             <img src="assets/logo_final.png" alt="Bariatric Channel Logo">
@@ -728,38 +743,32 @@
         </div>
     </nav>
 
-    <!-- BANNER: LIVE SURGERY (EM DESTAQUE) -->
+    <!-- BANNER: PRÓXIMA LIVE (vem de data/agenda.json; some sozinho quando a data passa) -->
+    {% if live %}
     <section class="masterclass-banner-section" style="background: linear-gradient(135deg, #0b1120 0%, #1a080d 100%); padding: 80px 5%; position: relative; overflow: hidden; margin: 120px 5% 40px; border-radius: 16px; box-shadow: 0 20px 50px rgba(220, 38, 38, 0.25); border: 1px solid rgba(220, 38, 38, 0.4);">
         <!-- Subtle Red Glow -->
         <div style="position: absolute; top: -50%; right: -10px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(220, 38, 38, 0.22) 0%, transparent 70%); pointer-events: none;"></div>
         
         <div data-reveal style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 60px;">
             <div style="flex: 1.2; min-width: 320px;">
-                <p class="mono" style="color: #F87171; margin-bottom: 20px; font-weight: 800; letter-spacing: 2px;">07 DE NOVEMBRO • A PARTIR DAS 08H00 (BRT)</p>
-                <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 25px; line-height: 1.1; font-weight: 800;">LIVE SURGERY<br><span style="color: #EF4444;">5 CIRURGIAS AO VIVO</span></h2>
+                <p class="mono" style="color: #F87171; margin-bottom: 20px; font-weight: 800; letter-spacing: 2px;">{{ live.data_texto }}</p>
+                <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 25px; line-height: 1.1; font-weight: 800;">{{ live.titulo }}<br><span style="color: #EF4444;">{{ live.titulo_destaque }}</span></h2>
                 <p style="color: rgba(255,255,255,0.9); font-size: 1.15rem; margin-bottom: 30px; line-height: 1.6; max-width: 800px;">
-                    Cirurgias metabólicas e bariátricas transmitidas em tempo real com diferentes abordagens e estratégias cirúrgicas conduzidas pelo <strong>Dr. Victor Dib</strong>, <strong>Dr. Carlos Madalosso</strong> e <strong>Dr. Patrick Noel</strong>.
+                    {{ live.descricao_html }}
                 </p>
                 <ul style="list-style: none; color: #FFFFFF; font-size: 1rem; margin-bottom: 40px; display: grid; gap: 12px; text-align: left;">
+                    {% for item in live.itens %}
                     <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: #EF4444; font-weight: bold;">➢</span> 5 Cirurgias Metabólicas e Bariátricas ao Vivo
+                        <span style="color: #EF4444; font-weight: bold;">➢</span> {{ item }}
                     </li>
-                    <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: #EF4444; font-weight: bold;">➢</span> 08h00: 1 Cirurgia | 09h00: 2 Cirurgias | 11h00: 2 Cirurgias
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: #EF4444; font-weight: bold;">➢</span> Discussão técnica e comentários em tempo real
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 12px;">
-                        <span style="color: #EF4444; font-weight: bold;">➢</span> Evento 100% online e 100% gratuito
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             
             <div style="flex: 0.8; min-width: 300px; text-align: center; background: rgba(255,255,255,0.03); padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(220, 38, 38, 0.35); backdrop-filter: blur(10px);">
-                <p class="mono" style="color: #F87171; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">VAGAS GRATUITAS</p>
-                <p style="color: white; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.85;">Garanta sua participação na transmissão ao vivo da Live Surgery.</p>
-                <a href="live.html" class="btn-primary-large live-banner-btn" style="background: linear-gradient(135deg, #DC2626, #991B1B); color: white; padding: 22px 45px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1px;">QUERO PARTICIPAR</a>
+                <p class="mono" style="color: #F87171; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">{{ live.box_rotulo }}</p>
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.85;">{{ live.box_texto }}</p>
+                <a href="{{ live.cta_link }}" class="btn-primary-large live-banner-btn" style="background: linear-gradient(135deg, #DC2626, #991B1B); color: white; padding: 22px 45px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1px;">{{ live.cta_texto }}</a>
             </div>
         </div>
         <style>
@@ -771,6 +780,7 @@
             }
         </style>
     </section>
+    {% endif %}
 
     <!-- BANNER: BC AMAZON WEEK (CONGRESSO) -->
     <section class="amazon-hero-section">

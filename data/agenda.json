@@ -1,0 +1,30 @@
+{
+  "_como_usar": [
+    "Agenda das lives/eventos que aparecem em destaque na home.",
+    "A home mostra a PRÓXIMA live com 'ativo': true e 'data' (AAAA-MM-DD) de hoje em diante.",
+    "No dia seguinte à 'data' o banner sai do ar sozinho (o site é reconstruído todo dia às 06h).",
+    "Sem nenhuma live futura, a home abre direto no bloco da BC Amazon Week.",
+    "Campos com _html aceitam <strong>, <br> etc."
+  ],
+  "lives": [
+    {
+      "id": "live-surgery-2026-11-07",
+      "ativo": true,
+      "data": "2026-11-07",
+      "data_texto": "07 DE NOVEMBRO • A PARTIR DAS 08H00 (BRT)",
+      "titulo": "LIVE SURGERY",
+      "titulo_destaque": "5 CIRURGIAS AO VIVO",
+      "descricao_html": "Cirurgias metabólicas e bariátricas transmitidas em tempo real com diferentes abordagens e estratégias cirúrgicas conduzidas pelo <strong>Dr. Victor Dib</strong>, <strong>Dr. Carlos Madalosso</strong> e <strong>Dr. Patrick Noel</strong>.",
+      "itens": [
+        "5 Cirurgias Metabólicas e Bariátricas ao Vivo",
+        "08h00: 1 Cirurgia | 09h00: 2 Cirurgias | 11h00: 2 Cirurgias",
+        "Discussão técnica e comentários em tempo real",
+        "Evento 100% online e 100% gratuito"
+      ],
+      "box_rotulo": "VAGAS GRATUITAS",
+      "box_texto": "Garanta sua participação na transmissão ao vivo da Live Surgery.",
+      "cta_texto": "QUERO PARTICIPAR",
+      "cta_link": "live.html"
+    }
+  ]
+}

@@ -133,8 +133,24 @@ index_template = env.get_template('home.html')
 # Pegando o evento BCLS para exibir em destaque na home page
 evento_destaque = data.get('eventos', [{}])[0]
 
+# Próxima live da agenda (data/agenda.json). Some sozinha no dia seguinte à data.
+from datetime import datetime, timedelta, timezone
+hoje = (datetime.now(timezone.utc) - timedelta(hours=3)).date().isoformat()  # horário de Brasília
+agenda_path = os.path.join(BASE_DIR, 'data', 'agenda.json')
+agenda = {}
+if os.path.exists(agenda_path):
+    with open(agenda_path, 'r', encoding='utf-8') as f:
+        agenda = json.load(f)
+proximas_lives = sorted(
+    [l for l in agenda.get('lives', []) if l.get('ativo') and l.get('data', '') >= hoje],
+    key=lambda l: l['data']
+)
+live = proximas_lives[0] if proximas_lives else None
+print(f" -> Live em destaque: {live['id'] if live else 'nenhuma (home abre na Amazon Week)'}")
+
 output_index = index_template.render(
-    evento_destaque=evento_destaque
+    evento_destaque=evento_destaque,
+    live=live
 )
 
 with open(os.path.join(DEPLOY_DIR, 'home.html'), 'w', encoding='utf-8') as f:

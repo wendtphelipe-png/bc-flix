@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+  # Rebuild diario: banners de eventos com data vencida saem sozinhos do ar
+  schedule:
+    - cron: '0 9 * * *'   # 06h00 BRT
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -26,6 +34,10 @@ jobs:
         run: |
           python scripts/build_site.py
 
+      # Envia o site. Regras (a primeira que casar vale):
+      # - pastas de trabalho, scripts, modelos e arquivos soltos da raiz ficam de fora
+      # - de data/ so vai o database.json (usado pelas paginas de webinar)
+      # - imagens e videos de assets/ vao; imagens/videos soltos na raiz nao
       - name: 🚀 SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
@@ -35,4 +47,26 @@ jobs:
           port: 65002
           local_path: './*'
           remote_path: 'domains/bariatricchannel.com/public_html'
-          rsyncArgs: '--exclude=.git/ --exclude=.github/ --exclude=deploy/ --exclude=scripts/ --exclude=templates/ --exclude=data/ --exclude=README.md --exclude=package.json --exclude=vercel.json --exclude=build_site.py --exclude=deploy_trigger.txt --exclude=*.py --exclude=*.mp4 --exclude=*.jpg --exclude=*.png --exclude=*.xlsx --exclude=*.stl --exclude=*.webp'
+          rsyncArgs: >-
+            --exclude=.git/ --exclude=.github/
+            --exclude=deploy/ --exclude=scripts/ --exclude=templates/ --exclude=scratch/
+            --exclude=Design?sem?nome/ --exclude=Professores?faltantes/
+            --include=data/database.json --exclude=data/*
+            --include=/robots.txt
+            --exclude=/*.md --exclude=/*.json --exclude=/*.txt --exclude=/*.xlsx --exclude=/*.stl
+            --exclude=/*.jpg --exclude=/*.jpeg --exclude=/*.png --exclude=/*.webp --exclude=/*.avif --exclude=/*.mp4
+            --exclude=*.py --exclude=package.json --exclude=vercel.json
+            --exclude=onça.png
+            --exclude=/teste_antigravity.html --exclude=/live_backup.html --exclude=/email-*.html
+
+      # O passo acima nao envia arquivos que comecam com ponto; o .htaccess vai aqui
+      - name: 🔒 Enviar .htaccess
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 65002
+          sftp_only: true
+          local_path: './.htaccess'
+          remote_path: 'domains/bariatricchannel.com/public_html/.htaccess'
