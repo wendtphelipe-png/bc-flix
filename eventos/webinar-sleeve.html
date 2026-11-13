@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webinar: Dificuldades no Sleeve | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -34,7 +37,9 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.02em;
@@ -88,37 +93,71 @@
         }
 
         .nav-amazon-card {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25vw;
+            min-width: 240px;
+            max-width: 400px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px;
             background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
-            border: 1px solid rgba(255, 183, 3, 0.5);
+            border: 1.5px solid rgba(255, 183, 3, 0.7);
             color: #ffb703 !important;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
             font-weight: 800;
             text-decoration: none;
-            letter-spacing: 0.05em;
-            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            letter-spacing: 0.08em;
+            box-shadow: 0 6px 20px rgba(10, 47, 26, 0.35), 0 0 15px rgba(255, 183, 3, 0.15);
             transition: var(--transition-smooth);
+            z-index: 10;
+            white-space: nowrap;
         }
 
         .nav-amazon-card:hover {
-            transform: translateY(-2px);
+            transform: translateX(-50%) translateY(-2px);
             border-color: #ffb703;
-            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            box-shadow: 0 10px 25px rgba(255, 183, 3, 0.45);
             color: #ffffff !important;
         }
 
         .nav-amazon-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background: #ffb703;
             border-radius: 50%;
-            box-shadow: 0 0 8px #ffb703;
+            box-shadow: 0 0 10px #ffb703;
             display: inline-block;
             flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .nav-amazon-card {
+                position: static;
+                transform: none;
+                width: auto;
+                min-width: 0;
+                max-width: none;
+                padding: 5px 10px;
+                font-size: 0.6rem;
+                gap: 5px;
+                border-radius: 4px;
+                letter-spacing: 0.03em;
+                box-shadow: 0 2px 8px rgba(10, 47, 26, 0.25);
+            }
+
+            .nav-amazon-card:hover {
+                transform: translateY(-1px);
+            }
+
+            .nav-amazon-dot {
+                width: 5px;
+                height: 5px;
+            }
         }
 
         /* Hero Detail */
@@ -293,23 +332,35 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .schedule-item { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                display: none;
+            }
+
+            .schedule-item {
+                grid-template-columns: 1fr;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
         <a href="../home.html" class="logo">
             <img src="../assets/logo_final.png" alt="Bariatric Channel Logo">
         </a>
+        <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer"
+            class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
         <div class="nav-links">
             <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
             <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
-            <a href="../bcflix.html" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+            <a href="../bcflix.html"
+                style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC
+                FLIX</a>
         </div>
     </nav>
 
@@ -317,7 +368,7 @@
         <div class="event-header" data-reveal>
             <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Informações do Evento</p>
             <h1>Webinar: Dificuldades no Sleeve</h1>
-            
+
             <div class="meta-grid">
                 <div class="meta-item">
                     <span class="mono">Data do Evento</span>
@@ -336,20 +387,22 @@
     </header>
 
     <main class="content-section">
-        <div class="main-image" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200');" data-reveal></div>
+        <div class="main-image"
+            style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200');"
+            data-reveal></div>
 
         <section class="about" data-reveal>
             <h2 class="section-title">Sobre o Evento</h2>
             <p style="font-size: 1.1rem; max-width: 800px; margin-bottom: 60px;"></p>
         </section>
 
-        
 
-        
 
-        
 
-        
+
+
+
+
 
         <div class="fixed-cta" data-reveal>
             <p class="mono" style="margin-bottom: 15px;">Inscrições Abertas</p>
@@ -359,7 +412,8 @@
     </main>
 
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
             <a href="../home.html" class="logo">
                 <img src="../assets/logo_final.png" alt="Logo" style="height: 30px;">
             </a>
@@ -381,4 +435,5 @@
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     </script>
 </body>
+
 </html>

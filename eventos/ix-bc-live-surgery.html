@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IX BC Live Surgery | Bariatric Channel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --medical-white: #FFFFFF;
@@ -34,7 +37,9 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.02em;
@@ -88,37 +93,71 @@
         }
 
         .nav-amazon-card {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25vw;
+            min-width: 240px;
+            max-width: 400px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px;
             background: linear-gradient(135deg, #041009 0%, #0a2f1a 100%);
-            border: 1px solid rgba(255, 183, 3, 0.5);
+            border: 1.5px solid rgba(255, 183, 3, 0.7);
             color: #ffb703 !important;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
             font-weight: 800;
             text-decoration: none;
-            letter-spacing: 0.05em;
-            box-shadow: 0 4px 15px rgba(10, 47, 26, 0.25);
+            letter-spacing: 0.08em;
+            box-shadow: 0 6px 20px rgba(10, 47, 26, 0.35), 0 0 15px rgba(255, 183, 3, 0.15);
             transition: var(--transition-smooth);
+            z-index: 10;
+            white-space: nowrap;
         }
 
         .nav-amazon-card:hover {
-            transform: translateY(-2px);
+            transform: translateX(-50%) translateY(-2px);
             border-color: #ffb703;
-            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+            box-shadow: 0 10px 25px rgba(255, 183, 3, 0.45);
             color: #ffffff !important;
         }
 
         .nav-amazon-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background: #ffb703;
             border-radius: 50%;
-            box-shadow: 0 0 8px #ffb703;
+            box-shadow: 0 0 10px #ffb703;
             display: inline-block;
             flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .nav-amazon-card {
+                position: static;
+                transform: none;
+                width: auto;
+                min-width: 0;
+                max-width: none;
+                padding: 5px 10px;
+                font-size: 0.6rem;
+                gap: 5px;
+                border-radius: 4px;
+                letter-spacing: 0.03em;
+                box-shadow: 0 2px 8px rgba(10, 47, 26, 0.25);
+            }
+
+            .nav-amazon-card:hover {
+                transform: translateY(-1px);
+            }
+
+            .nav-amazon-dot {
+                width: 5px;
+                height: 5px;
+            }
         }
 
         /* Hero Detail */
@@ -293,23 +332,35 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .schedule-item { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                display: none;
+            }
+
+            .schedule-item {
+                grid-template-columns: 1fr;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
         <a href="../home.html" class="logo">
             <img src="../assets/logo_final.png" alt="Bariatric Channel Logo">
         </a>
+        <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer"
+            class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
         <div class="nav-links">
             <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
             <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
-            <a href="../bcflix.html" style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC FLIX</a>
+            <a href="../bcflix.html"
+                style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC
+                FLIX</a>
         </div>
     </nav>
 
@@ -317,7 +368,7 @@
         <div class="event-header" data-reveal>
             <p class="mono" style="color: var(--vitality-red); margin-bottom: 10px;">Informações do Evento</p>
             <h1>IX BC Live Surgery</h1>
-            
+
             <div class="meta-grid">
                 <div class="meta-item">
                     <span class="mono">Data do Evento</span>
@@ -336,187 +387,219 @@
     </header>
 
     <main class="content-section">
-        <div class="main-image" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200');" data-reveal></div>
+        <div class="main-image"
+            style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200');"
+            data-reveal></div>
 
         <section class="about" data-reveal>
             <h2 class="section-title">Sobre o Evento</h2>
             <p style="font-size: 1.1rem; max-width: 800px; margin-bottom: 60px;"></p>
         </section>
 
-        
+
         <section class="speakers" data-reveal>
             <h2 class="section-title">Cirurgiões</h2>
             <div class="speaker-grid">
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_b366b8a10cae45c8b365f7134e18d7c1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/carlos%20domenne_edited.jpg" alt="Carlos Domene" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_b366b8a10cae45c8b365f7134e18d7c1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/carlos%20domenne_edited.jpg"
+                        alt="Carlos Domene" class="speaker-img">
                     <p class="mono" style="font-weight: 800;">Carlos Domene</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg" alt="Carlos Madalosso" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg"
+                        alt="Carlos Madalosso" class="speaker-img">
                     <p class="mono" style="font-weight: 800;">Carlos Madalosso</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg" alt="Diogo Kfouri" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg"
+                        alt="Diogo Kfouri" class="speaker-img">
                     <p class="mono" style="font-weight: 800;">Diogo Kfouri</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_221573fb2a734172adac260abf0f0ca6~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Guilherme%20Goyano_edited.jpg" alt="Guilherme Goyano" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_221573fb2a734172adac260abf0f0ca6~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Guilherme%20Goyano_edited.jpg"
+                        alt="Guilherme Goyano" class="speaker-img">
                     <p class="mono" style="font-weight: 800;">Guilherme Goyano</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg" alt="Hiroji Okano" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg"
+                        alt="Hiroji Okano" class="speaker-img">
                     <p class="mono" style="font-weight: 800;">Hiroji Okano</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_5aef6b2331d542af994eceb2450987f1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Nicholas%20Kruel%20_edited.jpg" alt="Nicholas Kruel" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_5aef6b2331d542af994eceb2450987f1~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Nicholas%20Kruel%20_edited.jpg"
+                        alt="Nicholas Kruel" class="speaker-img">
                     <p class="mono" style="font-weight: 800;">Nicholas Kruel</p>
                 </div>
-                
+
             </div>
         </section>
-        
 
-        
+
+
         <section class="speakers" data-reveal>
             <h2 class="section-title">Palestrantes</h2>
             <div class="speaker-grid">
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_0c47ff079a0e4741aed5006f16dd3163~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Admar%20Concon_edited.jpg" alt="Admar Concon" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_0c47ff079a0e4741aed5006f16dd3163~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Admar%20Concon_edited.jpg"
+                        alt="Admar Concon" class="speaker-img">
                     <p class="mono">Admar Concon</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_9de78e1701464bd983b72f57730df2c4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Andre%20Bigolin_edited.jpg" alt="André Teixeira" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_9de78e1701464bd983b72f57730df2c4~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Andre%20Bigolin_edited.jpg"
+                        alt="André Teixeira" class="speaker-img">
                     <p class="mono">André Teixeira</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=AntelmoSasso&backgroundColor=B22222" alt="Antelmo Sasso" class="speaker-img">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=AntelmoSasso&backgroundColor=B22222"
+                        alt="Antelmo Sasso" class="speaker-img">
                     <p class="mono">Antelmo Sasso</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_800cb85b80f043748bd4cf4a4d59b984~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Dillemburg_edited.jpg" alt="Carlos Dillemburg" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_800cb85b80f043748bd4cf4a4d59b984~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Dillemburg_edited.jpg"
+                        alt="Carlos Dillemburg" class="speaker-img">
                     <p class="mono">Carlos Dillemburg</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg" alt="Carlos Madalosso" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_ef08257612f14c449bb99dd328260d44~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Carlos%20Madalosso_edited.jpg"
+                        alt="Carlos Madalosso" class="speaker-img">
                     <p class="mono">Carlos Madalosso</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_fbabdbbb73b44a608b2139b35d1866d0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Daiane%20Weber_edited.jpg" alt="Daiane Weber" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_fbabdbbb73b44a608b2139b35d1866d0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Daiane%20Weber_edited.jpg"
+                        alt="Daiane Weber" class="speaker-img">
                     <p class="mono">Daiane Weber</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg" alt="Diogo Kfouri" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_3d39d976724f42eab0351a84ddac9a01~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diogo%20Kfouri_edited.jpg"
+                        alt="Diogo Kfouri" class="speaker-img">
                     <p class="mono">Diogo Kfouri</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_e5f18deac9214c139f8da24cc0d0b6ef~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Eduardo%20Grecco_edited.jpg" alt="Eduardo Grecco" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_e5f18deac9214c139f8da24cc0d0b6ef~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Eduardo%20Grecco_edited.jpg"
+                        alt="Eduardo Grecco" class="speaker-img">
                     <p class="mono">Eduardo Grecco</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg" alt="Hiroji Okano" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_350c85753da54d1090bcee5c4d9e7c1e~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hiroji%20Okano%20_edited.jpg"
+                        alt="Hiroji Okano" class="speaker-img">
                     <p class="mono">Hiroji Okano</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=HugoSantos&backgroundColor=B22222" alt="Hugo Santos" class="speaker-img">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=HugoSantos&backgroundColor=B22222"
+                        alt="Hugo Santos" class="speaker-img">
                     <p class="mono">Hugo Santos</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_4966dada5c844fa2a4661cad8c63d3b3~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Joe%20Waltrick.jpeg" alt="Joe Waltrick" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_4966dada5c844fa2a4661cad8c63d3b3~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Joe%20Waltrick.jpeg"
+                        alt="Joe Waltrick" class="speaker-img">
                     <p class="mono">Joe Waltrick</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_768b8bc937634ba49ade2c195aaa3abc~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/jessica_edited.jpg" alt="Jéssica Zandoná" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_768b8bc937634ba49ade2c195aaa3abc~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/jessica_edited.jpg"
+                        alt="Jéssica Zandoná" class="speaker-img">
                     <p class="mono">Jéssica Zandoná</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_e9665ec4b8574aedb33c5a33ee17be06~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Luiz%20Gustavo%20Quadros.jpeg" alt="Luiz Gustavo Quadros" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_e9665ec4b8574aedb33c5a33ee17be06~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Luiz%20Gustavo%20Quadros.jpeg"
+                        alt="Luiz Gustavo Quadros" class="speaker-img">
                     <p class="mono">Luiz Gustavo Quadros</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_3c918e7ebb424e7486cc36db8eb19cff~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Manoel%20Galv%C3%A3o%20Neto_edited.jpg" alt="Manoel Galvão Neto" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_3c918e7ebb424e7486cc36db8eb19cff~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Manoel%20Galv%C3%A3o%20Neto_edited.jpg"
+                        alt="Manoel Galvão Neto" class="speaker-img">
                     <p class="mono">Manoel Galvão Neto</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_5864c775f8674f4587bd1bbbb4bdfd5d~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Milton%20Kawahara%20-%20SP.jpeg" alt="Milton Kawahara" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_5864c775f8674f4587bd1bbbb4bdfd5d~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Milton%20Kawahara%20-%20SP.jpeg"
+                        alt="Milton Kawahara" class="speaker-img">
                     <p class="mono">Milton Kawahara</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_eaa244b5fde44dc3b13a5411ea71a691~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Marcia%20Murussi_edited.jpg" alt="Márcia Murussi" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_eaa244b5fde44dc3b13a5411ea71a691~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Marcia%20Murussi_edited.jpg"
+                        alt="Márcia Murussi" class="speaker-img">
                     <p class="mono">Márcia Murussi</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_964942490a304f359a832379f82b3778~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Paulo%20Reis_jpg.jpeg" alt="Paulo Reis" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_964942490a304f359a832379f82b3778~mv2.jpeg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Paulo%20Reis_jpg.jpeg"
+                        alt="Paulo Reis" class="speaker-img">
                     <p class="mono">Paulo Reis</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_9717e634b48e47d3b759a08e11377a55~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,enc_avif,quality_auto/Persio%20Stobbe_edited.jpg" alt="Persio Stobbe" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_9717e634b48e47d3b759a08e11377a55~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,enc_avif,quality_auto/Persio%20Stobbe_edited.jpg"
+                        alt="Persio Stobbe" class="speaker-img">
                     <p class="mono">Persio Stobbe</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_8b6a40868444490184923077b064f43d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Raquel%20Fraga_edited.jpg" alt="Raquel Fraga" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_8b6a40868444490184923077b064f43d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Raquel%20Fraga_edited.jpg"
+                        alt="Raquel Fraga" class="speaker-img">
                     <p class="mono">Raquel Fraga</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_1b14dc8469504a5dba39723d187829f0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Renato%20Souza_edited.jpg" alt="Renato Souza" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_1b14dc8469504a5dba39723d187829f0~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Renato%20Souza_edited.jpg"
+                        alt="Renato Souza" class="speaker-img">
                     <p class="mono">Renato Souza</p>
                 </div>
-                
+
                 <div class="speaker-card">
-                    <img src="https://static.wixstatic.com/media/470852_e922635202284c269050fc8092fd3b0d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Victor%20Dib_edited.jpg" alt="Victor Dib" class="speaker-img">
+                    <img src="https://static.wixstatic.com/media/470852_e922635202284c269050fc8092fd3b0d~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Victor%20Dib_edited.jpg"
+                        alt="Victor Dib" class="speaker-img">
                     <p class="mono">Victor Dib</p>
                 </div>
-                
+
             </div>
         </section>
-        
 
-        
+
+
         <section class="schedule" data-reveal>
             <h2 class="section-title">Cronograma</h2>
             <div class="schedule-list">
-                
+
                 <div class="schedule-item">
                     <span class="mono" style="color: var(--vitality-red); font-weight: 800;">Dia 27 08:00</span>
                     <div>
-                        <strong style="display: block; margin-bottom: 5px;">Cirurgias ao Vivo (Robótica e Laparoscopia)</strong>
-                        <span class="mono" style="opacity: 0.6;">Victor Dib, Carlos Madalosso, Paulo Reis e Convidados</span>
+                        <strong style="display: block; margin-bottom: 5px;">Cirurgias ao Vivo (Robótica e
+                            Laparoscopia)</strong>
+                        <span class="mono" style="opacity: 0.6;">Victor Dib, Carlos Madalosso, Paulo Reis e
+                            Convidados</span>
                     </div>
                 </div>
-                
+
                 <div class="schedule-item">
                     <span class="mono" style="color: var(--vitality-red); font-weight: 800;">Dia 28 08:00</span>
                     <div>
-                        <strong style="display: block; margin-bottom: 5px;">Sessões Teóricas e Discussão de Casos</strong>
+                        <strong style="display: block; margin-bottom: 5px;">Sessões Teóricas e Discussão de
+                            Casos</strong>
                         <span class="mono" style="opacity: 0.6;">Diversos Convidados Nacionais e Internacionais</span>
                     </div>
                 </div>
-                
+
                 <div class="schedule-item">
                     <span class="mono" style="color: var(--vitality-red); font-weight: 800;">12:30</span>
                     <div>
@@ -524,12 +607,12 @@
                         <span class="mono" style="opacity: 0.6;">Comissão Organizadora</span>
                     </div>
                 </div>
-                
+
             </div>
         </section>
-        
 
-        
+
+
 
         <div class="fixed-cta" data-reveal>
             <p class="mono" style="margin-bottom: 15px;">Inscrições Abertas</p>
@@ -539,7 +622,8 @@
     </main>
 
     <footer style="background: var(--medical-white); padding: 80px 5%; border-top: 1px solid rgba(10, 25, 47, 0.05);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
             <a href="../home.html" class="logo">
                 <img src="../assets/logo_final.png" alt="Logo" style="height: 30px;">
             </a>
@@ -561,4 +645,5 @@
         document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     </script>
 </body>
+
 </html>
