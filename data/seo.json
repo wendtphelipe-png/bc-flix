@@ -1,0 +1,64 @@
+{
+  "_como_usar": [
+    "Descrição para o Google e prévia de compartilhamento (WhatsApp, redes) de cada página.",
+    "O build_site.py injeta essas tags no <head> de cada arquivo e gera o sitemap.xml.",
+    "'imagem' é um arquivo em assets/og/. 'sitemap': false deixa a página fora do sitemap.",
+    "Páginas com noindex não entram aqui (só recebem o favicon)."
+  ],
+  "site": "https://bariatricchannel.com",
+  "paginas": {
+    "home.html": {
+      "url": "/",
+      "descricao": "Bariatric Channel: educação em cirurgia bariátrica e metabólica com cirurgias ao vivo, o streaming BC Flix e um corpo docente internacional.",
+      "imagem": "og-home.jpg",
+      "prioridade": "1.0"
+    },
+    "index.html": {
+      "url": "/",
+      "descricao": "Bariatric Channel: educação em cirurgia bariátrica e metabólica com cirurgias ao vivo, o streaming BC Flix e um corpo docente internacional.",
+      "imagem": "og-home.jpg",
+      "sitemap": false
+    },
+    "live.html": {
+      "descricao": "Live Surgery do Bariatric Channel: cirurgias bariátricas e metabólicas transmitidas ao vivo, com discussão técnica em tempo real.",
+      "imagem": "og-live.jpg",
+      "prioridade": "0.9"
+    },
+    "bcflix.html": {
+      "descricao": "BC Flix: o streaming do Bariatric Channel, com acervo de cirurgias bariátricas e metabólicas reais, narradas passo a passo.",
+      "imagem": "og-bcflix.jpg",
+      "prioridade": "0.8"
+    },
+    "professores/corpo_docente.html": {
+      "descricao": "Conheça o corpo docente do Bariatric Channel: cirurgiões bariátricos e metabólicos de referência no Brasil e no exterior.",
+      "imagem": "og-professores.jpg",
+      "prioridade": "0.7"
+    },
+    "eventos/ix-bc-live-surgery.html": {
+      "descricao": "IX BC Live Surgery em Passo Fundo (RS): cirurgias robóticas e laparoscópicas ao vivo e sessões teóricas com convidados nacionais e internacionais.",
+      "imagem": "og-live.jpg",
+      "prioridade": "0.5"
+    },
+    "eventos/webinar-sleeve.html": {
+      "descricao": "Webinar do Bariatric Channel sobre as dificuldades técnicas na gastrectomia vertical (sleeve).",
+      "imagem": "og-webinar.jpg",
+      "prioridade": "0.5"
+    },
+    "webinar-maio.html": {
+      "descricao": "1º BC Webinar: fígado e cirurgia metabólica, com cirurgiões de referência do Bariatric Channel.",
+      "imagem": "og-webinar.jpg",
+      "prioridade": "0.5"
+    },
+    "webinar-junho.html": {
+      "descricao": "2º BC Webinar: bipartição de trânsito intestinal, com cirurgiões de referência do Bariatric Channel.",
+      "imagem": "og-webinar.jpg",
+      "prioridade": "0.5"
+    },
+    "webinar-julho.html": {
+      "descricao": "3º BC Webinar: variações das bipartições de trânsito, com cirurgiões de referência do Bariatric Channel.",
+      "imagem": "og-webinar.jpg",
+      "prioridade": "0.5"
+    }
+  },
+  "so_favicon": ["masterclass.html", "checkin_bc.html", "config_evento.html"]
+}

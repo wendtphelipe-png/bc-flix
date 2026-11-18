@@ -1,3 +1,5 @@
 # Paginas internas usam <meta name="robots" content="noindex">
 User-agent: *
 Disallow:
+
+Sitemap: https://bariatricchannel.com/sitemap.xml

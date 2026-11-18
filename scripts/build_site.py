@@ -244,6 +244,82 @@ with open(prof_output_path, 'w', encoding='utf-8') as f:
 print(" -> professores/corpo_docente.html gerado.")
 
 # -------
+# 3.5 SEO: descrição, prévia de compartilhamento, favicon e sitemap (data/seo.json)
+# -------
+import html as _html
+import re as _re
+
+print("Aplicando SEO...")
+SEO_INI, SEO_FIM = '<!-- SEO:inicio', '<!-- SEO:fim -->'
+with open(os.path.join(BASE_DIR, 'data', 'seo.json'), 'r', encoding='utf-8') as f:
+    seo = json.load(f)
+SITE = seo['site'].rstrip('/')
+FAVICON = (
+    '<link rel="icon" href="/favicon.ico" sizes="any">\n'
+    '    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">\n'
+    '    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">\n'
+    '    <meta name="theme-color" content="#A51C24">'
+)
+
+
+def _aplicar_bloco(rel, bloco):
+    caminho = os.path.join(DEPLOY_DIR, rel)
+    if not os.path.exists(caminho):
+        print(f" !! {rel} não existe, pulando SEO")
+        return
+    with open(caminho, 'r', encoding='utf-8', newline='') as f:
+        txt = f.read()
+    nl = '\r\n' if '\r\n' in txt else '\n'
+    bloco = f'{SEO_INI} (gerado por build_site.py a partir de data/seo.json) -->\n    {bloco}\n    {SEO_FIM}'.replace('\n', nl)
+    # tira bloco anterior (idempotente) e insere logo depois do </title>
+    txt = _re.sub(r'[ \t]*' + _re.escape(SEO_INI) + r'.*?' + _re.escape(SEO_FIM) + r'\r?\n?', '', txt, flags=_re.S)
+    txt = txt.replace('</title>', '</title>' + nl + '    ' + bloco, 1)
+    with open(caminho, 'w', encoding='utf-8', newline='') as f:
+        f.write(txt)
+
+
+sitemap_urls = []
+for rel, info in seo['paginas'].items():
+    caminho = os.path.join(DEPLOY_DIR, rel)
+    if not os.path.exists(caminho):
+        print(f" !! {rel} não existe, pulando SEO")
+        continue
+    with open(caminho, 'r', encoding='utf-8') as f:
+        m = _re.search(r'<title>(.*?)</title>', f.read(), _re.S)
+    titulo = _html.unescape(m.group(1).strip()) if m else 'Bariatric Channel'
+    url = SITE + info.get('url', '/' + rel)
+    img = f"{SITE}/assets/og/{info.get('imagem', 'og-home.jpg')}"
+    e = lambda s: _html.escape(s, quote=True)
+    tags = [
+        f'<meta name="description" content="{e(info["descricao"])}">',
+        f'<link rel="canonical" href="{url}">',
+        '<meta property="og:type" content="website">',
+        '<meta property="og:site_name" content="Bariatric Channel">',
+        '<meta property="og:locale" content="pt_BR">',
+        f'<meta property="og:title" content="{e(titulo)}">',
+        f'<meta property="og:description" content="{e(info["descricao"])}">',
+        f'<meta property="og:url" content="{url}">',
+        f'<meta property="og:image" content="{img}">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        FAVICON,
+    ]
+    _aplicar_bloco(rel, '\n    '.join(tags))
+    if info.get('sitemap', True):
+        sitemap_urls.append((url, info.get('prioridade', '0.5')))
+for rel in seo.get('so_favicon', []):
+    _aplicar_bloco(rel, FAVICON)
+
+with open(os.path.join(DEPLOY_DIR, 'sitemap.xml'), 'w', encoding='utf-8', newline='\n') as f:
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+    for url, prio in sitemap_urls:
+        f.write(f'  <url><loc>{url}</loc><priority>{prio}</priority></url>\n')
+    f.write('</urlset>\n')
+print(f" -> SEO em {len(seo['paginas'])} páginas, sitemap.xml com {len(sitemap_urls)} URLs")
+
+# -------
 # 4. Sincronização com pasta Deploy Legada (opcional)
 # -------
 LEGACY_DEPLOY = os.path.join(BASE_DIR, 'deploy', 'BariatricChannel')
