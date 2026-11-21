@@ -11,18 +11,19 @@
       "id": "live-surgery-2026-12-12",
       "ativo": true,
       "data": "2026-12-12",
-      "data_texto": "12 DE DEZEMBRO • HORÁRIOS EM BREVE",
+      "data_texto": "SÁBADO, 12 DE DEZEMBRO • 08H00 E 10H00 (BRT) • VIA ZOOM",
       "titulo": "LIVE SURGERY",
-      "titulo_destaque": "CIRURGIAS AO VIVO",
-      "descricao_html": "Cirurgias metabólicas e bariátricas transmitidas em tempo real, com diferentes abordagens e estratégias cirúrgicas. <strong>Programação e cirurgiões serão divulgados em breve.</strong>",
+      "titulo_destaque": "4 CIRURGIAS AO VIVO",
+      "descricao_html": "Cirurgias bariátricas e metabólicas transmitidas ao vivo por <strong>Dr. Rui Ribeiro</strong> (Portugal), <strong>Dr. Daniel Caiña</strong> (Argentina), <strong>Dr. Júlio Teixeira</strong> (EUA) e <strong>Dr. Victor Dib</strong> (Brasil).",
       "itens": [
-        "Cirurgias Metabólicas e Bariátricas ao Vivo",
-        "Discussão técnica e comentários em tempo real",
-        "Evento 100% online"
+        "08h00: SASI-OATB com magnetos (MagGI) e OAGB-BAGUA",
+        "10h00: SADI-S robótico e bipartição gástrica com exclusão funcional do duodeno",
+        "Discussão técnica em tempo real",
+        "Evento online e gratuito, pelo Zoom"
       ],
-      "box_rotulo": "INSCRIÇÕES EM BREVE",
-      "box_texto": "As inscrições abrem assim que a programação for confirmada.",
-      "cta_texto": "SAIBA MAIS",
+      "box_rotulo": "INSCRIÇÕES ABERTAS",
+      "box_texto": "Garanta sua vaga gratuita na Live Surgery de 12 de dezembro.",
+      "cta_texto": "QUERO PARTICIPAR",
       "cta_link": "live.html"
     },
     {

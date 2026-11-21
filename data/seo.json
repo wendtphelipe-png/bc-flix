@@ -20,7 +20,7 @@
       "sitemap": false
     },
     "live.html": {
-      "descricao": "Live Surgery do Bariatric Channel: cirurgias bariátricas e metabólicas transmitidas ao vivo, com discussão técnica em tempo real.",
+      "descricao": "Live Surgery do Bariatric Channel, 12/12/2026: 4 cirurgias bariátricas e metabólicas ao vivo, com Rui Ribeiro, Daniel Caiña, Júlio Teixeira e Victor Dib. Gratuito, pelo Zoom.",
       "imagem": "og-live.jpg",
       "prioridade": "0.9"
     },
@@ -60,5 +60,9 @@
       "prioridade": "0.5"
     }
   },
-  "so_favicon": ["masterclass.html", "checkin_bc.html", "config_evento.html"]
+  "so_favicon": [
+    "masterclass.html",
+    "checkin_bc.html",
+    "config_evento.html"
+  ]
 }
