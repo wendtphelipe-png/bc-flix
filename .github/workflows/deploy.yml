@@ -49,7 +49,7 @@ jobs:
           remote_path: 'domains/bariatricchannel.com/public_html'
           rsyncArgs: >-
             --exclude=.git/ --exclude=.github/
-            --exclude=deploy/ --exclude=scripts/ --exclude=templates/ --exclude=scratch/
+            --exclude=deploy/ --exclude=scripts/ --exclude=templates/ --exclude=scratch/ --exclude=emails/
             --exclude=Design?sem?nome/ --exclude=Professores?faltantes/
             --include=data/database.json --exclude=data/*
             --include=/robots.txt

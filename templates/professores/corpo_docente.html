@@ -436,9 +436,15 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+            /* Menu no celular: logo + Amazon Week na 1ª linha, links e idiomas na 2ª (igual à home) */
+            nav { padding: 8px 4%; height: auto; min-height: 70px; flex-wrap: wrap; row-gap: 6px; }
+            .logo img { height: 34px; }
+            .nav-links { display: flex; flex-wrap: wrap; width: 100%; justify-content: center; align-items: center; gap: 8px 16px; margin: 4px 0; }
+            .nav-links a { font-size: 0.65rem; }
+            .nav-links a[style*="border"] { padding: 5px 10px !important; }
+            .lang-switcher { margin-left: 0 !important; }
+            header.page-header { padding-top: 140px !important; }
+            header.page-header, body { overflow-x: hidden; }
 
             .modal-content {
                 padding: 30px;
@@ -468,11 +474,9 @@
         </a>
         <a href="https://www.bcamazonweek.com.br/" target="_blank" rel="noopener noreferrer" class="nav-amazon-card notranslate" translate="no"><span class="nav-amazon-dot"></span>BC AMAZON WEEK</a>
         <div class="nav-links">
-            <a href="../home.html#procedimentos">PRÓXIMOS EVENTOS DO BC</a>
-            <a href="../professores/corpo_docente.html">CORPO DOCENTE</a>
-            <a href="../bcflix.html"
-                style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px;">BC
-                FLIX</a>
+            <a href="../professores/corpo_docente.html" style="white-space: nowrap;">CORPO DOCENTE</a>
+            <a href="https://bcflix.com.br/"
+                style="color: var(--vitality-red); border: 1px solid var(--vitality-red); padding: 8px 15px; border-radius: 4px; white-space: nowrap;">BC FLIX</a>
             <div class="lang-switcher" style="display:flex; gap:5px; margin-left: 10px;">
                 <button onclick="changeLang('pt')"><img src="https://flagcdn.com/w20/br.png" alt="PT"></button>
                 <button onclick="changeLang('en')"><img src="https://flagcdn.com/w20/us.png" alt="EN"></button>

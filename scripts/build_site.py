@@ -98,9 +98,17 @@ for p in palestrantes_data:
         p['FlagURL'] = None
         p['PaisNome'] = p.get('País') or 'INTERNACIONAL'
     
-    # Consertar a URL das imagens que ficaram no servidor .com.br invés do .com principal
-    if p.get('Foto URL'):
-        p['Foto URL'] = p['Foto URL'].replace('bariatricchannel.com/event/', 'bariatricchannel.com.br/event/')
+    # Fotos: as do antigo servidor de eventos (bariatricchannel.com/event/ e .com.br) não existem mais.
+    # Fonte atual: assets/palestrantes/id/<ID>.jpg, extraídas da planilha
+    # "Bariatric Channel - Palestrantes (foto, nome, currículo).xlsx" pelo mesmo ID.
+    foto_id = os.path.join(BASE_DIR, 'assets', 'palestrantes', 'id', f"{p.get('ID')}.jpg")
+    url = (p.get('Foto URL') or '').strip()
+    if p.get('ID') and os.path.exists(foto_id):
+        p['Foto URL'] = f"/assets/palestrantes/id/{p.get('ID')}.jpg"
+    elif '/event/images/' in url:
+        p['Foto URL'] = ''  # link morto: cai no avatar com as iniciais
+    elif url and not url.startswith(('http', '/')):
+        p['Foto URL'] = '/' + url.lstrip('./')  # caminho local relativo -> absoluto
 
 # Mapeia cronograma por professor
 speaker_schedules = {}

@@ -9,7 +9,7 @@
 
     # --- Arquivos internos do projeto: nunca servir (403) ---
     # Pastas de trabalho que o deploy envia junto
-    RewriteRule ^(scripts|deploy|templates|scratch|\.github|\.git|Design.sem.nome|Professores.faltantes)(/|$) - [F,NC]
+    RewriteRule ^(scripts|deploy|templates|scratch|emails|\.github|\.git|Design.sem.nome|Professores.faltantes)(/|$) - [F,NC]
     # Dados: so o database.json e publico (usado pelas paginas de webinar)
     RewriteCond %{REQUEST_URI} !^/data/database\.json$
     RewriteRule ^data/ - [F]
