@@ -22,6 +22,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
     <meta name="theme-color" content="#A51C24">
+    <!-- Tag do Google (Analytics) -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NB7WK7B3"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());</script>
     <!-- SEO:fim -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1059,6 +1062,9 @@
         document.querySelectorAll('a.zoom-btn').forEach(a => a.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'live_register_click', live_id: 'live-surgery-2026-12-12' });
+            // Analytics (tag do Google) e Pixel do Meta, quando instalados
+            if (typeof gtag === 'function') gtag('event', 'generate_lead', { live_id: 'live-surgery-2026-12-12', method: 'zoom_register' });
+            if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Live Surgery 12.12.2026' });
         }));
 
         // Animação de entrada

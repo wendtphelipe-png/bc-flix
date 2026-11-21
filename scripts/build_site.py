@@ -269,6 +269,27 @@ FAVICON = (
     '    <meta name="theme-color" content="#A51C24">'
 )
 
+# Medição (data/seo.json -> "medicao"): tag do Google (Analytics) e Pixel do Meta, só nas páginas públicas
+MEDICAO = ''
+_med = seo.get('medicao', {})
+if _med.get('google_tag'):
+    gt = _med['google_tag']
+    MEDICAO += (
+        f'\n    <!-- Tag do Google (Analytics) -->\n'
+        f'    <script async src="https://www.googletagmanager.com/gtm.js?id={gt}"></script>\n'
+        '    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag(\'js\', new Date());</script>'
+    )
+if _med.get('meta_pixel'):
+    px = _med['meta_pixel']
+    MEDICAO += (
+        '\n    <!-- Pixel do Meta -->\n'
+        '    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};'
+        'if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;'
+        's=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,\'script\',\'https://connect.facebook.net/en_US/fbevents.js\');'
+        f'fbq(\'init\',\'{px}\');fbq(\'track\',\'PageView\');</script>\n'
+        f'    <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id={px}&ev=PageView&noscript=1"></noscript>'
+    )
+
 
 def _aplicar_bloco(rel, bloco):
     caminho = os.path.join(DEPLOY_DIR, rel)
@@ -311,7 +332,7 @@ for rel, info in seo['paginas'].items():
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
         '<meta name="twitter:card" content="summary_large_image">',
-        FAVICON,
+        FAVICON + MEDICAO,
     ]
     _aplicar_bloco(rel, '\n    '.join(tags))
     if info.get('sitemap', True):

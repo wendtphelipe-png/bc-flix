@@ -64,5 +64,10 @@
     "masterclass.html",
     "checkin_bc.html",
     "config_evento.html"
-  ]
+  ],
+  "medicao": {
+    "_obs": "Contas do Bariatric Channel (Google: bariatricachannelassociation). Pixel do Meta entra aqui quando criado.",
+    "google_tag": "GTM-NB7WK7B3",
+    "meta_pixel": ""
+  }
 }
