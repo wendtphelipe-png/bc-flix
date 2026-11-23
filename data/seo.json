@@ -66,8 +66,8 @@
     "config_evento.html"
   ],
   "medicao": {
-    "_obs": "Contas do Bariatric Channel (Google: bariatricachannelassociation). Pixel do Meta entra aqui quando criado.",
+    "_obs": "Google: conta Analytics \"Bariatric Channel\" (Google do BC). Meta: portfolio \"Bariatric Channel\" (ID 1668770174744536), Pixel Bariatric Channel.",
     "google_tag": "GTM-NB7WK7B3",
-    "meta_pixel": ""
+    "meta_pixel": "2413472049463531"
   }
 }
