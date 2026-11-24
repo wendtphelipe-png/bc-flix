@@ -929,8 +929,19 @@
                 <a href="home.html" class="logo">
                     <img src="assets/logo_final.png" alt="Bariatric Channel Logo" style="height: 40px;">
                 </a>
-                <img src="assets/Check-in.png" alt="Parceiro Check-in" style="height: 120px; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
-                <a href="https://trogss.org/" target="_blank" rel="noopener noreferrer" title="TROGSS - The Robotic Global Surgical Society"><img src="assets/parceiros/trogss.png" alt="TROGSS - The Robotic Global Surgical Society" width="600" height="607" loading="lazy" style="height: 100px; width: auto; object-fit: contain; filter: grayscale(100%); transition: var(--transition-smooth);" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></a>
+                <!-- Parceiros (logos em assets/parceiros/) -->
+                <a href="https://www.ios.xin/" target="_blank" rel="noopener noreferrer" class="partner-logo" title="IOS - International Obesity Society"><img src="assets/parceiros/ios.png" alt="IOS - International Obesity Society" width="640" height="419" loading="lazy" class="partner-ios"></a>
+                <a href="https://trogss.org/" target="_blank" rel="noopener noreferrer" class="partner-logo" title="TROGSS - The Robotic Global Surgical Society"><img src="assets/parceiros/trogss.png" alt="TROGSS - The Robotic Global Surgical Society" width="600" height="607" loading="lazy" class="partner-trogss"></a>
+                <style>
+                    .partner-logo img { width: auto; object-fit: contain; filter: grayscale(100%); opacity: 0.85; transition: var(--transition-smooth); }
+                    .partner-logo:hover img { filter: grayscale(0%); opacity: 1; }
+                    .partner-ios { height: 95px; }
+                    .partner-trogss { height: 135px; }
+                    @media (max-width: 768px) {
+                        .partner-ios { height: 72px; }
+                        .partner-trogss { height: 105px; }
+                    }
+                </style>
             </div>
             <div class="mono" style="font-size: 0.7rem; opacity: 0.5;">
                 &copy; 2026 BARIATRIC CHANNEL. TODOS OS DIREITOS RESERVADOS.
